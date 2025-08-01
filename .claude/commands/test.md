@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
+allowed-tools: mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Read, Glob, Grep, Edit, MultiEdit, Write, Bash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 description: Advanced test implementation command with unit/E2E support, auto-execution, and smart fixing capabilities
 ---
 
@@ -98,6 +98,28 @@ With `--include-deps` option:
 /test . --files="src/components/**/*.tsx" -u -w -f    # Watch all components for changes
 ```
 
+## Tool Usage Priorities
+
+**ALWAYS prioritize mcp__serena__ tools over default Claude Code tools when available:**
+
+### File Operations (Use Serena MCP First)
+- **Reading files**: Use `mcp__serena__find_file` → `Read` (fallback)
+- **Searching patterns**: Use `mcp__serena__search_for_pattern` → `Grep` (fallback)
+- **Directory listing**: Use `mcp__serena__list_dir` → `LS` (fallback)
+- **Finding symbols**: Use `mcp__serena__find_symbol` → `Glob` (fallback)
+
+### Code Analysis (Serena MCP Exclusive)
+- **Symbol overview**: Use `mcp__serena__get_symbols_overview`
+- **Symbol references**: Use `mcp__serena__find_referencing_symbols`
+- **Code replacement**: Use `mcp__serena__replace_symbol_body` → `Edit` (fallback)
+- **Pattern replacement**: Use `mcp__serena__replace_regex` → `MultiEdit` (fallback)
+
+### Memory & Context (Serena MCP Only)
+- **Task tracking**: Use `mcp__serena__think_about_task_adherence`
+- **Progress checking**: Use `mcp__serena__think_about_whether_you_are_done`
+- **Information analysis**: Use `mcp__serena__think_about_collected_information`
+- **Memory operations**: Use `mcp__serena__write_memory`, `mcp__serena__read_memory`
+
 ## Your Task
 
 Implement comprehensive tests for the specified feature, file, or function, with optional test execution and intelligent failure fixing based on the provided options.
@@ -105,22 +127,25 @@ Implement comprehensive tests for the specified feature, file, or function, with
 ### Execution Flow
 
 #### 1. Pre-execution Setup
-1. Read package.json to identify available testing libraries and frameworks
-2. Verify existing test configurations and scripts
-3. **File Discovery & Filtering**:
+1. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
+2. Read package.json using `mcp__serena__find_file` to identify available testing libraries and frameworks
+3. Verify existing test configurations and scripts using `mcp__serena__list_dir`
+4. **File Discovery & Filtering**:
    - Parse target argument and file specification options
-   - Use Glob tool with `--files` pattern if specified
+   - Use `mcp__serena__search_for_pattern` with `--files` pattern → `Glob` (fallback)
    - Apply `--exclude` pattern to filter out unwanted files
-   - If `--include-deps` is set, analyze imports to include dependency files
-   - Validate that discovered files exist and are accessible
-4. Locate and analyze target code files
+   - If `--include-deps` is set, use `mcp__serena__find_referencing_symbols` to analyze imports
+   - Validate that discovered files exist using `mcp__serena__find_file`
+5. **Progress Tracking**: Use `mcp__serena__think_about_task_adherence` to verify setup completion
 
 #### 2. Mode-Specific Test Implementation
 
 ##### Unit Test Mode (-u)
 1. **Target Code Analysis**:
-   - Identify and read specified files/functions using Read tool
-   - Analyze dependencies and imports
+   - Identify and read specified files/functions using `mcp__serena__find_file` → `Read` (fallback)
+   - Get symbol overview using `mcp__serena__get_symbols_overview`
+   - Find symbol definitions using `mcp__serena__find_symbol`
+   - Analyze dependencies and imports using `mcp__serena__find_referencing_symbols`
    - Determine function parameters, return values, and side effects
 
 2. **Test Framework Detection**:
@@ -142,7 +167,9 @@ Implement comprehensive tests for the specified feature, file, or function, with
 
 ##### E2E Test Mode (-e)
 1. **Target Component Analysis**:
-   - Identify and read component files using Read tool
+   - Identify and read component files using `mcp__serena__find_file` → `Read` (fallback)
+   - Search for interactive elements using `mcp__serena__search_for_pattern`
+   - Get component symbol overview using `mcp__serena__get_symbols_overview`
    - Analyze rendered content, props, and state
    - Identify user interaction elements
 
@@ -238,9 +265,11 @@ Implement comprehensive tests for the specified feature, file, or function, with
    ```
 
 4. **Iterative Process**:
+   - Use `mcp__serena__think_about_whether_you_are_done` to check completion status
    - Attempt fixes up to 10 times maximum
-   - Apply different fixing approaches each iteration
+   - Apply different fixing approaches each iteration using `mcp__serena__replace_regex` or `mcp__serena__replace_symbol_body`
    - Continue until all tests pass or fix limit reached
+   - Use `mcp__serena__write_memory` to store fix patterns for future reference
 
 ##### Fix Result Reporting
 - Detailed fix descriptions
@@ -567,7 +596,8 @@ const LoginForm = () => (
    - Add `role` when semantics are unclear
 
 3. **Code Updates**:
-   - Batch add multiple attributes using MultiEdit tool
+   - Batch add multiple attributes using `mcp__serena__replace_regex` → `MultiEdit` (fallback)
+   - Use `mcp__serena__insert_after_symbol` or `mcp__serena__insert_before_symbol` for precise placement
    - Preserve formatting and indentation
    - Avoid TypeScript type errors
 
