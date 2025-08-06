@@ -4,6 +4,13 @@ mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena
 description: Advanced technical research command with extended thinking modes and MCP integration for comprehensive analysis
 ---
 
+## Context
+
+- Project tech stacks: @package.json
+- Project requirements: !`find . -name ".claude/requirements.md"`
+- Existing documentation: !`find . -name "*.md" | head -10`
+- Project structure: !`ls -la`
+
 ## Quick Reference
 
 ```bash

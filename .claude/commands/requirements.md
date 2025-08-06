@@ -24,6 +24,7 @@ description: Generate comprehensive requirements definition documents with techn
 | `--app` | `-a` | Application name | `-a "Web Store"` |
 | `--function` | `-f` | Function/feature name | `-f "Authentication"` |
 | `--file` | | Input file with additional requirements | `--file existing-req.txt` |
+| `--dir` | | Input dir with additional requirements | `--dir requirements` |
 | `--output` | `-o` | Output file path (default: requirements.md) | `-o specs.md` |
 | `--tech` | `-t` | Technology stack | `-t "react,nodejs,postgresql"` |
 | `--priority` | `-p` | Priority level (low\|medium\|high\|critical) | `-p high` |
