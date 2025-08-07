@@ -14,6 +14,7 @@ Show current status and progress for feature: **$ARGUMENTS**
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 - Requirements: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design: @.kiro/specs/$ARGUMENTS/design.md
+- Test specifications: @.kiro/specs/$ARGUMENTS/tests/test-spec.md
 - Tasks: @.kiro/specs/$ARGUMENTS/tasks.md
 
 ### All Specs Overview
@@ -43,6 +44,15 @@ For each phase, show:
   - Components defined: [yes/no]
   - Diagrams created: [yes/no]
   - Integration planned: [yes/no]
+
+- ✅ **Test Specifications Phase**: [completion %]
+  - Test cases defined: [yes/no]
+  - Unit tests specified: [number]
+  - Component tests specified: [number]
+  - API tests specified: [number]
+  - E2E tests specified: [number]
+  - Coverage target: [percentage]%
+  - Mock strategy defined: [yes/no]
 
 - ✅ **Tasks Phase**: [completion %]
   - Total tasks: [number]

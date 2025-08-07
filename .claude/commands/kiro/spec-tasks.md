@@ -55,6 +55,7 @@ Generate detailed implementation tasks for feature: **$ARGUMENTS**
 ### Complete Spec Context (APPROVED)
 - Requirements: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design: @.kiro/specs/$ARGUMENTS/design.md
+- Test specifications: @.kiro/specs/$ARGUMENTS/tests/test-spec.md (if generated)
 - Current tasks: @.kiro/specs/$ARGUMENTS/tasks.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
@@ -66,6 +67,11 @@ Generate detailed implementation tasks for feature: **$ARGUMENTS**
 ## Task: Generate Code-Generation Prompts
 
 **Prerequisites Verified**: Both requirements and design are approved and ready for task breakdown.
+
+**TDD Integration Note**: If test specifications have been generated using `/kiro:spec-test`, tasks should follow the Red-Green-Refactor cycle:
+- **Red Phase**: Reference failing tests from test-spec.md
+- **Green Phase**: Implement minimum code to pass tests
+- **Refactor Phase**: Improve code while maintaining test success
 
 **CRITICAL**: Convert the feature design into a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage.
 
