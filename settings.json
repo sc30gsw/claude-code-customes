@@ -30,14 +30,14 @@
     ]
   },
   "model": "sonnet",
-  "hooks": {
+"hooks": {
     "Stop": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display alert \"タスクが完了しました。\" buttons {\"OK\"} default button \"OK\" giving up after 5' -e 'tell application \"Visual Studio Code\" to activate'"
+            "command": "osascript -e 'display alert \"タスクが完了しました。\" buttons {\"OK\"} default button \"OK\"' -e 'tell application \"Visual Studio Code\" to activate'"
           }
         ]
       }
@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display alert \"Claude Codeが許可を求めています。\" buttons {\"OK\"} default button \"OK\" giving up after 5' -e 'tell application \"Visual Studio Code\" to activate'"
+            "command": "osascript -e 'display alert \"Claude Codeが許可を求めています。\" buttons {\"OK\"} default button \"OK\"' -e 'tell application \"Visual Studio Code\" to activate'"
           }
         ]
       }
