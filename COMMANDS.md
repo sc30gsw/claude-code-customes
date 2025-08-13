@@ -136,6 +136,128 @@ Kiroは、仕様駆動開発（Spec-Driven Development）とテスト駆動開�
 
 ### 開発支援コマンド
 
+#### `/commit [オプション]` - インテリジェントなGitコミット自動化
+**説明**: Serena MCPを活用した高度なコミット自動化システム。変更内容の意味的分析、git履歴学習、コンテキスト認識によるコミットメッセージ生成を行います。
+
+**主要オプション**:
+| オプション | 短縮形 | 説明 | 例 |
+|---------|-------|------|---------|
+| `--no-verify` | | pre-commitチェックをスキップ | `/commit --no-verify` |
+| `--analyze` | `-a` | Serena深層分析を有効化 | `/commit -a` |
+| `--learning` | `-l` | git履歴パターンから学習 | `/commit -l` |
+| `--scope` | `-s` | コミットスコープを設定 | `/commit -s feature` |
+| `--batch` | `-b` | 複数の関連変更をグループ化 | `/commit -b` |
+| `--interactive` | `-i` | インタラクティブなメッセージ調整 | `/commit -i` |
+| `--semantic-grouping` | | 高度な変更グループ化を有効化 | `/commit --semantic-grouping` |
+| `--impact-analysis` | | 変更の潜在的影響を分析 | `/commit --impact-analysis` |
+
+**使用例**:
+```bash
+# 基本的なスマートコミット
+/commit
+
+# 機能開発での学習付きコミット
+/commit --scope=feature --learning --analyze
+
+# リファクタリングでの意味的グループ化
+/commit --template=refactor --semantic-grouping
+
+# 大規模変更での影響分析付きバッチコミット
+/commit --batch --impact-analysis --interactive
+```
+
+**主な機能**:
+- Serena MCPによるコードベース理解とパターン認識
+- Git履歴からのコミット規約学習と適応
+- conventional commitフォーマットでの絵文字付きメッセージ自動生成
+- 変更の意味的分析による適切なコミット分割提案
+- チーム固有のコミットパターンへの継続的適応
+
+#### `/debug-error "[エラー説明]" [オプション]` - インテリジェントデバッグシステム
+**説明**: Serena MCPを活用した高度なデバッグシステム。パターン認識、シンボル追跡、過去の解決例学習により効率的なエラー解決を実現します。
+
+**主要オプション**:
+| オプション | 短縮形 | 説明 | 例 |
+|---------|-------|------|---------|
+| `--analyze` | `-a` | Serena深層分析を有効化 | `/debug-error "crash" -a` |
+| `--trace` | `-t` | コードフロー追跡 | `/debug-error "logic error" -t` |
+| `--serena-deep` | `-s` | 完全なSerenaツールキット使用 | `/debug-error "complex bug" -s` |
+| `--pattern-search` | `-p` | 類似エラーパターンを検索 | `/debug-error "timeout" -p` |
+| `--memory` | `-m` | デバッグメモリを使用 | `/debug-error "recurring issue" -m` |
+| `--interactive` | `-i` | ステップバイステップガイダンス | `/debug-error "unknown issue" -i` |
+| `--implement` | | 修正を自動実装 | `/debug-error "known solution" --implement` |
+| `--document` | `-d` | デバッグプロセスを文書化 | `/debug-error "complex issue" -d` |
+
+**使用例**:
+```bash
+# パターン検索付き基本デバッグ
+/debug-error "NullPointerException in UserService" --pattern-search
+
+# Serena深層分析
+/debug-error "performance degradation" --analyze --serena-deep
+
+# コードフロー追跡とメモリ活用
+/debug-error "auth flow broken" --trace --memory
+
+# 複雑な問題のインタラクティブデバッグ
+/debug-error "mysterious crash" --interactive --step-by-step
+```
+
+**主な機能**:
+- Serena MCPによるシンボルレベルのエラー分析
+- 過去のデバッグセッションからの学習とパターン適用
+- コードベース全体での類似問題パターン検索
+- 精密なコード修正とインパクト評価
+- デバッグ専門知識の蓄積と再利用
+
+#### `/smart-think "[問題説明]" [オプション]` - 高度な多段階思考システム
+**説明**: Sequential Thinking MCPとSerena MCPを統合した高度な問題解決システム。4段階の思考モードで複雑な技術的意思決定をサポートします。
+
+**思考モード**:
+| モード | 予算範囲 | 思考数 | 信頼度 | 最適用途 |
+|-------|---------|-------|--------|----------|
+| `think` | 2,000-8,000 | 3-6 | 70-85% | 迅速な決定、シンプルな問題 |
+| `think-hard` | 8,000-15,000 | 6-10 | 75-90% | 複雑な分析、設計決定 |
+| `think-harder` | 15,000-25,000 | 10-15 | 80-95% | アーキテクチャ、重要な決定 |
+| `ultrathink` | 25,000-50,000 | 15-25 | 85-98% | 研究レベル、複雑システム |
+
+**主要オプション**:
+| オプション | 短縮形 | 説明 | デフォルト | 例 |
+|---------|-------|-------------|---------|----------|
+| `--mode` | `-m` | 思考モード | `think` | `-m ultrathink` |
+| `--budget` | `-b` | トークン予算 | 自動 | `-b 15000` |
+| `--serena` | `-s` | Serena統合を使用 | false | `-s` |
+| `--interactive` | `-i` | インタラクティブ改良 | false | `-i` |
+| `--research` | `-r` | 調査フェーズを含む | false | `-r` |
+| `--structured` | | 構造化出力 | false | `--structured` |
+| `--confidence` | | 信頼度レベル表示 | false | `--confidence` |
+| `--focus` | `-f` | 焦点領域 | なし | `-f security` |
+
+**使用例**:
+```bash
+# デフォルト思考モード
+/smart-think "Redux vs Zustandどちらを使うべきか？"
+
+# コードベースコンテキスト付き深層分析
+/smart-think "データベース移行戦略" -m think-harder --serena
+
+# インタラクティブ問題解決
+/smart-think "API設計アプローチ" -m think-hard --interactive
+
+# 引用付き研究重点
+/smart-think "技術選定" -m ultrathink --research --citations
+
+# 予算制御付きクイック決定
+/smart-think "CSSフレームワーク選択" -b 5000 --focus=frontend
+```
+
+**主な機能**:
+- Sequential Thinking MCPによる構造化された仮説生成・検証
+- Serena MCPによるコードベース認識型技術決定
+- 証拠ベースの推論と信頼度追跡
+- 複数視点からの包括的分析
+- 実装ロードマップとリスク評価
+
 #### `/serena [問題] [オプション]` - 高効率な構造化問題解決
 **説明**: トークン効率を重視した構造化された問題解決コマンド。複雑な開発問題の分析・設計・実装を段階的に行います。
 
@@ -223,8 +345,8 @@ Kiroは、仕様駆動開発（Spec-Driven Development）とテスト駆動開�
 - Globパターンによるファイル一括処理
 - 依存関係の自動分析・包含
 
-#### `/tech-research "[トピック]" [オプション]` - 高度な技術調査
-**説明**: 最新技術動向の調査、比較分析、ベストプラクティスの調査を行う高度なリサーチコマンド。
+#### `/tech-research "[トピック]" [オプション]` - 高度な技術調査（Serena統合強化版）
+**説明**: Serena MCPによるコードベース認識型技術調査システム。既存の実装パターンを理解した上で、実装可能性と互換性を考慮した技術研究を行います。
 
 **思考モード**:
 | モード | トークン予算 | 深度 | 用途 |
@@ -254,41 +376,57 @@ Kiroは、仕様駆動開発（Spec-Driven Development）とテスト駆動開�
 | `--diagrams` | 図表生成 | Boolean | `--diagrams` |
 | `-l, --language` | 出力言語 | `en\|ja\|es\|fr\|de\|zh` | `-l ja` |
 
-**MCPツール組み合わせ**:
-| ツール | 用途 | 適用場面 |
-|-------|------|---------|
-| `context7` | ライブラリドキュメント・例 | フレームワーク調査、API文書 |
-| `sequential` | ステップ別推論 | 複雑な分析・アルゴリズム |
-| `playwright` | Web自動化 | ライブテスト・スクリーンショット |
-| `serena` | 構造化問題解決 | 実装計画 |
+**MCPツール組み合わせ（Serena優先）**:
+| ツール | 用途 | 適用場面 | 優先度 |
+|-------|------|---------|--------|
+| `serena` | **コードベース認識分析** | **実装計画・パターン分析** | **最優先** |
+| `context7` | ライブラリドキュメント・例 | フレームワーク調査、API文書 | 補助 |
+| `sequential` | ステップ別推論 | 複雑な分析・アルゴリズム | 補助 |
+| `playwright` | Web自動化 | ライブテスト・スクリーンショット | オプション |
 
-**使用例**:
+**Serena統合オプション**:
+| オプション | 説明 | 例 | 用途 |
+|---------|-------------|---------|----------|
+| `--serena` | **Serena MCP統合を有効化** | `--serena` | **すべての技術調査で推奨** |
+| `--serena-context` | 現在のコードベースコンテキストを含む | `--serena-context` | アーキテクチャ認識調査 |
+| `--current-patterns` | 既存コードパターンを分析 | `--current-patterns` | パターンベース推奨 |
+| `--implementation-plan` | 実装ロードマップを生成 | `--implementation-plan` | 実行可能な調査結果 |
+| `--compatibility-check` | コードベース互換性チェック | `--compatibility-check` | 技術評価 |
+| `--decision-history` | 過去の決定コンテキストを含む | `--decision-history` | 過去の調査の継続 |
+
+**使用例（Serena統合強化）**:
 ```bash
-# クイック調査
-/tech-research "Redis vs Memcached" -d quick -t overview
+# コードベース認識クイック調査（推奨デフォルト）
+/tech-research "Redis vs Memcached for our app" --serena -d quick --compatibility-check
 
-# 包括的分析
-/tech-research "React 18新機能" -t comprehensive -m think-hard
+# パターン分析付き包括的調査
+/tech-research "React アーキテクチャパターン" --serena -t comprehensive --current-patterns
 
-# 学術的調査
-/tech-research "機械学習トレンド" -t academic --sources --diagrams -c 0.95
+# 実装計画付き技術評価
+/tech-research "GraphQL導入戦略" --serena -m think-hard --implementation-plan --decision-history
 
-# 技術実装重点
-/tech-research "REST API設計" -t technical -m think-harder
+# 実装ロードマップ付き学習
+/tech-research "Rust for web development" --serena -t technical --mcp "context7" --implementation-plan
 
-# MCPツール組み合わせ
-/tech-research "Next.js 14機能" --mcp "context7"                    # ドキュメント調査
-/tech-research "量子コンピューティング" --mcp "sequential" -m ultrathink  # 複雑分析
-/tech-research "UI フレームワーク 2024" --mcp "playwright,context7" --diagrams  # ライブ調査
+# 全機能統合での戦略的調査
+/tech-research "マイクロサービスアーキテクチャ" --serena -m ultrathink --current-patterns --implementation-plan --compatibility-check
+
+# MCPツール組み合わせ（Serena優先）
+/tech-research "Next.js 14 features" --serena --mcp "context7" --implementation-plan
+/tech-research "量子コンピューティング基礎" --serena --mcp "sequential" -m ultrathink
+/tech-research "UIフレームワーク2024" --serena --mcp "playwright,context7" --compatibility-check
 ```
 
-**主な機能**:
+**主な機能（Serena統合強化）**:
+- **Serena MCPによるコードベース認識型調査**（既存パターン理解）
+- **実装可能性評価**（現在のアーキテクチャとの互換性）
+- **パターンベース推奨**（成功した実装パターンの適用）
+- **決定継続性**（過去の調査・決定との一貫性維持）
 - WebSearch、WebFetch機能による最新情報収集
 - 4段階の思考モード（think、think-hard、think-harder、ultrathink）
-- 技術仕様書やベストプラクティスの調査
-- 図表やダイアグラムの自動生成
 - Context7との連携によるライブラリドキュメント参照
-- 引用文献・信頼度評価機能
+- 実装ロードマップと移行戦略の自動生成
+- 技術的負債と保守性を考慮した推奨
 
 #### `/spec:requirements [システム名] [オプション]` - 包括的要件定義
 **説明**: プロジェクトの要件定義書を自動生成し、技術選定と改善提案も含めた包括的なドキュメントを作成。
@@ -484,9 +622,12 @@ Kiroは、仕様駆動開発（Spec-Driven Development）とテスト駆動開�
 | `/kiro:spec-test` | Kiro基本 | TDDテスト仕様の生成 |
 | `/kiro:spec-tasks` | Kiro基本 | 実装タスクの生成 |
 | `/kiro:spec-status` | Kiro基本 | 仕様進捗の表示 |
+| `/commit` | **開発支援（Serena統合）** | **インテリジェントなGitコミット自動化** |
+| `/debug-error` | **開発支援（Serena統合）** | **インテリジェントデバッグシステム** |
+| `/smart-think` | **開発支援（Serena統合）** | **高度な多段階思考システム** |
 | `/serena` | 開発支援 | 構造化問題解決・デバッグ・設計 |
 | `/test` | 開発支援 | 高度なテスト実装・実行・修正 |
-| `/tech-research` | 開発支援 | 技術調査・比較分析・ベストプラクティス |
+| `/tech-research` | **開発支援（Serena統合強化）** | **コードベース認識型技術調査** |
 | `/spec:requirements` | 開発支援 | 包括的要件定義書の生成 |
 | `/git:pr` | Git・GitHub | インテリジェントなPR生成 |
 | `/dependabot-check` | Git・GitHub | セキュリティ脆弱性解決 |

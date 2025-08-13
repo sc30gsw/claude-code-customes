@@ -53,14 +53,43 @@ description: Advanced technical research command with extended thinking modes an
 
 ## MCP Tool Integration
 
+## Tool Usage Priorities
+
+**ALWAYS prioritize mcp__serena__ tools for codebase analysis, with other MCPs for specialized needs:**
+
+### Codebase Intelligence (Serena MCP First)
+- **Pattern Analysis**: Use `mcp__serena__search_for_pattern` to find existing implementation patterns
+- **Symbol Context**: Use `mcp__serena__find_symbol` to understand current architecture
+- **Code Overview**: Use `mcp__serena__get_symbols_overview` for architecture-aware recommendations
+- **Memory Integration**: Use `mcp__serena__read_memory` / `mcp__serena__write_memory` for research continuity
+
+### Research Enhancement (Other MCPs)
+- **Documentation**: Use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` for library research
+- **Deep Thinking**: Use `mcp__sequential-thinking__sequentialthinking` for complex analysis
+- **Web Research**: Use `mcp__playwright__browser_navigate` for live web research
+
+### Standard Tools (Fallback)
+- **File Operations**: Use Read, Write, Edit for documentation creation
+- **Search Operations**: Use Grep, Glob when MCP tools unavailable
+- **Process Management**: Use TodoWrite for breaking down research tasks
+
 ### Available Tools
 
-| Tool | Purpose | Best For |
-|------|---------|----------|
-| `context7` | Library docs & examples | Framework research, API docs |
-| `sequential` | Step-by-step reasoning | Complex analysis, algorithms |
-| `playwright` | Web automation | Live testing, screenshots |
-| `serena` | Structured problem-solving | Implementation planning |
+| Tool | Purpose | Best For | Priority |
+|------|---------|----------|----------|
+| `serena` | **Codebase-aware analysis** | **Implementation planning, pattern analysis** | **Primary** |
+| `context7` | Library docs & examples | Framework research, API docs | Secondary |
+| `sequential` | Step-by-step reasoning | Complex analysis, algorithms | Secondary |
+| `playwright` | Web automation | Live testing, screenshots | Optional |
+
+### Serena-Specific Features
+
+| Feature | Tool | Purpose | When to Use |
+|---------|------|---------|-------------|
+| **Codebase Pattern Analysis** | `mcp__serena__search_for_pattern` | Find existing implementation patterns | Always for technical research |
+| **Symbol Context** | `mcp__serena__find_symbol` | Understand current architecture | For implementation-focused research |
+| **Memory Integration** | `mcp__serena__read_memory` / `mcp__serena__write_memory` | Learn from previous research | For building research knowledge |
+| **Implementation Planning** | `mcp__serena__get_symbols_overview` | Architecture-aware recommendations | For technical feasibility analysis |
 
 ### Tool Combinations
 
@@ -68,14 +97,20 @@ description: Advanced technical research command with extended thinking modes an
 # Documentation research
 /tech-research "Next.js 14 features" --mcp "context7"
 
+# Codebase-aware research with Serena
+/tech-research "React patterns in our codebase" --mcp "serena,context7" --codebase-context
+
 # Complex algorithm analysis
 /tech-research "Quantum computing basics" --mcp "sequential" -m think-harder
 
 # Live web research with screenshots
 /tech-research "Top UI frameworks 2024" --mcp "playwright,context7" --diagrams
 
-# Full analysis with all tools
-/tech-research "Microservices architecture" --mcp all -m ultrathink
+# Full analysis with all tools and codebase integration
+/tech-research "Microservices architecture" --mcp all -m ultrathink --serena-memory
+
+# Technical research with implementation context
+/tech-research "GraphQL vs REST" --mcp "serena,context7" --implementation-ready
 ```
 
 ## Research Templates
@@ -144,6 +179,21 @@ Implementation-focused with code
 
 ## Advanced Features
 
+### Serena-Enhanced Research
+```bash
+# Research with current codebase context
+/tech-research "State management options" --serena-context --current-patterns
+
+# Implementation-ready research
+/tech-research "Authentication methods" --mcp "serena,context7" --implementation-plan
+
+# Pattern-aware technology selection
+/tech-research "Testing frameworks" --serena-patterns --compatibility-check
+
+# Memory-enhanced research (learns from past decisions)
+/tech-research "Database options" --serena-memory --decision-history
+```
+
 ### Multi-Language Output
 ```bash
 # Japanese technical documentation
@@ -193,12 +243,20 @@ Implementation-focused with code
 ### Combining with Other Commands
 
 ```bash
-# Research then implement
-/tech-research "State management solutions" -t technical
-/serena "implement Redux toolkit" -s -t
+# Research then implement with Serena continuity
+/tech-research "State management solutions" -t technical --mcp "serena" --save-context
+/serena "implement Redux toolkit" -s -t --use-research-context
+
+# Research with debugging context
+/tech-research "Performance optimization" --mcp "serena" --current-issues
+/debug-error "slow queries" --serena --use-research
+
+# Research then smart thinking
+/tech-research "Architecture options" --mcp "serena,context7" --save-findings
+/smart-think "Choose microservices vs monolith" -m think-harder --serena --use-research
 
 # Research then create requirements
-/tech-research "Authentication methods" -m think-hard
+/tech-research "Authentication methods" -m think-hard --serena-context
 /requirements "Auth System" -t "jwt,oauth2" --suggest
 ```
 
@@ -240,21 +298,38 @@ graph TD
 
 ## Best Practices
 
-### Choosing Thinking Modes
+### Choosing Thinking Modes with Serena
 
-1. **Quick Overview**: Use `think` mode
+1. **Quick Overview with Context**: Use `think` mode + Serena
    ```bash
-   /tech-research "REST basics" -m think -d quick
+   /tech-research "REST basics" -m think -d quick --mcp "serena" --current-context
    ```
 
-2. **Important Decisions**: Use `think-harder` or `ultrathink`
+2. **Important Decisions**: Use `think-harder` + Serena memory
    ```bash
-   /tech-research "Database for high-traffic app" -m ultrathink
+   /tech-research "Database for high-traffic app" -m ultrathink --serena-memory --patterns
    ```
 
-3. **Complex Topics**: Always use higher modes
+3. **Complex Topics**: Always use higher modes + full Serena integration
    ```bash
-   /tech-research "Distributed systems design" -m think-harder -b 40000
+   /tech-research "Distributed systems design" -m think-harder -b 40000 --mcp "serena,context7" --implementation-ready
+   ```
+
+### Serena Integration Patterns
+
+1. **Architecture Research**: Always include codebase context
+   ```bash
+   /tech-research "Choose framework" --mcp "serena,context7" --current-architecture
+   ```
+
+2. **Implementation Research**: Use symbol analysis
+   ```bash
+   /tech-research "Refactoring approach" --mcp "serena" --symbol-analysis --impact-assessment
+   ```
+
+3. **Decision Documentation**: Store in Serena memory
+   ```bash
+   /tech-research "Technology choice" --mcp "serena" --document-decision --store-rationale
    ```
 
 ### Optimizing Token Usage
@@ -301,47 +376,80 @@ graph TD
 
 ## Command Examples
 
-### For Different Scenarios
+### For Different Scenarios with Serena Integration
 
 ```bash
-# Quick decision making
-/tech-research "Tailwind vs Bootstrap" -d quick -t overview
+# Quick decision making with current context
+/tech-research "Tailwind vs Bootstrap" -d quick -t overview --mcp "serena" --current-styles
 
-# Architecture planning
-/tech-research "Microservices patterns" -m think-harder -t comprehensive --diagrams
+# Architecture planning with codebase awareness
+/tech-research "Microservices patterns" -m think-harder -t comprehensive --diagrams --mcp "serena" --current-architecture
 
-# Technology evaluation
-/tech-research "GraphQL adoption" -m think-hard -c 0.9 --sources
+# Technology evaluation with existing patterns
+/tech-research "GraphQL adoption" -m think-hard -c 0.9 --sources --mcp "serena" --migration-analysis
 
-# Learning new technology
-/tech-research "Rust for web development" -t technical --mcp "context7"
+# Learning new technology with implementation context
+/tech-research "Rust for web development" -t technical --mcp "context7,serena" --feasibility-check
 
-# Security analysis
-/tech-research "OWASP Top 10 2024" -m ultrathink -t comprehensive -c 0.95
+# Security analysis with current vulnerabilities
+/tech-research "OWASP Top 10 2024" -m ultrathink -t comprehensive -c 0.95 --mcp "serena" --security-audit
 
-# Performance research
-/tech-research "Database indexing strategies" -t technical -m think-hard
+# Performance research with current bottlenecks
+/tech-research "Database indexing strategies" -t technical -m think-hard --mcp "serena" --performance-analysis
 
-# Framework comparison
-/tech-research "Vue 3 vs React 18" -m think-harder --diagrams -t comprehensive
+# Framework comparison with migration planning
+/tech-research "Vue 3 vs React 18" -m think-harder --diagrams -t comprehensive --mcp "serena" --migration-strategy
 
-# Best practices research
-/tech-research "CI/CD best practices" -t technical --sources
+# Best practices research with current implementation
+/tech-research "CI/CD best practices" -t technical --sources --mcp "serena" --current-pipeline-analysis
 ```
 
-## Integration with Todo System
-
-The command automatically creates todos for follow-up actions:
+### Serena-Specific Research Patterns
 
 ```bash
-# Research with automatic todo generation
-/tech-research "API Gateway implementation" -t technical
+# Pattern discovery in current codebase
+/tech-research "Error handling patterns" --mcp "serena" --pattern-analysis --best-practices
+
+# Technology compatibility analysis
+/tech-research "New library integration" --mcp "serena" --compatibility-check --dependency-analysis
+
+# Refactoring research with impact analysis
+/tech-research "Code organization patterns" --mcp "serena" --refactoring-safe --impact-minimal
+
+# Performance optimization with current metrics
+/tech-research "Performance improvements" --mcp "serena" --current-metrics --optimization-targets
+
+# Architecture evolution planning
+/tech-research "System scalability" --mcp "serena" --evolution-path --backward-compatible
+```
+
+## Integration with Todo System and Serena Memory
+
+The command automatically creates todos and stores research context:
+
+```bash
+# Research with automatic todo generation and Serena integration
+/tech-research "API Gateway implementation" -t technical --mcp "serena" --create-todos
 
 # Creates todos like:
 # - [ ] Validate API Gateway findings
-# - [ ] Create proof of concept
+# - [ ] Create proof of concept using Serena analysis
 # - [ ] Test performance implications
-# - [ ] Document architecture decision
+# - [ ] Document architecture decision in Serena memory
+# - [ ] Update existing codebase patterns
+```
+
+### Serena Memory Integration
+
+```bash
+# Store research findings for future reference
+/tech-research "Framework comparison" --mcp "serena" --store-findings
+
+# Later retrieve and build upon previous research
+/tech-research "Framework implementation" --mcp "serena" --use-previous-research
+
+# Cross-reference with existing decisions
+/tech-research "New feature architecture" --mcp "serena" --decision-history --consistency-check
 ```
 
 ## Caching System
@@ -361,3 +469,11 @@ Planned features:
 - **Custom research templates**
 - **API integration** for data sources
 - **Automated testing** of findings
+
+### Serena-Specific Enhancements
+- **Intelligent Research Caching**: Serena-based research result caching and retrieval
+- **Pattern-Based Recommendations**: AI-driven suggestions based on codebase patterns
+- **Implementation Impact Modeling**: Predict implementation effort and risks
+- **Continuous Learning**: Improve research quality based on implementation outcomes
+- **Cross-Project Intelligence**: Learn from multiple projects and teams
+- **Automated Decision Tracking**: Track technology decisions and their outcomes over time

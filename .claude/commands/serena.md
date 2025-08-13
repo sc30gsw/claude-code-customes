@@ -3,6 +3,45 @@ allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, TodoWrite, mcp__s
 description: Token-efficient Serena MCP command for structured app development and problem-solving
 ---
 
+## Context
+
+- Current project: @package.json
+- Project structure: !`find . -maxdepth 2 -name "package.json" -o -name "*.config.*" | head -5 2>/dev/null || echo "No config files"`
+- Git status: !`git status --porcelain 2>/dev/null | head -3 || echo "Not git repo"`
+- Recent activity: !`git log --oneline -3 2>/dev/null || echo "No git history"`
+- Code complexity: !`find . -name "*.js" -o -name "*.ts" -o -name "*.py" | wc -l | xargs echo "Code files:"`
+- Serena memory: !`ls -la .serena/ 2>/dev/null | head -3 || echo "No Serena memory"`
+
+## Tool Usage Priorities
+
+**ALWAYS prioritize mcp__serena__ tools as the primary development and analysis engine:**
+
+### Primary Development Tools (Serena MCP)
+- **Project Analysis**: Use `mcp__serena__get_symbols_overview` for codebase understanding
+- **Code Search**: Use `mcp__serena__search_for_pattern` for finding code patterns
+- **Symbol Management**: Use `mcp__serena__find_symbol` and `mcp__serena__find_referencing_symbols`
+- **Code Modification**: Use `mcp__serena__replace_symbol_body` and `mcp__serena__replace_regex`
+- **Intelligent Insertion**: Use `mcp__serena__insert_before_symbol` / `mcp__serena__insert_after_symbol`
+
+### Memory & Learning (Serena MCP Only)
+- **Knowledge Storage**: Use `mcp__serena__write_memory` to store patterns and solutions
+- **Experience Retrieval**: Use `mcp__serena__read_memory` to access previous work
+- **Progress Tracking**: Use `mcp__serena__think_about_task_adherence` for quality control
+- **Completion Assessment**: Use `mcp__serena__think_about_whether_you_are_done`
+
+### Supporting Tools (Secondary)
+- **Documentation Research**: Use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs`
+- **File Operations**: Use Read, Write, Edit when Serena tools insufficient
+- **Process Management**: Use TodoWrite for complex task breakdown
+
+### Fallback Tools (Last Resort)
+- **Basic Search**: Use Grep, Glob only when Serena search unavailable
+- **Simple Operations**: Use Bash for build, test, and deployment commands
+
+# Serena: Intelligent App Development
+
+Token-efficient Serena MCP command for structured app development and problem-solving
+
 ## Quick Reference
 
 ```bash
@@ -166,13 +205,225 @@ You are an expert app developer and problem-solver primarily using Serena MCP. F
 **Key Guidelines:**
 - **Primary**: Use Serena MCP tools for all tasks (components, APIs, features, analysis)
 - **Leverage**: Serena's semantic code retrieval and editing capabilities
+- **Cross-Command**: Share context and memory across all command interactions
+- **Project-Aware**: Automatically adapt to project structure and patterns
 - Start with problem analysis, end with concrete actions
 - Balance depth with token efficiency
 - Always provide specific, actionable recommendations
 - Consider security, performance, and maintainability
+- **Memory Integration**: Build and maintain project knowledge over time
 
 **Token Efficiency Tips:**
 - Use `-q` for simple problems (saves ~40% tokens)
 - Use `--summary` for overview-only needs  
 - Combine related problems in single session
 - Use `--focus` to avoid irrelevant analysis
+
+## Integration with Other Commands
+
+### Command Ecosystem Integration
+
+Serena MCP is the **primary codebase analysis engine** for all Claude Code commands when in project directories. Other commands automatically leverage Serena's capabilities:
+
+| Command | Serena Integration | Purpose |
+|---------|-------------------|----------|
+| `/commit` | Git history + change analysis | Intelligent commit messages |
+| `/debug-error` | Symbol tracking + pattern search | Smart debugging |
+| `/smart-think` | Codebase context + memory | Architecture-aware thinking |
+| `/tech-research` | Implementation context + patterns | Codebase-aware research |
+
+### Cross-Command Workflows
+
+#### Development Workflow
+```bash
+# 1. Research with codebase awareness
+/tech-research "authentication methods" --mcp "serena,context7" --current-patterns
+
+# 2. Implement based on research
+/serena "implement JWT auth with refresh tokens" -s -t --use-research-context
+
+# 3. Debug any issues
+/debug-error "auth token validation failing" --serena --pattern-search
+
+# 4. Think through optimization
+/smart-think "optimize auth performance" -m think-hard --serena --current-metrics
+
+# 5. Commit with intelligent analysis
+/commit --analyze --serena-context --learning
+```
+
+#### Architecture Planning Workflow
+```bash
+# 1. Deep architectural thinking
+/smart-think "design microservices architecture" -m ultrathink --serena --implementation-ready
+
+# 2. Research specific technologies
+/tech-research "service mesh options" --mcp "serena,context7" --architecture-context
+
+# 3. Implement architecture components
+/serena "create service discovery component" -s -c --architecture-aware
+
+# 4. Commit architectural changes
+/commit --scope="architecture" --serena-deep --document-decisions
+```
+
+#### Debugging and Optimization Workflow
+```bash
+# 1. Systematic debugging with Serena
+/debug-error "performance bottleneck in API" --serena-deep --trace --memory
+
+# 2. Research optimization strategies
+/tech-research "API performance optimization" --mcp "serena" --current-bottlenecks
+
+# 3. Think through implementation approach
+/smart-think "optimize database queries" -m think-hard --serena --impact-analysis
+
+# 4. Implement optimizations
+/serena "optimize user queries with caching" -c --performance-focused
+
+# 5. Commit performance improvements
+/commit --scope="performance" --analyze --before-after-metrics
+```
+
+### Project Directory Auto-Detection
+
+When commands are run in project directories, Serena integration is **automatically enabled**:
+
+#### Auto-Detection Criteria
+- Presence of `package.json`, `pyproject.toml`, `Cargo.toml`, etc.
+- Git repository with commit history
+- Existing code structure and patterns
+- Previous Serena memory for the project
+
+#### Automatic Features
+```bash
+# In project directory - Serena automatically enabled
+/commit                    # → Uses Serena for change analysis
+/debug-error "bug"         # → Uses Serena for symbol tracking
+/smart-think "decision"    # → Uses Serena for context
+/tech-research "topic"     # → Uses Serena for implementation context
+```
+
+### Memory Continuity Across Commands
+
+#### Shared Context
+- **Research Findings**: `/tech-research` findings available to `/serena`
+- **Debugging Insights**: `/debug-error` patterns inform `/smart-think`
+- **Architecture Decisions**: `/smart-think` decisions guide `/commit` messages
+- **Implementation Patterns**: `/serena` patterns enhance `/debug-error`
+
+#### Memory Keys
+```bash
+# Store research context for later use
+/tech-research "framework selection" --store-context=framework_research
+
+# Use research context in implementation
+/serena "implement chosen framework" --use-context=framework_research
+
+# Reference previous debugging session
+/debug-error "similar issue" --use-memory=previous_auth_bug
+
+# Build on architectural thinking
+/smart-think "extend architecture" --continue-from=microservices_design
+```
+
+### Command Chaining and Dependencies
+
+#### Sequential Execution
+```bash
+# Research → Think → Implement → Commit pipeline
+/tech-research "state management" --save-findings && \
+/smart-think "choose state solution" --use-research && \
+/serena "implement chosen solution" --use-decisions && \
+/commit --intelligent --context-aware
+```
+
+#### Conditional Workflows
+```bash
+# Debug first, then optimize based on findings
+/debug-error "slow queries" --analyze --store-findings
+# If critical performance issue found:
+/smart-think "query optimization strategy" --use-debug-findings
+/serena "implement query optimizations" --performance-critical
+```
+
+### Best Practices for Multi-Command Workflows
+
+#### 1. Start with Analysis
+```bash
+# Always understand before implementing
+/tech-research "requirements" --codebase-context
+/smart-think "approach" --use-research --serena
+/serena "implement" --use-decisions
+```
+
+#### 2. Use Context Continuity
+```bash
+# Pass context between commands
+/debug-error "issue" --store-context=bug_analysis
+/smart-think "solution" --use-context=bug_analysis
+/serena "fix" --use-solution --validate
+```
+
+#### 3. Document Decisions
+```bash
+# Create decision trail
+/smart-think "architecture choice" --document-rationale
+/tech-research "validate choice" --reference-decision
+/commit "implement architecture" --include-rationale
+```
+
+#### 4. Leverage Learning
+```bash
+# Build on previous work
+/serena "new feature" --similar-to=previous_feature
+/debug-error "issue" --pattern-match=similar_bugs
+/smart-think "improvement" --learn-from=past_decisions
+```
+
+### Error Handling and Recovery
+
+#### Command Failure Recovery
+```bash
+# If implementation fails
+/serena "implement feature" || /debug-error "implementation failure" --auto-context
+
+# If research is insufficient
+/tech-research "topic" --insufficient-info && /smart-think "approach with unknowns"
+
+# If commit analysis fails
+/commit --analyze || /commit --manual-message --context-aware
+```
+
+#### Context Preservation
+- **Automatic Backup**: Serena automatically backs up context between commands
+- **Recovery Mode**: Commands can recover context from previous sessions
+- **Error Context**: Failed operations provide context for debugging commands
+
+### Integration Configuration
+
+#### Per-Project Settings
+```bash
+# Configure project-specific Serena behavior
+# In .claude/serena-config.json:
+{
+  "auto_enable": true,
+  "memory_retention": "30_days",
+  "context_sharing": {
+    "commit": true,
+    "debug": true,
+    "research": true,
+    "thinking": true
+  },
+  "integration_level": "deep"
+}
+```
+
+#### Command Aliases with Serena
+```bash
+# Smart aliases that always use Serena
+alias scommit="/commit --serena-deep --learning"
+alias sdebug="/debug-error --serena --pattern-search --memory"
+alias sthink="/smart-think --serena --context-aware"
+alias sresearch="/tech-research --mcp serena,context7 --implementation-ready"
+```
