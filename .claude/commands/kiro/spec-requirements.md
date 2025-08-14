@@ -1,6 +1,7 @@
 ---
 description: Generate comprehensive requirements for a specification
 allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+argument-hint: <feature-name>
 ---
 
 # Requirements Generation
@@ -13,6 +14,7 @@ Generate comprehensive requirements for feature: **$ARGUMENTS**
 - Architecture context: @.kiro/steering/structure.md
 - Technical constraints: @.kiro/steering/tech.md
 - Product context: @.kiro/steering/product.md
+- Custom steering: Load all "Always" mode custom steering files from .kiro/steering/
 
 ### Existing Spec Context
 - Current spec directory: Use mcp__serena__list_dir with relative_path .kiro/specs/$ARGUMENTS/
@@ -36,40 +38,16 @@ Don't focus on code exploration in this phase. Instead, just focus on writing re
 **EARS (Easy Approach to Requirements Syntax)** is the mandatory format for acceptance criteria:
 
 **Primary EARS Patterns:**
-- **WHEN** [event/condition] **THEN** [system] **SHALL** [response]
-- **IF** [precondition/state] **THEN** [system] **SHALL** [response]
-- **WHILE** [ongoing condition] **THE SYSTEM SHALL** [continuous behavior]
-- **WHERE** [location/context] **THE SYSTEM SHALL** [contextual behavior]
+- WHEN [event/condition] THEN [system] SHALL [response]
+- IF [precondition/state] THEN [system] SHALL [response]
+- WHILE [ongoing condition] THE [system] SHALL [continuous behavior]
+- WHERE [location/context/trigger] THE [system] SHALL [contextual behavior]
 
 **Combined Patterns:**
-- **WHEN** [event] **AND** [additional condition] **THEN** [system] **SHALL** [response]
-- **IF** [condition] **AND** [additional condition] **THEN** [system] **SHALL** [response]
+- WHEN [event] AND [additional condition] THEN [system] SHALL [response]
+- IF [condition] AND [additional condition] THEN [system] SHALL [response]
 
-### 2. Requirements Hierarchy and Granularity
-
-**Structure Requirements with Clear Hierarchy:**
-
-```
-# Requirements Document
-├── Introduction (feature overview)
-├── Requirements
-│   ├── Requirement 1 (Major Feature Area)
-│   │   ├── User Story (high-level need)
-│   │   └── Acceptance Criteria (detailed EARS)
-│   │       ├── Happy path scenarios
-│   │       ├── Edge cases and error conditions
-│   │       ├── User experience considerations
-│   │       └── Technical constraints
-│   ├── Requirement 2 (Next Feature Area)
-│   └── ...
-```
-
-**Granularity Guidelines:**
-- **High-level Requirements**: Major functional areas from the feature idea
-- **User Stories**: Specific user needs within each requirement area  
-- **Acceptance Criteria**: Testable conditions using EARS format
-
-### 3. Requirements Document Structure
+### 2. Requirements Document Structure
 Generate requirements.md in the language specified in spec.json (check `@.kiro/specs/$ARGUMENTS/spec.json` for "language" field):
 
 ```markdown
@@ -101,7 +79,7 @@ This section should have EARS requirements
 [Continue pattern for all major functional areas]
 ```
 
-### 4. Update Metadata
+### 3. Update Metadata
 Update spec.json with:
 ```json
 {
@@ -116,53 +94,22 @@ Update spec.json with:
 }
 ```
 
-### 5. Document Generation Only
+### 4. Document Generation Only
 Generate the requirements document content ONLY. Do not include any review or approval instructions in the actual document file.
 
 ---
 
-## INTERACTIVE APPROVAL AVAILABLE (Not included in document)
+## Next Phase: Interactive Approval
 
-The following is for Claude Code conversation only - NOT for the generated document:
+After generating requirements.md, review the requirements and choose:
 
-### Next Phase Uses Interactive Approval
-After generating requirements.md, the next phase (`/kiro:spec-design $ARGUMENTS`) will use interactive approval:
+**If requirements look good:**
+Run `/kiro:spec-design $ARGUMENTS -y` to proceed to design phase
 
-**Next interaction will be**:
-```
-/kiro:spec-design feature-name
-# → "requirements.mdをレビューしましたか？ [y/N]"
-# → If 'y': Auto-approval + design generation
-# → If 'N': Stop and request review first
-```
+**If requirements need modification:**
+Request changes, then re-run this command after modifications
 
-### Benefits of Interactive Approval
-1. **Streamlined workflow**: No manual spec.json editing required
-2. **Review enforcement**: Still requires human confirmation of review
-3. **Immediate progression**: Approved phases proceed automatically
-4. **Safety maintained**: 'N' response stops execution for proper review
-
-### Review Checklist (for user reference):
-- [ ] Requirements are clear and complete
-- [ ] User stories cover all necessary functionality
-- [ ] Acceptance criteria are testable
-- [ ] Requirements align with project goals
-
-### Traditional Manual Approval Still Available
-If needed, you can still manually approve by updating `.kiro/specs/$ARGUMENTS/spec.json`:
-```json
-{
-  "approvals": {
-    "requirements": {
-      "generated": true,
-      "approved": true
-    }
-  },
-  "phase": "requirements-approved"
-}
-```
-
-**Recommended**: Use the interactive approval in `/kiro:spec-design $ARGUMENTS` for better user experience.
+The `-y` flag auto-approves requirements and generates design directly, streamlining the workflow while maintaining review enforcement.
 
 ## Instructions
 

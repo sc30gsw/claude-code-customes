@@ -1,54 +1,30 @@
 ---
 description: Generate implementation tasks for a specification
 allowed-tools: Bash, Read, Write, Edit, Update, MultiEdit, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+argument-hint: <feature-name> [-y]
 ---
 
 # Implementation Tasks
 
 Generate detailed implementation tasks for feature: **$ARGUMENTS**
 
-## Interactive Approval: Requirements & Design Review
+##  Requirements & Design Approval Required
 
 **CRITICAL**: Tasks can only be generated after both requirements and design are reviewed and approved.
 
 ### Interactive Review Process
+**Standard Review:**
 - Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design document: @.kiro/specs/$ARGUMENTS/design.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
-**Interactive Approval Process**:
-1. **Check if documents exist** - Verify that requirements.md and design.md have been generated
-2. **Prompt for requirements review** - Ask user: "requirements.mdをレビューしましたか？ [y/N]"
-3. **Prompt for design review** - Ask user: "design.mdをレビューしましたか？ [y/N]"
-4. **If both 'y' (yes)**: Automatically update spec.json to approve both phases and proceed with tasks generation
-5. **If any 'N' (no)**: Stop execution and instruct user to review respective documents first
+**With Test Specifications (when `/kiro:spec-test` was used):**
+- Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
+- Design document: @.kiro/specs/$ARGUMENTS/design.md
+- Test document: @.kiro/specs/$ARGUMENTS/tests/test-spec.md
+- Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
-**Auto-approval update in spec.json when user confirms both reviews**:
-```json
-{
-  "approvals": {
-    "requirements": {
-      "generated": true,
-      "approved": true  // ← Automatically set to true when user confirms
-    },
-    "design": {
-      "generated": true,
-      "approved": true  // ← Automatically set to true when user confirms
-    }
-  },
-  "phase": "design-approved"
-}
-```
-
-**User Interaction Example**:
-```
-📋 Requirements and Design review required before generating tasks.
-📄 Please review: .kiro/specs/feature-name/requirements.md
-❓ requirements.mdをレビューしましたか？ [y/N]: y
-📄 Please review: .kiro/specs/feature-name/design.md
-❓ design.mdをレビューしましたか？ [y/N]: y
-✅ Requirements and Design approved automatically. Proceeding with tasks generation...
-```
+**Note**: If this command was called with `-y` flag, all specifications (requirements, design, and tests if they exist) are reviewed and auto-approved (spec.json updated accordingly). Otherwise, all phases must be approved first via their respective commands followed by `/kiro:spec-tasks $ARGUMENTS -y`.
 
 ## Context Analysis
 
@@ -63,15 +39,13 @@ Generate detailed implementation tasks for feature: **$ARGUMENTS**
 - Architecture patterns: @.kiro/steering/structure.md
 - Development practices: @.kiro/steering/tech.md
 - Product constraints: @.kiro/steering/product.md
+- Custom steering: Load "Always" mode and task-related "Conditional" mode files
 
 ## Task: Generate Code-Generation Prompts
 
 **Prerequisites Verified**: Both requirements and design are approved and ready for task breakdown.
 
-**TDD Integration Note**: If test specifications have been generated using `/kiro:spec-test`, tasks should follow the Red-Green-Refactor cycle:
-- **Red Phase**: Reference failing tests from test-spec.md
-- **Green Phase**: Implement minimum code to pass tests
-- **Refactor Phase**: Improve code while maintaining test success
+**TDD Note**: When test specifications exist (`/kiro:spec-test`), follow Red-Green-Refactor cycle: reference failing tests, implement minimum passing code, then refactor while maintaining test success.
 
 **CRITICAL**: Convert the feature design into a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage.
 
@@ -80,155 +54,65 @@ Create implementation plan in the language specified in spec.json:
 ### 1. Code-Generation Tasks Structure
 Create tasks.md in the language specified in spec.json (check `@.kiro/specs/$ARGUMENTS/spec.json` for "language" field):
 
+**Note**: The example below is for format reference only. Actual content should be based on the specific requirements and design documents for your project.
+
 ```markdown
 # Implementation Plan
 
-- [ ] 1. Set up project structure and core interfaces
-  - Create directory structure for models, services, repositories, and API components
-  - Define interfaces that will be implemented in subsequent tasks
-  - Set up testing framework for test-driven development
-  - _Requirements: 1.1_
+- [ ] 1. Set up project structure and core configuration
+  - Create Node.js project with TypeScript configuration
+  - Set up Express server with basic middleware
+  - Configure PostgreSQL and Redis connections
+  - Set up environment configuration and secrets management
+  - _Requirements: All requirements need foundational setup_
 
-- [ ] 2. Implement data models with test-driven approach
-- [ ] 2.1 Create base model functionality
-  - Write tests for base model behavior first
-  - Implement base Entity class to pass tests
-  - Include common properties and validation methods
-  - _Requirements: 2.1, 2.2_
+- [ ] 2. Implement authentication and user management
+- [ ] 2.1 Create user authentication system
+  - Implement User model with validation
+  - Create JWT token generation and validation utilities
+  - Build user registration and login endpoints
+  - Write unit tests for authentication logic
+  - _Requirements: 7.1, 7.2_
 
-- [ ] 2.2 Implement User model with validation
-  - Write User model tests including validation edge cases
-  - Create User class with email validation and password hashing
-  - Test edge cases: invalid email, weak password, duplicate users
-  - _Requirements: 1.2, 1.3_
+- [ ] 2.2 Implement email account connection system
+  - Create EmailAccount model with encrypted credential storage
+  - Implement OAuth 2.0 flow for Gmail and Outlook
+  - Build IMAP/SMTP credential validation
+  - Create email account management endpoints
+  - Write tests for account connection flows
+  - _Requirements: 5.1, 5.2, 5.4_
 
-- [ ] 2.3 Implement primary domain model with relationships
-  - Write tests for [Domain] model including relationships
-  - Code [Domain] class with relationship handling
-  - Implement business logic and validation rules
-  - _Requirements: 2.3, 2.4_
-
-- [ ] 3. Create data access layer with test-driven approach
-- [ ] 3.1 Implement database connection utilities
-  - Write tests for database connection scenarios first
-  - Implement connection utilities to pass the tests
-  - Add error handling and connection pooling
-  - _Requirements: 3.1_
-
-- [ ] 3.2 Implement repository pattern for User data access
-  - Write repository tests for CRUD operations first
-  - Implement User repository with standard data operations
-  - Test create, read, update, delete scenarios
-  - _Requirements: 3.2, 3.3_
-
-- [ ] 3.3 Implement domain-specific repository
-  - Write tests for domain repository operations
-  - Code [Domain]Repository with business-specific queries
-  - Include relationship loading and filtering capabilities
-  - _Requirements: 3.4_
-
-- [ ] 4. Build API layer with test-first approach
-- [ ] 4.1 Create authentication service and endpoints
-  - Write API tests for authentication flows first
-  - Build AuthService with login and registration methods
-  - Implement JWT token generation and validation
-  - Create auth endpoints with proper error handling
-  - _Requirements: 4.1, 4.2_
-
-- [ ] 4.2 Implement core API endpoints
-  - Write API tests for domain operations first
-  - Code [Domain]Service with business logic
-  - Create REST endpoints with validation and error handling
-  - Implement authentication middleware for protected routes
-  - _Requirements: 4.3, 4.4_
-
-- [ ] 5. Create frontend components with integrated testing
-- [ ] 5.1 Build foundational UI components
-  - Write component tests for UI elements first
-  - Create reusable components (Button, Input, Form)
-  - Test component rendering, props, and user interactions
-  - _Requirements: 5.1_
-
-- [ ] 5.2 Implement authentication components
-  - Write tests for auth component behavior first
-  - Code LoginForm and RegisterForm components
-  - Implement API integration for authentication
-  - Handle loading states and error messages
-  - _Requirements: 5.2, 5.3_
-
-- [ ] 5.3 Build main feature components
-  - Write tests for domain component interactions
-  - Implement [Domain]List and [Domain]Form components
-  - Add API integration for data operations
-  - Handle CRUD operations with proper feedback
-  - _Requirements: 5.4, 5.5_
-
-- [ ] 6. Wire all components together and verify integration
-- [ ] 6.1 Create main application integration
-  - Write integration tests for complete application flow
-  - Implement application routing and navigation
-  - Set up authentication guards for protected routes
-  - Verify all components work together as designed
-  - _Requirements: 6.1_
-
-- [ ] 6.2 Implement automated end-to-end testing
-  - Write E2E tests covering complete user workflows
-  - Test authentication flow: register → login → logout
-  - Test main feature workflows with CRUD operations
-  - Verify complete system integration
-  - _Requirements: 6.2_
+... (Continue with additional phases: API layer, frontend, integration testing, etc.)
 ```
 
-**Code-Generation Prompt Format Rules**:
-- Hierarchical numbering: Major phases (1, 2, 3) and sub-tasks (1.1, 1.2)
-- Each task is a prompt for a code-generation LLM that will implement the step
-- Specify what to create/modify but rely on design document for implementation details
-- Build incrementally: each task explicitly references outputs from previous tasks
-- Start with tests when appropriate (test-driven development)
+**Task Structure Requirements:**
+- Use section headers to group related functionality (## [Functional Area])
+- Use flat numbering within sections: Major tasks (1, 2, 3) and sub-tasks (1.1, 1.2)
+- Avoid "Phase X:" prefixes, use functional section names instead
+- Each task should have 3-5 sub-items maximum
+- Keep tasks completable in 1-2 hours
+- Order by technical dependencies: Each task should build on outputs from previous tasks
 - Each task explains how it connects to subsequent tasks
-- End with specific requirement mapping: _Requirements: X.X, Y.Y_
-- Focus ONLY on writing, modifying, or testing code
-- Tasks should be completable in 1-3 hours each
-- Final task must wire everything together to prevent orphaned code
 
-### 2. Code-Generation Quality Guidelines
-- **Prompt Optimization**: Each task is a clear prompt that a coding agent can execute
-- **Progressive Building**: Explicitly state which previous task outputs are used
-- **Test-First Approach**: Write tests before implementation when appropriate
-- **Forward References**: Explain how current task output will be used later
-- **Requirements Traceability**: Map to specific EARS requirements from requirements.md
-- **Integration Focus**: Final tasks must wire all components together
-- **Coding-Only Focus**: Exclude deployment, user testing, or non-coding activities
-- **Design Document Reliance**: Tasks reference design for implementation details
+- **MUST end with exact format**: _Requirements: X.X, Y.Y_ or _Requirements: [description]_ (underscores mandatory)
+- Rely on design document for implementation details
 
-### 3. Mandatory Task Categories (Coding Only)
-Include ONLY coding tasks for:
-- **Data Models**: Model classes with validation and tests
-- **Data Access**: Repository pattern implementation with tests
-- **API Services**: Backend service implementation with API tests
-- **UI Components**: Frontend component development with component tests
-- **Integration**: Code integration and automated testing
-- **End-to-End Testing**: Automated test implementation
+### 2. Focus on Coding Activities Only
+**INCLUDE:** Any task that involves writing, modifying, or testing code
+**EXCLUDE:** User testing, deployment, metrics gathering, CI/CD setup, documentation creation
 
-**EXCLUDED (Non-Coding Tasks):**
-- User acceptance testing or user feedback gathering
-- Production deployment or staging environments
-- Performance metrics gathering or analysis
-- CI/CD pipeline setup or configuration
-- Documentation creation (beyond code comments)
-
-### 4. Granular Requirements Mapping
-For each task, reference specific EARS requirements from requirements.md:
-- Reference granular sub-requirements, not just user stories
-- Map to specific acceptance criteria (e.g., REQ-2.1.3: IF validation fails THEN...)
+### 3. Granular Requirements Mapping
+**MANDATORY FORMAT**: Each task must end with _Requirements: [mapping]_
+- **Primary format**: _Requirements: 2.1, 3.3, 1.2_ for specific EARS requirements (most common)
+- **Generalized mapping**: _Requirements: All requirements need foundational setup_ for cross-cutting tasks
+- **End-to-end tasks**: _Requirements: All requirements need E2E validation_ for comprehensive testing
+- Must use exact format with underscores
 - Ensure every EARS requirement is covered by implementation tasks
-- Use format: _Requirements: 2.1, 3.3, 1.2_ (refer to numbered requirements)
 
-
-### 6. Document Generation Only
+### 4. Document Generation Only
 Generate the tasks document content ONLY. Do not include any review or approval instructions in the actual document file.
 
-### 7. Update Metadata
+### 5. Update Metadata
 
 Update spec.json with:
 ```json
@@ -261,16 +145,17 @@ Update the tracking metadata to reflect task generation completion.
 
 The following is for Claude Code conversation only - NOT for the generated document:
 
-### Interactive Approval Process
-This command now implements interactive approval for the final phase:
+## Next Phase: Implementation Ready
 
-1. **Requirements & Design Review Prompts**: Automatically prompts user to confirm both documents are reviewed
-2. **Auto-approval**: Updates spec.json automatically when user confirms both with 'y'
-3. **Tasks Generation**: Proceeds immediately after dual approval
-4. **Ready for Implementation**: Tasks are generated and spec is ready for implementation phase
+After generating tasks.md, review the implementation tasks:
 
-### Tasks Review for Implementation Phase
-After generating tasks.md, the implementation phase is ready to begin.
+**If tasks look good:**
+Begin implementation following the generated task sequence
+
+**If tasks need modification:**
+Request changes and re-run this command after modifications
+
+Tasks represent the final planning phase - implementation can begin once tasks are approved.
 
 **Final approval process for implementation**:
 ```
@@ -288,15 +173,39 @@ After generating tasks.md, the implementation phase is ready to begin.
 
 ## Instructions
 
+### Core Task Generation
+
 1. **Check spec.json for language** - Use the language specified in the metadata
 2. **Convert design into code-generation prompts** - Each task must be a specific coding instruction
-3. **Apply test-driven approach** - Integrate testing into each development task
+3. **Assume context availability** - All context documents (requirements.md, design.md) will be available during implementation
 4. **Specify exact files and components** - Define what code to write/modify in which files
 5. **Build incrementally** - Each task uses outputs from previous tasks, no orphaned code
-6. **Map to granular requirements** - Reference specific EARS acceptance criteria
-7. **Focus on coding only** - Exclude deployment, user testing, performance analysis
-8. **Order by dependencies** - Ensure logical build sequence
-9. **Update tracking metadata** upon completion
+6. **Map to requirements** - End each task with _Requirements: X.X, Y.Y_ or _Requirements: [description]_ format
 
-Generate code-generation prompts that provide step-by-step implementation instructions for a coding agent.
-ultrathink
+### Implementation Strategy
+7. **Prioritize early validation** - Sequence steps to validate core functionality early through code
+8. **Apply test-driven approach** - Integrate testing into each development task
+9. **Order by technical dependencies** - Ensure each task can execute using outputs from previous tasks
+10. **Size appropriately** - Each task should be completable in 1-3 hours
+
+### Strict Coding-Only Focus
+**INCLUDE only tasks involving:**
+- Writing, modifying, or testing code
+- Creating automated tests
+- Implementing specific functions or components
+
+**EXCLUDE all non-coding activities:**
+- User acceptance testing or feedback gathering
+- Deployment to production/staging environments
+- Performance metrics gathering or analysis
+- Running the application manually for end-to-end testing
+- User training or documentation creation
+- Business process or organizational changes
+- Marketing or communication activities
+- Any task that cannot be completed through code modification
+
+### Completion
+11. **Update tracking metadata** upon completion - Set phase to "tasks-generated"
+
+Generate step-by-step implementation tasks executable by a coding agent.
+think deeply

@@ -1,6 +1,7 @@
 ---
 description: Generate comprehensive test specifications for TDD implementation
 allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, Glob, Grep, LS, WebSearch, WebFetch, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+argument-hint: <feature-name>
 ---
 
 # Test Specification Generation
@@ -549,13 +550,6 @@ Update spec.json with test phase:
       "approved": false
     }
   },
-  "test_config": {
-    "framework": "[selected framework]",
-    "ui_library": "[selected library]",
-    "e2e_framework": "[selected e2e]",
-    "api_library": "[selected api lib]",
-    "coverage_target": [coverage]
-  },
   "updated_at": "current_timestamp"
 }
 ```
@@ -563,15 +557,21 @@ Update spec.json with test phase:
 ---
 
 ## INTERACTIVE APPROVAL FOR NEXT PHASE (Not included in document)
+## Next Phase: Interactive Approval
 
-The following is for Claude Code conversation only - NOT for the generated document:
+
+After generating design.md, review the test and choose:
+
+**If design looks good:**
+Run `/kiro:spec-tasks $ARGUMENTS -y` to proceed to tasks phase
+
+**If design needs modification:**
+Request changes, then re-run this command after modifications
+
+The `-y` flag auto-approves test and generates tasks directly, streamlining the workflow while maintaining review enforcement.
 
 ### Test Specification Review Process
 After generating test specifications, the implementation phase can begin with TDD approach:
-
-1. **Test Review Prompt**: "test-spec.mdをレビューしましたか？ [y/N]"
-2. **If approved**: Begin TDD implementation with failing tests first
-3. **Red-Green-Refactor Cycle**: Follow TDD principles strictly
 
 ### TDD Implementation Workflow
 **Red Phase**: Write failing tests based on specifications

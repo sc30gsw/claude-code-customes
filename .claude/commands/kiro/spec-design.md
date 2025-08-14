@@ -1,46 +1,21 @@
 ---
 description: Create technical design for a specification
 allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+argument-hint: <feature-name> [-y]
 ---
 
 # Technical Design
 
 Create comprehensive technical design for feature: **$ARGUMENTS**
 
-## Interactive Approval: Requirements Review
+## Requirements Approval Required
 
 **CRITICAL**: Design can only be generated after requirements are reviewed and approved.
 
-### Requirements Review Process
 - Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
-**Interactive Approval Process**:
-1. **Check if requirements exist** - Verify that requirements.md has been generated
-2. **Prompt for human review** - Ask user: "requirements.mdをレビューしましたか？ [y/N]"
-3. **If 'y' (yes)**: Automatically update spec.json to approve requirements and proceed with design generation
-4. **If 'N' (no)**: Stop execution and instruct user to review requirements.md first
-
-**Auto-approval update in spec.json when user confirms review**:
-```json
-{
-  "approvals": {
-    "requirements": {
-      "generated": true,
-      "approved": true  // ← Automatically set to true when user confirms
-    }
-  },
-  "phase": "requirements-approved"
-}
-```
-
-**User Interaction Example**:
-```
-📋 Requirements review required before generating design.
-📄 Please review: .kiro/specs/feature-name/requirements.md
-❓ requirements.mdをレビューしましたか？ [y/N]: y
-✅ Requirements approved automatically. Proceeding with design generation...
-```
+**Note**: If this command was called with `-y` flag, requirements are auto-approved (spec.json updated to set requirements.approved=true). Otherwise, requirements must be approved first via `/kiro:spec-requirements $ARGUMENTS` followed by `/kiro:spec-design $ARGUMENTS -y`.
 
 ## Context Analysis
 
@@ -58,6 +33,7 @@ Create comprehensive technical design for feature: **$ARGUMENTS**
 - Current architecture: @.kiro/steering/structure.md
 - Technology stack: @.kiro/steering/tech.md
 - Product constraints: @.kiro/steering/product.md
+- Custom steering: Load "Always" mode and design-pattern matching "Conditional" mode files
 
 ### Current Spec Context
 - Current design: @.kiro/specs/$ARGUMENTS/design.md
@@ -353,22 +329,17 @@ Update spec.json with:
 The following is for Claude Code conversation only - NOT for the generated document:
 
 ### Interactive Approval Process
-This command now implements interactive approval:
+## Next Phase: Interactive Approval
 
-1. **Requirements Review Prompt**: Automatically prompts user to confirm requirements review
-2. **Auto-approval**: Updates spec.json automatically when user confirms with 'y'
-3. **Design Generation**: Proceeds immediately after approval
-4. **Next Phase**: Design is generated and ready for interactive approval by `/kiro:spec-tasks`
+After generating design.md, review the design and choose:
 
-### Design Review for Next Phase
-After generating design.md, the next phase (`/kiro:spec-tasks $ARGUMENTS`) will use similar interactive approval:
+**If design looks good:**
+Run `/kiro:spec-test $ARGUMENTS -y` to proceed to test phase
 
-**Preview of next interaction**:
-```
-📋 Design review required before generating tasks.
-📄 Please review: .kiro/specs/feature-name/design.md
-❓ design.mdをレビューしましたか？ [y/N]: 
-```
+**If design needs modification:**
+Request changes, then re-run this command after modifications
+
+The `-y` flag auto-approves design and generates test directly, streamlining the workflow while maintaining review enforcement.
 
 ### Review Checklist (for user reference):
 - [ ] Technical design is comprehensive and clear
@@ -400,4 +371,4 @@ After generating design.md, the next phase (`/kiro:spec-tasks $ARGUMENTS`) will 
 11. **Update tracking metadata** upon completion
 
 Generate design that provides clear blueprint for implementation phase with proper consideration for scalability, security, and maintainability, all grounded in thorough research and explicit requirements traceability.
-ultrathink
+think deeply
