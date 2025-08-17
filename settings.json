@@ -51,9 +51,26 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            // Run biome and type checks, I recommend you set it in the setting.json of your project
+            "command": "bun check && bun tsc"
+          }
+        ]
+      }
     ]
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754008072960
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bunx ccusage@latest statusline",
+    "padding": 0 
   }
 }
