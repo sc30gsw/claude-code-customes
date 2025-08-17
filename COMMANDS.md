@@ -18,12 +18,11 @@
 
 ### [開発支援コマンド](./commands/development-support.md)
 開発プロセスを強力にサポートするコマンド群（Serena統合強化）
-- `/commit` - **インテリジェントなGitコミット自動化（Serena統合）**
 - `/debug-error` - **インテリジェントデバッグシステム（Serena統合）**
 - `/smart-think` - **高度な多段階思考システム（Serena統合）**
 - `/serena` - 高効率な構造化問題解決
 - `/test` - 高度なテスト実装・実行・修正
-- `/tech-research` - **コードベース認識型技術調査（Serena統合強化版）**
+- `/spec:tech-research` - **コードベース認識型技術調査（Serena統合強化版）**
 - `/spec:requirements` - 包括的要件定義書の生成
 
 ### [Git・GitHub連携コマンド](./commands/git-github.md)
