@@ -202,7 +202,7 @@
 - パフォーマンス予算
 - 最適化提案
 
-## `/playwright-integration [オプション]` - Playwright統合診断
+## `/spec-integration [オプション]` - Playwright統合診断
 **説明**: Playwright MCPインテグレーションシステムの診断・設定確認・トラブルシューティング。
 
 **主要オプション**:
@@ -218,16 +218,16 @@
 **使用例**:
 ```bash
 # 全般的診断
-/playwright-integration --diagnose
+/spec-integration --diagnose
 
 # ブラウザ診断
-/playwright-integration --check-browser
+/spec-integration --check-browser
 
 # Serena統合診断
-/playwright-integration --check-serena
+/spec-integration --check-serena
 
 # パフォーマンス問題診断
-/playwright-integration --performance-debug
+/spec-integration --performance-debug
 ```
 
 **主な機能**:
