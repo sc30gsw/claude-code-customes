@@ -69,8 +69,8 @@
     "lastShownTime": 1754008072960
   },
   "statusLine": {
-    "type": "command",
-    "command": "bunx ccusage@latest statusline",
-    "padding": 0 
+    "command": "bun x ccusage statusline",
+    "padding": 0,
+    "type": "command"
   }
 }
