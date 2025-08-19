@@ -1,46 +1,21 @@
 ---
 description: Create technical design for a specification
-allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
+allowed-tools: Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
+argument-hint: <feature-name> [-y]
 ---
 
 # Technical Design
 
 Create comprehensive technical design for feature: **$ARGUMENTS**
 
-## Interactive Approval: Requirements Review
+## Requirements Approval Required
 
 **CRITICAL**: Design can only be generated after requirements are reviewed and approved.
 
-### Requirements Review Process
 - Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
-**Interactive Approval Process**:
-1. **Check if requirements exist** - Verify that requirements.md has been generated
-2. **Prompt for human review** - Ask user: "requirements.mdをレビューしましたか？ [y/N]"
-3. **If 'y' (yes)**: Automatically update spec.json to approve requirements and proceed with design generation
-4. **If 'N' (no)**: Stop execution and instruct user to review requirements.md first
-
-**Auto-approval update in spec.json when user confirms review**:
-```json
-{
-  "approvals": {
-    "requirements": {
-      "generated": true,
-      "approved": true  // ← Automatically set to true when user confirms
-    }
-  },
-  "phase": "requirements-approved"
-}
-```
-
-**User Interaction Example**:
-```
-📋 Requirements review required before generating design.
-📄 Please review: .kiro/specs/feature-name/requirements.md
-❓ requirements.mdをレビューしましたか？ [y/N]: y
-✅ Requirements approved automatically. Proceeding with design generation...
-```
+**Note**: If this command was called with `-y` flag, requirements are auto-approved (spec.json updated to set requirements.approved=true). Otherwise, requirements must be approved first via `/kiro:spec-requirements $ARGUMENTS` followed by `/kiro:spec-design $ARGUMENTS -y`.
 
 ## Context Analysis
 
@@ -58,6 +33,7 @@ Create comprehensive technical design for feature: **$ARGUMENTS**
 - Current architecture: @.kiro/steering/structure.md
 - Technology stack: @.kiro/steering/tech.md
 - Product constraints: @.kiro/steering/product.md
+- Custom steering: Load "Always" mode and design-pattern matching "Conditional" mode files
 
 ### Current Spec Context
 - Current design: @.kiro/specs/$ARGUMENTS/design.md
@@ -106,9 +82,9 @@ Create design.md in the language specified in spec.json (check `@.kiro/specs/$AR
 
 ### Design Component Traceability
 Each design component addresses specific requirements:
-- **[Component 1]** → REQ-X.X: [EARS requirement reference]
-- **[Component 2]** → REQ-Y.Y: [EARS requirement reference]
-- **[Integration Layer]** → REQ-Z.Z: [EARS requirement reference]
+- **[Component 1]** → X.X: [EARS requirement reference]
+- **[Component 2]** → Y.Y: [EARS requirement reference]
+- **[Integration Layer]** → Z.Z: [EARS requirement reference]
 
 ### User Story Coverage
 [Ensure all user stories from requirements.md are addressed]
@@ -116,7 +92,6 @@ Each design component addresses specific requirements:
 - User Story 2: [Technical approach for this story]
 
 ## Architecture
-[High-level system architecture and technology decisions]
 
 ```mermaid
 graph TB
@@ -134,7 +109,7 @@ graph TB
 - **Database**: [PostgreSQL/MySQL/MongoDB]
 - **Authentication**: [JWT/OAuth/Auth0]
 - **Testing**: [Jest/pytest] + [Testing Library/Playwright]
-- **Deployment**: [Docker/Vercel/AWS]
+- **Deployment**: [Docker/Vercel/AWS/GCP]
 
 ### Architecture Decision Rationale
 [Document reasoning behind key technology choices based on research]
@@ -144,10 +119,13 @@ graph TB
 - **Why [Database Choice]**: [Data model requirements, consistency needs, scaling patterns]
 - **Why [Authentication Method]**: [Security requirements, integration capabilities, user experience]
 
-## Data Flow
+### Screen Transitions (if applicable)
+[Use a diagram for major navigation and state transitions]
+
+### Data Flow
 [Description of how data flows through the system]
 
-### Primary User Flows
+#### Primary User Flows
 Include sequence diagrams for the top 1-3 user flows:
 
 ```mermaid
@@ -228,7 +206,20 @@ class [ModelName]:
 ### Database Schema
 [SQL schema or NoSQL document structure]
 
-### Migration Strategy
+If using a relational (SQL) database, include a minimal schema snippet as a starting point:
+
+```sql
+CREATE TABLE users (
+  id VARCHAR(36) PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL
+);
+```
+
+- Add foreign keys and additional constraints/indexes as needed.
+
+### Migration Strategy (if applicable)
 - Migration approach for schema changes
 - Backward compatibility considerations
 - Data transformation requirements
@@ -237,26 +228,13 @@ class [ModelName]:
 ## Error Handling
 [Comprehensive error handling strategy]
 
-## Security Considerations
-
-### Authentication & Authorization
-- Authentication flow (JWT/OAuth) with sequence diagram
-- Authorization matrix (roles and permissions)
-- Session management strategy
-
-### Data Protection
-- Input validation approach
-- Data encryption at rest and in transit
-- Sensitive data handling
-
-### Security Best Practices
-- OWASP Top 10 mitigation strategies
-- API rate limiting
-- CORS configuration
-- Security headers implementation
+## Security Considerations (if applicable)
+[Security considerations briefly]
+- Implement JWT-based authentication with role-based authorization and input validation
+- Apply OWASP security practices including rate limiting, CORS, and data encryption
 
 
-## Performance & Scalability
+## Performance & Scalability (if applicable)
 
 ### Performance Targets
 | Metric | Target | Measurement |
@@ -282,46 +260,35 @@ class [ModelName]:
 
 ## Testing Strategy
 
-### Test Coverage Requirements
-- **Unit Tests**: ≥80% code coverage
-- **Integration Tests**: All API endpoints and external integrations
-- **E2E Tests**: Critical user journeys
-- **Performance Tests**: Load testing at 2× expected peak
+- Purpose/Scope: [Quality risk reduction / regression prevention / objective acceptance]
+- Use: Keep only applicable rows; remove others (do not mark N/A)
 
-### Testing Approach
-1. **Unit Testing**
-   - Test individual functions and methods
-   - Mock external dependencies
-   - Focus on business logic
+### Risk Matrix
+| Area | Risk | Must | Optional | Ref |
+|---|---|---|---|---|
+| AuthN/Z | [H/M/L] | Unit, Contract, E2E | Security | [X.X] |
+| External API | [H/M/L] | Contract, Integration | Resilience | [X.X] |
+| Data Integrity | [H/M/L] | Unit, Property | Integration | [X.X] |
+| Critical UX Flows | [H/M/L] | E2E (≤3) | A11y | [X.X] |
+| Performance | [H/M/L] | Perf smoke | Load/Stress | [SLO/Perf table] |
 
-2. **Integration Testing**
-   - API contract tests
-   - Database integration tests
-   - External service integration tests
+### Minimal by Layer
+- Unit: boundary/exception cases of core business logic
+- Contract (API): provider/consumer contracts fixed
+- Integration: DB/external dependency integration
+- E2E (≤3): main user flows, happy + edge
 
-3. **End-to-End Testing**
-   - User authentication flow
-   - Core feature workflows
-   - Cross-browser compatibility
+### CI Gates
+| Stage | Run | Gate | SLA |
+|---|---|---|---|
+| PR | Unit + Contract | Fail = block | ≤Xm |
+| Staging | Integration + E2E | Fail = block | ≤Ym |
+| Nightly (if) | Performance/Resilience | Regression → issue | - |
 
-4. **Performance Testing**
-   - Load testing with k6 or similar
-   - Stress testing for system limits
-   - Endurance testing for memory leaks
-
-### CI/CD Pipeline
-```mermaid
-graph LR
-    A[Code Push] --> B[Lint & Format]
-    B --> C[Unit Tests]
-    C --> D[Integration Tests]
-    D --> E[Build]
-    E --> F[E2E Tests]
-    F --> G[Deploy to Staging]
-    G --> H[Performance Tests]
-    H --> I[Deploy to Production]
-```
-
+### Exit
+- Sev1/Sev2 = 0
+- All gates passed
+- Non-functional targets met (exceptions require recorded approval)
 ```
 
 ### 2. Document Generation
@@ -353,29 +320,26 @@ Update spec.json with:
 The following is for Claude Code conversation only - NOT for the generated document:
 
 ### Interactive Approval Process
-This command now implements interactive approval:
+## Next Phase: Interactive Approval
 
-1. **Requirements Review Prompt**: Automatically prompts user to confirm requirements review
-2. **Auto-approval**: Updates spec.json automatically when user confirms with 'y'
-3. **Design Generation**: Proceeds immediately after approval
-4. **Next Phase**: Design is generated and ready for interactive approval by `/spec-tasks`
+After generating design.md, review the design and choose:
 
-### Design Review for Next Phase
-After generating design.md, the next phase (`/spec-tasks $ARGUMENTS`) will use similar interactive approval:
+**If design looks good:**
+Run `/kiro:spec-tasks $ARGUMENTS -y` to proceed to tasks phase
 
-**Preview of next interaction**:
-```
-📋 Design review required before generating tasks.
-📄 Please review: .kiro/specs/feature-name/design.md
-❓ design.mdをレビューしましたか？ [y/N]: 
-```
+**If design needs modification:**
+Request changes, then re-run this command after modifications
+
+The `-y` flag auto-approves design and generates tasks directly, streamlining the workflow while maintaining review enforcement.
 
 ### Review Checklist (for user reference):
 - [ ] Technical design is comprehensive and clear
 - [ ] Architecture aligns with existing system
 - [ ] Technology choices are appropriate
 - [ ] Components and interfaces are well-defined
-- [ ] Security and performance considerations are addressed
+- [ ] Data models are well-defined
+- [ ] Error handling is well-defined
+- [ ] Testing strategy is well-defined
 
 ## Instructions
 
@@ -392,12 +356,12 @@ After generating design.md, the next phase (`/spec-tasks $ARGUMENTS`) will use s
    - Validate acceptance criteria can be met by proposed solution
 5. **Follow existing architecture patterns** from steering context
 6. **Structure the document in logical order**:
-   - Overview → Research & Context → Requirements Mapping → Architecture → Data Flow → Components → Data Models → Error Handling → Security → Performance → Testing
+   - Overview → Research & Context → Requirements Mapping → Architecture → Components and Interfaces → Data Models → Error Handling → Testing Strategy
 7. **Create detailed component design** with clear interfaces and API specifications
-8. **Include comprehensive diagrams** using mermaid for architecture, data flow, and ER diagrams
+8. **Include comprehensive diagrams** using mermaid for architecture, screen transitions, data flow, and ER diagrams
 9. **Document design rationale** - Explain reasoning behind key technical decisions
 10. **Define concrete performance targets** and testing strategies
 11. **Update tracking metadata** upon completion
 
 Generate design that provides clear blueprint for implementation phase with proper consideration for scalability, security, and maintainability, all grounded in thorough research and explicit requirements traceability.
-ultrathink
+think deeply
