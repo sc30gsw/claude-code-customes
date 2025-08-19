@@ -43,6 +43,20 @@ TDD用のテスト仕様を自動生成。単体テスト、コンポーネン�
 ### 7. `/kiro:spec-status [機能名]` - 進捗状況
 各フェーズの完了状況を確認。
 
+### 8. `/kiro:spec-impl [機能名] [タスク番号]` - 実装実行
+TDD手法を使用して仕様からタスクを実装。
+
+**引数**:
+- `機能名` - 実装する機能名
+- `タスク番号` - 実行するタスク（例: `1.1`, `1,2,3`, `--all`）
+
+**例**:
+```bash
+/kiro:spec-impl auth-system 1.1            # タスク1.1を実行
+/kiro:spec-impl auth-system 1,2,3          # タスク1, 2, 3を実行
+/kiro:spec-impl auth-system --all          # 全ての未完了タスクを実行
+```
+
 ## TDDワークフロー
 
 1. **Red Phase** - 失敗するテストを先に書く
@@ -93,7 +107,10 @@ TDD用のテスト仕様を自動生成。単体テスト、コンポーネン�
 # 6. 実装タスク生成
 /kiro:spec-tasks user-authentication
 
-# 7. 進捗確認
+# 7. 実装実行（TDD）
+/kiro:spec-impl user-authentication --all
+
+# 8. 進捗確認
 /kiro:spec-status user-authentication
 ```
 
