@@ -21,6 +21,10 @@ description: Generate comprehensive requirements definition documents with techn
 
 | Option | Short | Description | Example |
 |--------|-------|-------------|---------|
+| `--mode` | `-m` | Requirements generation mode (new-creation\|reverse-engineering) | `-m reverse-engineering` |
+| `--backlog` | `-b` | Enable product backlog format with user stories | `--backlog` |
+| `--epic` | `-e` | Epic name for product backlog structure | `-e "User Management Epic"` |
+| `--story-points` | | Include story point estimation in user stories | `--story-points` |
 | `--app` | `-a` | Application name | `-a "Web Store"` |
 | `--function` | `-f` | Function/feature name | `-f "Authentication"` |
 | `--file` | | Input file with additional requirements | `--file existing-req.txt` |
@@ -31,7 +35,7 @@ description: Generate comprehensive requirements definition documents with techn
 | `--scope` | `-s` | Scope type (mvp\|full\|enterprise) | `-s mvp` |
 | `--suggest` | | Include improvement suggestions | `--suggest` |
 | `--examples` | | Include implementation examples | `--examples` |
-| `--template` | | Template type (standard\|agile\|waterfall) | `--template agile` |
+| `--template` | | Template type (standard\|agile\|waterfall\|product-backlog) | `--template agile` |
 | `--hearing` | | Enable interactive mode for clarifying requirements | `--hearing` |
 | `--help` | `-h` | Show help message | `-h` |
 
@@ -53,6 +57,15 @@ description: Generate comprehensive requirements definition documents with techn
 # Interactive hearing mode for abstract requirements
 /requirements "Mobile App" --hearing
 /requirements "Business System" -p high --hearing
+
+# Reverse engineering mode with product backlog
+/requirements "User Management" -m reverse-engineering -b -e "Authentication Epic"
+
+# New creation mode with product backlog and story points
+/requirements "Payment System" -m new-creation -b -e "E-Commerce Platform" --story-points
+
+# Product backlog template with EARS format
+/requirements "Order Processing" --template product-backlog -b --story-points
 ```
 
 ## Tool Usage Priorities
@@ -84,12 +97,43 @@ Generate comprehensive requirements definition documents based on user inputs an
 ### Execution Flow
 
 #### 1. Pre-execution Setup
-1. **Hearing Mode Check**: If `--hearing` is enabled, enter interactive clarification mode
-2. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
-3. Analyze project structure using `mcp__serena__list_dir` → `LS` (fallback)
-4. Read package.json to understand project context using `mcp__serena__find_file` → `Read` (fallback)
-5. Check for existing requirements or documentation files
-6. **Progress Tracking**: Use `mcp__serena__think_about_task_adherence` to verify setup completion
+1. **Mode Detection**: Determine generation mode (`--mode` flag)
+2. **Hearing Mode Check**: If `--hearing` is enabled, enter interactive clarification mode
+3. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
+4. Analyze project structure using `mcp__serena__list_dir` → `LS` (fallback)
+5. Read package.json to understand project context using `mcp__serena__find_file` → `Read` (fallback)
+6. Check for existing requirements or documentation files
+7. **Progress Tracking**: Use `mcp__serena__think_about_task_adherence` to verify setup completion
+
+#### 1.1 Mode-Specific Setup
+
+##### Reverse Engineering Mode (`-m reverse-engineering`)
+When reverse engineering mode is enabled, the system analyzes existing codebase to extract requirements:
+
+**Setup Phase**:
+1. **Codebase Analysis**: Use `mcp__serena__get_symbols_overview` to identify system components
+2. **Pattern Detection**: Use `mcp__serena__search_for_pattern` to find functionality patterns
+3. **Component Mapping**: Map code structure to potential user stories and features
+4. **Behavior Analysis**: Extract existing system behaviors and constraints
+
+**Analysis Flow**:
+1. **Component Discovery**:
+   - Identify controllers, services, models, components
+   - Map API endpoints and data flows
+   - Discover business logic and rules
+   
+2. **Feature Extraction**:
+   - Group related components into features
+   - Identify user-facing functionality
+   - Extract non-functional requirements from implementation
+   
+3. **User Story Generation**:
+   - Convert identified features to user stories
+   - Infer user roles from access patterns
+   - Extract acceptance criteria from existing validations
+
+##### New Creation Mode (`-m new-creation`) [Default]
+Standard requirements generation from specifications and user input.
 
 #### 1.1 Hearing Mode - Interactive Clarification
 
@@ -219,26 +263,46 @@ The system intelligently selects questions based on:
 #### 2. Requirements Generation
 
 ##### Input Processing
-1. **Hearing Mode Processing** (if `--hearing` enabled):
+1. **Mode Selection Processing**:
+   - **Reverse Engineering Mode** (`-m reverse-engineering`):
+     - Execute codebase analysis phase
+     - Extract existing functionality and behaviors
+     - Generate user stories from identified features
+     - Apply EARS format to discovered requirements
+   
+   - **New Creation Mode** (`-m new-creation` or default):
+     - Process user specifications and inputs
+     - Generate requirements from business needs
+     - Apply standard requirement engineering practices
+
+2. **Product Backlog Processing** (if `--backlog` enabled):
+   - Structure output as Epic → Feature → User Story hierarchy
+   - Include story point estimation (if `--story-points` enabled)
+   - Add priority and dependency tracking
+   - Apply MoSCoW prioritization method
+
+3. **Hearing Mode Processing** (if `--hearing` enabled):
    - Execute interactive question flow
    - Parse and validate user responses
    - Build refined requirement parameters
    - Continue with enhanced context
 
-2. **Parse Command Arguments**:
+4. **Parse Command Arguments**:
    - Extract system name and options
    - Validate priority, scope, and template values
    - Process technology stack specifications
+   - Handle epic name (if `--epic` provided)
 
-2. **Context Gathering**:
+5. **Context Gathering**:
    - Read existing requirements from `--file` if provided
    - Analyze project dependencies for technology context
    - Search for related documentation using `mcp__serena__search_for_pattern`
 
-3. **Template Selection**:
-   - **Standard**: General purpose requirements
-   - **Agile**: User story format with acceptance criteria
-   - **Waterfall**: Detailed specification with phases
+6. **Template Selection**:
+   - **Standard**: General purpose requirements with EARS format
+   - **Agile**: User story format with EARS acceptance criteria
+   - **Waterfall**: Detailed specification with EARS functional requirements
+   - **Product-Backlog**: Full backlog structure with epics, features, and stories
 
 #### 3. Content Generation
 
@@ -247,32 +311,60 @@ The system intelligently selects questions based on:
    - Generation timestamp
    - System name and application details
    - Priority and scope specifications
+   - Generation mode (reverse-engineering or new-creation)
+   - Epic information (if `--epic` provided)
 
-2. **Main Sections** (based on template):
+2. **Mode-Specific Content Generation**:
+
+   **Reverse Engineering Mode Content**:
+   - **Discovered Features Section**:
+     - Components and services identified
+     - API endpoints and data flows mapped
+     - Business logic patterns extracted
+   
+   - **Generated User Stories**:
+     - User roles inferred from access patterns
+     - Features converted to user story format
+     - EARS acceptance criteria from existing validations
+   
+   - **Technical Constraints**:
+     - Architecture patterns identified
+     - Technology stack currently in use
+     - Integration points discovered
+
+   **New Creation Mode Content**:
    - **Functional Requirements**:
-     - Core features and capabilities
-     - User stories or use cases
-     - Acceptance criteria
+     - Core features and capabilities (EARS format)
+     - User stories with clear business value
+     - Acceptance criteria in EARS format
    
    - **Non-Functional Requirements**:
-     - Performance specifications
+     - Performance specifications (EARS format)
      - Security requirements
      - Availability and reliability
      - Scalability considerations
-   
-   - **Technical Specifications**:
-     - Architecture overview
-     - Technology stack details
-     - Integration requirements
-     - Data models and schemas
 
-3. **Technology Selection** (if `-t` specified):
+3. **Product Backlog Structure** (if `--backlog` enabled):
+   - **Epic Level**: High-level business objectives
+   - **Feature Level**: Major functional areas
+   - **User Story Level**: Specific user capabilities
+   - **EARS Acceptance Criteria**: All levels include EARS-formatted requirements
+   - **Story Points**: Estimation included (if `--story-points` enabled)
+   - **Priority Matrix**: MoSCoW prioritization applied
+
+4. **Technical Specifications**:
+   - Architecture overview
+   - Technology stack details (enhanced with Context7)
+   - Integration requirements
+   - Data models and schemas
+
+5. **Technology Selection** (if `-t` specified):
    - Use Context7 MCP to reference latest best practices
    - Generate selection rationale
    - Version recommendations
    - Integration considerations
 
-4. **Additional Sections** (if enabled):
+6. **Additional Sections** (if enabled):
    - Implementation examples (--examples)
    - Improvement suggestions (--suggest)
    - Imported requirements (--file)
@@ -578,7 +670,7 @@ User: 5
 ## 6. Success Criteria
 ```
 
-#### 2. Agile Template Structure
+#### 2. Agile Template Structure (Enhanced with EARS)
 ```markdown
 # Product Requirements: [System Name]
 
@@ -592,21 +684,24 @@ User: 5
 **I want** [goal]
 **So that** [benefit]
 
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+**Acceptance Criteria (EARS Format):**
+1. WHEN [event] THEN [system] SHALL [response]
+2. IF [precondition] THEN [system] SHALL [response]
+3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
+4. WHERE [location/context] THE SYSTEM SHALL [contextual behavior]
 
 **Story Points:** [1-13]
+**Priority:** [High/Medium/Low]
 
 ## Definition of Done
 - Code reviewed
 - Unit tests passing
 - Documentation updated
 - Deployed to staging
+- EARS acceptance criteria verified
 ```
 
-#### 3. Waterfall Template Structure
+#### 3. Waterfall Template Structure (Enhanced with EARS)
 ```markdown
 # Software Requirements Specification: [System Name]
 
@@ -621,7 +716,11 @@ User: 5
 ### 2.3 User Classes
 
 ## 3. Specific Requirements
-### 3.1 Functional Requirements
+### 3.1 Functional Requirements (EARS Format)
+1. WHEN [event] THEN [system] SHALL [response]
+2. IF [precondition] THEN [system] SHALL [response]
+3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
+
 ### 3.2 Performance Requirements
 ### 3.3 Design Constraints
 
@@ -636,6 +735,72 @@ User: 5
 ### 5.3 Deployment Plan
 
 ## 6. Maintenance and Support
+```
+
+#### 4. Product Backlog Template Structure
+```markdown
+# Product Backlog: [System Name]
+
+## Epic: [Epic Name]
+**Epic Description:** [High-level business objective]
+**Business Value:** [Expected value and benefits]
+
+### Theme: [Feature Theme]
+
+#### Feature: [Feature Name]
+**Feature Description:** [Detailed feature overview]
+
+##### User Story: [Story Title]
+**As a** [user role]
+**I want** [capability]
+**So that** [benefit/value]
+
+**Acceptance Criteria (EARS Format):**
+1. WHEN [trigger event] THEN [system] SHALL [expected response]
+2. IF [precondition] THEN [system] SHALL [required behavior]
+3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
+4. WHERE [context/location] THE SYSTEM SHALL [contextual behavior]
+
+**Story Details:**
+- **Story Points:** [1, 2, 3, 5, 8, 13, 21]
+- **Priority:** [Critical/High/Medium/Low]
+- **Sprint:** [Target sprint number]
+- **Dependencies:** [List of dependent stories]
+- **Assumptions:** [Key assumptions]
+
+**Definition of Ready:**
+- [ ] Story is estimated
+- [ ] Acceptance criteria defined in EARS format
+- [ ] Dependencies identified
+- [ ] Testable and demonstrable
+
+**Definition of Done:**
+- [ ] Code implemented and reviewed
+- [ ] All EARS acceptance criteria verified
+- [ ] Unit tests written and passing
+- [ ] Integration tests passing
+- [ ] Documentation updated
+- [ ] Deployed to staging environment
+- [ ] Stakeholder acceptance obtained
+
+#### Additional Stories...
+[Continue with additional user stories following the same format]
+
+### Feature Metrics
+- **Total Story Points:** [Sum of all story points]
+- **Estimated Velocity:** [Points per sprint]
+- **Target Completion:** [Estimated sprint]
+
+## Backlog Prioritization
+1. **Must Have (Critical)**
+2. **Should Have (High)**
+3. **Could Have (Medium)**
+4. **Won't Have This Release (Low)**
+
+## Release Planning
+### Sprint 1 Goals
+### Sprint 2 Goals
+### Future Sprints
 ```
 
 ### Features

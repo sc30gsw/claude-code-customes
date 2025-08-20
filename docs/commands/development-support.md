@@ -267,12 +267,16 @@
 - 実装ロードマップと移行戦略の自動生成
 - 技術的負債と保守性を考慮した推奨
 
-## `/spec:requirements [システム名] [オプション]` - 包括的要件定義
-**説明**: プロジェクトの要件定義書を自動生成し、技術選定と改善提案も含めた包括的なドキュメントを作成。
+## `/spec:requirements [システム名] [オプション]` - 包括的要件定義（EARS形式 & プロダクトバックログ対応）
+**説明**: プロダクトバックログ形式でEARS準拠の要件定義書を自動生成。リバースエンジニアリングによる既存コード分析、または新規仕様からの要件作成が可能。技術選定と改善提案も含めた包括的なドキュメントを作成。
 
-**オプション**:
+**主要オプション**:
 | オプション | 短縮形 | 説明 | 例 |
 |---------|-------|------|---|
+| `--mode` | `-m` | 要件生成モード (new-creation\|reverse-engineering) | `-m reverse-engineering` |
+| `--backlog` | `-b` | プロダクトバックログ形式でユーザーストーリーを生成 | `--backlog` |
+| `--epic` | `-e` | プロダクトバックログ用エピック名 | `-e "認証エピック"` |
+| `--story-points` | - | ストーリーポイント推定を含める | `--story-points` |
 | `--app` | `-a` | アプリケーション名 | `-a "Web Store"` |
 | `--function` | `-f` | 機能/特徴名 | `-f "認証"` |
 | `--file` | - | 追加要件の入力ファイル | `--file existing-req.txt` |
@@ -283,32 +287,71 @@
 | `--scope` | `-s` | スコープタイプ | `-s mvp` |
 | `--suggest` | - | 改善提案含む | `--suggest` |
 | `--examples` | - | 実装例含む | `--examples` |
-| `--template` | - | テンプレートタイプ | `--template agile` |
+| `--template` | - | テンプレートタイプ (standard\|agile\|waterfall\|product-backlog) | `--template product-backlog` |
 | `--hearing` | - | インタラクティブモード | `--hearing` |
 
-**使用例**:
+**モード別使用例**:
+
+**新規作成モード（デフォルト）**:
 ```bash
 # 基本的な要件定義
 /spec:requirements "ECサイト" -a "Web Store" -t "react,nodejs"
 
-# MVP版で提案付き
-/spec:requirements "SNSアプリ" -s mvp -p medium --suggest
+# プロダクトバックログ形式で作成
+/spec:requirements "SNSアプリ" -b -e "ソーシャル機能エピック" --story-points
 
-# エンタープライズ版で実装例付き
-/spec:requirements "CRMシステム" -s enterprise -t "react,nodejs,postgresql" --examples --template agile
+# EARS形式テンプレートで詳細要件
+/spec:requirements "CRMシステム" --template product-backlog -b --story-points -t "react,nodejs,postgresql"
+```
 
-# 既存要件の取り込み
-/spec:requirements "決済API" --file legacy-specs.txt -t "nodejs,mongodb"
+**リバースエンジニアリングモード（既存コード分析）**:
+```bash
+# 既存コードからユーザーストーリーを抽出
+/spec:requirements "ユーザー管理" -m reverse-engineering -b -e "認証エピック"
 
-# 抽象的要件に対するインタラクティブモード
-/spec:requirements "モバイルアプリ" --hearing
-/spec:requirements "業務システム" -p high --hearing --suggest
+# 既存システムの機能を要件として文書化
+/spec:requirements "決済システム" -m reverse-engineering --story-points --suggest
+
+# 既存APIから要件定義を生成
+/spec:requirements "REST API" -m reverse-engineering -b --examples
+```
+
+**高度な組み合わせ**:
+```bash
+# MVP版で提案付き（プロダクトバックログ形式）
+/spec:requirements "SNSアプリ" -s mvp -p medium -b --story-points --suggest
+
+# 既存要件の取り込み + プロダクトバックログ形式
+/spec:requirements "決済API" --file legacy-specs.txt -b -e "決済エピック" --story-points
+
+# インタラクティブモード + プロダクトバックログ
+/spec:requirements "モバイルアプリ" --hearing -b --story-points
+/spec:requirements "業務システム" -p high --hearing -b -e "業務効率化エピック" --suggest
 ```
 
 **主な機能**:
-- 機能要件・非機能要件の詳細定義
-- 技術スタックの推奨と選定理由
-- 既存プロジェクト構造の分析と連携
-- テンプレートベースでの高速生成（標準、アジャイル、ウォーターフォール）
+
+**EARS形式要件定義**:
+- **EARS（Easy Approach to Requirements Syntax）**準拠のアクセプタンス基準
+- すべての要件にWHEN、IF、WHILE、WHEREパターンを適用
+- テスタブルで明確な要件文書の自動生成
+
+**プロダクトバックログ機能**:
+- **エピック→フィーチャー→ユーザーストーリー**の階層構造
+- **ストーリーポイント推定**とMoSCoW優先度付け
+- **Definition of Ready/Done**の標準化
+- **スプリント計画**とリリース管理に対応
+
+**リバースエンジニアリングモード**:
+- **既存コードベースの自動分析**（Serena MCP活用）
+- **実装済み機能からユーザーストーリー生成**
+- **API設計パターンから要件抽出**
+- **技術制約と依存関係の自動識別**
+
+**従来機能（強化版）**:
+- 機能要件・非機能要件の詳細定義（EARS形式）
+- 技術スタックの推奨と選定理由（Context7連携）
+- 既存プロジェクト構造の分析と連携（Serena統合）
+- テンプレートベースでの高速生成（standard、agile、waterfall、**product-backlog**）
 - 改善提案とリスク分析
 - インタラクティブな要件聞き取りモード
