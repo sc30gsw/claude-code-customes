@@ -43,6 +43,10 @@ Playwright MCPとSerenaツールを統合したWebテストスイート
 UI/UXデザインとユーザビリティ向上
 - `/ui-advice` - デザインパターン提案・ワイヤーフレーム
 
+### [ファイル変換コマンド](./file-conversion.md)
+様々な形式のファイルをMarkdown形式に変換し、AI分析に最適化
+- `/convert-to-md` - PDF、DOCX、Excel等をMarkdownに変換（AI最適化対応）
+
 ## 使用方法
 
 各コマンドは `/コマンド名` で実行できます。詳細なオプションや使用例については、各カテゴリファイルを参照してください。
