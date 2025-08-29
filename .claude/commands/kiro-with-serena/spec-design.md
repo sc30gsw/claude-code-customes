@@ -1,6 +1,6 @@
 ---
 description: Create technical design for a specification
-allowed-tools: Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
+allowed-tools: mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
 argument-hint: <feature-name> [-y]
 ---
 
@@ -215,6 +215,8 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NULL
 );
+
+CREATE INDEX idx_users_created_at ON users (created_at);
 ```
 
 - Add foreign keys and additional constraints/indexes as needed.
@@ -289,6 +291,7 @@ CREATE TABLE users (
 - Sev1/Sev2 = 0
 - All gates passed
 - Non-functional targets met (exceptions require recorded approval)
+
 ```
 
 ### 2. Document Generation
@@ -356,7 +359,7 @@ The `-y` flag auto-approves design and generates tasks directly, streamlining th
    - Validate acceptance criteria can be met by proposed solution
 5. **Follow existing architecture patterns** from steering context
 6. **Structure the document in logical order**:
-   - Overview → Research & Context → Requirements Mapping → Architecture → Components and Interfaces → Data Models → Error Handling → Testing Strategy
+   - Overview → Research & Context → Requirements Mapping → Architecture (Screen Transitions if applicable, Data Flow) → Components → Data Models → Error Handling → Security → Performance → Testing
 7. **Create detailed component design** with clear interfaces and API specifications
 8. **Include comprehensive diagrams** using mermaid for architecture, screen transitions, data flow, and ER diagrams
 9. **Document design rationale** - Explain reasoning behind key technical decisions
