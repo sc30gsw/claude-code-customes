@@ -1,6 +1,6 @@
 ---
 description: Generate implementation tasks for a specification
-allowed-tools: Bash, Read, Write, Edit, Update, MultiEdit, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: Bash, Read, Write, Edit, Update, MultiEdit, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
 argument-hint: <feature-name> [-y]
 ---
 
@@ -8,30 +8,21 @@ argument-hint: <feature-name> [-y]
 
 Generate detailed implementation tasks for feature: **$ARGUMENTS**
 
-##  Requirements & Design Approval Required
+## Requirements & Design Approval Required
 
 **CRITICAL**: Tasks can only be generated after both requirements and design are reviewed and approved.
 
-### Interactive Review Process
-**Standard Review:**
 - Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design document: @.kiro/specs/$ARGUMENTS/design.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
-**With Test Specifications (when `/kiro:spec-test` was used):**
-- Requirements document: @.kiro/specs/$ARGUMENTS/requirements.md
-- Design document: @.kiro/specs/$ARGUMENTS/design.md
-- Test document: @.kiro/specs/$ARGUMENTS/tests/test-spec.md
-- Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
-
-**Note**: If this command was called with `-y` flag, all specifications (requirements, design, and tests if they exist) are reviewed and auto-approved (spec.json updated accordingly). Otherwise, all phases must be approved first via their respective commands followed by `/kiro:spec-tasks $ARGUMENTS -y`.
+**Note**: If this command was called with `-y` flag, both requirements and design are auto-approved (spec.json updated to set requirements.approved=true and design.approved=true). Otherwise, both phases must be approved first via their respective commands followed by `/kiro:spec-tasks $ARGUMENTS -y`.
 
 ## Context Analysis
 
 ### Complete Spec Context (APPROVED)
 - Requirements: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design: @.kiro/specs/$ARGUMENTS/design.md
-- Test specifications: @.kiro/specs/$ARGUMENTS/tests/test-spec.md (if generated)
 - Current tasks: @.kiro/specs/$ARGUMENTS/tasks.md
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 
@@ -44,8 +35,6 @@ Generate detailed implementation tasks for feature: **$ARGUMENTS**
 ## Task: Generate Code-Generation Prompts
 
 **Prerequisites Verified**: Both requirements and design are approved and ready for task breakdown.
-
-**TDD Note**: When test specifications exist (`/kiro:spec-test`), follow Red-Green-Refactor cycle: reference failing tests, implement minimum passing code, then refactor while maintaining test success.
 
 **CRITICAL**: Convert the feature design into a series of prompts for a code-generation LLM that will implement each step in a test-driven manner. Prioritize best practices, incremental progress, and early testing, ensuring no big jumps in complexity at any stage.
 
@@ -93,7 +82,6 @@ Create tasks.md in the language specified in spec.json (check `@.kiro/specs/$ARG
 - Keep tasks completable in 1-2 hours
 - Order by technical dependencies: Each task should build on outputs from previous tasks
 - Each task explains how it connects to subsequent tasks
-
 - **MUST end with exact format**: _Requirements: X.X, Y.Y_ or _Requirements: [description]_ (underscores mandatory)
 - Rely on design document for implementation details
 
@@ -108,6 +96,7 @@ Create tasks.md in the language specified in spec.json (check `@.kiro/specs/$ARG
 - **End-to-end tasks**: _Requirements: All requirements need E2E validation_ for comprehensive testing
 - Must use exact format with underscores
 - Ensure every EARS requirement is covered by implementation tasks
+
 
 ### 4. Document Generation Only
 Generate the tasks document content ONLY. Do not include any review or approval instructions in the actual document file.
@@ -174,7 +163,6 @@ Tasks represent the final planning phase - implementation can begin once tasks a
 ## Instructions
 
 ### Core Task Generation
-
 1. **Check spec.json for language** - Use the language specified in the metadata
 2. **Convert design into code-generation prompts** - Each task must be a specific coding instruction
 3. **Assume context availability** - All context documents (requirements.md, design.md) will be available during implementation

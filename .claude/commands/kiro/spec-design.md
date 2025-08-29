@@ -1,6 +1,6 @@
 ---
 description: Create technical design for a specification
-allowed-tools: Bash, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
 argument-hint: <feature-name> [-y]
 ---
 
@@ -92,7 +92,6 @@ Each design component addresses specific requirements:
 - User Story 2: [Technical approach for this story]
 
 ## Architecture
-[High-level system architecture and technology decisions]
 
 ```mermaid
 graph TB
@@ -216,6 +215,8 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NULL
 );
+
+CREATE INDEX idx_users_created_at ON users (created_at);
 ```
 
 - Add foreign keys and additional constraints/indexes as needed.
@@ -233,6 +234,7 @@ CREATE TABLE users (
 [Security considerations briefly]
 - Implement JWT-based authentication with role-based authorization and input validation
 - Apply OWASP security practices including rate limiting, CORS, and data encryption
+
 
 ## Performance & Scalability (if applicable)
 
@@ -259,6 +261,7 @@ CREATE TABLE users (
 
 
 ## Testing Strategy
+
 - Purpose/Scope: [Quality risk reduction / regression prevention / objective acceptance]
 - Use: Keep only applicable rows; remove others (do not mark N/A)
 
@@ -288,6 +291,8 @@ CREATE TABLE users (
 - Sev1/Sev2 = 0
 - All gates passed
 - Non-functional targets met (exceptions require recorded approval)
+
+```
 
 ### 2. Document Generation
 Generate the design document content ONLY. Do not include any review or approval instructions in the actual document file.
@@ -323,12 +328,12 @@ The following is for Claude Code conversation only - NOT for the generated docum
 After generating design.md, review the design and choose:
 
 **If design looks good:**
-Run `/kiro:spec-test $ARGUMENTS -y` to proceed to test phase
+Run `/kiro:spec-tasks $ARGUMENTS -y` to proceed to tasks phase
 
 **If design needs modification:**
 Request changes, then re-run this command after modifications
 
-The `-y` flag auto-approves design and generates test directly, streamlining the workflow while maintaining review enforcement.
+The `-y` flag auto-approves design and generates tasks directly, streamlining the workflow while maintaining review enforcement.
 
 ### Review Checklist (for user reference):
 - [ ] Technical design is comprehensive and clear
@@ -354,7 +359,7 @@ The `-y` flag auto-approves design and generates test directly, streamlining the
    - Validate acceptance criteria can be met by proposed solution
 5. **Follow existing architecture patterns** from steering context
 6. **Structure the document in logical order**:
-   -  Overview → Research & Context → Requirements Mapping → Architecture → Components and Interfaces → Data Models → Error Handling → Testing Strategy
+   - Overview → Research & Context → Requirements Mapping → Architecture (Screen Transitions if applicable, Data Flow) → Components → Data Models → Error Handling → Security → Performance → Testing
 7. **Create detailed component design** with clear interfaces and API specifications
 8. **Include comprehensive diagrams** using mermaid for architecture, screen transitions, data flow, and ER diagrams
 9. **Document design rationale** - Explain reasoning behind key technical decisions

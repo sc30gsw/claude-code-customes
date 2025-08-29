@@ -1,6 +1,6 @@
 ---
 description: Create or update Kiro steering documents intelligently based on project state
-allowed-tools: Bash, Read, Write, Edit, MultiEdit, Glob, Grep, LS, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: Bash, Read, Write, Edit, MultiEdit, Glob, Grep, LS, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
 ---
 
 # Kiro Steering Management
@@ -10,22 +10,22 @@ Intelligently create or update steering documents in `.kiro/steering/` to mainta
 ## Existing Files Check
 
 ### Current steering documents status
-- Product overview: Use mcp__serena__find_file to check if .kiro/steering/product.md exists
-- Technology stack: Use mcp__serena__find_file to check if .kiro/steering/tech.md exists  
-- Project structure: Use mcp__serena__find_file to check if .kiro/steering/structure.md exists
-- Custom steering files: Use mcp__serena__list_dir with relative_path .kiro/steering/ to count custom files
+- Product overview: !`[ -f ".kiro/steering/product.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
+- Technology stack: !`[ -f ".kiro/steering/tech.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
+- Project structure: !`[ -f ".kiro/steering/structure.md" ] && echo "✅ EXISTS - Will be updated preserving custom content" || echo "📝 Not found - Will be created"`
+- Custom steering files: !`if [ -d ".kiro/steering" ]; then count=$(find .kiro/steering -maxdepth 1 -type f -name '*.md' ! -name 'product.md' ! -name 'tech.md' ! -name 'structure.md' | grep -c .); if [ "$count" -gt 0 ]; then echo "🔧 $count custom file(s) found - Will be preserved"; else echo "📋 No custom files"; fi; else echo "📋 No steering directory yet"; fi`
 
 ## Project Analysis
 
 ### Current Project State
-- Project files: Use mcp__serena__search_for_pattern to find source files (*.py, *.js, *.ts, *.jsx, *.tsx, *.java, *.go, *.rs)
-- Configuration files: Use mcp__serena__find_file to locate config files (package.json, requirements.txt, pom.xml, Cargo.toml, go.mod, pyproject.toml, tsconfig.json)
-- Documentation: Use mcp__serena__find_file to find documentation files (README*, CHANGELOG*, LICENSE*, *.md)
+- Project files: !`find . -path ./node_modules -prune -o -path ./.git -prune -o -path ./dist -prune -o -type f \( -name "*.py" -o -name "*.js" -o -name "*.ts" -o -name "*.jsx" -o -name "*.tsx" -o -name "*.java" -o -name "*.go" -o -name "*.rs" \) -print 2>/dev/null || echo "No source files found"`
+- Configuration files: !`find . -maxdepth 3 \( -name "package.json" -o -name "requirements.txt" -o -name "pom.xml" -o -name "Cargo.toml" -o -name "go.mod" -o -name "pyproject.toml" -o -name "tsconfig.json" \) 2>/dev/null || echo "No config files found"`
+- Documentation: !`find . -maxdepth 3 -path ./node_modules -prune -o -path ./.git -prune -o -path ./.kiro -prune -o \( -name "README*" -o -name "CHANGELOG*" -o -name "LICENSE*" -o -name "*.md" \) -print 2>/dev/null || echo "No documentation files found"`
 
 ### Recent Changes (if updating)
-- Last steering update: Use Bash tool to check git log for .kiro/steering/ directory
-- Commits since last steering update: Use Bash tool to analyze recent commits
-- Working tree status: Use Bash tool to check git status
+- Last steering update: !`git log -1 --oneline -- .kiro/steering/ 2>/dev/null || echo "No previous steering commits"`
+- Commits since last steering update: !`LAST_COMMIT=$(git log -1 --format=%H -- .kiro/steering/ 2>/dev/null); if [ -n "$LAST_COMMIT" ]; then git log --oneline ${LAST_COMMIT}..HEAD --max-count=20 2>/dev/null || echo "Not a git repository"; else echo "No previous steering update found"; fi`
+- Working tree status: !`git status --porcelain 2>/dev/null || echo "Not a git repository"`
 
 ### Existing Documentation
 - Main README: @README.md

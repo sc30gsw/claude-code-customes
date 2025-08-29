@@ -1,6 +1,6 @@
 ---
 description: Show specification status and progress
-allowed-tools: Bash, Read, Glob, Write, Edit, MultiEdit, Update, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: Bash, Read, Glob, Write, Edit, MultiEdit, Update, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
 ---
 
 # Specification Status
@@ -10,16 +10,15 @@ Show current status and progress for feature: **$ARGUMENTS**
 ## Spec Context
 
 ### Spec Files
-- Spec directory: Use mcp__serena__list_dir with relative_path .kiro/specs/$ARGUMENTS/
+- Spec directory: !`ls -la .kiro/specs/$ARGUMENTS/`
 - Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
 - Requirements: @.kiro/specs/$ARGUMENTS/requirements.md
 - Design: @.kiro/specs/$ARGUMENTS/design.md
-- Test specifications: @.kiro/specs/$ARGUMENTS/tests/test-spec.md
 - Tasks: @.kiro/specs/$ARGUMENTS/tasks.md
 
 ### All Specs Overview
-- Available specs: Use mcp__serena__list_dir with relative_path .kiro/specs/
-- Active specs: Use mcp__serena__search_for_pattern with pattern "implementation_ready.*true" and relative_path .kiro/specs/
+- Available specs: !`ls -la .kiro/specs/`
+- Active specs: !`find .kiro/specs/ -name "spec.json" -exec grep -l "implementation_ready.*true" {} \;`
 
 ## Task: Generate Status Report
 
@@ -44,15 +43,6 @@ For each phase, show:
   - Components defined: [yes/no]
   - Diagrams created: [yes/no]
   - Integration planned: [yes/no]
-
-- ✅ **Test Specifications Phase**: [completion %]
-  - Test cases defined: [yes/no]
-  - Unit tests specified: [number]
-  - Component tests specified: [number]
-  - API tests specified: [number]
-  - E2E tests specified: [number]
-  - Coverage target: [percentage]%
-  - Mock strategy defined: [yes/no]
 
 - ✅ **Tasks Phase**: [completion %]
   - Total tasks: [number]

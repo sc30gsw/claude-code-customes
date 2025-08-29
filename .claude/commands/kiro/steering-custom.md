@@ -1,6 +1,6 @@
 ---
 description: Create custom Kiro steering documents for specialized project contexts
-allowed-tools: Bash, Read, Write, Edit, MultiEdit, Glob, Grep, LS, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: Bash, Read, Write, Edit, MultiEdit, Glob, Grep, LS, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
 ---
 
 # Kiro Custom Steering Creation
@@ -10,12 +10,12 @@ Create custom steering documents in `.kiro/steering/` for specialized contexts b
 ## Current Steering Status
 
 ### Existing Steering Documents
-- Core steering files: Use mcp__serena__list_dir with relative_path .kiro/steering/ and search for *.md files
-- Custom steering count: Use mcp__serena__find_file to count custom steering files (excluding product.md, tech.md, structure.md)
+- Core steering files: !`ls -la .kiro/steering/*.md 2>/dev/null || echo "No steering directory found"`
+- Custom steering count: !`if [ -d ".kiro/steering" ]; then count=0; for f in .kiro/steering/*.md; do if [ -f "$f" ] && [ "$f" != ".kiro/steering/product.md" ] && [ "$f" != ".kiro/steering/tech.md" ] && [ "$f" != ".kiro/steering/structure.md" ]; then count=$((count + 1)); fi; done; echo "$count"; else echo "0"; fi`
 
 ### Project Analysis
-- Specialized areas: Use mcp__serena__find_file to search for directories with patterns: test*, spec*, api, auth, security
-- Config patterns: Use mcp__serena__find_file to search for config files: *.config.*, *rc.*, .*rc
+- Specialized areas: !`find . -path ./node_modules -prune -o -path ./.git -prune -o -type d \( -name "test*" -o -name "spec*" -o -name "api" -o -name "auth" -o -name "security" \) -print 2>/dev/null || echo "No specialized directories found"`
+- Config patterns: !`find . -path ./node_modules -prune -o \( -name "*.config.*" -o -name "*rc.*" -o -name ".*rc" \) -print 2>/dev/null || echo "No config files found"`
 
 ## Task: Create Custom Steering Document
 
@@ -27,7 +27,6 @@ You will create a new custom steering document based on user requirements. Commo
    - REST/GraphQL conventions
    - Error handling patterns
    - Authentication/authorization approaches
-   - Rate limiting and pagination
    - API versioning strategy
 
 2. **Testing Approach** (`testing.md`)

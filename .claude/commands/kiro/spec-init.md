@@ -1,6 +1,7 @@
 ---
 description: Initialize a new specification with detailed project description and requirements
-allowed-tools: Bash, Read, Write, Glob, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory
+allowed-tools: Bash, Read, Write, Glob, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
+model: claude-sonnet-4-20250514
 ---
 
 # Spec Initialization
@@ -31,7 +32,7 @@ Create initial metadata with approval tracking:
   "feature_name": "{generated-feature-name}",
   "created_at": "current_timestamp",
   "updated_at": "current_timestamp",
-  "language": "japanese",
+  "language": "en",
   "phase": "initialized",
   "approvals": {
     "requirements": {
@@ -39,10 +40,6 @@ Create initial metadata with approval tracking:
       "approved": false
     },
     "design": {
-      "generated": false,
-      "approved": false
-    },
-    "test": {
       "generated": false,
       "approved": false
     },
@@ -70,6 +67,8 @@ $ARGUMENTS
 ## Requirements
 <!-- Detailed user stories will be generated in /kiro:spec-requirements phase -->
 
+```
+
 #### design.md (Empty Template)
 ```markdown
 # Design Document
@@ -77,6 +76,7 @@ $ARGUMENTS
 ## Overview
 <!-- Technical design will be generated after requirements approval -->
 
+```
 
 #### tasks.md (Empty Template)
 ```markdown
@@ -94,8 +94,7 @@ Add the new spec to the active specifications list with the generated feature na
 Follow the spec-driven development workflow:
 1. `/kiro:spec-requirements {feature-name}` - Generate requirements
 2. `/kiro:spec-design {feature-name}` - Generate design (interactive approval)
-3. `/kiro:spec-test {feature-name}` - Generate test (interactive approval)
-4. `/kiro:spec-tasks {feature-name}` - Generate tasks (interactive approval)
+3. `/kiro:spec-tasks {feature-name}` - Generate tasks (interactive approval)
 
 ## Output Format
 
