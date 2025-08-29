@@ -8,6 +8,7 @@
 [SUB-AGENTS.md](SUB-AGENTS.md)では各エージェントの概要及び使用方法・ユースケースを記載しています
 
 ## SuperClaude
-[公式ドキュメント](https://superclaude.netlify.app/)
-[公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
-[個人ドキュメント](docs/sc)
+- [公式ドキュメント](https://superclaude.netlify.app/)
+- [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
+- [個人ドキュメント](docs/sc)
+- 各種MDファイル: CLAUDE.mdのコンテキスト
