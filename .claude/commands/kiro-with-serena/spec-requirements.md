@@ -1,12 +1,12 @@
 ---
 description: Generate comprehensive requirements for a specification
-allowed-tools: Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
+allowed-tools:  mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
 argument-hint: <feature-name>
 ---
 
 # Requirements Generation
 
-Generate comprehensive requirements for feature: **$ARGUMENTS**
+Generate comprehensive requirements for feature: **$1**
 
 ## Context Validation
 
@@ -17,13 +17,17 @@ Generate comprehensive requirements for feature: **$ARGUMENTS**
 - Custom steering: Load all "Always" mode custom steering files from .kiro/steering/
 
 ### Existing Spec Context
-- Current spec directory: !`ls -la .kiro/specs/$ARGUMENTS/`
-- Current requirements: @.kiro/specs/$ARGUMENTS/requirements.md
-- Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
+- Current spec directory: !`ls -la .kiro/specs/$1/`
+- Current requirements: `.kiro/specs/$1/requirements.md`
+- Spec metadata: `.kiro/specs/$1/spec.json`
 
 ## Task: Generate Initial Requirements
 
-Generate an initial set of requirements in EARS format based on the feature idea, then iterate with the user to refine them until they are complete and accurate.
+### 1. Read Existing Requirements Template
+Read the existing requirements.md file created by spec-init to extract the project description.
+
+### 2. Generate Complete Requirements
+Generate an initial set of requirements in EARS format based on the project description, then iterate with the user to refine them until they are complete and accurate.
 
 Don't focus on code exploration in this phase. Instead, just focus on writing requirements which will later be turned into a design.
 
@@ -33,7 +37,7 @@ Don't focus on code exploration in this phase. Instead, just focus on writing re
 3. **No Sequential Questions**: Generate initial version first, then iterate based on user feedback
 4. **Keep It Manageable**: Create a solid foundation that can be expanded through user review
 
-### 1. EARS Format Requirements
+### 3. EARS Format Requirements
 
 **EARS (Easy Approach to Requirements Syntax)** is the mandatory format for acceptance criteria:
 
@@ -47,8 +51,8 @@ Don't focus on code exploration in this phase. Instead, just focus on writing re
 - WHEN [event] AND [additional condition] THEN [system] SHALL [response]
 - IF [condition] AND [additional condition] THEN [system] SHALL [response]
 
-### 2. Requirements Document Structure
-Generate requirements.md in the language specified in spec.json (check `@.kiro/specs/$ARGUMENTS/spec.json` for "language" field):
+### 4. Requirements Document Structure
+Update requirements.md with complete content in the language specified in spec.json (check `.kiro/specs/$1/spec.json` for "language" field):
 
 ```markdown
 # Requirements Document
@@ -79,7 +83,7 @@ This section should have EARS requirements
 [Continue pattern for all major functional areas]
 ```
 
-### 3. Update Metadata
+### 5. Update Metadata
 Update spec.json with:
 ```json
 {
@@ -94,7 +98,7 @@ Update spec.json with:
 }
 ```
 
-### 4. Document Generation Only
+### 6. Document Generation Only
 Generate the requirements document content ONLY. Do not include any review or approval instructions in the actual document file.
 
 ---
@@ -104,7 +108,7 @@ Generate the requirements document content ONLY. Do not include any review or ap
 After generating requirements.md, review the requirements and choose:
 
 **If requirements look good:**
-Run `/kiro:spec-design $ARGUMENTS -y` to proceed to design phase
+Run `/kiro:spec-design $1 -y` to proceed to design phase
 
 **If requirements need modification:**
 Request changes, then re-run this command after modifications

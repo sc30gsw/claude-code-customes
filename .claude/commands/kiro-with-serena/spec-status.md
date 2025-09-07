@@ -1,20 +1,21 @@
 ---
 description: Show specification status and progress
-allowed-tools: Bash, Read, Glob, Write, Edit, MultiEdit, Update, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory,
+allowed-tools:  mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Read, Glob, Write, Edit, MultiEdit, Update
+argument-hint: <feature-name>
 ---
 
 # Specification Status
 
-Show current status and progress for feature: **$ARGUMENTS**
+Show current status and progress for feature: **$1**
 
 ## Spec Context
 
 ### Spec Files
-- Spec directory: !`ls -la .kiro/specs/$ARGUMENTS/`
-- Spec metadata: @.kiro/specs/$ARGUMENTS/spec.json
-- Requirements: @.kiro/specs/$ARGUMENTS/requirements.md
-- Design: @.kiro/specs/$ARGUMENTS/design.md
-- Tasks: @.kiro/specs/$ARGUMENTS/tasks.md
+- Spec directory: !`ls -la .kiro/specs/$1/`
+- Spec metadata: `.kiro/specs/$1/spec.json`
+- Requirements: `.kiro/specs/$1/requirements.md`
+- Design: `.kiro/specs/$1/design.md`
+- Tasks: `.kiro/specs/$1/tasks.md`
 
 ### All Specs Overview
 - Available specs: !`ls -la .kiro/specs/`
@@ -22,7 +23,7 @@ Show current status and progress for feature: **$ARGUMENTS**
 
 ## Task: Generate Status Report
 
-Create comprehensive status report for the specification in the language specified in spec.json (check `@.kiro/specs/$ARGUMENTS/spec.json` for "language" field):
+Create comprehensive status report for the specification in the language specified in spec.json (check `.kiro/specs/$1/spec.json` for "language" field):
 
 ### 1. Specification Overview
 Display:
