@@ -1,6 +1,6 @@
 ---
 description: Generate implementation tasks for a specification
-allowed-tools:  mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Read, Write, Edit, MultiEdit, Glob, Grep
+allowed-tools: mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Read, Write, Edit, MultiEdit, Glob, Grep
 argument-hint: <feature-name> [-y]
 ---
 
@@ -39,17 +39,17 @@ Generate detailed implementation tasks for feature: **$1**
 - Format exactly as:
 ```markdown
 - [ ] 1. Major task description
-  - [ ] 1.1 Sub-task description
-    - Detail item 1
-    - Detail item 2
-    - _Requirements: X.X, Y.Y_
+- [ ] 1.1 Sub-task description
+  - Detail item 1
+  - Detail item 2
+  - _Requirements: X.X, Y.Y_
 
-  - [ ] 1.2 Sub-task description
-    - Detail items...
-    - _Requirements: X.X_
+- [ ] 1.2 Sub-task description
+  - Detail items...
+  - _Requirements: X.X_
 
 - [ ] 2. Next major task (NOT 1 again!)
-  - [ ] 2.1 Sub-task...
+- [ ] 2.1 Sub-task...
 ```
 
 ### Task Generation Rules
@@ -89,19 +89,19 @@ Generate detailed implementation tasks for feature: **$1**
   - _Requirements: All requirements need foundational setup_
 
 - [ ] 2. Build authentication and user management system
-  - [ ] 2.1 Implement core authentication functionality
-    - Set up user data storage with validation rules
-    - Implement secure authentication mechanism
-    - Build user registration functionality
-    - Add login and session management features
-    - _Requirements: 7.1, 7.2_
+- [ ] 2.1 Implement core authentication functionality
+  - Set up user data storage with validation rules
+  - Implement secure authentication mechanism
+  - Build user registration functionality
+  - Add login and session management features
+  - _Requirements: 7.1, 7.2_
 
-  - [ ] 2.2 Enable email service integration
-    - Implement secure credential storage system
-    - Build authentication flow for email providers
-    - Create email connection validation logic
-    - Develop email account management features
-    - _Requirements: 5.1, 5.2, 5.4_
+- [ ] 2.2 Enable email service integration
+  - Implement secure credential storage system
+  - Build authentication flow for email providers
+  - Create email connection validation logic
+  - Develop email account management features
+  - _Requirements: 5.1, 5.2, 5.4_
 ```
 
 ### Requirements Coverage Check

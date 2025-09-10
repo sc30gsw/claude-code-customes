@@ -1,6 +1,6 @@
 ---
 description: Generate comprehensive requirements for a specification
-allowed-tools:  mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
+allowed-tools: mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash, Glob, Grep, LS, Read, Write, Edit, MultiEdit, Update, WebSearch, WebFetch
 argument-hint: <feature-name>
 ---
 
@@ -29,27 +29,28 @@ Read the existing requirements.md file created by spec-init to extract the proje
 ### 2. Generate Complete Requirements
 Generate an initial set of requirements in EARS format based on the project description, then iterate with the user to refine them until they are complete and accurate.
 
-Don't focus on code exploration in this phase. Instead, just focus on writing requirements which will later be turned into a design.
+Don't focus on implementation details in this phase. Instead, just focus on writing requirements which will later be turned into a design.
 
 ### Requirements Generation Guidelines
 1. **Focus on Core Functionality**: Start with the essential features from the user's idea
 2. **Use EARS Format**: All acceptance criteria must use proper EARS syntax
 3. **No Sequential Questions**: Generate initial version first, then iterate based on user feedback
 4. **Keep It Manageable**: Create a solid foundation that can be expanded through user review
+5. **Choose an appropriate subject**: For software projects, use the concrete system/service name (e.g., "Checkout Service"). For non-software, select a responsible subject (e.g., process/workflow, team/role, artifact/document, campaign, protocol).
 
 ### 3. EARS Format Requirements
 
-**EARS (Easy Approach to Requirements Syntax)** is the mandatory format for acceptance criteria:
+**EARS (Easy Approach to Requirements Syntax)** is the recommended format for acceptance criteria:
 
 **Primary EARS Patterns:**
-- WHEN [event/condition] THEN [system] SHALL [response]
-- IF [precondition/state] THEN [system] SHALL [response]
-- WHILE [ongoing condition] THE [system] SHALL [continuous behavior]
-- WHERE [location/context/trigger] THE [system] SHALL [contextual behavior]
+- WHEN [event/condition] THEN [system/subject] SHALL [response]
+- IF [precondition/state] THEN [system/subject] SHALL [response]
+- WHILE [ongoing condition] THE [system/subject] SHALL [continuous behavior]
+- WHERE [location/context/trigger] THE [system/subject] SHALL [contextual behavior]
 
 **Combined Patterns:**
-- WHEN [event] AND [additional condition] THEN [system] SHALL [response]
-- IF [condition] AND [additional condition] THEN [system] SHALL [response]
+- WHEN [event] AND [additional condition] THEN [system/subject] SHALL [response]
+- IF [condition] AND [additional condition] THEN [system/subject] SHALL [response]
 
 ### 4. Requirements Document Structure
 Update requirements.md with complete content in the language specified in spec.json (check `.kiro/specs/$1/spec.json` for "language" field):
@@ -62,22 +63,22 @@ Update requirements.md with complete content in the language specified in spec.j
 
 ## Requirements
 
-### Requirement 1: [Major Feature Area]
-**User Story:** As a [role], I want [feature], so that [benefit]
+### Requirement 1: [Major Objective Area]
+**Objective:** As a [role/stakeholder], I want [feature/capability/outcome], so that [benefit]
 
 #### Acceptance Criteria
 This section should have EARS requirements
 
-1. WHEN [event] THEN [system] SHALL [response]
-2. IF [precondition] THEN [system] SHALL [response]
-3. WHILE [ongoing condition] THE [system] SHALL [continuous behavior]
-4. WHERE [location/context/trigger] THE [system] SHALL [contextual behavior]
+1. WHEN [event] THEN [system/subject] SHALL [response]
+2. IF [precondition] THEN [system/subject] SHALL [response]
+3. WHILE [ongoing condition] THE [system/subject] SHALL [continuous behavior]
+4. WHERE [location/context/trigger] THE [system/subject] SHALL [contextual behavior]
 
-### Requirement 2: [Next Major Feature Area]
-**User Story:** As a [role], I want [feature], so that [benefit]
+### Requirement 2: [Next Major Objective Area]
+**Objective:** As a [role/stakeholder], I want [feature/capability/outcome], so that [benefit]
 
-1. WHEN [event] THEN [system] SHALL [response]
-2. WHEN [event] AND [condition] THEN [system] SHALL [response]
+1. WHEN [event] THEN [system/subject] SHALL [response]
+2. WHEN [event] AND [condition] THEN [system/subject] SHALL [response]
 
 ### Requirement 3: [Additional Major Areas]
 [Continue pattern for all major functional areas]
