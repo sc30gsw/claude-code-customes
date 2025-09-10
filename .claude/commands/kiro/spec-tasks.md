@@ -39,17 +39,17 @@ Generate detailed implementation tasks for feature: **$1**
 - Format exactly as:
 ```markdown
 - [ ] 1. Major task description
-  - [ ] 1.1 Sub-task description
-    - Detail item 1
-    - Detail item 2
-    - _Requirements: X.X, Y.Y_
+- [ ] 1.1 Sub-task description
+  - Detail item 1
+  - Detail item 2
+  - _Requirements: X.X, Y.Y_
 
-  - [ ] 1.2 Sub-task description
-    - Detail items...
-    - _Requirements: X.X_
+- [ ] 1.2 Sub-task description
+  - Detail items...
+  - _Requirements: X.X_
 
 - [ ] 2. Next major task (NOT 1 again!)
-  - [ ] 2.1 Sub-task...
+- [ ] 2.1 Sub-task...
 ```
 
 ### Task Generation Rules
@@ -89,19 +89,19 @@ Generate detailed implementation tasks for feature: **$1**
   - _Requirements: All requirements need foundational setup_
 
 - [ ] 2. Build authentication and user management system
-  - [ ] 2.1 Implement core authentication functionality
-    - Set up user data storage with validation rules
-    - Implement secure authentication mechanism
-    - Build user registration functionality
-    - Add login and session management features
-    - _Requirements: 7.1, 7.2_
+- [ ] 2.1 Implement core authentication functionality
+  - Set up user data storage with validation rules
+  - Implement secure authentication mechanism
+  - Build user registration functionality
+  - Add login and session management features
+  - _Requirements: 7.1, 7.2_
 
-  - [ ] 2.2 Enable email service integration
-    - Implement secure credential storage system
-    - Build authentication flow for email providers
-    - Create email connection validation logic
-    - Develop email account management features
-    - _Requirements: 5.1, 5.2, 5.4_
+- [ ] 2.2 Enable email service integration
+  - Implement secure credential storage system
+  - Build authentication flow for email providers
+  - Create email connection validation logic
+  - Develop email account management features
+  - _Requirements: 5.1, 5.2, 5.4_
 ```
 
 ### Requirements Coverage Check
