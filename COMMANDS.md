@@ -7,14 +7,18 @@
 詳細なコマンド情報については、以下のカテゴリ別ファイルを参照してください：
 
 ### [Kiroコマンドシステム](./commands/kiro-system.md)
+以下からinstall
+https://github.com/gotalab/cc-sdd
+
 仕様駆動開発（Spec-Driven Development）とテスト駆動開発（TDD）をサポート
 - `/kiro:steering` - プロジェクトステアリング文書の生成・更新
 - `/kiro:spec-init` - 新機能仕様の初期化
 - `/kiro:spec-requirements` - EARS形式要件定義の生成
 - `/kiro:spec-design` - 技術設計書の生成
-- `/kiro:spec-test` - TDDテスト仕様の生成
 - `/kiro:spec-tasks` - 実装タスクの生成
 - `/kiro:spec-status` - 仕様進捗の表示
+- `/kiro:validate-gap` - 実装ギャップ分析
+- `/kiro:validate-design` - 設計品質レビュー
 
 ### [開発支援コマンド](./commands/development-support.md)
 開発プロセスを強力にサポートするコマンド群（Serena統合強化）
@@ -44,6 +48,8 @@ Playwright MCPとSerenaツールを統合したWebテストスイート
 UI/UXデザインとユーザビリティ向上
 - `/ui-advice` - デザインパターン提案・ワイヤーフレーム
 
+###
+
 ---
 
 ## 全コマンド一覧
@@ -54,7 +60,6 @@ UI/UXデザインとユーザビリティ向上
 | `/kiro:spec-init` | Kiro基本 | 新機能仕様の初期化 |
 | `/kiro:spec-requirements` | Kiro基本 | EARS形式要件定義の生成 |
 | `/kiro:spec-design` | Kiro基本 | 技術設計書の生成 |
-| `/kiro:spec-test` | Kiro基本 | TDDテスト仕様の生成 |
 | `/kiro:spec-tasks` | Kiro基本 | 実装タスクの生成 |
 | `/kiro:spec-status` | Kiro基本 | 仕様進捗の表示 |
 | `/commit` | **開発支援（Serena統合）** | **インテリジェントなGitコミット自動化** |
