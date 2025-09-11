@@ -7,7 +7,18 @@
 ## Subagents
 [SUB-AGENTS.md](SUB-AGENTS.md)では各エージェントの概要及び使用方法・ユースケースを記載しています
 
-## SuperClaude
+## 備考
+※ Claude CodeにPlugin機能が実装されたら、導入自体が不要になる可能性あり
+
+
+### Spec driven development:
+以下のいずれかを導入
+
+- [spec-kit](https://github.com/github/spec-kit)
+- [cc-sdd](https://github.com/gotalab/cc-sdd)
+
+
+### SuperClaudeを導入したい場合:
 - [公式ドキュメント](https://superclaude.netlify.app/)
 - [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
 - [個人ドキュメント](docs/sc)
