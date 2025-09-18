@@ -74,27 +74,6 @@ EARS形式（Easy Approach to Requirements Syntax）で要件とユーザース�
 
 ### 🧪 テスト・実装フェーズ
 
-#### `/kiro:spec-test [機能名] [オプション]` - テスト仕様生成（予定）
-TDD用のテスト仕様を自動生成。単体テスト、コンポーネントテスト、フックテスト、APIテスト、E2Eテストをサポート。
-
-**オプション**:
-- `--test-lib=[jest|vitest|mocha]` - 単体テストフレームワーク（デフォルト: vitest）
-- `--ui-lib=[testing-library|enzyme]` - UIテストライブラリ（デフォルト: testing-library）
-- `--e2e-lib=[playwright|cypress|puppeteer]` - E2Eテストフレームワーク（デフォルト: playwright）
-- `--api-lib=[supertest|axios-mock]` - APIテストライブラリ（デフォルト: supertest）
-- `--coverage=[数値]` - カバレッジ目標パーセンテージ（デフォルト: 80）
-- `--mock-strategy=[manual|auto]` - モック生成戦略（デフォルト: auto）
-
-**生成される内容**:
-- テスト仕様書 - 包括的なテスト戦略ドキュメント
-- 単体テスト仕様 - ビジネスロジックとユーティリティのテスト
-- コンポーネントテスト仕様 - Reactコンポーネントのテスト
-- フックテスト仕様 - カスタムフックのテスト
-- APIテスト仕様 - エンドポイントのテスト
-- E2Eテスト仕様 - ユーザーワークフローのテスト
-- モック仕様 - テストデータとサービスモック
-- CI/CD設定 - GitHub Actionsワークフロー
-
 #### `/kiro:spec-tasks [機能名]` - 実装タスク生成
 技術設計を基に詳細な実装ステップとTDDタスクを生成。
 
