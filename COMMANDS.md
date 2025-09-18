@@ -24,6 +24,7 @@
 - `/test` - 高度なテスト実装・実行・修正
 - `/spec:tech-research` - **コードベース認識型技術調査（Serena統合強化版）**
 - `/spec:requirements` - 包括的要件定義書の生成
+- `/update-claude-md` - **プロジェクト固有CLAUDE.md自動生成・更新（Serena統合）**
 
 ### [Git・GitHub連携コマンド](./commands/git-github.md)
 Git・GitHub連携とセキュリティ管理
@@ -64,6 +65,7 @@ UI/UXデザインとユーザビリティ向上
 | `/test` | 開発支援 | 高度なテスト実装・実行・修正 |
 | `/tech-research` | **開発支援（Serena統合強化）** | **コードベース認識型技術調査** |
 | `/spec:requirements` | 開発支援 | 包括的要件定義書の生成 |
+| `/update-claude-md` | **開発支援（Serena統合）** | **プロジェクト固有CLAUDE.md自動生成・更新** |
 | `/git:pr` | Git・GitHub | インテリジェントなPR生成 |
 | `/git:commit` | Git・GitHub | **高度なGitコミット自動化（Serena MCP統合）** |
 | `/dependabot-check` | Git・GitHub | セキュリティ脆弱性解決 |

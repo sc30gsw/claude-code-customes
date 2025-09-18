@@ -355,3 +355,42 @@
 - テンプレートベースでの高速生成（standard、agile、waterfall、**product-backlog**）
 - 改善提案とリスク分析
 - インタラクティブな要件聞き取りモード
+
+## `/update-claude-md [オプション]` - プロジェクト固有CLAUDE.md自動生成・更新（Serena統合）
+**説明**: プロジェクトのドキュメントを分析し、SuperClaude Framework統合済みのCLAUDE.mdを自動生成・更新。Serena MCPとSequential Thinking MCPの統合により、インテリジェントな分析と戦略的な統合を実現します。
+
+**主要オプション**:
+| オプション | 短縮形 | 説明 | 例 |
+|---------|-------|------|---------|
+| `--files` | `-f` | 特定ファイル指定 | `/update-claude-md -f README.md COMMANDS.md` |
+| `--auto` | `-a` | MDファイル自動検出 | `/update-claude-md -a` |
+| `--backup` | `-b` | 既存CLAUDE.mdバックアップ | `/update-claude-md -b` |
+| `--preview` | `-p` | 更新前プレビュー表示 | `/update-claude-md -p` |
+| `--include-docs` | `-d` | docsディレクトリ含める | `/update-claude-md -d` |
+| `--structure` | `-s` | プロジェクト構造分析 | `/update-claude-md -s` |
+| `--template` | `-t` | テンプレート指定 | `/update-claude-md -t kiro` |
+| `--merge` | `-m` | 既存内容とマージ | `/update-claude-md -m` |
+| `--memory-key` | | Serena記憶キー | `/update-claude-md --memory-key project_config` |
+
+**使用例**:
+```bash
+# 基本的な自動更新
+/update-claude-md
+
+# バックアップ付き包括的更新
+/update-claude-md --auto --include-docs --structure --backup
+
+# Kiroプロジェクト専用更新
+/update-claude-md --template kiro --validate strict
+
+# 特定ファイルのみで安全更新
+/update-claude-md --files README.md COMMANDS.md --preview
+```
+
+**主な機能**:
+- **自動ファイル検出**: Serena MCPによるプロジェクト構造の自動分析
+- **インテリジェント統合**: Sequential Thinking MCPによる統合戦略の策定
+- **テンプレートシステム**: プロジェクトタイプに応じた最適化（Kiro、標準、ミニマル）
+- **記憶機能**: プロジェクト固有設定の学習と再利用
+- **品質保証**: 生成後の自動検証とフォーマットチェック
+- **エコシステム連携**: 他のコマンドとのシームレスな統合
