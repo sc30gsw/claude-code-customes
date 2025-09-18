@@ -1,6 +1,6 @@
 # CLAUDE.md更新コマンド
 
-プロジェクト固有のCLAUDE.mdを自動生成・更新するインテリジェントコマンド。README.md、COMMANDS.md、SUB-AGENTS.md等のプロジェクト文書を読み込み、SuperClaude Frameworkコンポーネントと統合した包括的なCLAUDE.mdを生成します。
+プロジェクト固有のCLAUDE.mdを自動生成・更新するインテリジェントコマンド。README.md、COMMANDS.md、SUB-AGENTS.md等のプロジェクト文書を読み込み、包括的なCLAUDE.mdを生成します。
 
 ## 基本的な使用方法
 
@@ -25,7 +25,6 @@
 - **Template Selection**: プロジェクトに最適なテンプレートの自動選択
 
 ### 📝 包括的CLAUDE.md生成
-- **SuperClaude Framework統合**: 必須フレームワークコンポーネントの自動組み込み
 - **プロジェクト固有情報**: 分析結果に基づくカスタマイズされたコンテキスト
 - **品質保証**: 生成後の自動検証とフォーマットチェック
 
@@ -51,7 +50,7 @@
 |-----------|------|--------|------|
 | `--exclude` | 除外パターン指定 | `--exclude "test/*,*.tmp"` | テストファイル除外 |
 | `--sections` | 含めるセクション指定 | `--sections "context,workflow"` | 特定セクションのみ |
-| `--framework` | SuperClaude要素制御 | `--framework minimal` | 最小限のFramework |
+| `--framework` | Framework要素制御 | `--framework minimal` | 最小限のFramework |
 | `--language` | 出力言語 | `--language en` | 英語出力 |
 | `--format` | 出力フォーマット | `--format structured` | 構造化フォーマット |
 | `--validate` | 生成後検証 | `--validate strict` | 厳密検証 |
@@ -155,7 +154,7 @@ Phase 0: Steering (Optional) → Phase 1: Specification Creation → Phase 2: Pr
 #### ミニマルテンプレート (`--template minimal`)
 **軽量設定用**
 - 基本的なプロジェクト情報のみ
-- 必要最小限のSuperClaude Framework参照
+- 必要最小限のフレームワーク参照
 - シンプルなワークフロー
 
 ### テンプレートカスタマイズ
@@ -178,7 +177,7 @@ Phase 0: Steering (Optional) → Phase 1: Specification Creation → Phase 2: Pr
 /update-claude-md --framework minimal
 
 # カスタム統合
-/update-claude-md --framework "flags,principles,serena"
+/update-claude-md --framework "core,tools,patterns"
 ```
 
 ## 技術的特徴
@@ -202,7 +201,7 @@ Phase 0: Steering (Optional) → Phase 1: Specification Creation → Phase 2: Pr
 - **構文チェック**: 生成されたMarkdownの構文検証
 - **構造検証**: 必須セクションの存在確認
 - **内容整合性**: 情報の矛盾検出と警告
-- **フレームワーク準拠**: SuperClaude Framework要件の遵守確認
+- **品質準拠**: プロジェクト品質要件の遵守確認
 
 #### エラーハンドリング
 - **ファイル不在**: 見つからないファイルを自動スキップ

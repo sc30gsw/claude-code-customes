@@ -11,7 +11,7 @@ description: Intelligent command for automatically generating and updating proje
 - Docs directory: !`find . -name "docs" -type d | head -3`
 - Project structure: !`find . -maxdepth 2 -name "package.json" -o -name "*.config.*" | head -5 2>/dev/null || echo "No config files"`
 - Git context: !`git status --porcelain 2>/dev/null | head -3 || echo "Not git repo"`
-- SuperClaude files: !`find . -name "FLAGS.md" -o -name "PRINCIPLES.md" -o -name "RULES.md" | head -3`
+- Framework files: !`find . -name "FLAGS.md" -o -name "PRINCIPLES.md" -o -name "RULES.md" | head -3`
 
 ## Tool Usage Priorities
 
@@ -35,7 +35,7 @@ description: Intelligent command for automatically generating and updating proje
 
 # Update CLAUDE.md: Automatic Project-Specific CLAUDE.md Generation
 
-Analyzes project documentation and automatically generates/updates CLAUDE.md integrated with SuperClaude Framework
+Analyzes project documentation and automatically generates/updates CLAUDE.md
 
 ## Quick Reference
 
@@ -67,7 +67,7 @@ Analyzes project documentation and automatically generates/updates CLAUDE.md int
 |--------|-------------|-------|---------|
 | `--exclude` | Exclude pattern specification | `--exclude "test/*,*.tmp"` | Exclude test files |
 | `--sections` | Include section specification | `--sections "context,workflow"` | Specific sections only |
-| `--framework` | SuperClaude element control | `--framework minimal` | Minimal Framework |
+| `--framework` | Framework element control | `--framework minimal` | Minimal Framework |
 | `--language` | Output language | `--language en` | English output |
 | `--format` | Output format | `--format structured` | Structured format |
 | `--validate` | Post-generation validation | `--validate strict` | Strict validation |
@@ -129,7 +129,7 @@ Integration strategy formulation using Sequential Thinking MCP:
 - **Source Priority**: Determining importance of each document and merge order
 - **Conflict Resolution**: Resolution strategies for conflicting information
 - **Template Selection**: Selecting optimal template for the project
-- **Framework Integration**: Integration methods for SuperClaude Framework components
+- **Framework Integration**: Integration methods for framework components
 
 ### 3. CLAUDE.md Generation
 ```
@@ -143,7 +143,7 @@ Source Analysis → Template Application → Content Generation → Validation
 
 ### 4. Quality Assurance & Validation
 - **Content Validation**: Syntax and structure check of generated CLAUDE.md
-- **Framework Compliance**: Verification of SuperClaude Framework requirements compliance
+- **Framework Compliance**: Verification of framework requirements compliance
 - **Project Specificity**: Verification of appropriate integration of project-specific information
 
 ## Template System
@@ -153,7 +153,7 @@ Source Analysis → Template Application → Content Generation → Validation
 #### Kiro Template (`--template kiro`)
 Dedicated to Kiro spec-driven development projects:
 ```markdown
-# SuperClaude Framework + Kiro Spec-Driven Development
+# Kiro Spec-Driven Development
 - Steering vs Specification explanation
 - Phase-based workflow (Requirements → Design → Tasks → Implementation)
 - Kiro command integration (/kiro:steering, /kiro:spec-*)
@@ -163,7 +163,7 @@ Dedicated to Kiro spec-driven development projects:
 #### Standard Template (`--template standard`)
 General development projects:
 ```markdown
-# SuperClaude Framework + Project Context
+# Project Context
 - Project overview and context
 - Development guidelines and workflow
 - Available commands and agents
@@ -175,7 +175,7 @@ Lightweight configuration:
 ```markdown
 # Project Context
 - Basic project information only
-- Minimal SuperClaude Framework references
+- Minimal framework references
 - Simple workflow
 ```
 
@@ -271,7 +271,7 @@ CLAUDE.md updates seamlessly integrate with other commands:
 [User-specific instructions]
 
 # ═══════════════════════════════════════════════════
-# SuperClaude Framework Components
+# Framework Components
 # ═══════════════════════════════════════════════════
 
 # Core Framework
@@ -330,7 +330,7 @@ You are an expert CLAUDE.md generator using Serena MCP and Sequential Thinking M
    - **Quality Framework**: Evidence-based validation planning
 
 3. **Content Generation**:
-   - **SuperClaude Framework**: Integration of essential components
+   - **Framework Integration**: Integration of essential components
    - **Project Context**: Integration of unique information based on analysis results
    - **Command Integration**: Command information integration from COMMANDS.md
    - **Agent Integration**: Agent information integration from SUB-AGENTS.md
@@ -338,7 +338,7 @@ You are an expert CLAUDE.md generator using Serena MCP and Sequential Thinking M
 4. **Validation & Optimization**:
    - **Syntax Validation**: Syntax check of generated Markdown
    - **Content Coherence**: Verification of information consistency and completeness
-   - **Framework Compliance**: SuperClaude Framework requirements compliance verification
+   - **Framework Compliance**: Framework requirements compliance verification
 
 **Key Guidelines:**
 - **Primary**: Project understanding through Serena MCP and strategic thinking through Sequential Thinking MCP
@@ -348,7 +348,7 @@ You are an expert CLAUDE.md generator using Serena MCP and Sequential Thinking M
 - **Integration-Focused**: Workflow optimization through integration with other commands
 
 **Success Metrics:**
-- ✅ Complete SuperClaude Framework integration
+- ✅ Complete framework integration
 - ✅ Accurate reflection of project-specific information
 - ✅ Information integration from existing documents
 - ✅ Adaptability to future updates
