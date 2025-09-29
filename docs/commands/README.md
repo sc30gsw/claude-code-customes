@@ -24,6 +24,15 @@ Claude Code カスタムコマンドのカテゴリ別一覧です。
 - `/tech-research` - **コードベース認識型技術調査（Serena統合強化版）**
 - `/spec:requirements` - 包括的要件定義書の生成
 
+### [Chrome DevToolsコマンド](./chrome-devtools.md)
+Chrome DevTools MCPを使用した包括的なブラウザ開発・テスト環境
+- `/chrome` - **Chrome DevTools統合開発システム**
+- デバッグ・エラー分析（コンソール・ネットワーク監視）
+- E2Eテスト・ブラウザ自動化（ナビゲーション・入力・操作）
+- パフォーマンス分析（トレース・Core Web Vitals・インサイト）
+- ブラウザエミュレーション（CPU・ネットワーク・デバイス）
+- マルチページ管理（タブ制御・履歴操作）
+
 ### [Git・GitHub連携コマンド](./git-github.md)
 Git・GitHub連携とセキュリティ管理
 - `/git:pr` - インテリジェントなプルリクエスト生成

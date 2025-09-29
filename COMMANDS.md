@@ -255,6 +255,43 @@ dev3000の統合ログ機能、Playwrightのブラウザ自動化、Serenaのコ
 - `screenshot`: スクリーンショット取得（`--selector`, `--full-page`, `--save`）
 - `browse`: ブラウザ自動化（`--action`, `--target`, `--value`）
 
+### [Chrome DevTools統合システム](./docs/commands/chrome-devtools.md)
+Chrome DevTools MCPのネイティブ機能を最大限活用した完全独立型開発支援システム
+
+#### `/chrome [アクション] [対象] [オプション]` - **Chrome DevTools完全統合システム**
+Chrome DevTools MCPの全26ツールを完全サポートし、dev3000やPlaywright MCPの機能をChrome DevToolsのネイティブ機能で実現した統合開発支援システム。
+
+**Chrome DevTools独自機能**:
+- **パフォーマンストレース**: Chrome DevTools組み込みの高度な性能分析
+- **Performance Insights**: LCP、FID、CLS等のCore Web Vitals詳細解析
+- **CPUエミュレーション**: ネイティブ1-20倍速度制限機能
+- **ネットワークスロットリング**: 3G/4G/オフライン等のリアルな接続シミュレーション
+- **JavaScript実行環境**: ブラウザコンテキストでの直接スクリプト実行
+
+**デバッグ機能（dev3000相当）**:
+- `logs`: コンソールメッセージ分析
+- `errors`: エラー専用分析・修正提案
+- `debug`: 特定問題の体系的デバッグ
+- `eval`: JavaScript動的実行
+
+**E2Eテスト機能（Playwright相当）**:
+- `test`: E2Eシナリオ実行
+- `navigate`: ページナビゲーション
+- `click/fill/form`: 要素操作・フォーム処理
+- `screenshot/snapshot`: 画面・DOM キャプチャ
+
+**パフォーマンス分析（Chrome DevTools独自）**:
+- `perf`: トレース記録・分析
+- `vitals`: Core Web Vitals測定
+- `insights`: パフォーマンスインサイト詳細分析
+- `profile`: JavaScript プロファイリング
+
+**ブラウザ制御・エミュレーション（Chrome DevTools独自）**:
+- `emulate`: CPU・ネットワーク・デバイスエミュレーション
+- `pages`: マルチページ/タブ管理
+- `network`: ネットワーク監視・分析
+- `dialog`: ダイアログ自動処理
+
 ---
 
 ## 全コマンド一覧
@@ -288,6 +325,7 @@ dev3000の統合ログ機能、Playwrightのブラウザ自動化、Serenaのコ
 | `/playwright-integration` | **Playwright MCPインテグレーション** | **Playwright統合診断** |
 | `/ui-advice` | UI/UX | デザインパターン提案・ワイヤーフレーム |
 | `/dev-3000` | **Dev3000統合** | **包括的開発支援システム** |
+| `/chrome` | **Chrome DevTools** | **Chrome DevTools完全統合システム** |
 
 ---
 
