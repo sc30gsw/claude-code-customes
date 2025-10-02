@@ -67,6 +67,9 @@ Chrome DevTools MCPの全26ツールを完全サポートし、dev3000やPlaywri
 
 ## アクション一覧
 
+### 🌟 AI駆動ページ分析（新機能 - Phase 1）
+| アクション | 説明 | 主要オプション | 例 |\n|----------|------|-------------|---|\n| `analyze` | ページ包括分析 | `--full`, `--performance`, `--security`, `--accessibility` | `/chrome analyze --full --recommendations` |\n| `summarize` | コンテンツ要約 | `--structure`, `--main-content`, `--metadata` | `/chrome summarize --structure --key-points` |\n| `extract` | データ抽出 | `--metadata`, `--forms`, `--api`, `--structured-data` | `/chrome extract --metadata --api-patterns` |
+
 ### 🌟 視覚的DOM解析・デバッグ（革新的機能）
 | アクション | 説明 | 主要オプション | 例 |\n|----------|------|-------------|---|\n| `visual` | 視覚的問題の技術診断 | `--analyze`, `--translate`, `--bridge` | `/chrome visual \"ボタンが見えない\" --analyze --translate` |\n| `dom` | DOM構造完全解析 | `--snapshot`, `--hierarchy`, `--attributes` | `/chrome dom --snapshot --hierarchy --analyze` |\n| `ui-debug` | UI問題の自動診断 | `--visual-issue`, `--code-cause`, `--fix` | `/chrome ui-debug \"レイアウト崩れ\" --code-cause --fix` |\n| `bridge` | UI体験・コード問題接続 | `--experience`, `--implementation`, `--correlation` | `/chrome bridge --experience \"操作困難\" --implementation` |\n| `inspect` | 人間レベル視覚検証 | `--render-observe`, `--dom-correlate`, `--network` | `/chrome inspect --render-observe --dom-correlate` |\n\n### デバッグ・コンソール分析
 | アクション | 説明 | 主要オプション | 例 |
@@ -156,7 +159,67 @@ Chrome DevTools MCPの全26ツールを完全サポートし、dev3000やPlaywri
 
 ### 基本的な使用パターン
 
-#### 0. **🌟 革新的視覚的DOM解析・デバッグ**
+#### -1. **🌟 AI駆動ページ分析（Phase 1新機能）**
+```bash
+# 包括的ページ分析 - DOM + コンソール + ネットワーク + パフォーマンス + AI統合
+/chrome analyze --full
+# → DOM構造、コンソールエラー、ネットワークリクエスト、パフォーマンスメトリクス、
+#   セキュリティ問題、アクセシビリティ違反を統合分析し、実用的な改善提案を生成
+
+# パフォーマンス重点分析
+/chrome analyze --performance --recommendations
+# → Core Web Vitals、レンダリング性能、JavaScript実行時間、
+#   ネットワーク遅延を分析し、具体的最適化手順を提案
+
+# セキュリティ・アクセシビリティ分析
+/chrome analyze --security --accessibility --detailed
+# → XSS/CSRF脆弱性、HTTPS設定、WCAG準拠状況、
+#   ARIA属性の適切性を包括評価
+
+# コンテンツ要約 - 主要コンテンツ抽出と構造解析
+/chrome summarize --structure --main-content
+# → ページ見出し階層、主要段落、重要リンク、
+#   キーポイントを自動抽出して簡潔に要約
+
+# メタデータ重点要約
+/chrome summarize --metadata --key-points --language ja
+# → タイトル、description、keywords、OGタグ、
+#   構造化データを解析してSEO観点から評価
+
+# データ抽出 - 構造化データとAPI パターン検出
+/chrome extract --metadata --structured-data
+# → JSON-LD、Microdata、RDFa形式の構造化データ、
+#   Open Graphタグ、Twitter Cardを完全抽出
+
+# フォーム・API パターン抽出
+/chrome extract --forms --api-patterns --interactive
+# → 全フォームフィールド定義、バリデーションルール、
+#   検出されたAPIエンドポイント、リクエストパターンを抽出
+
+# 複合分析ワークフロー
+/chrome analyze --full && /chrome summarize --structure && /chrome extract --api
+# → 包括分析→構造要約→API抽出の3段階で完全なページプロファイル作成
+```
+
+**AI駆動分析の特徴**:
+- **`analyze`**: 全26 MCP ツールを統合活用した包括的診断システム
+  - `take_snapshot` → DOM構造解析
+  - `list_console_messages` → エラー・警告検出
+  - `list_network_requests` → API通信パターン分析
+  - `performance_start_trace/stop_trace` → パフォーマンスメトリクス取得
+  - AI統合 → 問題相関分析と実用的改善提案生成
+
+- **`summarize`**: コンテンツ理解と情報構造化
+  - DOM解析 → 見出し階層・段落構造抽出
+  - メタデータ分析 → SEO・SNS最適化評価
+  - AIテキスト処理 → 主要ポイント自動要約
+
+- **`extract`**: 構造化データマイニング
+  - メタデータ完全抽出 → JSON/CSV/Markdown形式出力対応
+  - APIパターン検出 → エンドポイント・パラメータ自動文書化
+  - フォーム解析 → バリデーションルール・データモデル抽出
+
+#### 0. **🌟 革命的視覚的DOM解析・デバッグ**
 ```bash
 # AIが直接画面を観察し、視覚的問題を技術原因に変換
 /chrome visual "ログインボタンが表示されていない" --analyze --translate
