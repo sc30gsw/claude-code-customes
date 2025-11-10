@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "title": {
+      "required": true,
+      "format": "descriptive",
+      "max_length": 100
+    },
+    "author": {
+      "required": true,
+      "format": "name or email"
+    },
+    "date": {
+      "required": true,
+      "format": "YYYY-MM-DD or ISO 8601"
+    },
+    "version": {
+      "required": true,
+      "format": "semantic versioning (X.Y.Z)"
+    },
+    "status": {
+      "required": false,
+      "allowed_values": ["Draft", "Review", "Approved", "Published", "Deprecated"]
+    }
+  },
+  "content_requirements": {
+    "min_word_count": 100,
+    "min_section_count": 3,
+    "require_introduction": true,
+    "require_conclusion": false,
+    "require_examples": true,
+    "min_examples": 1,
+    "require_references": false
+  },
+  "technical_spec": {
+    "metadata_required": true,
+    "min_word_count": 500,
+    "required_sections": {
+      "overview": {
+        "required": true,
+        "min_subsections": 2,
+        "subsections": ["Purpose", "Scope"]
+      },
+      "architecture": {
+        "required": true,
+        "require_diagram": true,
+        "min_subsections": 2
+      },
+      "functional_requirements": {
+        "required": true,
+        "min_items": 3,
+        "format": "numbered or bulleted list"
+      },
+      "api_specifications": {
+        "required": true,
+        "require_code_examples": true,
+        "min_endpoints": 1
+      },
+      "testing_strategy": {
+        "required": true,
+        "subsections": ["Unit Tests", "Integration Tests"]
+      }
+    },
+    "require_code_examples": true,
+    "min_code_examples": 3,
+    "require_diagrams": true,
+    "min_diagrams": 1
+  },
+  "requirements": {
+    "metadata_required": true,
+    "min_word_count": 300,
+    "required_sections": {
+      "introduction": {
+        "required": true,
+        "subsections": ["Purpose", "Scope"]
+      },
+      "functional_requirements": {
+        "required": true,
+        "min_items": 5,
+        "ears_format": true,
+        "requirement_id_format": "REQ-[F|NF]-\\d{3}"
+      },
+      "non_functional_requirements": {
+        "required": true,
+        "min_items": 3,
+        "categories": ["Performance", "Security", "Usability"]
+      },
+      "acceptance_criteria": {
+        "required": true,
+        "format": "Given-When-Then or checklist"
+      }
+    },
+    "require_traceability": true,
+    "require_priority_levels": true
+  },
+  "adr": {
+    "metadata_required": false,
+    "min_word_count": 200,
+    "required_sections": {
+      "status": {
+        "required": true,
+        "allowed_values": ["Proposed", "Accepted", "Deprecated", "Superseded"]
+      },
+      "context": {
+        "required": true,
+        "min_words": 50
+      },
+      "decision": {
+        "required": true,
+        "min_words": 50
+      },
+      "consequences": {
+        "required": true,
+        "subsections": ["Positive", "Negative"],
+        "min_items": 2
+      }
+    },
+    "require_alternatives": true,
+    "min_alternatives": 1,
+    "require_rationale": true
+  },
+  "rfc": {
+    "metadata_required": true,
+    "min_word_count": 500,
+    "required_sections": {
+      "abstract": {
+        "required": true,
+        "max_words": 200
+      },
+      "motivation": {
+        "required": true,
+        "min_words": 100
+      },
+      "proposal": {
+        "required": true,
+        "subsections": ["Goals", "Non-Goals"]
+      },
+      "design": {
+        "required": true,
+        "require_code_examples": true,
+        "subsections": ["High-Level Design", "Detailed Design"]
+      },
+      "alternatives": {
+        "required": true,
+        "min_alternatives": 2
+      }
+    },
+    "require_implementation_plan": true,
+    "require_testing_plan": true,
+    "require_open_questions_section": true
+  },
+  "readme": {
+    "metadata_required": false,
+    "min_word_count": 150,
+    "required_sections": {
+      "title": {
+        "required": true,
+        "format": "h1"
+      },
+      "description": {
+        "required": true,
+        "min_words": 20
+      },
+      "installation": {
+        "required": true,
+        "require_code_examples": true,
+        "min_steps": 1
+      },
+      "usage": {
+        "required": true,
+        "require_code_examples": true,
+        "min_examples": 1
+      }
+    },
+    "require_license": true,
+    "require_contributing_guide": false,
+    "badges_recommended": true,
+    "require_contact_info": false
+  },
+  "coding_rules": {
+    "metadata_required": true,
+    "min_word_count": 400,
+    "required_sections": {
+      "general_principles": {
+        "required": true,
+        "min_items": 3
+      },
+      "naming_conventions": {
+        "required": true,
+        "subsections": ["Variables", "Functions", "Classes"]
+      },
+      "best_practices": {
+        "required": true,
+        "min_items": 5,
+        "require_code_examples": true
+      },
+      "code_review_checklist": {
+        "required": true,
+        "format": "checklist",
+        "min_items": 5
+      }
+    },
+    "require_code_examples": true,
+    "min_code_examples": 5,
+    "require_anti_patterns": true
+  },
+  "article": {
+    "metadata_required": true,
+    "min_word_count": 500,
+    "required_sections": {
+      "introduction": {
+        "required": true,
+        "min_words": 50,
+        "require_hook": true
+      },
+      "problem_statement": {
+        "required": false,
+        "min_words": 50
+      },
+      "implementation": {
+        "required": true,
+        "require_code_examples": true,
+        "min_code_examples": 2,
+        "step_by_step": true
+      },
+      "conclusion": {
+        "required": true,
+        "min_words": 50,
+        "require_key_takeaways": true
+      }
+    },
+    "require_code_examples": true,
+    "min_code_examples": 3,
+    "require_real_world_example": true,
+    "reading_time_estimate": true
+  },
+  "validation_rules": {
+    "no_placeholder_text": {
+      "enabled": true,
+      "patterns": ["TODO", "TBD", "FIXME", "XXX", "\\[.+\\]"],
+      "severity": "high"
+    },
+    "no_lorem_ipsum": {
+      "enabled": true,
+      "severity": "critical"
+    },
+    "spell_check": {
+      "enabled": true,
+      "severity": "medium"
+    },
+    "grammar_check": {
+      "enabled": true,
+      "severity": "low"
+    },
+    "link_validation": {
+      "enabled": true,
+      "check_internal": true,
+      "check_external": true,
+      "severity": "high"
+    },
+    "code_fence_validation": {
+      "enabled": true,
+      "require_language_tag": true,
+      "severity": "low"
+    }
+  },
+  "quality_gates": {
+    "minimum_quality_score": 70,
+    "minimum_structure_score": 75,
+    "minimum_content_score": 70,
+    "minimum_readability_score": 65,
+    "minimum_link_health": 80,
+    "maximum_critical_issues": 0,
+    "maximum_high_issues": 2,
+    "maximum_medium_issues": 5
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "technical-spec": {
+    "required_sections": [
+      "Overview",
+      "System Architecture",
+      "Functional Requirements",
+      "API Specifications"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3", "h4"],
+    "max_heading_level": 4,
+    "min_sections": 5,
+    "require_toc": true,
+    "require_metadata": true,
+    "allow_todo": false
+  },
+  "requirements": {
+    "required_sections": [
+      "Introduction",
+      "Functional Requirements",
+      "Non-Functional Requirements",
+      "Acceptance Criteria"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3"],
+    "max_heading_level": 3,
+    "min_sections": 4,
+    "require_toc": false,
+    "require_metadata": true,
+    "allow_todo": false,
+    "require_ears_format": true
+  },
+  "adr": {
+    "required_sections": [
+      "Status",
+      "Context",
+      "Decision",
+      "Consequences"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3"],
+    "max_heading_level": 3,
+    "min_sections": 4,
+    "require_toc": false,
+    "require_metadata": false,
+    "allow_todo": false
+  },
+  "rfc": {
+    "required_sections": [
+      "Abstract",
+      "Motivation",
+      "Proposal",
+      "Design",
+      "Alternatives Considered"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3", "h4"],
+    "max_heading_level": 4,
+    "min_sections": 5,
+    "require_toc": true,
+    "require_metadata": true,
+    "allow_todo": true
+  },
+  "readme": {
+    "required_sections": [
+      "Installation",
+      "Usage"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3"],
+    "max_heading_level": 3,
+    "min_sections": 3,
+    "require_toc": false,
+    "require_metadata": false,
+    "require_license": true,
+    "badges_recommended": true,
+    "allow_todo": false
+  },
+  "coding-rules": {
+    "required_sections": [
+      "General Principles",
+      "Naming Conventions",
+      "Best Practices",
+      "Code Review Checklist"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3"],
+    "max_heading_level": 3,
+    "min_sections": 4,
+    "require_toc": true,
+    "require_metadata": true,
+    "allow_todo": false
+  },
+  "article": {
+    "required_sections": [
+      "Introduction",
+      "Implementation",
+      "Conclusion"
+    ],
+    "heading_hierarchy": ["h1", "h2", "h3"],
+    "max_heading_level": 3,
+    "min_sections": 3,
+    "require_toc": false,
+    "require_metadata": true,
+    "allow_todo": false
+  },
+  "default": {
+    "heading_hierarchy": ["h1", "h2", "h3", "h4", "h5", "h6"],
+    "max_heading_level": 6,
+    "min_sections": 2,
+    "require_toc": false,
+    "require_metadata": false,
+    "allow_todo": true
+  }
+}
