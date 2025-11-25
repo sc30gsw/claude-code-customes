@@ -1,5 +1,5 @@
 ---
-allowed-tools: mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, Bash(gh:*), Bash(git:*), mcp__context7__resolve-library-id, mcp__context7__get-library-docs
+allowed-tools: mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__list_dir, Bash(gh:*), Bash(git:*), mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 description: Generate PR description and automatically create pull request on GitHub
 ---
 
@@ -25,12 +25,6 @@ description: Generate PR description and automatically create pull request on Gi
 - **Symbol references**: Use `mcp__serena__find_referencing_symbols`
 - **Code replacement**: Use `mcp__serena__replace_symbol_body` → fallbacks
 - **Pattern replacement**: Use `mcp__serena__replace_regex` → fallbacks
-
-### Memory & Context (Serena MCP Only)
-- **Task tracking**: Use `mcp__serena__think_about_task_adherence`
-- **Progress checking**: Use `mcp__serena__think_about_whether_you_are_done`
-- **Information analysis**: Use `mcp__serena__think_about_collected_information`
-- **Memory operations**: Use `mcp__serena__write_memory`, `mcp__serena__read_memory`
 
 ## Your task
 

@@ -48,3 +48,9 @@
 - ASCII形式のテキストワイヤーフレーム生成
 - 状況に応じた最適パターンの推奨とその理由
 - WCAG、モバイルファースト、ユーザビリティを考慮した設計指針
+
+**使用ツール**:
+- `Read`, `Write`, `Glob` - ファイル操作
+- `WebFetch`, `WebSearch` - デザインリソース参照
+- `mcp__context7__resolve-library-id`, `mcp__context7__get-library-docs` - Mantineコンポーネント情報取得
+- `mcp__playwright__browser_navigate`, `mcp__playwright__browser_snapshot`, `mcp__playwright__browser_take_screenshot` - 参照サイトの視覚的分析

@@ -1,5 +1,5 @@
 ---
-allowed-tools: WebFetch, mcp__contex7__search
+allowed-tools: Read, Write, WebFetch, WebSearch, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, Glob
 description: Provides UI/UX design pattern advice and generates text wireframes
 ---
 

@@ -394,3 +394,22 @@
 - **記憶機能**: プロジェクト固有設定の学習と再利用
 - **品質保証**: 生成後の自動検証とフォーマットチェック
 - **エコシステム連携**: 他のコマンドとのシームレスな統合
+
+## 使用ツール（各コマンド最大10ツール）
+
+各開発支援コマンドは、効率的な実行のため最大10ツールに最適化されています：
+
+### `/commit`, `/debug-error`, `/smart-think`
+- `Read`, `Write`, `Bash`, `Grep`, `Glob`, `Edit` - 基本ファイル操作
+- `mcp__serena__*` - コードベース分析（search_for_pattern, find_symbol, read/write_memory等）
+- `mcp__sequential-thinking__sequentialthinking` - 構造化思考
+
+### `/test`
+- `Read`, `Write`, `Bash`, `Grep`, `Glob`, `Edit` - ファイル操作
+- `mcp__serena__find_symbol`, `mcp__serena__get_symbols_overview` - シンボル分析
+- `mcp__context7__*` - テストライブラリドキュメント参照
+
+### `/tech-research`, `/spec:requirements`
+- `Read`, `Write`, `Bash`, `Grep`, `Glob`, `Edit` - ドキュメント作成
+- `WebSearch`, `WebFetch`, `TodoWrite` - 調査・進捗管理
+- `mcp__context7__*`, `mcp__serena__*` - ライブラリ情報・コードベース分析

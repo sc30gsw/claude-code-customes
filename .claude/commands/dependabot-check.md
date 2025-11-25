@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(gh:*), Bash(git:*), Bash(pnpm:*)
+allowed-tools: Bash, Read, Grep, Glob, Write, mcp__github__get_file_contents, mcp__github__issue_read, mcp__github__pull_request_read, mcp__github__search_code, WebFetch
 description: Analyze Dependabot security advisory and provide resolution strategy
 ---
 

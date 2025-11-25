@@ -357,6 +357,22 @@ ls *.md  # 利用可能なファイル確認
 3. **検証の実行**: `--validate` による生成後品質チェック
 4. **記憶の整理**: 定期的な記憶内容の見直しと整理
 
+## 使用ツール（最大10ツール）
+
+`/update-claude-md` コマンドは以下の10ツールに最適化されています：
+
+### コア機能
+- `Read`, `Write`, `Glob`, `Grep` - ファイル読み込み・検索・生成
+
+### Serena MCP
+- `mcp__serena__list_dir` - プロジェクト構造分析
+- `mcp__serena__find_file` - 関連ドキュメント検出
+- `mcp__serena__search_for_pattern` - コンテンツパターン抽出
+- `mcp__serena__read_memory`, `mcp__serena__write_memory` - 設定記憶・学習
+
+### Sequential Thinking MCP
+- `mcp__sequential-thinking__sequentialthinking` - 統合戦略・構造化思考
+
 ## まとめ
 
 `/update-claude-md` コマンドは、プロジェクト固有のCLAUDE.mdを自動生成・更新する強力なツールです。Serena MCPとSequential Thinking MCPの統合により、インテリジェントな分析と戦略的な統合を実現し、常に最新で高品質なCLAUDE.mdを維持できます。

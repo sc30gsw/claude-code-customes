@@ -86,3 +86,8 @@
 - 複数修正手法の比較提示（メジャーアップデート、パッチ適用、代替パッケージ）
 - 修正後の影響評価・テスト提案
 - 自動化された修正スクリプト・コマンド生成
+
+**使用ツール**:
+- `Bash`, `Read`, `Write`, `Grep`, `Glob` - ファイル操作・検索
+- `mcp__github__get_file_contents`, `mcp__github__issue_read`, `mcp__github__pull_request_read`, `mcp__github__search_code` - GitHub API連携
+- `WebFetch` - セキュリティアドバイザリ情報取得

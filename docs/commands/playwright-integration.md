@@ -237,3 +237,19 @@
 - 設定ファイル検証
 - 権限・セキュリティチェック
 - 自動修復機能
+
+## 使用ツール（最大10ツール）
+
+Playwright MCPインテグレーションコマンドは以下の10ツールに最適化されています：
+
+### コア機能
+- `Read`, `Write`, `Bash`, `TodoWrite`, `Edit` - 基本操作・レポート生成
+
+### Playwright MCP
+- `mcp__playwright__browser_navigate` - ページナビゲーション
+- `mcp__playwright__browser_snapshot` - アクセシビリティスナップショット
+- `mcp__playwright__browser_take_screenshot` - スクリーンショット取得
+- `mcp__playwright__browser_click` - 要素クリック
+- `mcp__playwright__browser_type` - テキスト入力
+
+その他のPlaywrightツール（browser_wait_for, browser_evaluate等）は必要に応じて動的に使用されます。

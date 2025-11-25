@@ -671,6 +671,23 @@ Chrome DevTools MCPの全26ツールを完全サポートし、dev3000やPlaywri
 }
 ```
 
+## 使用ツール（最大10ツール）
+
+`/chrome` コマンドは以下の10ツールに最適化されています：
+
+### コア機能
+- `Read`, `Write`, `Bash`, `TodoWrite` - 基本ファイル操作・進捗管理
+
+### Chrome DevTools MCP
+- `mcp__chrome-devtools__take_snapshot` - DOM/アクセシビリティスナップショット
+- `mcp__chrome-devtools__navigate_page` - ページナビゲーション
+- `mcp__chrome-devtools__take_screenshot` - スクリーンショット取得
+- `mcp__chrome-devtools__list_console_messages` - コンソールログ分析
+- `mcp__chrome-devtools__list_network_requests` - ネットワーク監視
+- `mcp__chrome-devtools__evaluate_script` - JavaScript実行
+
+その他のChrome DevToolsツール（click, fill, performance_start_trace等）は必要に応じて動的に使用されます。
+
 ## トラブルシューティング
 
 ### よくある問題と解決策

@@ -283,6 +283,23 @@
 - **Serena MCP**: コード分析とインテリジェント修正
 - **Sequential Thinking MCP**: 複雑問題解決推論
 
+## 使用ツール（最大10ツール）
+
+`/dev-3000` コマンドは以下の10ツールに最適化されています：
+
+### コア機能
+- `Read`, `Write`, `Bash`, `TodoWrite` - 基本操作・進捗管理
+
+### Dev3000 MCP
+- `mcp__dev3000__healthcheck` - サーバー状態確認
+- `mcp__dev3000__read_consolidated_logs` - 統合ログ表示
+- `mcp__dev3000__get_browser_errors` - ブラウザエラー取得
+
+### Playwright MCP
+- `mcp__playwright__browser_navigate` - ページナビゲーション
+- `mcp__playwright__browser_snapshot` - DOM スナップショット
+- `mcp__playwright__browser_take_screenshot` - スクリーンショット
+
 ## 今後の拡張予定
 
 ### 計画中の機能

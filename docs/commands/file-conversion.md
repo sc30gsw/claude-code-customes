@@ -91,3 +91,11 @@ PDF、DOCX、Excel等の様々なファイル形式をMarkdown形式に変換し
 - ファイルサイズや複雑さによって処理時間が変動します
 - 画像や複雑なレイアウトは完全に再現されない場合があります
 - `--combine`オプション使用時は出力ファイル名を指定することを推奨します
+
+### 使用ツール
+- `Read`, `Write`, `Edit` - ファイル操作
+- `Bash`, `Glob`, `Grep` - ファイル検索・処理
+- `mcp__markitdown__convert_to_markdown` - 各種形式からMarkdownへの変換
+- `TodoWrite` - 大量ファイル処理時の進捗管理
+- `WebFetch` - リモートファイルの取得
+- `mcp__serena__list_dir` - ディレクトリ構造の確認

@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Write, Bash, Glob, Grep, mcp__markitdown__convert_to_markdown, TodoWrite, Edit, WebFetch, mcp__serena__list_dir
+description: Convert various file formats to Markdown using markitdown MCP, optimized for AI readability
+---
+
 # Convert to Markdown Command
 
 ## Description
