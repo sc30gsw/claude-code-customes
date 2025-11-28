@@ -32,9 +32,11 @@ Transform documents into visually appealing infographic images that can be share
 | `--title` | | Custom title (overrides auto-extraction) | auto |
 | `--style` | | Output style (summary/visual/detailed) | `summary` |
 | `--audience` | `-a` | Target audience (executive/team/technical) | `team` |
-| `--diagram` | `-d` | Include Mermaid diagrams | `false` |
+| `--diagram` | `-d` | Include Mermaid diagrams (summary/detailed) | `false` |
 | `--icons` | | Show icons for key points | `true` |
 | `--sections` | | Number of sections (detailed style) | `auto` |
+| `--visual-type` | `-vt` | Visual format (diagram/cards/comic/auto) | `auto` |
+| `--panels` | `-p` | Panel count for comic format (2-6) | `3` |
 
 ### Themes
 
@@ -62,6 +64,24 @@ Transform documents into visually appealing infographic images that can be share
 | `summary` | Single page, concise overview | Quick sharing, chat previews | Surface (what exists) |
 | `visual` | Diagram + context explanation | Understanding documents | **Deep (why & how)** |
 | `detailed` | Multi-section document with TOC | Formal reports | Comprehensive (everything) |
+
+### Visual Types (`--visual-type`, visual style only)
+
+| Type | Description | Best For |
+|------|-------------|----------|
+| `diagram` | Mermaid diagram + context explanation | Flows, processes, API, data structures |
+| `cards` | Card-based layout with "why" explanations | Feature lists, comparisons, categories |
+| `comic` | Panel-based storytelling layout | User journeys, tutorials, before/after |
+| `auto` | Auto-select based on content analysis | **Default** |
+
+### Panel Options (`--panels`, comic type only)
+
+| Panels | Layout | Best For |
+|--------|--------|----------|
+| `2` | Side-by-side (50%-50%) | Before/After comparisons |
+| `3` | Three columns (33%-33%-33%) | Introduction → Development → Conclusion |
+| `4` | 2x2 grid | Step-by-step tutorials (起承転結) |
+| `5-6` | 3x2 grid | Longer procedures |
 
 ### Target Audience
 
@@ -95,11 +115,23 @@ Transform documents into visually appealing infographic images that can be share
 # Executive summary for leadership
 /visualize ./quarterly-report.pdf --audience executive --style summary
 
-# Visual style - diagram with context explanation (NEW)
+# Visual style - auto-select format
 /visualize ./architecture.md --style visual
 
-# Visual style for process understanding
-/visualize ./workflow.md --style visual --theme modern
+# Visual style - explicit diagram format
+/visualize ./api-flow.md --style visual --visual-type diagram
+
+# Visual style - cards format
+/visualize ./features.md --style visual --visual-type cards
+
+# Visual style - comic format (3 panels, default)
+/visualize ./user-journey.md --style visual --visual-type comic
+
+# Visual style - comic format (4 panels)
+/visualize ./tutorial.md --style visual --visual-type comic --panels 4
+
+# Visual style - Before/After comparison (2 panels)
+/visualize ./improvement.md --style visual --visual-type comic --panels 2
 
 # Technical documentation with diagrams (detailed)
 /visualize ./api-spec.md --audience technical --diagram --style detailed
@@ -526,6 +558,316 @@ The visual style focuses on helping readers understand "why" and "how", not just
 **Key differences from summary:**
 - summary: Extracts bullet points ("what exists")
 - visual: **Identifies structure/flow** → **Generates contextual explanation** ("why & how")
+
+#### Visual Style - Cards Format (`--visual-type cards`)
+
+Card-based layout with deeper explanations than summary:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .visual-cards {
+      width: {WIDTH}px;
+      height: {HEIGHT}px;
+      background: {BACKGROUND};
+      font-family: {FONT_FAMILY};
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: {PRIMARY};
+      margin-bottom: 8px;
+    }
+
+    .overview {
+      font-size: 15px;
+      color: {TEXT};
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    .cards-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-content: start;
+    }
+
+    .visual-card {
+      background: {SURFACE};
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: {PRIMARY};
+      margin-bottom: 8px;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: {TEXT};
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .card-why {
+      font-size: 13px;
+      color: {ACCENT};
+      font-style: italic;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: auto;
+    }
+
+    .footer {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: {TEXT};
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="visual-cards">
+    <header class="header">
+      <h1 class="title">{TITLE}</h1>
+      <p class="overview">{OVERVIEW_TEXT}</p>
+    </header>
+
+    <div class="cards-grid">
+      <!-- Repeat for each card (3-6 cards) -->
+      <div class="visual-card">
+        <div class="card-icon">{ICON}</div>
+        <h3 class="card-title">{CARD_TITLE}</h3>
+        <p class="card-description">{CARD_DESCRIPTION}</p>
+        <p class="card-why">Why: {WHY_IMPORTANT}</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Source: {SOURCE_NAME}</span>
+      <span>Generated: {DATE}</span>
+    </footer>
+  </div>
+</body>
+</html>
+```
+
+**Cards Format Generation Logic:**
+1. Extract 3-6 key points from the document
+2. For each point, generate:
+   - Icon (based on category)
+   - Title (short, descriptive)
+   - Description (what it is)
+   - **Why Important** (deeper explanation - this is what differentiates from summary)
+
+#### Visual Style - Comic Format (`--visual-type comic`)
+
+Panel-based storytelling layout with configurable panel count:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .visual-comic {
+      width: {WIDTH}px;
+      height: {HEIGHT}px;
+      background: {BACKGROUND};
+      font-family: {FONT_FAMILY};
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: {PRIMARY};
+    }
+
+    .panels-container {
+      flex: 1;
+      display: grid;
+      gap: 15px;
+    }
+
+    /* 2 panels: side by side */
+    .panels-2 { grid-template-columns: 1fr 1fr; }
+
+    /* 3 panels: three columns */
+    .panels-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* 4 panels: 2x2 grid */
+    .panels-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+    /* 5-6 panels: 3x2 grid */
+    .panels-5, .panels-6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+    .panel {
+      background: {SURFACE};
+      border-radius: 12px;
+      border: 3px solid {PRIMARY};
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .panel-number {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 28px;
+      height: 28px;
+      background: {PRIMARY};
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .panel-visual {
+      flex: 1;
+      background: linear-gradient(135deg, {SURFACE} 0%, {BACKGROUND} 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      min-height: 120px;
+    }
+
+    .panel-illustration {
+      font-size: 48px;
+      text-align: center;
+    }
+
+    .panel-content {
+      padding: 12px;
+      background: {SURFACE};
+      border-top: 2px solid rgba(0,0,0,0.1);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: {PRIMARY};
+      margin-bottom: 4px;
+    }
+
+    .panel-text {
+      font-size: 12px;
+      color: {TEXT};
+      line-height: 1.4;
+    }
+
+    .footer {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: {TEXT};
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="visual-comic">
+    <header class="header">
+      <h1 class="title">{TITLE}</h1>
+    </header>
+
+    <div class="panels-container panels-{PANEL_COUNT}">
+      <!-- Repeat for each panel -->
+      <div class="panel">
+        <div class="panel-number">{N}</div>
+        <div class="panel-visual">
+          <div class="panel-illustration">{EMOJI_OR_ICON}</div>
+        </div>
+        <div class="panel-content">
+          <h4 class="panel-title">{PANEL_TITLE}</h4>
+          <p class="panel-text">{PANEL_TEXT}</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Source: {SOURCE_NAME}</span>
+      <span>Generated: {DATE}</span>
+    </footer>
+  </div>
+</body>
+</html>
+```
+
+**Comic Format Generation Logic:**
+1. Analyze document for story/process structure
+2. Divide content into {PANEL_COUNT} sequential parts:
+   - 2 panels: Before/After or Problem/Solution
+   - 3 panels: Introduction → Development → Conclusion
+   - 4 panels: 起 (Introduction) → 承 (Development) → 転 (Turn) → 結 (Conclusion)
+   - 5-6 panels: Extended step-by-step process
+3. For each panel:
+   - Generate emoji/icon representation
+   - Create short title
+   - Write concise explanation
+
+#### Visual Type Auto-Selection Logic
+
+When `--visual-type auto` (default), analyze document content to select the best format:
+
+| Content Pattern | Selected Type | Keywords/Indicators |
+|-----------------|---------------|---------------------|
+| Flow/Process | `diagram` | flow, process, step, API, pipeline, workflow |
+| Data Structure | `diagram` | schema, model, database, relationship, architecture |
+| Feature List | `cards` | features, benefits, advantages, capabilities, options |
+| Comparison | `cards` | compare, vs, difference, pros/cons |
+| Story/Journey | `comic` | story, journey, experience, before/after, transformation |
+| Tutorial | `comic` | tutorial, how to, guide, steps |
+| Mixed/Unknown | `cards` | (fallback when unclear) |
 
 #### Detailed Style (`--style detailed`)
 
