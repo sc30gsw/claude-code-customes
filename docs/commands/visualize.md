@@ -29,9 +29,11 @@ Markdown、テキスト、PDFなどのドキュメントを視覚的に魅力的
 | `--title` | | カスタムタイトル（自動抽出をオーバーライド） | 自動 |
 | `--style` | | 出力スタイル（summary/visual/detailed） | `summary` |
 | `--audience` | `-a` | ターゲットオーディエンス（executive/team/technical） | `team` |
-| `--diagram` | `-d` | Mermaidダイアグラムを含める | `false` |
+| `--diagram` | `-d` | Mermaidダイアグラムを含める（summary/detailed用） | `false` |
 | `--icons` | | キーポイントにアイコンを表示 | `true` |
 | `--sections` | | セクション数（detailedスタイル用） | `auto` |
+| `--visual-type` | `-vt` | ビジュアルフォーマット（diagram/cards/comic/auto） | `auto` |
+| `--panels` | `-p` | コミック形式のパネル数（2-6） | `3` |
 
 ### テーマ一覧
 
@@ -78,6 +80,38 @@ Markdown、テキスト、PDFなどのドキュメントを視覚的に魅力的
 2. 適切なMermaidダイアグラムタイプを選択
 3. コンテキスト説明を生成（2-3文、箇条書きではない）
 4. 3-4個のキーポイントカードを作成
+
+### ビジュアルタイプ（`--visual-type`、visualスタイル専用）
+
+| タイプ | 説明 | 最適な用途 |
+|--------|------|-----------|
+| `diagram` | Mermaidダイアグラム + コンテキスト説明 | フロー、プロセス、API、データ構造 |
+| `cards` | カードベースレイアウト + 「なぜ」の説明 | 機能リスト、比較、カテゴリ |
+| `comic` | パネルベースのストーリーテリングレイアウト | ユーザージャーニー、チュートリアル、Before/After |
+| `auto` | コンテンツ分析に基づく自動選択 | **デフォルト** |
+
+### パネルオプション（`--panels`、comicタイプ専用）
+
+| パネル数 | レイアウト | 最適な用途 |
+|---------|----------|-----------|
+| `2` | 横並び（50%-50%） | Before/After比較 |
+| `3` | 3カラム（33%-33%-33%） | 導入 → 展開 → 結論 |
+| `4` | 2x2グリッド | ステップバイステップチュートリアル（起承転結） |
+| `5-6` | 3x2グリッド | 長めの手順説明 |
+
+### ビジュアルタイプ自動選択ロジック
+
+`--visual-type auto`（デフォルト）の場合、ドキュメントの内容を分析して最適なフォーマットを選択します：
+
+| コンテンツパターン | 選択されるタイプ | キーワード/指標 |
+|-------------------|-----------------|----------------|
+| フロー/プロセス | `diagram` | flow, process, step, API, pipeline, workflow |
+| データ構造 | `diagram` | schema, model, database, relationship, architecture |
+| 機能リスト | `cards` | features, benefits, advantages, capabilities, options |
+| 比較 | `cards` | compare, vs, difference, pros/cons |
+| ストーリー/ジャーニー | `comic` | story, journey, experience, before/after, transformation |
+| チュートリアル | `comic` | tutorial, how to, guide, steps |
+| 混合/不明 | `cards` | （不明な場合のフォールバック） |
 
 ### ターゲットオーディエンス
 
@@ -153,14 +187,34 @@ Markdown、テキスト、PDFなどのドキュメントを視覚的に魅力的
 /visualize ./quarterly-report.pdf --audience executive --style summary
 ```
 
-#### Visualスタイル - ダイアグラム + コンテキスト説明（NEW）
+#### Visualスタイル - 自動フォーマット選択
 ```bash
 /visualize ./architecture.md --style visual
 ```
 
-#### Visualスタイル - プロセス理解向け
+#### Visualスタイル - 明示的にダイアグラム形式を指定
 ```bash
-/visualize ./workflow.md --style visual --theme modern
+/visualize ./api-flow.md --style visual --visual-type diagram
+```
+
+#### Visualスタイル - カード形式
+```bash
+/visualize ./features.md --style visual --visual-type cards
+```
+
+#### Visualスタイル - コミック形式（デフォルト3パネル）
+```bash
+/visualize ./user-journey.md --style visual --visual-type comic
+```
+
+#### Visualスタイル - コミック形式（4パネル）
+```bash
+/visualize ./tutorial.md --style visual --visual-type comic --panels 4
+```
+
+#### Visualスタイル - Before/After比較（2パネル）
+```bash
+/visualize ./improvement.md --style visual --visual-type comic --panels 2
 ```
 
 #### ダイアグラム付き技術ドキュメント（detailedスタイル）
@@ -224,11 +278,25 @@ Markdown、テキスト、PDFなどのドキュメントを視覚的に魅力的
 ##### Summaryスタイル
 単一ページレイアウト、簡潔な概要表示。箇条書きでキーポイントを抽出。
 
-##### Visualスタイル
+##### Visualスタイル - Diagramフォーマット
 理解重視のレイアウト：
 - メインダイアグラム（構造/フロー/関係性を可視化）
 - コンテキスト説明（2-3文で「なぜ」「どのように」を説明）
 - キーポイントカード（3-4個の補足ハイライト）
+
+##### Visualスタイル - Cardsフォーマット
+カードベースのレイアウト：
+- 3-6個のカードをグリッド表示
+- 各カードにアイコン、タイトル、説明
+- **「なぜ重要か」**の説明を追加（summaryとの違い）
+
+##### Visualスタイル - Comicフォーマット
+パネルベースのストーリーテリング：
+- 2パネル: Before/After、問題/解決
+- 3パネル: 導入 → 展開 → 結論
+- 4パネル: 起 → 承 → 転 → 結
+- 5-6パネル: 詳細なステップバイステッププロセス
+- 各パネルにイラスト用絵文字/アイコン、タイトル、説明
 
 ##### Detailedスタイル
 マルチセクションレイアウト：
@@ -345,7 +413,11 @@ Generating infographic without diagram.
 - **SNS共有**: ソーシャルメディア向けビジュアルコンテンツ作成
 - **経営報告**: 四半期レポートのエグゼクティブサマリー
 - **プロジェクト計画**: 詳細なマルチセクションドキュメント
-- **プロセス理解**: ワークフローやアーキテクチャの深い理解（visualスタイル）
+- **プロセス理解**: ワークフローやアーキテクチャの深い理解（visualスタイル - diagram）
+- **機能比較**: 製品機能や選択肢の比較（visualスタイル - cards）
+- **ユーザージャーニー**: ユーザー体験のストーリー化（visualスタイル - comic）
+- **チュートリアル**: ステップバイステップガイドの視覚化（visualスタイル - comic）
+- **Before/After**: 改善前後の比較（visualスタイル - comic 2パネル）
 
 ### 使用ツール
 - `Read` - 入力ファイルの読み取り
