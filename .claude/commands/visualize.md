@@ -220,24 +220,109 @@ gantt
 
 ### Step 4: Select Icon for Each Point (if --icons)
 
-| Category | Icon | Usage |
-|----------|------|-------|
-| Success/Complete | ✓ | Achievements, completed items |
-| Warning/Caution | ⚠ | Risks, concerns |
-| Information | ℹ | General information |
-| Important | ⭐ | Key highlights |
-| Time | 🕐 | Deadlines, schedules |
-| Person | 👤 | Team members, stakeholders |
-| Settings | ⚙ | Configuration, setup |
-| Data | 📊 | Statistics, metrics |
-| Document | 📄 | References, documentation |
-| Communication | 💬 | Discussions, feedback |
+| Category | SVG Icon | Fallback | Usage |
+|----------|----------|----------|-------|
+| Success/Complete | CheckCircle2 | ✓ | Achievements, completed items |
+| Warning/Caution | AlertTriangle | ⚠ | Risks, concerns |
+| Information | Info | ℹ | General information |
+| Important | Star | ⭐ | Key highlights |
+| Time | Clock | 🕐 | Deadlines, schedules |
+| Person | User | 👤 | Team members, stakeholders |
+| Settings | Settings | ⚙ | Configuration, setup |
+| Data | BarChart2 | 📊 | Statistics, metrics |
+| Document | FileText | 📄 | References, documentation |
+| Communication | MessageCircle | 💬 | Discussions, feedback |
+
+### Step 4.5: SVG Icon Library (Lucide Icons)
+
+Use these SVG icons inline in HTML templates. All icons use `stroke="currentColor"` for theme color adaptation:
+
+```javascript
+const svgIcons = {
+  success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`,
+  warning: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
+  info: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
+  star: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  user: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>`,
+  settings: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  chart: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>`,
+  document: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>`,
+  message: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>`
+};
+
+// Icon category to SVG key mapping
+const iconMap = {
+  'success': 'success',
+  'warning': 'warning',
+  'info': 'info',
+  'important': 'star',
+  'time': 'clock',
+  'person': 'user',
+  'settings': 'settings',
+  'data': 'chart',
+  'document': 'document',
+  'communication': 'message'
+};
+
+// Fallback emojis (used when SVG fails to load)
+const fallbackEmojis = {
+  success: '✓',
+  warning: '⚠',
+  info: 'ℹ',
+  star: '⭐',
+  clock: '🕐',
+  user: '👤',
+  settings: '⚙',
+  chart: '📊',
+  document: '📄',
+  message: '💬'
+};
+```
+
+### Step 4.6: Illustration Library (unDraw CDN)
+
+Use unDraw illustrations for larger visual elements based on content domain:
+
+```javascript
+const illustrations = {
+  technical: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_programming_2svr.svg',
+  business: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_business_plan_5i9d.svg',
+  security: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_security_on_re_e491.svg',
+  analytics: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_data_trends_b0wg.svg',
+  team: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_team_spirit_hrr4.svg',
+  success: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_celebration_0jvk.svg',
+  process: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_process_e90d.svg',
+  default: 'https://raw.githubusercontent.com/nickytonline/undraw/main/static/svg/undraw_content_team_3epn.svg'
+};
+
+// Keyword-based illustration selection
+function selectIllustration(content) {
+  const keywordMap = {
+    technical: ['api', 'code', 'programming', 'architecture', 'database', 'system', 'developer'],
+    business: ['revenue', 'profit', 'roi', 'kpi', 'strategy', 'market', 'sales'],
+    security: ['security', 'auth', 'protect', 'encrypt', 'vulnerability', 'access'],
+    analytics: ['data', 'analytics', 'chart', 'metric', 'trend', 'statistics', 'report'],
+    team: ['team', 'collaboration', 'member', 'stakeholder', 'organization', 'meeting'],
+    success: ['complete', 'achieve', 'success', 'milestone', 'launch', 'celebrate'],
+    process: ['workflow', 'process', 'flow', 'step', 'procedure', 'pipeline']
+  };
+
+  const lowerContent = content.toLowerCase();
+  for (const [domain, words] of Object.entries(keywordMap)) {
+    if (words.some(word => lowerContent.includes(word))) {
+      return illustrations[domain];
+    }
+  }
+  return illustrations.default;
+}
+```
 
 ### Step 5: Generate HTML Based on Style
 
 #### Summary Style (`--style summary`)
 
-Single-page layout with concise overview:
+Single-page layout with concise overview. **Presentation-optimized text sizes (min 24px):**
 
 ```html
 <!DOCTYPE html>
@@ -252,25 +337,25 @@ Single-page layout with concise overview:
       height: {HEIGHT}px;
       background: {BACKGROUND};
       font-family: {FONT_FAMILY};
-      padding: 40px;
+      padding: 50px;
       display: flex;
       flex-direction: column;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .title {
-      font-size: 48px;
+      font-size: 64px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .subtitle {
-      font-size: 24px;
+      font-size: 36px;
       color: {TEXT};
       opacity: 0.8;
     }
@@ -278,27 +363,46 @@ Single-page layout with concise overview:
     .content {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
       align-content: start;
     }
 
     .point-card {
       background: {SURFACE};
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-left: 4px solid {ACCENT};
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 6px solid {ACCENT};
+      display: flex;
+      flex-direction: column;
     }
 
-    .point-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
+    /* SVG Icon Container */
+    .svg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 16px;
+      color: {ACCENT};
+    }
+
+    .svg-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Fallback emoji style */
+    .emoji-fallback {
+      font-size: 48px;
+      margin-bottom: 16px;
     }
 
     .point-number {
-      width: 36px;
-      height: 36px;
+      width: 48px;
+      height: 48px;
       background: {PRIMARY};
       color: white;
       border-radius: 50%;
@@ -306,36 +410,37 @@ Single-page layout with concise overview:
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      margin-bottom: 12px;
+      font-size: 24px;
+      margin-bottom: 16px;
     }
 
     .point-title {
-      font-size: 20px;
+      font-size: 28px;
       font-weight: 600;
       color: {TEXT};
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .point-description {
-      font-size: 16px;
+      font-size: 24px;
       color: {TEXT};
-      opacity: 0.8;
-      line-height: 1.5;
+      opacity: 0.85;
+      line-height: 1.6;
     }
 
     .metric {
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 700;
       color: {ACCENT};
-      margin-top: 12px;
+      margin-top: 16px;
     }
 
     .footer {
       margin-top: auto;
-      padding-top: 20px;
+      padding-top: 24px;
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
+      font-size: 20px;
       color: {TEXT};
       opacity: 0.6;
     }
@@ -351,7 +456,9 @@ Single-page layout with concise overview:
     <main class="content">
       <!-- Repeat for each key point -->
       <div class="point-card">
-        <div class="point-icon">{ICON}</div>
+        <div class="svg-icon" data-fallback="{FALLBACK_EMOJI}">
+          {SVG_ICON}
+        </div>
         <div class="point-number">{NUMBER}</div>
         <h3 class="point-title">{POINT_TITLE}</h3>
         <p class="point-description">{POINT_DESCRIPTION}</p>
@@ -364,18 +471,32 @@ Single-page layout with concise overview:
       <span>Generated: {DATE}</span>
     </footer>
   </div>
+
+  <script>
+    // SVG fallback handler
+    document.querySelectorAll('.svg-icon').forEach(el => {
+      if (!el.querySelector('svg') || el.innerHTML.trim() === '') {
+        const fallback = el.getAttribute('data-fallback');
+        if (fallback) {
+          el.classList.add('emoji-fallback');
+          el.innerHTML = fallback;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
 ```
 
 #### Visual Style (`--style visual`)
 
-**Understanding-focused layout with diagram + context explanation:**
+**Understanding-focused layout with diagram + context explanation. Presentation-optimized text sizes (min 24px):**
 
 The visual style focuses on helping readers understand "why" and "how", not just "what exists". It features:
 - **Main diagram**: Visualizes structure, flow, or relationships
 - **Context explanation**: 2-3 sentences explaining the diagram (not bullet points)
 - **Key point cards**: Supplementary highlights
+- **Illustration**: Domain-specific unDraw illustration
 
 ```html
 <!DOCTYPE html>
@@ -388,107 +509,154 @@ The visual style focuses on helping readers understand "why" and "how", not just
 
     .visual-infographic {
       width: {WIDTH}px;
+      min-height: {HEIGHT}px;
       background: {BACKGROUND};
       font-family: {FONT_FAMILY};
-      padding: 30px;
+      padding: 40px;
     }
 
     .header {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .title {
-      font-size: 28px;
+      font-size: 64px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
     .overview {
-      font-size: 15px;
+      font-size: 28px;
       color: {TEXT};
-      opacity: 0.8;
-      line-height: 1.5;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    .main-content {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
     }
 
     .diagram-container {
+      flex: 2;
       background: {SURFACE};
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .diagram-area {
       background: white;
-      border-radius: 8px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 250px;
+      min-height: 300px;
+    }
+
+    .illustration-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .illustration-container img {
+      max-width: 100%;
+      max-height: 300px;
+      height: auto;
+    }
+
+    .illustration-fallback {
+      background: linear-gradient(135deg, {PRIMARY}15, {ACCENT}15);
+      border-radius: 16px;
+      padding: 40px;
+      font-size: 72px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
     }
 
     .context-explanation {
       background: linear-gradient(135deg, {PRIMARY}08, {ACCENT}08);
-      border-left: 4px solid {ACCENT};
-      border-radius: 0 12px 12px 0;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-left: 6px solid {ACCENT};
+      border-radius: 0 16px 16px 0;
+      padding: 28px;
+      margin-bottom: 30px;
     }
 
     .context-text {
-      font-size: 15px;
+      font-size: 24px;
       color: {TEXT};
       line-height: 1.8;
     }
 
     .key-points {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
     }
 
     .point-card {
       background: {SURFACE};
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
     }
 
     .point-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .point-icon {
-      font-size: 20px;
+    .svg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: {ACCENT};
+    }
+
+    .svg-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .emoji-fallback {
+      font-size: 36px;
     }
 
     .point-title {
-      font-size: 14px;
+      font-size: 28px;
       font-weight: 600;
       color: {PRIMARY};
     }
 
     .point-description {
-      font-size: 13px;
+      font-size: 24px;
       color: {TEXT};
-      opacity: 0.8;
-      line-height: 1.5;
+      opacity: 0.85;
+      line-height: 1.6;
     }
 
     .footer {
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
+      font-size: 20px;
       color: {TEXT};
-      opacity: 0.5;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -499,11 +667,18 @@ The visual style focuses on helping readers understand "why" and "how", not just
       <p class="overview">{OVERVIEW_TEXT}</p>
     </header>
 
-    <div class="diagram-container">
-      <div class="diagram-area">
-        <div class="mermaid">
-          {MERMAID_CODE}
+    <div class="main-content">
+      <div class="diagram-container">
+        <div class="diagram-area">
+          <div class="mermaid">
+            {MERMAID_CODE}
+          </div>
         </div>
+      </div>
+      <div class="illustration-container">
+        <img src="{ILLUSTRATION_URL}"
+             alt="{ILLUSTRATION_ALT}"
+             onerror="this.parentElement.innerHTML='<div class=\'illustration-fallback\'>📊</div>'" />
       </div>
     </div>
 
@@ -514,21 +689,21 @@ The visual style focuses on helping readers understand "why" and "how", not just
     <div class="key-points">
       <div class="point-card">
         <div class="point-header">
-          <span class="point-icon">{ICON_1}</span>
+          <span class="svg-icon" data-fallback="{FALLBACK_1}">{SVG_ICON_1}</span>
           <span class="point-title">{POINT_TITLE_1}</span>
         </div>
         <p class="point-description">{POINT_DESC_1}</p>
       </div>
       <div class="point-card">
         <div class="point-header">
-          <span class="point-icon">{ICON_2}</span>
+          <span class="svg-icon" data-fallback="{FALLBACK_2}">{SVG_ICON_2}</span>
           <span class="point-title">{POINT_TITLE_2}</span>
         </div>
         <p class="point-description">{POINT_DESC_2}</p>
       </div>
       <div class="point-card">
         <div class="point-header">
-          <span class="point-icon">{ICON_3}</span>
+          <span class="svg-icon" data-fallback="{FALLBACK_3}">{SVG_ICON_3}</span>
           <span class="point-title">{POINT_TITLE_3}</span>
         </div>
         <p class="point-description">{POINT_DESC_3}</p>
@@ -543,6 +718,17 @@ The visual style focuses on helping readers understand "why" and "how", not just
 
   <script>
     mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+    // SVG fallback handler
+    document.querySelectorAll('.svg-icon').forEach(el => {
+      if (!el.querySelector('svg') || el.innerHTML.trim() === '') {
+        const fallback = el.getAttribute('data-fallback');
+        if (fallback) {
+          el.classList.add('emoji-fallback');
+          el.innerHTML = fallback;
+        }
+      }
+    });
   </script>
 </body>
 </html>
@@ -561,7 +747,7 @@ The visual style focuses on helping readers understand "why" and "how", not just
 
 #### Visual Style - Cards Format (`--visual-type cards`)
 
-Card-based layout with deeper explanations than summary:
+Card-based layout with deeper explanations than summary. **Presentation-optimized (min 24px). Auto-switches to vertical layout for 5+ cards:**
 
 ```html
 <!DOCTYPE html>
@@ -573,87 +759,127 @@ Card-based layout with deeper explanations than summary:
 
     .visual-cards {
       width: {WIDTH}px;
-      height: {HEIGHT}px;
+      min-height: {HEIGHT}px;
       background: {BACKGROUND};
       font-family: {FONT_FAMILY};
-      padding: 30px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
     }
 
     .title {
-      font-size: 28px;
+      font-size: 64px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
     .overview {
-      font-size: 15px;
+      font-size: 28px;
       color: {TEXT};
-      opacity: 0.8;
-      line-height: 1.5;
+      opacity: 0.85;
+      line-height: 1.6;
     }
 
-    .cards-grid {
+    /* Horizontal grid layout (4 cards or less) */
+    .cards-grid-horizontal {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
       align-content: start;
+    }
+
+    /* Vertical layout (5+ cards) */
+    .cards-grid-vertical {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .cards-grid-vertical .visual-card {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cards-grid-vertical .card-icon-container {
+      flex-shrink: 0;
+    }
+
+    .cards-grid-vertical .card-content {
+      flex: 1;
     }
 
     .visual-card {
       background: {SURFACE};
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
     }
 
-    .card-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
+    .card-icon-container {
+      margin-bottom: 16px;
+    }
+
+    .svg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      color: {ACCENT};
+    }
+
+    .svg-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .emoji-fallback {
+      font-size: 48px;
     }
 
     .card-title {
-      font-size: 16px;
+      font-size: 28px;
       font-weight: 600;
       color: {PRIMARY};
-      margin-bottom: 8px;
-    }
-
-    .card-description {
-      font-size: 14px;
-      color: {TEXT};
-      line-height: 1.5;
       margin-bottom: 12px;
     }
 
+    .card-description {
+      font-size: 24px;
+      color: {TEXT};
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
     .card-why {
-      font-size: 13px;
+      font-size: 24px;
       color: {ACCENT};
       font-style: italic;
-      padding-top: 10px;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      padding-top: 14px;
+      border-top: 2px solid rgba(0,0,0,0.1);
       margin-top: auto;
     }
 
     .footer {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
+      font-size: 20px;
       color: {TEXT};
-      opacity: 0.5;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -664,13 +890,20 @@ Card-based layout with deeper explanations than summary:
       <p class="overview">{OVERVIEW_TEXT}</p>
     </header>
 
-    <div class="cards-grid">
+    <!-- Use cards-grid-horizontal for 4 or fewer cards, cards-grid-vertical for 5+ -->
+    <div class="{CARDS_LAYOUT_CLASS}">
       <!-- Repeat for each card (3-6 cards) -->
       <div class="visual-card">
-        <div class="card-icon">{ICON}</div>
-        <h3 class="card-title">{CARD_TITLE}</h3>
-        <p class="card-description">{CARD_DESCRIPTION}</p>
-        <p class="card-why">Why: {WHY_IMPORTANT}</p>
+        <div class="card-icon-container">
+          <div class="svg-icon" data-fallback="{FALLBACK_EMOJI}">
+            {SVG_ICON}
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">{CARD_TITLE}</h3>
+          <p class="card-description">{CARD_DESCRIPTION}</p>
+          <p class="card-why">Why: {WHY_IMPORTANT}</p>
+        </div>
       </div>
     </div>
 
@@ -679,21 +912,41 @@ Card-based layout with deeper explanations than summary:
       <span>Generated: {DATE}</span>
     </footer>
   </div>
+
+  <script>
+    // SVG fallback handler
+    document.querySelectorAll('.svg-icon').forEach(el => {
+      if (!el.querySelector('svg') || el.innerHTML.trim() === '') {
+        const fallback = el.getAttribute('data-fallback');
+        if (fallback) {
+          el.classList.add('emoji-fallback');
+          el.innerHTML = fallback;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
 ```
 
+**Cards Layout Selection Logic:**
+```javascript
+// Select layout based on card count
+const cardsLayoutClass = cards.length >= 5 ? 'cards-grid-vertical' : 'cards-grid-horizontal';
+```
+
 **Cards Format Generation Logic:**
 1. Extract 3-6 key points from the document
-2. For each point, generate:
-   - Icon (based on category)
+2. Select layout: horizontal grid (4 or fewer) or vertical list (5+)
+3. For each point, generate:
+   - SVG Icon (based on category, with emoji fallback)
    - Title (short, descriptive)
    - Description (what it is)
    - **Why Important** (deeper explanation - this is what differentiates from summary)
 
 #### Visual Style - Comic Format (`--visual-type comic`)
 
-Panel-based storytelling layout with configurable panel count:
+Panel-based storytelling layout with configurable panel count. **Presentation-optimized (min 24px). Auto-switches to vertical layout for 5+ panels:**
 
 ```html
 <!DOCTYPE html>
@@ -705,47 +958,68 @@ Panel-based storytelling layout with configurable panel count:
 
     .visual-comic {
       width: {WIDTH}px;
-      height: {HEIGHT}px;
+      min-height: {HEIGHT}px;
       background: {BACKGROUND};
       font-family: {FONT_FAMILY};
-      padding: 25px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .title {
-      font-size: 24px;
+      font-size: 64px;
       font-weight: 700;
       color: {PRIMARY};
     }
 
+    /* Horizontal grid layouts (2-4 panels) */
     .panels-container {
       flex: 1;
       display: grid;
-      gap: 15px;
+      gap: 25px;
     }
 
-    /* 2 panels: side by side */
     .panels-2 { grid-template-columns: 1fr 1fr; }
-
-    /* 3 panels: three columns */
     .panels-3 { grid-template-columns: 1fr 1fr 1fr; }
-
-    /* 4 panels: 2x2 grid */
     .panels-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
-    /* 5-6 panels: 3x2 grid */
-    .panels-5, .panels-6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    /* Vertical layout (5+ panels) */
+    .panels-vertical {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panels-vertical .panel {
+      flex-direction: row;
+      min-height: 150px;
+    }
+
+    .panels-vertical .panel-visual {
+      width: 200px;
+      flex-shrink: 0;
+      min-height: auto;
+    }
+
+    .panels-vertical .panel-content {
+      flex: 1;
+      border-top: none;
+      border-left: 3px solid rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     .panel {
       background: {SURFACE};
-      border-radius: 12px;
-      border: 3px solid {PRIMARY};
+      border-radius: 16px;
+      border: 4px solid {PRIMARY};
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -754,10 +1028,10 @@ Panel-based storytelling layout with configurable panel count:
 
     .panel-number {
       position: absolute;
-      top: 8px;
-      left: 8px;
-      width: 28px;
-      height: 28px;
+      top: 12px;
+      left: 12px;
+      width: 40px;
+      height: 40px;
       background: {PRIMARY};
       color: white;
       border-radius: 50%;
@@ -765,7 +1039,8 @@ Panel-based storytelling layout with configurable panel count:
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 24px;
+      z-index: 1;
     }
 
     .panel-visual {
@@ -774,43 +1049,53 @@ Panel-based storytelling layout with configurable panel count:
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      min-height: 120px;
+      padding: 30px;
+      min-height: 180px;
     }
 
-    .panel-illustration {
-      font-size: 48px;
+    .illustration-container {
+      max-width: 180px;
+      max-height: 150px;
+    }
+
+    .illustration-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .illustration-fallback {
+      font-size: 72px;
       text-align: center;
     }
 
     .panel-content {
-      padding: 12px;
+      padding: 20px;
       background: {SURFACE};
-      border-top: 2px solid rgba(0,0,0,0.1);
+      border-top: 3px solid rgba(0,0,0,0.1);
     }
 
     .panel-title {
-      font-size: 14px;
+      font-size: 28px;
       font-weight: 600;
       color: {PRIMARY};
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .panel-text {
-      font-size: 12px;
+      font-size: 24px;
       color: {TEXT};
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .footer {
-      margin-top: 15px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(0,0,0,0.1);
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 2px solid rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
-      font-size: 10px;
+      font-size: 20px;
       color: {TEXT};
-      opacity: 0.5;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -820,12 +1105,17 @@ Panel-based storytelling layout with configurable panel count:
       <h1 class="title">{TITLE}</h1>
     </header>
 
-    <div class="panels-container panels-{PANEL_COUNT}">
+    <!-- Use panels-{N} for 2-4 panels, panels-vertical for 5+ -->
+    <div class="panels-container {PANELS_LAYOUT_CLASS}">
       <!-- Repeat for each panel -->
       <div class="panel">
         <div class="panel-number">{N}</div>
         <div class="panel-visual">
-          <div class="panel-illustration">{EMOJI_OR_ICON}</div>
+          <div class="illustration-container">
+            <img src="{PANEL_ILLUSTRATION_URL}"
+                 alt="{PANEL_ALT}"
+                 onerror="this.parentElement.innerHTML='<div class=\'illustration-fallback\'>{FALLBACK_EMOJI}</div>'" />
+          </div>
         </div>
         <div class="panel-content">
           <h4 class="panel-title">{PANEL_TITLE}</h4>
@@ -843,17 +1133,24 @@ Panel-based storytelling layout with configurable panel count:
 </html>
 ```
 
+**Panels Layout Selection Logic:**
+```javascript
+// Select layout based on panel count
+const panelsLayoutClass = panelCount >= 5 ? 'panels-vertical' : `panels-${panelCount}`;
+```
+
 **Comic Format Generation Logic:**
 1. Analyze document for story/process structure
-2. Divide content into {PANEL_COUNT} sequential parts:
+2. Select layout: grid (2-4 panels) or vertical (5+)
+3. Divide content into {PANEL_COUNT} sequential parts:
    - 2 panels: Before/After or Problem/Solution
    - 3 panels: Introduction → Development → Conclusion
    - 4 panels: 起 (Introduction) → 承 (Development) → 転 (Turn) → 結 (Conclusion)
-   - 5-6 panels: Extended step-by-step process
-3. For each panel:
-   - Generate emoji/icon representation
-   - Create short title
-   - Write concise explanation
+   - 5-6 panels: Extended step-by-step process (vertical layout)
+4. For each panel:
+   - Select domain-appropriate illustration from unDraw CDN
+   - Create short title (28px)
+   - Write concise explanation (24px)
 
 #### Visual Type Auto-Selection Logic
 
@@ -895,7 +1192,27 @@ Multi-section layout with comprehensive coverage:
       background: {SURFACE};
       margin-bottom: 20px;
       page-break-after: always;
+      position: relative;
     }
+
+    /* SVG Icon Styles */
+    .svg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+    }
+
+    .svg-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: {ACCENT};
+      fill: none;
+    }
+
+    .svg-icon--lg { width: 64px; height: 64px; }
+    .svg-icon--xl { width: 96px; height: 96px; }
 
     /* Cover Page */
     .cover {
@@ -907,77 +1224,121 @@ Multi-section layout with comprehensive coverage:
       height: {HEIGHT}px;
     }
 
+    .cover-illustration {
+      width: 100%;
+      max-width: 350px;
+      margin-bottom: 40px;
+    }
+
+    .cover-illustration img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .illustration-fallback {
+      background: linear-gradient(135deg, {PRIMARY}10, {ACCENT}10);
+      border-radius: 20px;
+      padding: 50px;
+      font-size: 80px;
+      text-align: center;
+    }
+
     .cover-title {
-      font-size: 64px;
+      font-size: 72px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      line-height: 1.2;
     }
 
     .cover-subtitle {
-      font-size: 28px;
+      font-size: 36px;
       color: {TEXT};
       opacity: 0.8;
       margin-bottom: 40px;
     }
 
     .cover-meta {
-      font-size: 18px;
+      font-size: 24px;
       color: {TEXT};
       opacity: 0.6;
     }
 
     /* Table of Contents */
     .toc {
-      padding: 40px;
+      padding: 50px;
     }
 
     .toc-title {
-      font-size: 36px;
+      font-size: 48px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 30px;
-      border-bottom: 3px solid {ACCENT};
-      padding-bottom: 15px;
+      margin-bottom: 40px;
+      border-bottom: 4px solid {ACCENT};
+      padding-bottom: 20px;
     }
 
     .toc-item {
       display: flex;
       justify-content: space-between;
-      padding: 15px 0;
+      align-items: center;
+      padding: 20px 0;
       border-bottom: 1px solid rgba(0,0,0,0.1);
-      font-size: 20px;
+      font-size: 24px;
     }
 
     .toc-number {
       color: {ACCENT};
       font-weight: 600;
-      margin-right: 15px;
+      margin-right: 20px;
     }
 
     /* Section Pages */
     .section-header {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .section-illustration {
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .section-illustration img {
+      width: 100%;
+      height: auto;
+      max-height: 180px;
+      object-fit: contain;
+    }
+
+    .section-header-content {
+      flex: 1;
     }
 
     .section-number {
-      font-size: 18px;
+      font-size: 24px;
       color: {ACCENT};
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 15px;
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
 
     .section-subtitle {
-      font-size: 20px;
+      font-size: 24px;
       color: {TEXT};
       opacity: 0.7;
+      line-height: 1.5;
     }
 
     .section-content {
@@ -988,25 +1349,29 @@ Multi-section layout with comprehensive coverage:
 
     .content-card {
       background: {BACKGROUND};
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
 
     .card-icon {
-      font-size: 32px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card-icon .svg-icon {
+      width: 56px;
+      height: 56px;
     }
 
     .card-title {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 600;
       color: {TEXT};
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .card-description {
-      font-size: 16px;
+      font-size: 24px;
       color: {TEXT};
       opacity: 0.8;
       line-height: 1.6;
@@ -1016,50 +1381,59 @@ Multi-section layout with comprehensive coverage:
     .diagram-container {
       grid-column: span 2;
       background: white;
-      border-radius: 16px;
-      padding: 30px;
+      border-radius: 20px;
+      padding: 40px;
       text-align: center;
     }
 
     .mermaid {
-      margin: 20px auto;
+      margin: 25px auto;
     }
 
     /* Conclusion Page */
     .conclusion {
-      padding: 40px;
+      padding: 50px;
     }
 
     .conclusion-title {
-      font-size: 36px;
+      font-size: 48px;
       font-weight: 700;
       color: {PRIMARY};
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .summary-box {
       background: linear-gradient(135deg, {PRIMARY}15, {ACCENT}15);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      font-size: 24px;
+      line-height: 1.6;
+    }
+
+    .next-steps-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: {PRIMARY};
     }
 
     .next-steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 25px;
     }
 
     .step-card {
       background: {BACKGROUND};
-      border-radius: 12px;
-      padding: 25px;
+      border-radius: 16px;
+      padding: 30px;
       text-align: center;
     }
 
     .step-number {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       background: {PRIMARY};
       color: white;
       border-radius: 50%;
@@ -1067,7 +1441,13 @@ Multi-section layout with comprehensive coverage:
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      margin: 0 auto 15px;
+      font-size: 24px;
+      margin: 0 auto 20px;
+    }
+
+    .step-text {
+      font-size: 24px;
+      line-height: 1.5;
     }
 
     /* Footer */
@@ -1078,7 +1458,7 @@ Multi-section layout with comprehensive coverage:
       right: 60px;
       display: flex;
       justify-content: space-between;
-      font-size: 14px;
+      font-size: 20px;
       color: {TEXT};
       opacity: 0.5;
     }
@@ -1087,6 +1467,11 @@ Multi-section layout with comprehensive coverage:
 <body>
   <!-- Cover Page -->
   <div class="page cover">
+    <div class="cover-illustration">
+      <img src="{COVER_ILLUSTRATION_URL}"
+           alt="{TITLE}"
+           onerror="this.parentElement.innerHTML='<div class=\'illustration-fallback\'>{COVER_FALLBACK_EMOJI}</div>'" />
+    </div>
     <h1 class="cover-title">{TITLE}</h1>
     <p class="cover-subtitle">{SUBTITLE}</p>
     <p class="cover-meta">{DATE} | {AUTHOR}</p>
@@ -1105,15 +1490,26 @@ Multi-section layout with comprehensive coverage:
   <!-- Section Pages -->
   <div class="page">
     <div class="section-header">
-      <p class="section-number">Section {N}</p>
-      <h2 class="section-title">{SECTION_TITLE}</h2>
-      <p class="section-subtitle">{SECTION_DESCRIPTION}</p>
+      <div class="section-illustration">
+        <img src="{SECTION_ILLUSTRATION_URL}"
+             alt="{SECTION_TITLE}"
+             onerror="this.parentElement.innerHTML='<div class=\'illustration-fallback\' style=\'padding:30px;font-size:48px\'>{SECTION_FALLBACK_EMOJI}</div>'" />
+      </div>
+      <div class="section-header-content">
+        <p class="section-number">Section {N}</p>
+        <h2 class="section-title">{SECTION_TITLE}</h2>
+        <p class="section-subtitle">{SECTION_DESCRIPTION}</p>
+      </div>
     </div>
 
     <div class="section-content">
-      <!-- Content cards -->
+      <!-- Content cards with SVG icons -->
       <div class="content-card">
-        <div class="card-icon">{ICON}</div>
+        <div class="card-icon">
+          <div class="svg-icon" data-fallback="{FALLBACK_EMOJI}">
+            {SVG_ICON}
+          </div>
+        </div>
         <h3 class="card-title">{CARD_TITLE}</h3>
         <p class="card-description">{CARD_DESCRIPTION}</p>
       </div>
@@ -1140,19 +1536,19 @@ Multi-section layout with comprehensive coverage:
       <p>{SUMMARY_TEXT}</p>
     </div>
 
-    <h3 style="margin-bottom: 20px; color: {PRIMARY};">Next Steps</h3>
+    <h3 class="next-steps-title">Next Steps</h3>
     <div class="next-steps">
       <div class="step-card">
         <div class="step-number">1</div>
-        <p>{NEXT_STEP_1}</p>
+        <p class="step-text">{NEXT_STEP_1}</p>
       </div>
       <div class="step-card">
         <div class="step-number">2</div>
-        <p>{NEXT_STEP_2}</p>
+        <p class="step-text">{NEXT_STEP_2}</p>
       </div>
       <div class="step-card">
         <div class="step-number">3</div>
-        <p>{NEXT_STEP_3}</p>
+        <p class="step-text">{NEXT_STEP_3}</p>
       </div>
     </div>
 
@@ -1168,6 +1564,16 @@ Multi-section layout with comprehensive coverage:
 </body>
 </html>
 ```
+
+**Detailed Style Generation Logic:**
+1. Analyze document structure for sections
+2. Select domain-appropriate cover illustration from unDraw CDN
+3. For each section:
+   - Select section-specific illustration
+   - Use Lucide SVG icons for cards
+   - All text minimum 24px (descriptions 24px, titles 28px+)
+4. Generate Table of Contents from section structure
+5. Create conclusion with summary and next steps
 
 ### Step 6: Theme Configurations
 
