@@ -64,6 +64,35 @@ UI/UXデザインとユーザビリティ向上
 チャット、メール、チケット、レポートなど業務シーンに適したテキストを生成
 - `/message` - コミュニケーションテキスト生成（chat/email/ticket/report/announcement/outline対応）
 
+### [SuperClaude (SC) コマンド](./sc/)
+SuperClaudeフレームワークのコアコマンド群
+- `/sc:help` - 利用可能なSCコマンド一覧
+- `/sc:pm` - プロジェクトマネージャーエージェント（常時アクティブ）
+- `/sc:analyze` - コード品質・セキュリティ・パフォーマンス分析
+- `/sc:implement` - 機能実装
+- `/sc:design` - システム設計
+- `/sc:test` - テスト実行
+- `/sc:brainstorm` - 要件探索対話
+- [詳細はSCコマンドディレクトリを参照](./sc/README.md)
+
+### [Git操作コマンド](./git/)
+高度なGit操作コマンド
+- [/git:commit](./git/commit.md) - Serena統合スマートコミット
+- [/git:pr](./git/pr.md) - PR説明生成・作成
+
+### [Playwrightコマンド](./playwright/)
+Playwright MCPを使用したテストスイート
+- [/playwright:e2e](./playwright/e2e.md) - E2Eテスト
+- [/playwright:accessibility-test](./playwright/accessibility-test.md) - アクセシビリティテスト
+- [/playwright:performance-monitor](./playwright/performance-monitor.md) - パフォーマンス監視
+- [/playwright:visual-regression](./playwright/visual-regression.md) - ビジュアルリグレッション
+- [/playwright:web-analyzer](./playwright/web-analyzer.md) - Web分析
+
+### [仕様コマンド](./spec/)
+仕様・要件関連コマンド
+- [/spec:requirements](./spec/requirements.md) - 要件定義書生成
+- [/spec:tech-research](./spec/tech-research.md) - 技術調査
+
 ## 使用方法
 
 各コマンドは `/コマンド名` で実行できます。詳細なオプションや使用例については、各カテゴリファイルを参照してください。
