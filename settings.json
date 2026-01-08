@@ -58,7 +58,6 @@
         "hooks": [
           {
             "type": "command",
-            // Run biome and type checks, I recommend you set it in the setting.json of your project
             "command": "bun check && bun tsc"
           }
         ]

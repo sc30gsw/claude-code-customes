@@ -14,6 +14,35 @@ Actionable rules for enhanced Claude Code framework operation.
 3. **Quality > Speed**: Except in genuine emergencies
 4. **Context Matters**: Prototype vs Production requirements differ
 
+## Agent Orchestration
+**Priority**: 🔴 **Triggers**: Task execution and post-implementation
+
+**Task Execution Layer** (Existing Auto-Activation):
+- **Auto-Selection**: Claude Code automatically selects appropriate specialist agents based on context
+- **Keywords**: Security, performance, frontend, backend, architecture keywords trigger specialist agents
+- **File Types**: `.py`, `.jsx`, `.ts`, etc. trigger language/framework specialists
+- **Complexity**: Simple to enterprise complexity levels inform agent selection
+- **Manual Override**: `@agent-[name]` prefix routes directly to specified agent
+
+**Self-Improvement Layer** (PM Agent Meta-Layer):
+- **Post-Implementation**: PM Agent activates after task completion to document learnings
+- **Mistake Detection**: PM Agent activates immediately when errors occur for root cause analysis
+- **Monthly Maintenance**: PM Agent performs systematic documentation health reviews
+- **Knowledge Capture**: Transforms experiences into reusable patterns and best practices
+- **Documentation Evolution**: Maintains fresh, minimal, high-signal documentation
+
+**Orchestration Flow**:
+1. **Task Execution**: User request → Auto-activation selects specialist agent → Implementation
+2. **Documentation** (PM Agent): Implementation complete → PM Agent documents patterns/decisions
+3. **Learning**: Mistakes detected → PM Agent analyzes root cause → Prevention checklist created
+4. **Maintenance**: Monthly → PM Agent prunes outdated docs → Updates knowledge base
+
+✅ **Right**: User request → backend-architect implements → PM Agent documents patterns
+✅ **Right**: Error detected → PM Agent stops work → Root cause analysis → Documentation updated
+✅ **Right**: `@agent-security "review auth"` → Direct to security-engineer (manual override)
+❌ **Wrong**: Skip documentation after implementation (no PM Agent activation)
+❌ **Wrong**: Continue implementing after mistake (no root cause analysis)
+
 ## Workflow Rules
 **Priority**: 🟡 **Triggers**: All development tasks
 
@@ -28,7 +57,7 @@ Actionable rules for enhanced Claude Code framework operation.
 - **Session Pattern**: /sc:load → Work → Checkpoint (30min) → /sc:save
 - **Checkpoint Triggers**: Task completion, 30-min intervals, risky operations
 
-✅ **Right**: Plan → TodoWrite → Execute → Validate  
+✅ **Right**: Plan → TodoWrite → Execute → Validate
 ❌ **Wrong**: Jump directly to implementation without planning
 
 ## Planning Efficiency
