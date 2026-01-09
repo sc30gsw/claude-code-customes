@@ -1,137 +1,137 @@
 ---
 allowed-tools: Read, Write, Bash, TodoWrite, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_network_requests, mcp__playwright__browser_evaluate, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_wait_for
-description: Website analysis and UI/UX specification extraction command using Playwright MCP
+description: Playwright MCPを使用したウェブサイト分析とUI/UX仕様抽出コマンド
 ---
 
-# Web Analyzer - Website Analysis and Specification Extraction Command
+# Web Analyzer - ウェブサイト分析・仕様抽出コマンド
 
-## Overview
+## 概要
 
-A command that integrates Playwright MCP with Serena tools to analyze website structure, UI, and UX, automatically generating reference materials for app development.
+Playwright MCPとSerenaツールを統合し、ウェブサイトの構造、UI、UXを分析して、アプリ開発のための参考資料を自動生成するコマンドです。
 
-## Usage
+## 使用方法
 
-### Basic Syntax
+### 基本構文
 ```bash
 /web-analyzer <url> [options]
 ```
 
-### Target Specification
+### ターゲット指定
 
-| Target Type | Example | Description |
+| ターゲットタイプ | 例 | 説明 |
 |-------------|---------|-------------|
-| **Full URL** | `https://github.com` | External website analysis |
-| **Domain** | `airbnb.com` | Site-wide overview analysis |
-| **Specific Page** | `https://stripe.com/pricing` | Detailed page analysis |
-| **Competitor Site** | `competitor-site.com` | Competitive analysis |
+| **完全URL** | `https://github.com` | 外部ウェブサイト分析 |
+| **ドメイン** | `airbnb.com` | サイト全体の概要分析 |
+| **特定ページ** | `https://stripe.com/pricing` | 詳細ページ分析 |
+| **競合サイト** | `competitor-site.com` | 競合分析 |
 
-### Options
+### オプション
 
-| Option | Description | Default |
+| オプション | 説明 | デフォルト |
 |--------|-------------|---------|
-| `-d, --deep` | Deep analysis (multiple pages) | false |
-| `-u, --ui-focus` | UI-focused analysis | false |
-| `-x, --ux-flow` | UX flow analysis | false |
-| `-t, --tech-stack` | Tech stack detection | false |
-| `-c, --components` | Component specification extraction | false |
-| `-m, --mobile` | Mobile version analysis | false |
-| `-r, --report` | Generate detailed report | false |
-| `-s, --screenshots` | Screenshots of each section | false |
-| `--lang` | Output language (ja/en) | ja |
+| `-d, --deep` | ディープ分析（複数ページ） | false |
+| `-u, --ui-focus` | UI重視の分析 | false |
+| `-x, --ux-flow` | UXフロー分析 | false |
+| `-t, --tech-stack` | 技術スタック検出 | false |
+| `-c, --components` | コンポーネント仕様抽出 | false |
+| `-m, --mobile` | モバイル版分析 | false |
+| `-r, --report` | 詳細レポート生成 | false |
+| `-s, --screenshots` | 各セクションのスクリーンショット | false |
+| `--lang` | 出力言語 (ja/en) | ja |
 
-### Usage Examples
+### 使用例
 
 ```bash
-# Basic site analysis
+# 基本的なサイト分析
 /web-analyzer https://example.com
 
-# UI-focused detailed analysis
+# UI重視の詳細分析
 /web-analyzer https://design-system.com -u -c -s
 
-# UX flow and mobile analysis
+# UXフローとモバイル分析
 /web-analyzer https://ecommerce-site.com -x -m -r
 
-# Tech stack analysis
+# 技術スタック分析
 /web-analyzer https://startup.com -t -d
 
-# Complete competitor analysis
+# 完全な競合分析
 /web-analyzer https://competitor.com -d -u -x -t -c -m -r -s
 ```
 
-## Feature Details
+## 機能詳細
 
-### 1. Page Structure Analysis
+### 1. ページ構造分析
 
-#### HTML Structure Extraction
-- Usage of semantic HTML elements
-- Header, footer, navigation structure
-- Main content area identification
-- Section and article structure analysis
+#### HTML構造抽出
+- セマンティックHTML要素の使用状況
+- ヘッダー、フッター、ナビゲーション構造
+- メインコンテンツエリアの特定
+- セクションと記事の構造分析
 
-#### Layout Pattern Detection
-- Grid system identification
-- Flexbox usage
-- Responsive breakpoints
-- Container and wrapper structure
+#### レイアウトパターン検出
+- グリッドシステムの特定
+- Flexboxの使用状況
+- レスポンシブブレークポイント
+- コンテナとラッパー構造
 
-### 2. UI Element Analysis (-u option)
+### 2. UI要素分析 (-u オプション)
 
-#### Design System Elements
+#### デザインシステム要素
 ```markdown
-## Button Components
-### Primary Button
-- Background color: #007bff
-- Text color: #ffffff
-- Padding: 12px 24px
-- Border radius: 4px
-- Hover effect: +10% brightness
+## ボタンコンポーネント
+### プライマリボタン
+- 背景色: #007bff
+- テキスト色: #ffffff
+- パディング: 12px 24px
+- 角丸: 4px
+- ホバー効果: +10%明度
 
-### Secondary Button
-- Background color: transparent
-- Border: 1px solid #007bff
-- Text color: #007bff
+### セカンダリボタン
+- 背景色: transparent
+- ボーダー: 1px solid #007bff
+- テキスト色: #007bff
 ```
 
-#### Typography Analysis
-- Font family identification
-- Heading size hierarchy (H1-H6)
-- Body text size and line height
-- Color palette extraction
+#### タイポグラフィ分析
+- フォントファミリーの特定
+- 見出しサイズ階層 (H1-H6)
+- 本文テキストサイズと行高
+- カラーパレット抽出
 
-#### Form Elements
-- Input field styling
-- Validation display methods
-- Error and success state design
-- Label and placeholder patterns
+#### フォーム要素
+- 入力フィールドのスタイリング
+- バリデーション表示方法
+- エラー・成功状態のデザイン
+- ラベルとプレースホルダーパターン
 
-### 3. UX Flow Analysis (-x option)
+### 3. UXフロー分析 (-x オプション)
 
-#### User Journey Identification
+#### ユーザージャーニー特定
 ```mermaid
 graph TD
-    A[Landing Page] --> B[Service Introduction]
-    B --> C[Pricing Review]
-    C --> D[User Registration]
-    D --> E[Dashboard]
+    A[ランディングページ] --> B[サービス紹介]
+    B --> C[料金プラン確認]
+    C --> D[ユーザー登録]
+    D --> E[ダッシュボード]
 ```
 
-#### Interactive Elements
-- CTA button placement and messaging
-- Navigation patterns
-- Modal and drawer usage
-- Page transition patterns
+#### インタラクティブ要素
+- CTAボタンの配置とメッセージング
+- ナビゲーションパターン
+- モーダルとドロワーの使用
+- ページ遷移パターン
 
-#### Conversion Design
-- Micro-interactions
-- Progress indicators
-- Feedback and confirmation displays
-- Error handling and recovery
+#### コンバージョンデザイン
+- マイクロインタラクション
+- プログレスインジケーター
+- フィードバックと確認表示
+- エラーハンドリングとリカバリー
 
-### 4. Tech Stack Detection (-t option)
+### 4. 技術スタック検出 (-t オプション)
 
-#### Frontend Technologies
+#### フロントエンド技術
 ```javascript
-// Detected tech stack
+// 検出された技術スタック
 {
   "framework": "React 18.2.0",
   "stateManagement": "Redux Toolkit",
@@ -142,23 +142,23 @@ graph TD
 }
 ```
 
-#### Libraries and Frameworks Used
-- JavaScript frameworks (React, Vue, Angular, etc.)
-- CSS frameworks (Bootstrap, Tailwind, etc.)
-- UI component libraries
-- Animation libraries
+#### 使用ライブラリとフレームワーク
+- JavaScriptフレームワーク (React, Vue, Angular等)
+- CSSフレームワーク (Bootstrap, Tailwind等)
+- UIコンポーネントライブラリ
+- アニメーションライブラリ
 
-#### Performance Technologies
-- Code splitting implementation
-- Image optimization techniques
-- Cache strategies
-- CDN usage
+#### パフォーマンス技術
+- コードスプリッティング実装
+- 画像最適化テクニック
+- キャッシュ戦略
+- CDN使用状況
 
-### 5. Component Specification Extraction (-c option)
+### 5. コンポーネント仕様抽出 (-c オプション)
 
-#### React Component Specification Example
+#### Reactコンポーネント仕様例
 ```typescript
-// Extracted card component specification
+// 抽出されたカードコンポーネント仕様
 interface CardComponent {
   title: string
   description?: string
@@ -183,7 +183,7 @@ const CardStyles = {
 }
 ```
 
-#### Design Tokens
+#### デザイントークン
 ```json
 {
   "colors": {
@@ -210,106 +210,106 @@ const CardStyles = {
 }
 ```
 
-### 6. Mobile Analysis (-m option)
+### 6. モバイル分析 (-m オプション)
 
-#### Responsive Design Evaluation
-- Breakpoint settings
-- Mobile-first approach
-- Touch operation optimization
-- Readability and usability
+#### レスポンシブデザイン評価
+- ブレークポイント設定
+- モバイルファーストアプローチ
+- タッチ操作の最適化
+- 可読性とユーザビリティ
 
-#### Mobile-Specific Features
-- Hamburger menu implementation
-- Swipe and pinch gesture support
-- Mobile keyboard adaptation
-- App-like UI elements
+#### モバイル固有機能
+- ハンバーガーメニュー実装
+- スワイプ・ピンチジェスチャー対応
+- モバイルキーボード対応
+- アプリライクなUI要素
 
-## Serena Integration Features
+## Serena統合機能
 
-### Codebase Learning
+### コードベース学習
 ```typescript
-// Analyze current project structure
+// 現在のプロジェクト構造を分析
 const projectStructure = await mcp__serena__get_symbols_overview()
 
-// Compare with competitor analysis
+// 競合分析と比較
 const competitorAnalysis = await analyzeCompetitor(url)
 const recommendations = compareWithCurrent(projectStructure, competitorAnalysis)
 ```
 
-### Pattern Memory and Utilization
+### パターン記憶と活用
 ```typescript
-// Save excellent UX patterns to memory
+// 優れたUXパターンをメモリに保存
 await mcp__serena__write_memory('ux-patterns', {
   site: url,
   patterns: extractedPatterns,
   effectiveness: usabilityScore
 })
 
-// Reference past analysis results
+// 過去の分析結果を参照
 const similarAnalyses = await mcp__serena__read_memory('similar-sites')
 ```
 
-## Report Generation Feature (-r option)
+## レポート生成機能 (-r オプション)
 
-### Auto-Generated Report Structure
+### 自動生成レポート構造
 ```markdown
-# Website Analysis Report - {site-name}
+# ウェブサイト分析レポート - {site-name}
 
-## 📊 Overview
-- Analysis Target: {target-url}
-- Analysis Date: {timestamp}
-- Main Technology: {tech-stack}
-- Overall Score: {overall-score}/100
+## 📊 概要
+- 分析対象: {target-url}
+- 分析日時: {timestamp}
+- 主要技術: {tech-stack}
+- 総合スコア: {overall-score}/100
 
-## 🎨 Design Analysis
-### Color Palette
+## 🎨 デザイン分析
+### カラーパレット
 {extracted-colors}
 
-### Typography
+### タイポグラフィ
 {typography-analysis}
 
-### Layout
+### レイアウト
 {layout-analysis}
 
-## 🧩 Component Analysis
+## 🧩 コンポーネント分析
 {component-specifications}
 
-## 📱 Mobile Support
+## 📱 モバイル対応
 {mobile-analysis}
 
-## 🔧 Tech Stack
+## 🔧 技術スタック
 {tech-stack-details}
 
-## 💡 Improvement Suggestions
+## 💡 改善提案
 1. {improvement-suggestion-1}
 2. {improvement-suggestion-2}
 3. {improvement-suggestion-3}
 
-## 📋 Implementation Recommendations
+## 📋 実装推奨事項
 {implementation-recommendations}
 ```
 
-### Competitive Comparison Feature
+### 競合比較機能
 ```bash
-# Multi-site comparison analysis
+# 複数サイトの比較分析
 /web-analyzer https://competitor1.com -r
 /web-analyzer https://competitor2.com -r
-# Automatically generate comparison report
+# 自動的に比較レポートを生成
 ```
 
-## Implementation Workflow
+## 実装ワークフロー
 
-### Step 1: Initial Analysis
+### ステップ1: 初期分析
 ```typescript
-// Page access and basic info gathering
+// ページアクセスと基本情報取得
 await mcp__playwright__browser_navigate(targetUrl)
 const pageSnapshot = await mcp__playwright__browser_snapshot()
 const networkRequests = await mcp__playwright__browser_network_requests()
 ```
 
-### Step 2: DOM Structure Analysis
+### ステップ2: DOM構造分析
 ```typescript
-// Detailed page structure analysis
+// 詳細なページ構造分析
 const domStructure = await mcp__playwright__browser_evaluate(`
   return {
     semanticElements: getSemanticElements(),
@@ -319,9 +319,9 @@ const domStructure = await mcp__playwright__browser_evaluate(`
 `)
 ```
 
-### Step 3: Style and Technology Analysis
+### ステップ3: スタイルと技術分析
 ```typescript
-// CSS and JavaScript analysis
+// CSSとJavaScript分析
 const technicalAnalysis = await mcp__playwright__browser_evaluate(`
   return {
     frameworks: detectFrameworks(),
@@ -332,9 +332,9 @@ const technicalAnalysis = await mcp__playwright__browser_evaluate(`
 `)
 ```
 
-### Step 4: UX Flow Analysis (when -x option)
+### ステップ4: UXフロー分析 (-x オプション時)
 ```typescript
-// User journey analysis
+// ユーザージャーニー分析
 const uxAnalysis = await analyzeUserJourney({
   entryPoints: findEntryPoints(pageSnapshot),
   ctaElements: findCTAElements(pageSnapshot),
@@ -342,13 +342,13 @@ const uxAnalysis = await analyzeUserJourney({
 })
 ```
 
-### Step 5: Serena Integration Processing
+### ステップ5: Serena統合処理
 ```typescript
-// Comparison with current project
+// 現在のプロジェクトとの比較
 const currentProject = await mcp__serena__get_symbols_overview()
 const comparison = compareWithCurrent(analysisResults, currentProject)
 
-// Save as learning data
+// 学習データとして保存
 await mcp__serena__write_memory('competitor-analysis', {
   url: targetUrl,
   analysis: analysisResults,
@@ -356,9 +356,9 @@ await mcp__serena__write_memory('competitor-analysis', {
 })
 ```
 
-### Step 6: Report Generation and Output
+### ステップ6: レポート生成と出力
 ```typescript
-// Comprehensive report generation
+// 総合レポート生成
 const comprehensiveReport = generateReport({
   basicAnalysis,
   uiAnalysis,
@@ -367,19 +367,19 @@ const comprehensiveReport = generateReport({
   recommendations: serenaRecommendations
 })
 
-// File output
+// ファイル出力
 await writeReport(comprehensiveReport, outputFormat)
 ```
 
-## Screenshot Feature (-s option)
+## スクリーンショット機能 (-s オプション)
 
-### Automatic Capture Targets
-- Full page screenshots
-- Major section screenshots
-- Interactive element state changes
-- Mobile vs desktop comparison
+### 自動キャプチャ対象
+- フルページスクリーンショット
+- 主要セクションスクリーンショット
+- インタラクティブ要素の状態変化
+- モバイルvsデスクトップ比較
 
-### File Structure
+### ファイル構造
 ```
 screenshots/
 ├── {site-name}-full-page.png
@@ -391,116 +391,116 @@ screenshots/
 │   └── {site-name}-mobile-nav.png
 ```
 
-## Error Handling
+## エラーハンドリング
 
-### Common Errors and Solutions
+### よくあるエラーと解決策
 
-#### Access Restriction Error
+#### アクセス制限エラー
 ```bash
 ❌ Error: Cannot access site (403/429)
-Solutions:
-1. Check robots.txt
-2. Adjust User-Agent
-3. Adjust request frequency
+解決策:
+1. robots.txtを確認
+2. User-Agentを調整
+3. リクエスト頻度を調整
 ```
 
-#### JavaScript Execution Error
+#### JavaScript実行エラー
 ```bash
 ❌ Error: Failed to analyze page JavaScript
-Solutions:
-1. Use --wait option for load waiting
-2. Execute staged analysis
-3. Simplify tech stack detection
+解決策:
+1. --wait オプションで読み込み待機
+2. 段階的分析を実行
+3. 技術スタック検出を簡略化
 ```
 
-#### Large Site Error
+#### 大規模サイトエラー
 ```bash
 ❌ Error: Analysis failed due to memory shortage
-Solutions:
-1. Remove --deep option
-2. Analyze specific sections only
-3. Split analysis into multiple runs
+解決策:
+1. --deep オプションを外す
+2. 特定セクションのみ分析
+3. 分析を複数回に分割
 ```
 
-## Performance Optimization
+## パフォーマンス最適化
 
-### Analysis Efficiency Improvement
-- Time reduction through parallel processing
-- Cache feature utilization
-- Avoid unnecessary resource loading
+### 分析効率向上
+- 並列処理による時間短縮
+- キャッシュ機能の活用
+- 不要なリソース読み込み回避
 
-### Memory Management
-- Staged processing of large data
-- Proper cleanup of temporary files
-- Browser process optimization
+### メモリ管理
+- 大規模データの段階的処理
+- 一時ファイルの適切なクリーンアップ
+- ブラウザプロセスの最適化
 
-## Real Usage Examples
+## 実際の使用例
 
-### Startup Competitive Analysis
+### スタートアップ競合分析
 ```bash
-# Slack alternative service analysis
+# Slack代替サービスの分析
 /web-analyzer https://discord.com -d -u -x -t -c -r
 /web-analyzer https://mattermost.com -d -u -x -t -c -r
 /web-analyzer https://rocket.chat -d -u -x -t -c -r
 ```
 
-### E-commerce Site Analysis
+### Eコマースサイト分析
 ```bash
-# Amazon-style UI implementation reference
+# Amazon風UIの実装参考
 /web-analyzer https://amazon.com/products -u -c -s
-# Generate React component specs from analysis
+# 分析結果からReactコンポーネント仕様を生成
 ```
 
-### SaaS Dashboard Analysis
+### SaaSダッシュボード分析
 ```bash
-# Admin panel UI reference
+# 管理画面UI参考
 /web-analyzer https://analytics.google.com -u -x -c -m
-# Learn mobile-first dashboard design
+# モバイルファーストダッシュボードデザインを学習
 ```
 
-## Integration and Collaboration Features
+## 統合・連携機能
 
-### Integration with Other Commands
+### 他のコマンドとの連携
 ```bash
-# Analysis → Test → Improvement cycle
+# 分析 → テスト → 改善サイクル
 /web-analyzer competitor.com -r
-/playwright-test localhost:3000 -s  # Post-implementation comparison test
-/visual-regression localhost:3000 -b competitor.com  # Visual comparison
+/playwright-test localhost:3000 -s  # 実装後の比較テスト
+/visual-regression localhost:3000 -b competitor.com  # ビジュアル比較
 ```
 
-### Development Workflow Integration
+### 開発ワークフロー統合
 ```bash
-# Design phase utilization
+# デザインフェーズでの活用
 /web-analyzer reference-site.com -u -c > design-tokens.json
-# Implementation phase utilization
+# 実装フェーズでの活用
 /web-analyzer competitor.com -x > user-journey.md
 ```
 
-## Limitations and Considerations
+## 制限事項と考慮点
 
-### Analyzable Sites
-- ✅ Static sites and SPAs
-- ✅ Responsive design
-- ✅ Modern frameworks
-- ⚠️ Authentication-required pages (limited)
+### 分析可能なサイト
+- ✅ 静的サイトとSPA
+- ✅ レスポンシブデザイン
+- ✅ モダンフレームワーク
+- ⚠️ 認証が必要なページ（制限あり）
 
-### Difficult to Analyze Sites
-- ❌ Heavy JavaScript-dependent sites
-- ❌ Flash/legacy technology-based
-- ❌ Complex authentication/session management
-- ❌ Region/IP restricted sites
+### 分析が困難なサイト
+- ❌ 重度のJavaScript依存サイト
+- ❌ Flash/レガシー技術ベース
+- ❌ 複雑な認証/セッション管理
+- ❌ 地域/IP制限付きサイト
 
-## Output Files and Data
+## 出力ファイルとデータ
 
-### Generated Files
-- `analysis-report-{timestamp}.md` - Main report
-- `components-{site}.json` - Component specifications
-- `design-tokens-{site}.json` - Design tokens
-- `tech-stack-{site}.json` - Technical information
-- `screenshots/` - Screenshot collection
+### 生成ファイル
+- `analysis-report-{timestamp}.md` - メインレポート
+- `components-{site}.json` - コンポーネント仕様
+- `design-tokens-{site}.json` - デザイントークン
+- `tech-stack-{site}.json` - 技術情報
+- `screenshots/` - スクリーンショットコレクション
 
-### Serena Memory Stored Data
-- Competitive analysis result accumulation
-- Excellent UX pattern library
-- Technology trend tracking
-- Improvement suggestion history
+### Serenaメモリ保存データ
+- 競合分析結果の蓄積
+- 優れたUXパターンライブラリ
+- 技術トレンドトラッキング
+- 改善提案履歴

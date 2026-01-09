@@ -1,100 +1,100 @@
 ---
 name: brainstorm
-description: "Interactive requirements discovery through Socratic dialogue and systematic exploration"
+description: "ソクラテス式対話と体系的探索による対話型要件発見"
 category: orchestration
 complexity: advanced
 mcp-servers: [sequential, context7, magic, playwright, morphllm, serena]
 personas: [architect, analyzer, frontend, backend, security, devops, project-manager]
 ---
 
-# /sc:brainstorm - Interactive Requirements Discovery
+# /sc:brainstorm - 対話型要件発見
 
-> **Context Framework Note**: This file provides behavioral instructions for Claude Code when users type `/sc:brainstorm` patterns. This is NOT an executable command - it's a context trigger that activates the behavioral patterns defined below.
+> **コンテキストフレームワーク注記**: このファイルは、ユーザーが`/sc:brainstorm`パターンを入力した際のClaude Codeの動作指示を提供します。これは実行可能なコマンドではなく、以下に定義された動作パターンを有効化するコンテキストトリガーです。
 
-## Triggers
-- Ambiguous project ideas requiring structured exploration
-- Requirements discovery and specification development needs
-- Concept validation and feasibility assessment requests
-- Cross-session brainstorming and iterative refinement scenarios
+## トリガー
+- 構造化された探索が必要な曖昧なプロジェクトアイデア
+- 要件発見と仕様開発のニーズ
+- コンセプト検証とフィージビリティ評価のリクエスト
+- クロスセッションのブレインストーミングと反復的な改良シナリオ
 
-## Context Trigger Pattern
+## コンテキストトリガーパターン
 ```
-/sc:brainstorm [topic/idea] [--strategy systematic|agile|enterprise] [--depth shallow|normal|deep] [--parallel]
+/sc:brainstorm [トピック/アイデア] [--strategy systematic|agile|enterprise] [--depth shallow|normal|deep] [--parallel]
 ```
-**Usage**: Type this pattern in your Claude Code conversation to activate brainstorming behavioral mode with systematic exploration and multi-persona coordination.
+**使用方法**: Claude Codeの会話でこのパターンを入力すると、体系的な探索とマルチペルソナ連携を備えたブレインストーミング動作モードが有効になります。
 
-## Behavioral Flow
-1. **Explore**: Transform ambiguous ideas through Socratic dialogue and systematic questioning
-2. **Analyze**: Coordinate multiple personas for domain expertise and comprehensive analysis
-3. **Validate**: Apply feasibility assessment and requirement validation across domains
-4. **Specify**: Generate concrete specifications with cross-session persistence capabilities
-5. **Handoff**: Create actionable briefs ready for implementation or further development
+## 動作フロー
+1. **探索**: ソクラテス式対話と体系的な質問により曖昧なアイデアを変換
+2. **分析**: ドメイン専門知識と包括的分析のための複数ペルソナの連携
+3. **検証**: ドメイン全体でのフィージビリティ評価と要件検証の適用
+4. **仕様化**: クロスセッション永続化機能を備えた具体的な仕様の生成
+5. **ハンドオフ**: 実装またはさらなる開発に向けたアクション可能なブリーフの作成
 
-Key behaviors:
-- Multi-persona orchestration across architecture, analysis, frontend, backend, security domains
-- Advanced MCP coordination with intelligent routing for specialized analysis
-- Systematic execution with progressive dialogue enhancement and parallel exploration
-- Cross-session persistence with comprehensive requirements discovery documentation
+主要な動作:
+- アーキテクチャ、分析、フロントエンド、バックエンド、セキュリティドメインにわたるマルチペルソナオーケストレーション
+- 専門分析のためのインテリジェントルーティングを備えた高度なMCP連携
+- プログレッシブな対話強化と並行探索を備えた体系的実行
+- 包括的な要件発見ドキュメントを備えたクロスセッション永続化
 
-## MCP Integration
-- **Sequential MCP**: Complex multi-step reasoning for systematic exploration and validation
-- **Context7 MCP**: Framework-specific feasibility assessment and pattern analysis
-- **Magic MCP**: UI/UX feasibility and design system integration analysis
-- **Playwright MCP**: User experience validation and interaction pattern testing
-- **Morphllm MCP**: Large-scale content analysis and pattern-based transformation
-- **Serena MCP**: Cross-session persistence, memory management, and project context enhancement
+## MCP統合
+- **Sequential MCP**: 体系的な探索と検証のための複雑なマルチステップ推論
+- **Context7 MCP**: フレームワーク固有のフィージビリティ評価とパターン分析
+- **Magic MCP**: UI/UXフィージビリティとデザインシステム統合分析
+- **Playwright MCP**: ユーザーエクスペリエンス検証とインタラクションパターンテスト
+- **Morphllm MCP**: 大規模コンテンツ分析とパターンベースの変換
+- **Serena MCP**: クロスセッション永続化、メモリ管理、プロジェクトコンテキスト強化
 
-## Tool Coordination
-- **Read/Write/Edit**: Requirements documentation and specification generation
-- **TodoWrite**: Progress tracking for complex multi-phase exploration
-- **Task**: Advanced delegation for parallel exploration paths and multi-agent coordination
-- **WebSearch**: Market research, competitive analysis, and technology validation
-- **sequentialthinking**: Structured reasoning for complex requirements analysis
+## ツール連携
+- **Read/Write/Edit**: 要件ドキュメントと仕様生成
+- **TodoWrite**: 複雑なマルチフェーズ探索の進捗追跡
+- **Task**: 並行探索パスとマルチエージェント連携のための高度な委任
+- **WebSearch**: 市場調査、競合分析、技術検証
+- **sequentialthinking**: 複雑な要件分析のための構造化推論
 
-## Key Patterns
-- **Socratic Dialogue**: Question-driven exploration → systematic requirements discovery
-- **Multi-Domain Analysis**: Cross-functional expertise → comprehensive feasibility assessment
-- **Progressive Coordination**: Systematic exploration → iterative refinement and validation
-- **Specification Generation**: Concrete requirements → actionable implementation briefs
+## 主要パターン
+- **ソクラテス式対話**: 質問駆動型探索 → 体系的な要件発見
+- **マルチドメイン分析**: クロスファンクショナル専門知識 → 包括的なフィージビリティ評価
+- **プログレッシブ連携**: 体系的探索 → 反復的な改良と検証
+- **仕様生成**: 具体的な要件 → アクション可能な実装ブリーフ
 
-## Examples
+## 使用例
 
-### Systematic Product Discovery
+### 体系的なプロダクト発見
 ```
-/sc:brainstorm "AI-powered project management tool" --strategy systematic --depth deep
-# Multi-persona analysis: architect (system design), analyzer (feasibility), project-manager (requirements)
-# Sequential MCP provides structured exploration framework
-```
-
-### Agile Feature Exploration
-```
-/sc:brainstorm "real-time collaboration features" --strategy agile --parallel
-# Parallel exploration paths with frontend, backend, and security personas
-# Context7 and Magic MCP for framework and UI pattern analysis
+/sc:brainstorm "AI駆動プロジェクト管理ツール" --strategy systematic --depth deep
+# マルチペルソナ分析: architect（システム設計）、analyzer（フィージビリティ）、project-manager（要件）
+# Sequential MCPが構造化された探索フレームワークを提供
 ```
 
-### Enterprise Solution Validation
+### アジャイルな機能探索
 ```
-/sc:brainstorm "enterprise data analytics platform" --strategy enterprise --validate
-# Comprehensive validation with security, devops, and architect personas
-# Serena MCP for cross-session persistence and enterprise requirements tracking
-```
-
-### Cross-Session Refinement
-```
-/sc:brainstorm "mobile app monetization strategy" --depth normal
-# Serena MCP manages cross-session context and iterative refinement
-# Progressive dialogue enhancement with memory-driven insights
+/sc:brainstorm "リアルタイムコラボレーション機能" --strategy agile --parallel
+# frontend、backend、securityペルソナによる並行探索パス
+# フレームワークとUIパターン分析のためのContext7とMagic MCP
 ```
 
-## Boundaries
+### エンタープライズソリューション検証
+```
+/sc:brainstorm "エンタープライズデータ分析プラットフォーム" --strategy enterprise --validate
+# security、devops、architectペルソナによる包括的な検証
+# クロスセッション永続化とエンタープライズ要件追跡のためのSerena MCP
+```
 
-**Will:**
-- Transform ambiguous ideas into concrete specifications through systematic exploration
-- Coordinate multiple personas and MCP servers for comprehensive analysis
-- Provide cross-session persistence and progressive dialogue enhancement
+### クロスセッション改良
+```
+/sc:brainstorm "モバイルアプリ収益化戦略" --depth normal
+# Serena MCPがクロスセッションコンテキストと反復的な改良を管理
+# メモリ駆動型インサイトによるプログレッシブな対話強化
+```
 
-**Will Not:**
-- Make implementation decisions without proper requirements discovery
-- Override user vision with prescriptive solutions during exploration phase
-- Bypass systematic exploration for complex multi-domain projects
+## 境界
+
+**対応範囲:**
+- 体系的な探索による曖昧なアイデアから具体的な仕様への変換
+- 包括的分析のための複数ペルソナとMCPサーバーの連携
+- クロスセッション永続化とプログレッシブな対話強化の提供
+
+**対応外:**
+- 適切な要件発見なしの実装決定
+- 探索フェーズ中のユーザービジョンを規定的なソリューションで上書き
+- 複雑なマルチドメインプロジェクトでの体系的探索のバイパス

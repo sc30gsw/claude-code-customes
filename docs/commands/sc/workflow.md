@@ -1,97 +1,97 @@
 ---
 name: workflow
-description: "Generate structured implementation workflows from PRDs and feature requirements"
+description: "PRDと機能要件から構造化された実装ワークフローを生成"
 category: orchestration
 complexity: advanced
 mcp-servers: [sequential, context7, magic, playwright, morphllm, serena]
 personas: [architect, analyzer, frontend, backend, security, devops, project-manager]
 ---
 
-# /sc:workflow - Implementation Workflow Generator
+# /sc:workflow - 実装ワークフロー生成
 
-## Triggers
-- PRD and feature specification analysis for implementation planning
-- Structured workflow generation for development projects
-- Multi-persona coordination for complex implementation strategies
-- Cross-session workflow management and dependency mapping
+## トリガー
+- 実装計画のためのPRDと機能仕様の分析
+- 開発プロジェクトのための構造化されたワークフロー生成
+- 複雑な実装戦略のためのマルチペルソナ連携
+- クロスセッションワークフロー管理と依存関係マッピング
 
-## Usage
+## 使用方法
 ```
-/sc:workflow [prd-file|feature-description] [--strategy systematic|agile|enterprise] [--depth shallow|normal|deep] [--parallel]
+/sc:workflow [prdファイル|機能説明] [--strategy systematic|agile|enterprise] [--depth shallow|normal|deep] [--parallel]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Parse PRD and feature specifications to understand implementation requirements
-2. **Plan**: Generate comprehensive workflow structure with dependency mapping and task orchestration
-3. **Coordinate**: Activate multiple personas for domain expertise and implementation strategy
-4. **Execute**: Create structured step-by-step workflows with automated task coordination
-5. **Validate**: Apply quality gates and ensure workflow completeness across domains
+## 動作フロー
+1. **分析**: PRDと機能仕様を解析し実装要件を理解
+2. **計画**: 依存関係マッピングとタスクオーケストレーションを含む包括的なワークフロー構造を生成
+3. **連携**: ドメイン専門知識と実装戦略のために複数ペルソナを有効化
+4. **実行**: 自動タスク連携を含む構造化されたステップバイステップワークフローを作成
+5. **検証**: 品質ゲートを適用しドメイン全体でのワークフロー完全性を確保
 
-Key behaviors:
-- Multi-persona orchestration across architecture, frontend, backend, security, and devops domains
-- Advanced MCP coordination with intelligent routing for specialized workflow analysis
-- Systematic execution with progressive workflow enhancement and parallel processing
-- Cross-session workflow management with comprehensive dependency tracking
+主要な動作:
+- アーキテクチャ、フロントエンド、バックエンド、セキュリティ、devopsドメイン全体でのマルチペルソナオーケストレーション
+- 専門的なワークフロー分析のためのインテリジェントルーティングを備えた高度なMCP連携
+- プログレッシブなワークフロー強化と並列処理による体系的実行
+- 包括的な依存関係追跡を備えたクロスセッションワークフロー管理
 
-## MCP Integration
-- **Sequential MCP**: Complex multi-step workflow analysis and systematic implementation planning
-- **Context7 MCP**: Framework-specific workflow patterns and implementation best practices
-- **Magic MCP**: UI/UX workflow generation and design system integration strategies
-- **Playwright MCP**: Testing workflow integration and quality assurance automation
-- **Morphllm MCP**: Large-scale workflow transformation and pattern-based optimization
-- **Serena MCP**: Cross-session workflow persistence, memory management, and project context
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステップワークフロー分析と体系的な実装計画
+- **Context7 MCP**: フレームワーク固有のワークフローパターンと実装ベストプラクティス
+- **Magic MCP**: UI/UXワークフロー生成とデザインシステム統合戦略
+- **Playwright MCP**: テストワークフロー統合と品質保証自動化
+- **Morphllm MCP**: 大規模ワークフロー変換とパターンベースの最適化
+- **Serena MCP**: クロスセッションワークフロー永続化、メモリ管理、プロジェクトコンテキスト
 
-## Tool Coordination
-- **Read/Write/Edit**: PRD analysis and workflow documentation generation
-- **TodoWrite**: Progress tracking for complex multi-phase workflow execution
-- **Task**: Advanced delegation for parallel workflow generation and multi-agent coordination
-- **WebSearch**: Technology research, framework validation, and implementation strategy analysis
-- **sequentialthinking**: Structured reasoning for complex workflow dependency analysis
+## ツール連携
+- **Read/Write/Edit**: PRD分析とワークフロードキュメント生成
+- **TodoWrite**: 複雑なマルチフェーズワークフロー実行の進捗追跡
+- **Task**: 並列ワークフロー生成とマルチエージェント連携のための高度な委任
+- **WebSearch**: 技術調査、フレームワーク検証、実装戦略分析
+- **sequentialthinking**: 複雑なワークフロー依存関係分析のための構造化された推論
 
-## Key Patterns
-- **PRD Analysis**: Document parsing → requirement extraction → implementation strategy development
-- **Workflow Generation**: Task decomposition → dependency mapping → structured implementation planning
-- **Multi-Domain Coordination**: Cross-functional expertise → comprehensive implementation strategies
-- **Quality Integration**: Workflow validation → testing strategies → deployment planning
+## 主要パターン
+- **PRD分析**: ドキュメント解析 → 要件抽出 → 実装戦略開発
+- **ワークフロー生成**: タスク分解 → 依存関係マッピング → 構造化された実装計画
+- **マルチドメイン連携**: 機能横断的専門知識 → 包括的な実装戦略
+- **品質統合**: ワークフロー検証 → テスト戦略 → デプロイメント計画
 
-## Examples
+## 使用例
 
-### Systematic PRD Workflow
+### 体系的PRDワークフロー
 ```
 /sc:workflow Claudedocs/PRD/feature-spec.md --strategy systematic --depth deep
-# Comprehensive PRD analysis with systematic workflow generation
-# Multi-persona coordination for complete implementation strategy
+# 体系的ワークフロー生成を伴う包括的PRD分析
+# 完全な実装戦略のためのマルチペルソナ連携
 ```
 
-### Agile Feature Workflow
+### アジャイル機能ワークフロー
 ```
-/sc:workflow "user authentication system" --strategy agile --parallel
-# Agile workflow generation with parallel task coordination
-# Context7 and Magic MCP for framework and UI workflow patterns
+/sc:workflow "ユーザー認証システム" --strategy agile --parallel
+# 並列タスク連携を伴うアジャイルワークフロー生成
+# フレームワークとUIワークフローパターンのためのContext7とMagic MCP
 ```
 
-### Enterprise Implementation Planning
+### エンタープライズ実装計画
 ```
 /sc:workflow enterprise-prd.md --strategy enterprise --validate
-# Enterprise-scale workflow with comprehensive validation
-# Security, devops, and architect personas for compliance and scalability
+# 包括的検証を伴うエンタープライズ規模ワークフロー
+# コンプライアンスとスケーラビリティのためのSecurity、devops、architectペルソナ
 ```
 
-### Cross-Session Workflow Management
+### クロスセッションワークフロー管理
 ```
 /sc:workflow project-brief.md --depth normal
-# Serena MCP manages cross-session workflow context and persistence
-# Progressive workflow enhancement with memory-driven insights
+# Serena MCPがクロスセッションワークフローコンテキストと永続化を管理
+# メモリ駆動のインサイトによるプログレッシブなワークフロー強化
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Generate comprehensive implementation workflows from PRD and feature specifications
-- Coordinate multiple personas and MCP servers for complete implementation strategies
-- Provide cross-session workflow management and progressive enhancement capabilities
+**対応範囲:**
+- PRDと機能仕様から包括的な実装ワークフローを生成
+- 完全な実装戦略のために複数ペルソナとMCPサーバーを連携
+- クロスセッションワークフロー管理とプログレッシブ強化機能を提供
 
-**Will Not:**
-- Execute actual implementation tasks beyond workflow planning and strategy
-- Override established development processes without proper analysis and validation
-- Generate workflows without comprehensive requirement analysis and dependency mapping
+**対応外:**
+- ワークフロー計画と戦略を超えた実際の実装タスクの実行
+- 適切な分析と検証なしの確立された開発プロセスの上書き
+- 包括的な要件分析と依存関係マッピングなしのワークフロー生成

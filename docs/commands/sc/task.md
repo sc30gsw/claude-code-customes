@@ -1,89 +1,89 @@
 ---
 name: task
-description: "Execute complex tasks with intelligent workflow management and delegation"
+description: "インテリジェントなワークフロー管理と委任による複雑なタスクの実行"
 category: special
 complexity: advanced
 mcp-servers: [sequential, context7, magic, playwright, morphllm, serena]
 personas: [architect, analyzer, frontend, backend, security, devops, project-manager]
 ---
 
-# /sc:task - Enhanced Task Management
+# /sc:task - 高度タスク管理
 
-## Triggers
-- Complex tasks requiring multi-agent coordination and delegation
-- Projects needing structured workflow management and cross-session persistence
-- Operations requiring intelligent MCP server routing and domain expertise
-- Tasks benefiting from systematic execution and progressive enhancement
+## トリガー
+- マルチエージェント連携と委任を必要とする複雑なタスク
+- 構造化されたワークフロー管理とクロスセッション永続化を必要とするプロジェクト
+- インテリジェントなMCPサーバールーティングとドメイン専門知識を必要とする操作
+- 体系的な実行とプログレッシブな強化から恩恵を受けるタスク
 
-## Usage
+## 使用方法
 ```
-/sc:task [action] [target] [--strategy systematic|agile|enterprise] [--parallel] [--delegate]
-```
-
-## Behavioral Flow
-1. **Analyze**: Parse task requirements and determine optimal execution strategy
-2. **Delegate**: Route to appropriate MCP servers and activate relevant personas
-3. **Coordinate**: Execute tasks with intelligent workflow management and parallel processing
-4. **Validate**: Apply quality gates and comprehensive task completion verification
-5. **Optimize**: Analyze performance and provide enhancement recommendations
-
-Key behaviors:
-- Multi-persona coordination across architect, frontend, backend, security, devops domains
-- Intelligent MCP server routing (Sequential, Context7, Magic, Playwright, Morphllm, Serena)
-- Systematic execution with progressive task enhancement and cross-session persistence
-- Advanced task delegation with hierarchical breakdown and dependency management
-
-## MCP Integration
-- **Sequential MCP**: Complex multi-step task analysis and systematic execution planning
-- **Context7 MCP**: Framework-specific patterns and implementation best practices
-- **Magic MCP**: UI/UX task coordination and design system integration
-- **Playwright MCP**: Testing workflow integration and validation automation
-- **Morphllm MCP**: Large-scale task transformation and pattern-based optimization
-- **Serena MCP**: Cross-session task persistence and project memory management
-
-## Tool Coordination
-- **TodoWrite**: Hierarchical task breakdown and progress tracking across Epic → Story → Task levels
-- **Task**: Advanced delegation for complex multi-agent coordination and sub-task management
-- **Read/Write/Edit**: Task documentation and implementation coordination
-- **sequentialthinking**: Structured reasoning for complex task dependency analysis
-
-## Key Patterns
-- **Task Hierarchy**: Epic-level objectives → Story coordination → Task execution → Subtask granularity
-- **Strategy Selection**: Systematic (comprehensive) → Agile (iterative) → Enterprise (governance)
-- **Multi-Agent Coordination**: Persona activation → MCP routing → parallel execution → result integration
-- **Cross-Session Management**: Task persistence → context continuity → progressive enhancement
-
-## Examples
-
-### Complex Feature Development
-```
-/sc:task create "enterprise authentication system" --strategy systematic --parallel
-# Comprehensive task breakdown with multi-domain coordination
-# Activates architect, security, backend, frontend personas
+/sc:task [アクション] [ターゲット] [--strategy systematic|agile|enterprise] [--parallel] [--delegate]
 ```
 
-### Agile Sprint Coordination
+## 動作フロー
+1. **分析**: タスク要件を解析し最適な実行戦略を決定
+2. **委任**: 適切なMCPサーバーにルーティングし関連ペルソナを有効化
+3. **連携**: インテリジェントなワークフロー管理と並列処理でタスクを実行
+4. **検証**: 品質ゲートと包括的なタスク完了検証を適用
+5. **最適化**: パフォーマンスを分析し強化推奨事項を提供
+
+主要な動作:
+- architect、frontend、backend、security、devopsドメイン全体でのマルチペルソナ連携
+- インテリジェントなMCPサーバールーティング（Sequential、Context7、Magic、Playwright、Morphllm、Serena）
+- プログレッシブなタスク強化とクロスセッション永続化による体系的実行
+- 階層的分解と依存関係管理による高度なタスク委任
+
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステップタスク分析と体系的な実行計画
+- **Context7 MCP**: フレームワーク固有のパターンと実装ベストプラクティス
+- **Magic MCP**: UI/UXタスク連携とデザインシステム統合
+- **Playwright MCP**: テストワークフロー統合と検証自動化
+- **Morphllm MCP**: 大規模タスク変換とパターンベースの最適化
+- **Serena MCP**: クロスセッションタスク永続化とプロジェクトメモリ管理
+
+## ツール連携
+- **TodoWrite**: Epic → Story → Taskレベル全体での階層的タスク分解と進捗追跡
+- **Task**: 複雑なマルチエージェント連携とサブタスク管理のための高度な委任
+- **Read/Write/Edit**: タスクドキュメントと実装連携
+- **sequentialthinking**: 複雑なタスク依存関係分析のための構造化された推論
+
+## 主要パターン
+- **タスク階層**: Epicレベル目標 → Story連携 → Task実行 → Subtask粒度
+- **戦略選択**: Systematic（包括的） → Agile（反復的） → Enterprise（ガバナンス）
+- **マルチエージェント連携**: ペルソナ有効化 → MCPルーティング → 並列実行 → 結果統合
+- **クロスセッション管理**: タスク永続化 → コンテキスト継続性 → プログレッシブ強化
+
+## 使用例
+
+### 複雑な機能開発
 ```
-/sc:task execute "feature backlog" --strategy agile --delegate
-# Iterative task execution with intelligent delegation
-# Cross-session persistence for sprint continuity
+/sc:task create "エンタープライズ認証システム" --strategy systematic --parallel
+# マルチドメイン連携による包括的なタスク分解
+# architect、security、backend、frontendペルソナを有効化
 ```
 
-### Multi-Domain Integration
+### アジャイルスプリント連携
 ```
-/sc:task execute "microservices platform" --strategy enterprise --parallel
-# Enterprise-scale coordination with compliance validation
-# Parallel execution across multiple technical domains
+/sc:task execute "機能バックログ" --strategy agile --delegate
+# インテリジェントな委任による反復的タスク実行
+# スプリント継続性のためのクロスセッション永続化
 ```
 
-## Boundaries
+### マルチドメイン統合
+```
+/sc:task execute "マイクロサービスプラットフォーム" --strategy enterprise --parallel
+# コンプライアンス検証付きのエンタープライズ規模連携
+# 複数の技術ドメイン間での並列実行
+```
 
-**Will:**
-- Execute complex tasks with multi-agent coordination and intelligent delegation
-- Provide hierarchical task breakdown with cross-session persistence
-- Coordinate multiple MCP servers and personas for optimal task outcomes
+## 境界
 
-**Will Not:**
-- Execute simple tasks that don't require advanced orchestration
-- Compromise quality standards for speed or convenience
-- Operate without proper validation and quality gates
+**対応範囲:**
+- マルチエージェント連携とインテリジェントな委任による複雑なタスクの実行
+- クロスセッション永続化を備えた階層的タスク分解の提供
+- 最適なタスク結果のための複数MCPサーバーとペルソナの連携
+
+**対応外:**
+- 高度なオーケストレーションを必要としない単純タスクの実行
+- 速度や利便性のための品質標準の妥協
+- 適切な検証と品質ゲートなしでの操作

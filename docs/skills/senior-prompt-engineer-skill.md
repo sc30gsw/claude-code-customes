@@ -1,226 +1,226 @@
 ---
 name: senior-prompt-engineer
-description: World-class prompt engineering skill for LLM optimization, prompt patterns, structured outputs, and AI product development. Expertise in Claude, GPT-4, prompt design patterns, few-shot learning, chain-of-thought, and AI evaluation. Includes RAG optimization, agent design, and LLM system architecture. Use when building AI products, optimizing LLM performance, designing agentic systems, or implementing advanced prompting techniques.
+description: LLM最適化、プロンプトパターン、構造化出力、AI製品開発のための世界クラスのプロンプトエンジニアリングスキル。Claude、GPT-4、プロンプト設計パターン、few-shotラーニング、chain-of-thought、AI評価の専門知識。RAG最適化、エージェント設計、LLMシステムアーキテクチャを含む。AI製品構築、LLMパフォーマンス最適化、エージェントシステム設計、高度なプロンプティング技術の実装時に使用。
 ---
 
-# Senior Prompt Engineer
+# シニアプロンプトエンジニア
 
-World-class senior prompt engineer skill for production-grade AI/ML/Data systems.
+プロダクショングレードのAI/ML/データシステムのための世界クラスのシニアプロンプトエンジニアスキル。
 
-## Quick Start
+## クイックスタート
 
-### Main Capabilities
+### 主要機能
 
 ```bash
-# Core Tool 1
+# コアツール1
 python scripts/prompt_optimizer.py --input data/ --output results/
 
-# Core Tool 2
+# コアツール2
 python scripts/rag_evaluator.py --target project/ --analyze
 
-# Core Tool 3
+# コアツール3
 python scripts/agent_orchestrator.py --config config.yaml --deploy
 ```
 
-## Core Expertise
+## コア専門知識
 
-This skill covers world-class capabilities in:
+このスキルは以下の世界クラスの機能をカバー:
 
-- Advanced production patterns and architectures
-- Scalable system design and implementation
-- Performance optimization at scale
-- MLOps and DataOps best practices
-- Real-time processing and inference
-- Distributed computing frameworks
-- Model deployment and monitoring
-- Security and compliance
-- Cost optimization
-- Team leadership and mentoring
+- 高度な本番パターンとアーキテクチャ
+- スケーラブルなシステム設計と実装
+- 大規模なパフォーマンス最適化
+- MLOpsとDataOpsのベストプラクティス
+- リアルタイム処理と推論
+- 分散コンピューティングフレームワーク
+- モデルデプロイメントとモニタリング
+- セキュリティとコンプライアンス
+- コスト最適化
+- チームリーダーシップとメンタリング
 
-## Tech Stack
+## テックスタック
 
-**Languages:** Python, SQL, R, Scala, Go
-**ML Frameworks:** PyTorch, TensorFlow, Scikit-learn, XGBoost
-**Data Tools:** Spark, Airflow, dbt, Kafka, Databricks
-**LLM Frameworks:** LangChain, LlamaIndex, DSPy
-**Deployment:** Docker, Kubernetes, AWS/GCP/Azure
-**Monitoring:** MLflow, Weights & Biases, Prometheus
-**Databases:** PostgreSQL, BigQuery, Snowflake, Pinecone
+**言語:** Python、SQL、R、Scala、Go
+**MLフレームワーク:** PyTorch、TensorFlow、Scikit-learn、XGBoost
+**データツール:** Spark、Airflow、dbt、Kafka、Databricks
+**LLMフレームワーク:** LangChain、LlamaIndex、DSPy
+**デプロイメント:** Docker、Kubernetes、AWS/GCP/Azure
+**モニタリング:** MLflow、Weights & Biases、Prometheus
+**データベース:** PostgreSQL、BigQuery、Snowflake、Pinecone
 
-## Reference Documentation
+## リファレンスドキュメント
 
-### 1. Prompt Engineering Patterns
+### 1. プロンプトエンジニアリングパターン
 
-Comprehensive guide available in `references/prompt_engineering_patterns.md` covering:
+`references/prompt_engineering_patterns.md`で利用可能な包括的なガイド:
 
-- Advanced patterns and best practices
-- Production implementation strategies
-- Performance optimization techniques
-- Scalability considerations
-- Security and compliance
-- Real-world case studies
+- 高度なパターンとベストプラクティス
+- 本番実装戦略
+- パフォーマンス最適化テクニック
+- スケーラビリティの考慮事項
+- セキュリティとコンプライアンス
+- 実世界のケーススタディ
 
-### 2. Llm Evaluation Frameworks
+### 2. LLM評価フレームワーク
 
-Complete workflow documentation in `references/llm_evaluation_frameworks.md` including:
+`references/llm_evaluation_frameworks.md`の完全なワークフロードキュメント:
 
-- Step-by-step processes
-- Architecture design patterns
-- Tool integration guides
-- Performance tuning strategies
-- Troubleshooting procedures
+- ステップバイステップのプロセス
+- アーキテクチャ設計パターン
+- ツール統合ガイド
+- パフォーマンスチューニング戦略
+- トラブルシューティング手順
 
-### 3. Agentic System Design
+### 3. エージェントシステム設計
 
-Technical reference guide in `references/agentic_system_design.md` with:
+`references/agentic_system_design.md`のテクニカルリファレンスガイド:
 
-- System design principles
-- Implementation examples
-- Configuration best practices
-- Deployment strategies
-- Monitoring and observability
+- システム設計原則
+- 実装例
+- 設定のベストプラクティス
+- デプロイメント戦略
+- モニタリングと可観測性
 
-## Production Patterns
+## 本番パターン
 
-### Pattern 1: Scalable Data Processing
+### パターン1: スケーラブルなデータ処理
 
-Enterprise-scale data processing with distributed computing:
+分散コンピューティングによるエンタープライズ規模のデータ処理:
 
-- Horizontal scaling architecture
-- Fault-tolerant design
-- Real-time and batch processing
-- Data quality validation
-- Performance monitoring
+- 水平スケーリングアーキテクチャ
+- 耐障害性設計
+- リアルタイムとバッチ処理
+- データ品質検証
+- パフォーマンスモニタリング
 
-### Pattern 2: ML Model Deployment
+### パターン2: MLモデルデプロイメント
 
-Production ML system with high availability:
+高可用性の本番MLシステム:
 
-- Model serving with low latency
-- A/B testing infrastructure
-- Feature store integration
-- Model monitoring and drift detection
-- Automated retraining pipelines
+- 低レイテンシーでのモデル提供
+- A/Bテストインフラストラクチャ
+- 特徴ストア統合
+- モデルモニタリングとドリフト検出
+- 自動再学習パイプライン
 
-### Pattern 3: Real-Time Inference
+### パターン3: リアルタイム推論
 
-High-throughput inference system:
+高スループット推論システム:
 
-- Batching and caching strategies
-- Load balancing
-- Auto-scaling
-- Latency optimization
-- Cost optimization
+- バッチングとキャッシング戦略
+- ロードバランシング
+- オートスケーリング
+- レイテンシー最適化
+- コスト最適化
 
-## Best Practices
+## ベストプラクティス
 
-### Development
+### 開発
 
-- Test-driven development
-- Code reviews and pair programming
-- Documentation as code
-- Version control everything
-- Continuous integration
+- テスト駆動開発
+- コードレビューとペアプログラミング
+- ドキュメントアズコード
+- すべてをバージョン管理
+- 継続的インテグレーション
 
-### Production
+### 本番
 
-- Monitor everything critical
-- Automate deployments
-- Feature flags for releases
-- Canary deployments
-- Comprehensive logging
+- 重要なものすべてをモニタリング
+- デプロイメントを自動化
+- リリースにフィーチャーフラグを使用
+- カナリアデプロイメント
+- 包括的なロギング
 
-### Team Leadership
+### チームリーダーシップ
 
-- Mentor junior engineers
-- Drive technical decisions
-- Establish coding standards
-- Foster learning culture
-- Cross-functional collaboration
+- ジュニアエンジニアをメンタリング
+- 技術的決定を主導
+- コーディング標準を確立
+- 学習文化を育成
+- クロスファンクショナルなコラボレーション
 
-## Performance Targets
+## パフォーマンス目標
 
-**Latency:**
+**レイテンシー:**
 - P50: < 50ms
 - P95: < 100ms
 - P99: < 200ms
 
-**Throughput:**
-- Requests/second: > 1000
-- Concurrent users: > 10,000
+**スループット:**
+- リクエスト/秒: > 1000
+- 同時ユーザー: > 10,000
 
-**Availability:**
-- Uptime: 99.9%
-- Error rate: < 0.1%
+**可用性:**
+- アップタイム: 99.9%
+- エラー率: < 0.1%
 
-## Security & Compliance
+## セキュリティ & コンプライアンス
 
-- Authentication & authorization
-- Data encryption (at rest & in transit)
-- PII handling and anonymization
-- GDPR/CCPA compliance
-- Regular security audits
-- Vulnerability management
+- 認証と認可
+- データ暗号化（保存時と転送時）
+- PII処理と匿名化
+- GDPR/CCPAコンプライアンス
+- 定期的なセキュリティ監査
+- 脆弱性管理
 
-## Common Commands
+## よく使うコマンド
 
 ```bash
-# Development
+# 開発
 python -m pytest tests/ -v --cov
 python -m black src/
 python -m pylint src/
 
-# Training
+# トレーニング
 python scripts/train.py --config prod.yaml
 python scripts/evaluate.py --model best.pth
 
-# Deployment
+# デプロイメント
 docker build -t service:v1 .
 kubectl apply -f k8s/
 helm upgrade service ./charts/
 
-# Monitoring
+# モニタリング
 kubectl logs -f deployment/service
 python scripts/health_check.py
 ```
 
-## Resources
+## リソース
 
-- Advanced Patterns: `references/prompt_engineering_patterns.md`
-- Implementation Guide: `references/llm_evaluation_frameworks.md`
-- Technical Reference: `references/agentic_system_design.md`
-- Automation Scripts: `scripts/` directory
+- 高度なパターン: `references/prompt_engineering_patterns.md`
+- 実装ガイド: `references/llm_evaluation_frameworks.md`
+- テクニカルリファレンス: `references/agentic_system_design.md`
+- 自動化スクリプト: `scripts/`ディレクトリ
 
-## Senior-Level Responsibilities
+## シニアレベルの責任
 
-As a world-class senior professional:
+世界クラスのシニアプロフェッショナルとして:
 
-1. **Technical Leadership**
-   - Drive architectural decisions
-   - Mentor team members
-   - Establish best practices
-   - Ensure code quality
+1. **技術リーダーシップ**
+   - アーキテクチャの決定を主導
+   - チームメンバーをメンタリング
+   - ベストプラクティスを確立
+   - コード品質を確保
 
-2. **Strategic Thinking**
-   - Align with business goals
-   - Evaluate trade-offs
-   - Plan for scale
-   - Manage technical debt
+2. **戦略的思考**
+   - ビジネス目標との整合
+   - トレードオフの評価
+   - スケールの計画
+   - 技術的負債の管理
 
-3. **Collaboration**
-   - Work across teams
-   - Communicate effectively
-   - Build consensus
-   - Share knowledge
+3. **コラボレーション**
+   - チーム間で協力
+   - 効果的にコミュニケーション
+   - コンセンサスを構築
+   - 知識を共有
 
-4. **Innovation**
-   - Stay current with research
-   - Experiment with new approaches
-   - Contribute to community
-   - Drive continuous improvement
+4. **イノベーション**
+   - 研究の最新情報を把握
+   - 新しいアプローチを実験
+   - コミュニティに貢献
+   - 継続的改善を推進
 
-5. **Production Excellence**
-   - Ensure high availability
-   - Monitor proactively
-   - Optimize performance
-   - Respond to incidents
+5. **本番エクセレンス**
+   - 高可用性を確保
+   - プロアクティブにモニタリング
+   - パフォーマンスを最適化
+   - インシデントに対応

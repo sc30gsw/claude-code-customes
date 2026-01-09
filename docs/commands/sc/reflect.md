@@ -1,87 +1,88 @@
 ---
 name: reflect
-description: "Task reflection and validation using Serena MCP analysis capabilities"
+description: "Serena MCP分析機能を使用したタスク振り返りと検証"
 category: special
 complexity: standard
 mcp-servers: [serena]
 personas: []
 ---
 
-# /sc:reflect - Task Reflection and Validation
+# /sc:reflect - タスク振り返りと検証
 
-## Triggers
-- Task completion requiring validation and quality assessment
-- Session progress analysis and reflection on work accomplished
-- Cross-session learning and insight capture for project improvement
-- Quality gates requiring comprehensive task adherence verification
+## トリガー
+- 検証と品質評価を必要とするタスク完了
+- セッション進捗分析と達成作業の振り返り
+- プロジェクト改善のためのクロスセッション学習とインサイト獲得
+- 包括的なタスク遵守検証を必要とする品質ゲート
 
-## Usage
+## 使用方法
 ```
 /sc:reflect [--type task|session|completion] [--analyze] [--validate]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine current task state and session progress using Serena reflection tools
-2. **Validate**: Assess task adherence, completion quality, and requirement fulfillment
-3. **Reflect**: Apply deep analysis of collected information and session insights
-4. **Document**: Update session metadata and capture learning insights
-5. **Optimize**: Provide recommendations for process improvement and quality enhancement
+## 動作フロー
+1. **分析**: Serena振り返りツールを使用した現在のタスク状態とセッション進捗の調査
+2. **検証**: タスク遵守、完了品質、要件充足の評価
+3. **振り返り**: 収集情報とセッションインサイトの深い分析の適用
+4. **ドキュメント**: セッションメタデータの更新と学習インサイトの獲得
+5. **最適化**: プロセス改善と品質向上のための推奨事項の提供
 
-Key behaviors:
-- Serena MCP integration for comprehensive reflection analysis and task validation
-- Bridge between TodoWrite patterns and advanced Serena analysis capabilities
-- Session lifecycle integration with cross-session persistence and learning capture
-- Performance-critical operations with <200ms core reflection and validation
-## MCP Integration
-- **Serena MCP**: Mandatory integration for reflection analysis, task validation, and session metadata
-- **Reflection Tools**: think_about_task_adherence, think_about_collected_information, think_about_whether_you_are_done
-- **Memory Operations**: Cross-session persistence with read_memory, write_memory, list_memories
-- **Performance Critical**: <200ms for core reflection operations, <1s for checkpoint creation
+主要な動作:
+- 包括的な振り返り分析とタスク検証のためのSerena MCP統合
+- TodoWriteパターンと高度なSerena分析機能間のブリッジ
+- クロスセッション永続化と学習獲得によるセッションライフサイクル統合
+- コア振り返りと検証で200ms未満のパフォーマンスクリティカルな操作
 
-## Tool Coordination
-- **TodoRead/TodoWrite**: Bridge between traditional task management and advanced reflection analysis
-- **think_about_task_adherence**: Validates current approach against project goals and session objectives
-- **think_about_collected_information**: Analyzes session work and information gathering completeness
-- **think_about_whether_you_are_done**: Evaluates task completion criteria and remaining work identification
-- **Memory Tools**: Session metadata updates and cross-session learning capture
+## MCP統合
+- **Serena MCP**: 振り返り分析、タスク検証、セッションメタデータのための必須統合
+- **振り返りツール**: think_about_task_adherence、think_about_collected_information、think_about_whether_you_are_done
+- **メモリ操作**: read_memory、write_memory、list_memoriesによるクロスセッション永続化
+- **パフォーマンスクリティカル**: コア振り返り操作で200ms未満、チェックポイント作成で1秒未満
 
-## Key Patterns
-- **Task Validation**: Current approach → goal alignment → deviation identification → course correction
-- **Session Analysis**: Information gathering → completeness assessment → quality evaluation → insight capture
-- **Completion Assessment**: Progress evaluation → completion criteria → remaining work → decision validation
-- **Cross-Session Learning**: Reflection insights → memory persistence → enhanced project understanding
+## ツール連携
+- **TodoRead/TodoWrite**: 従来のタスク管理と高度な振り返り分析間のブリッジ
+- **think_about_task_adherence**: プロジェクト目標とセッション目的に対する現在のアプローチを検証
+- **think_about_collected_information**: セッション作業と情報収集の完全性を分析
+- **think_about_whether_you_are_done**: タスク完了基準と残作業特定を評価
+- **メモリツール**: セッションメタデータ更新とクロスセッション学習獲得
 
-## Examples
+## 主要パターン
+- **タスク検証**: 現在のアプローチ → 目標整合 → 逸脱特定 → コース修正
+- **セッション分析**: 情報収集 → 完全性評価 → 品質評価 → インサイト獲得
+- **完了評価**: 進捗評価 → 完了基準 → 残作業 → 決定検証
+- **クロスセッション学習**: 振り返りインサイト → メモリ永続化 → プロジェクト理解強化
 
-### Task Adherence Reflection
+## 使用例
+
+### タスク遵守振り返り
 ```
 /sc:reflect --type task --analyze
-# Validates current approach against project goals
-# Identifies deviations and provides course correction recommendations
+# プロジェクト目標に対する現在のアプローチを検証
+# 逸脱を特定しコース修正推奨事項を提供
 ```
 
-### Session Progress Analysis
+### セッション進捗分析
 ```
 /sc:reflect --type session --validate
-# Comprehensive analysis of session work and information gathering
-# Quality assessment and gap identification for project improvement
+# セッション作業と情報収集の包括的分析
+# プロジェクト改善のための品質評価とギャップ特定
 ```
 
-### Completion Validation
+### 完了検証
 ```
 /sc:reflect --type completion
-# Evaluates task completion criteria against actual progress
-# Determines readiness for task completion and identifies remaining blockers
+# 実際の進捗に対するタスク完了基準を評価
+# タスク完了準備状態を判断し残ブロッカーを特定
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Perform comprehensive task reflection and validation using Serena MCP analysis tools
-- Bridge TodoWrite patterns with advanced reflection capabilities for enhanced task management
-- Provide cross-session learning capture and session lifecycle integration
+**対応範囲:**
+- Serena MCP分析ツールを使用した包括的なタスク振り返りと検証の実行
+- 強化されたタスク管理のためのTodoWriteパターンと高度な振り返り機能のブリッジ
+- クロスセッション学習獲得とセッションライフサイクル統合の提供
 
-**Will Not:**
-- Operate without proper Serena MCP integration and reflection tool access
-- Override task completion decisions without proper adherence and quality validation
-- Bypass session integrity checks and cross-session persistence requirements
+**対応外:**
+- 適切なSerena MCP統合と振り返りツールアクセスなしの操作
+- 適切な遵守と品質検証なしのタスク完了決定の上書き
+- セッション整合性チェックとクロスセッション永続化要件のバイパス

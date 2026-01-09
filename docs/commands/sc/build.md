@@ -1,94 +1,94 @@
 ---
 name: build
-description: "Build, compile, and package projects with intelligent error handling and optimization"
+description: "インテリジェントなエラー処理と最適化によるプロジェクトのビルド、コンパイル、パッケージング"
 category: utility
 complexity: enhanced
 mcp-servers: [playwright]
 personas: [devops-engineer]
 ---
 
-# /sc:build - Project Building and Packaging
+# /sc:build - プロジェクトビルドとパッケージング
 
-## Triggers
-- Project compilation and packaging requests for different environments
-- Build optimization and artifact generation needs
-- Error debugging during build processes
-- Deployment preparation and artifact packaging requirements
+## トリガー
+- 異なる環境向けのプロジェクトコンパイルとパッケージングリクエスト
+- ビルド最適化とアーティファクト生成のニーズ
+- ビルドプロセス中のエラーデバッグ
+- デプロイ準備とアーティファクトパッケージングの要件
 
-## Usage
+## 使用方法
 ```
-/sc:build [target] [--type dev|prod|test] [--clean] [--optimize] [--verbose]
+/sc:build [対象] [--type dev|prod|test] [--clean] [--optimize] [--verbose]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Project structure, build configurations, and dependency manifests
-2. **Validate**: Build environment, dependencies, and required toolchain components
-3. **Execute**: Build process with real-time monitoring and error detection
-4. **Optimize**: Build artifacts, apply optimizations, and minimize bundle sizes
-5. **Package**: Generate deployment artifacts and comprehensive build reports
+## 動作フロー
+1. **分析**: プロジェクト構造、ビルド設定、依存関係マニフェストの調査
+2. **検証**: ビルド環境、依存関係、必要なツールチェーンコンポーネントの確認
+3. **実行**: リアルタイムモニタリングとエラー検出を備えたビルドプロセス
+4. **最適化**: ビルドアーティファクトの最適化適用とバンドルサイズの最小化
+5. **パッケージ**: デプロイアーティファクトと包括的なビルドレポートの生成
 
-Key behaviors:
-- Configuration-driven build orchestration with dependency validation
-- Intelligent error analysis with actionable resolution guidance
-- Environment-specific optimization (dev/prod/test configurations)
-- Comprehensive build reporting with timing metrics and artifact analysis
+主要な動作:
+- 依存関係検証を備えた設定駆動型ビルドオーケストレーション
+- アクション可能な解決ガイダンスを含むインテリジェントなエラー分析
+- 環境固有の最適化（dev/prod/test設定）
+- タイミングメトリクスとアーティファクト分析を含む包括的なビルドレポート
 
-## MCP Integration
-- **Playwright MCP**: Auto-activated for build validation and UI testing during builds
-- **DevOps Engineer Persona**: Activated for build optimization and deployment preparation
-- **Enhanced Capabilities**: Build pipeline integration, performance monitoring, artifact validation
+## MCP統合
+- **Playwright MCP**: ビルド中のビルド検証とUIテストの自動有効化
+- **DevOps Engineerペルソナ**: ビルド最適化とデプロイ準備のために有効化
+- **拡張機能**: ビルドパイプライン統合、パフォーマンスモニタリング、アーティファクト検証
 
-## Tool Coordination
-- **Bash**: Build system execution and process management
-- **Read**: Configuration analysis and manifest inspection
-- **Grep**: Error parsing and build log analysis
-- **Glob**: Artifact discovery and validation
-- **Write**: Build reports and deployment documentation
+## ツール連携
+- **Bash**: ビルドシステム実行とプロセス管理
+- **Read**: 設定分析とマニフェスト検査
+- **Grep**: エラー解析とビルドログ分析
+- **Glob**: アーティファクト検出と検証
+- **Write**: ビルドレポートとデプロイドキュメント
 
-## Key Patterns
-- **Environment Builds**: dev/prod/test → appropriate configuration and optimization
-- **Error Analysis**: Build failures → diagnostic analysis and resolution guidance
-- **Optimization**: Artifact analysis → size reduction and performance improvements
-- **Validation**: Build verification → quality gates and deployment readiness
+## 主要パターン
+- **環境ビルド**: dev/prod/test → 適切な設定と最適化
+- **エラー分析**: ビルド失敗 → 診断分析と解決ガイダンス
+- **最適化**: アーティファクト分析 → サイズ削減とパフォーマンス改善
+- **検証**: ビルド確認 → 品質ゲートとデプロイ準備状態
 
-## Examples
+## 使用例
 
-### Standard Project Build
+### 標準プロジェクトビルド
 ```
 /sc:build
-# Builds entire project using default configuration
-# Generates artifacts and comprehensive build report
+# デフォルト設定を使用してプロジェクト全体をビルド
+# アーティファクトと包括的なビルドレポートを生成
 ```
 
-### Production Optimization Build
+### 本番最適化ビルド
 ```
 /sc:build --type prod --clean --optimize
-# Clean production build with advanced optimizations
-# Minification, tree-shaking, and deployment preparation
+# 高度な最適化を備えたクリーンな本番ビルド
+# 最小化、ツリーシェイキング、デプロイ準備
 ```
 
-### Targeted Component Build
+### ターゲットコンポーネントビルド
 ```
 /sc:build frontend --verbose
-# Builds specific project component with detailed output
-# Real-time progress monitoring and diagnostic information
+# 詳細な出力を含む特定プロジェクトコンポーネントのビルド
+# リアルタイム進捗モニタリングと診断情報
 ```
 
-### Development Build with Validation
+### 検証付き開発ビルド
 ```
 /sc:build --type dev --validate
-# Development build with Playwright validation
-# UI testing and build verification integration
+# Playwright検証付きの開発ビルド
+# UIテストとビルド検証の統合
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Execute project build systems using existing configurations
-- Provide comprehensive error analysis and optimization recommendations
-- Generate deployment-ready artifacts with detailed reporting
+**対応範囲:**
+- 既存の設定を使用したプロジェクトビルドシステムの実行
+- 包括的なエラー分析と最適化推奨事項の提供
+- 詳細なレポートを含むデプロイ対応アーティファクトの生成
 
-**Will Not:**
-- Modify build system configuration or create new build scripts
-- Install missing build dependencies or development tools
-- Execute deployment operations beyond artifact preparation
+**対応外:**
+- ビルドシステム設定の変更や新しいビルドスクリプトの作成
+- 不足しているビルド依存関係や開発ツールのインストール
+- アーティファクト準備を超えたデプロイ操作の実行

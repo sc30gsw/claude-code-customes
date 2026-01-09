@@ -1,80 +1,80 @@
 ---
 name: git
-description: "Git operations with intelligent commit messages and workflow optimization"
+description: "インテリジェントなコミットメッセージとワークフロー最適化によるGit操作"
 category: utility
 complexity: basic
 mcp-servers: []
 personas: []
 ---
 
-# /sc:git - Git Operations
+# /sc:git - Git操作
 
-## Triggers
-- Git repository operations: status, add, commit, push, pull, branch
-- Need for intelligent commit message generation
-- Repository workflow optimization requests
-- Branch management and merge operations
+## トリガー
+- Gitリポジトリ操作: status、add、commit、push、pull、branch
+- インテリジェントなコミットメッセージ生成のニーズ
+- リポジトリワークフロー最適化リクエスト
+- ブランチ管理とマージ操作
 
-## Usage
+## 使用方法
 ```
-/sc:git [operation] [args] [--smart-commit] [--interactive]
+/sc:git [操作] [引数] [--smart-commit] [--interactive]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Check repository state and working directory changes
-2. **Validate**: Ensure operation is appropriate for current Git context
-3. **Execute**: Run Git command with intelligent automation
-4. **Optimize**: Apply smart commit messages and workflow patterns
-5. **Report**: Provide status and next steps guidance
+## 動作フロー
+1. **分析**: リポジトリ状態とワーキングディレクトリの変更を確認
+2. **検証**: 操作が現在のGitコンテキストに適切であることを確認
+3. **実行**: インテリジェントな自動化によるGitコマンドの実行
+4. **最適化**: スマートコミットメッセージとワークフローパターンの適用
+5. **レポート**: ステータスと次のステップガイダンスの提供
 
-Key behaviors:
-- Generate conventional commit messages based on change analysis
-- Apply consistent branch naming conventions
-- Handle merge conflicts with guided resolution
-- Provide clear status summaries and workflow recommendations
+主要な動作:
+- 変更分析に基づく従来型コミットメッセージの生成
+- 一貫したブランチ命名規則の適用
+- ガイド付き解決によるマージコンフリクトの処理
+- 明確なステータスサマリーとワークフロー推奨事項の提供
 
-## Tool Coordination
-- **Bash**: Git command execution and repository operations
-- **Read**: Repository state analysis and configuration review
-- **Grep**: Log parsing and status analysis
-- **Write**: Commit message generation and documentation
+## ツール連携
+- **Bash**: Gitコマンド実行とリポジトリ操作
+- **Read**: リポジトリ状態分析と設定レビュー
+- **Grep**: ログ解析とステータス分析
+- **Write**: コミットメッセージ生成とドキュメント
 
-## Key Patterns
-- **Smart Commits**: Analyze changes → generate conventional commit message
-- **Status Analysis**: Repository state → actionable recommendations
-- **Branch Strategy**: Consistent naming and workflow enforcement
-- **Error Recovery**: Conflict resolution and state restoration guidance
+## 主要パターン
+- **スマートコミット**: 変更分析 → 従来型コミットメッセージ生成
+- **ステータス分析**: リポジトリ状態 → アクション可能な推奨事項
+- **ブランチ戦略**: 一貫した命名とワークフロー実施
+- **エラー回復**: コンフリクト解決と状態復元ガイダンス
 
-## Examples
+## 使用例
 
-### Smart Status Analysis
+### スマートステータス分析
 ```
 /sc:git status
-# Analyzes repository state with change summary
-# Provides next steps and workflow recommendations
+# 変更サマリーを含むリポジトリ状態の分析
+# 次のステップとワークフロー推奨事項を提供
 ```
 
-### Intelligent Commit
+### インテリジェントコミット
 ```
 /sc:git commit --smart-commit
-# Generates conventional commit message from change analysis
-# Applies best practices and consistent formatting
+# 変更分析から従来型コミットメッセージを生成
+# ベストプラクティスと一貫したフォーマットを適用
 ```
 
-### Interactive Operations
+### インタラクティブ操作
 ```
 /sc:git merge feature-branch --interactive
-# Guided merge with conflict resolution assistance
+# コンフリクト解決アシスタンス付きのガイド付きマージ
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Execute Git operations with intelligent automation
-- Generate conventional commit messages from change analysis
-- Provide workflow optimization and best practice guidance
+**対応範囲:**
+- インテリジェントな自動化によるGit操作の実行
+- 変更分析からの従来型コミットメッセージ生成
+- ワークフロー最適化とベストプラクティスガイダンスの提供
 
-**Will Not:**
-- Modify repository configuration without explicit authorization
-- Execute destructive operations without confirmation
-- Handle complex merges requiring manual intervention
+**対応外:**
+- 明示的な承認なしのリポジトリ設定の変更
+- 確認なしの破壊的操作の実行
+- 手動介入が必要な複雑なマージの処理

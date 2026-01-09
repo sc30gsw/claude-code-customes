@@ -1,452 +1,452 @@
 ---
 allowed-tools: Read, Write, Bash, Grep, Glob, Edit, mcp__serena__get_symbols_overview, mcp__serena__list_dir, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-description: Generate comprehensive requirements definition documents with technology selection and improvement suggestions
+description: 技術選定と改善提案を含む包括的な要件定義書を生成
 ---
 
-## Context
+## コンテキスト
 
-- Project requirements: @package.json
-- Existing documentation: !`find . -name "*.md" | head -10`
-- Project structure: !`ls -la`
-- Available templates: !`ls -la .claude/templates/requirements/ 2>/dev/null || echo "No templates found"`
+- プロジェクト要件: @package.json
+- 既存ドキュメント: !`find . -name "*.md" | head -10`
+- プロジェクト構造: !`ls -la`
+- 利用可能なテンプレート: !`ls -la .claude/templates/requirements/ 2>/dev/null || echo "テンプレートが見つかりません"`
 
-## Usage Guide
+## 使用ガイド
 
-### Basic Syntax
+### 基本構文
 ```bash
-/requirements <system_name> [options]
+/requirements <システム名> [オプション]
 ```
 
-### Available Options
+### 利用可能なオプション
 
-| Option | Short | Description | Example |
+| オプション | 短縮形 | 説明 | 例 |
 |--------|-------|-------------|---------|
-| `--mode` | `-m` | Requirements generation mode (new-creation\|reverse-engineering) | `-m reverse-engineering` |
-| `--backlog` | `-b` | Enable product backlog format with user stories | `--backlog` |
-| `--epic` | `-e` | Epic name for product backlog structure | `-e "User Management Epic"` |
-| `--story-points` | | Include story point estimation in user stories | `--story-points` |
-| `--app` | `-a` | Application name | `-a "Web Store"` |
-| `--function` | `-f` | Function/feature name | `-f "Authentication"` |
-| `--file` | | Input file with additional requirements | `--file existing-req.txt` |
-| `--dir` | | Input dir with additional requirements | `--dir requirements` |
-| `--output` | `-o` | Output file path (default: requirements.md) | `-o specs.md` |
-| `--tech` | `-t` | Technology stack | `-t "react,nodejs,postgresql"` |
-| `--priority` | `-p` | Priority level (low\|medium\|high\|critical) | `-p high` |
-| `--scope` | `-s` | Scope type (mvp\|full\|enterprise) | `-s mvp` |
-| `--suggest` | | Include improvement suggestions | `--suggest` |
-| `--examples` | | Include implementation examples | `--examples` |
-| `--template` | | Template type (standard\|agile\|waterfall\|product-backlog) | `--template agile` |
-| `--hearing` | | Enable interactive mode for clarifying requirements | `--hearing` |
-| `--help` | `-h` | Show help message | `-h` |
+| `--mode` | `-m` | 要件生成モード (new-creation\|reverse-engineering) | `-m reverse-engineering` |
+| `--backlog` | `-b` | ユーザーストーリー付きプロダクトバックログ形式を有効化 | `--backlog` |
+| `--epic` | `-e` | プロダクトバックログ構造のエピック名 | `-e "ユーザー管理エピック"` |
+| `--story-points` | | ユーザーストーリーにストーリーポイント見積もりを含む | `--story-points` |
+| `--app` | `-a` | アプリケーション名 | `-a "Webストア"` |
+| `--function` | `-f` | 機能/フィーチャー名 | `-f "認証"` |
+| `--file` | | 追加要件を含む入力ファイル | `--file existing-req.txt` |
+| `--dir` | | 追加要件を含む入力ディレクトリ | `--dir requirements` |
+| `--output` | `-o` | 出力ファイルパス（デフォルト: requirements.md） | `-o specs.md` |
+| `--tech` | `-t` | 技術スタック | `-t "react,nodejs,postgresql"` |
+| `--priority` | `-p` | 優先度レベル (low\|medium\|high\|critical) | `-p high` |
+| `--scope` | `-s` | スコープタイプ (mvp\|full\|enterprise) | `-s mvp` |
+| `--suggest` | | 改善提案を含む | `--suggest` |
+| `--examples` | | 実装例を含む | `--examples` |
+| `--template` | | テンプレートタイプ (standard\|agile\|waterfall\|product-backlog) | `--template agile` |
+| `--hearing` | | 要件明確化のための対話モードを有効化 | `--hearing` |
+| `--help` | `-h` | ヘルプメッセージを表示 | `-h` |
 
-### Quick Examples
+### クイック例
 
 ```bash
-# Basic requirements document
-/requirements "E-commerce Platform" -a "Web Store" -t "react,nodejs"
+# 基本的な要件ドキュメント
+/requirements "Eコマースプラットフォーム" -a "Webストア" -t "react,nodejs"
 
-# MVP with suggestions
-/requirements "Social Media App" -s mvp -p medium --suggest
+# 提案付きMVP
+/requirements "SNSアプリ" -s mvp -p medium --suggest
 
-# Full enterprise system with examples
-/requirements "CRM System" -s enterprise -t "react,nodejs,postgresql" --examples --template agile
+# 例付きエンタープライズシステム
+/requirements "CRMシステム" -s enterprise -t "react,nodejs,postgresql" --examples --template agile
 
-# Import existing requirements
-/requirements "Payment API" --file legacy-specs.txt -t "nodejs,mongodb"
+# 既存要件のインポート
+/requirements "決済API" --file legacy-specs.txt -t "nodejs,mongodb"
 
-# Interactive hearing mode for abstract requirements
-/requirements "Mobile App" --hearing
-/requirements "Business System" -p high --hearing
+# 抽象的な要件のための対話ヒアリングモード
+/requirements "モバイルアプリ" --hearing
+/requirements "業務システム" -p high --hearing
 
-# Reverse engineering mode with product backlog
-/requirements "User Management" -m reverse-engineering -b -e "Authentication Epic"
+# プロダクトバックログ付きリバースエンジニアリングモード
+/requirements "ユーザー管理" -m reverse-engineering -b -e "認証エピック"
 
-# New creation mode with product backlog and story points
-/requirements "Payment System" -m new-creation -b -e "E-Commerce Platform" --story-points
+# ストーリーポイント付きプロダクトバックログでの新規作成モード
+/requirements "決済システム" -m new-creation -b -e "Eコマースプラットフォーム" --story-points
 
-# Product backlog template with EARS format
-/requirements "Order Processing" --template product-backlog -b --story-points
+# EARS形式のプロダクトバックログテンプレート
+/requirements "注文処理" --template product-backlog -b --story-points
 ```
 
-## Tool Usage Priorities
+## ツール使用優先度
 
-**ALWAYS prioritize mcp__serena__ tools over default Claude Code tools when available:**
+**利用可能な場合は常にmcp__serena__ツールをデフォルトのClaude Codeツールより優先:**
 
-### File Operations (Use Serena MCP First)
-- **Reading files**: Use `mcp__serena__find_file` → `Read` (fallback)
-- **Searching patterns**: Use `mcp__serena__search_for_pattern` → `Grep` (fallback)
-- **Directory listing**: Use `mcp__serena__list_dir` → `LS` (fallback)
-- **Finding symbols**: Use `mcp__serena__find_symbol` → `Glob` (fallback)
+### ファイル操作（Serena MCP優先）
+- **ファイル読み込み**: `mcp__serena__find_file` → `Read`（フォールバック）
+- **パターン検索**: `mcp__serena__search_for_pattern` → `Grep`（フォールバック）
+- **ディレクトリ一覧**: `mcp__serena__list_dir` → `LS`（フォールバック）
+- **シンボル検索**: `mcp__serena__find_symbol` → `Glob`（フォールバック）
 
-### Code Analysis (Serena MCP Exclusive)
-- **Symbol overview**: Use `mcp__serena__get_symbols_overview`
-- **Symbol references**: Use `mcp__serena__find_referencing_symbols`
-- **Code replacement**: Use `mcp__serena__replace_symbol_body` → `Edit` (fallback)
-- **Pattern replacement**: Use `mcp__serena__replace_regex` → `MultiEdit` (fallback)
+### コード分析（Serena MCP専用）
+- **シンボル概要**: `mcp__serena__get_symbols_overview`
+- **シンボル参照**: `mcp__serena__find_referencing_symbols`
+- **コード置換**: `mcp__serena__replace_symbol_body` → `Edit`（フォールバック）
+- **パターン置換**: `mcp__serena__replace_regex` → `MultiEdit`（フォールバック）
 
-### Memory & Context (Serena MCP Only)
-- **Task tracking**: Use `mcp__serena__think_about_task_adherence`
-- **Progress checking**: Use `mcp__serena__think_about_whether_you_are_done`
-- **Information analysis**: Use `mcp__serena__think_about_collected_information`
-- **Memory operations**: Use `mcp__serena__write_memory`, `mcp__serena__read_memory`
+### メモリとコンテキスト（Serena MCPのみ）
+- **タスク追跡**: `mcp__serena__think_about_task_adherence`
+- **進捗確認**: `mcp__serena__think_about_whether_you_are_done`
+- **情報分析**: `mcp__serena__think_about_collected_information`
+- **メモリ操作**: `mcp__serena__write_memory`、`mcp__serena__read_memory`
 
-## Your Task
+## タスク
 
-Generate comprehensive requirements definition documents based on user inputs and system analysis.
+ユーザー入力とシステム分析に基づいて包括的な要件定義書を生成します。
 
-### Execution Flow
+### 実行フロー
 
-#### 1. Pre-execution Setup
-1. **Mode Detection**: Determine generation mode (`--mode` flag)
-2. **Hearing Mode Check**: If `--hearing` is enabled, enter interactive clarification mode
-3. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
-4. Analyze project structure using `mcp__serena__list_dir` → `LS` (fallback)
-5. Read package.json to understand project context using `mcp__serena__find_file` → `Read` (fallback)
-6. Check for existing requirements or documentation files
-7. **Progress Tracking**: Use `mcp__serena__think_about_task_adherence` to verify setup completion
+#### 1. 事前実行セットアップ
+1. **モード検出**: 生成モードを決定（`--mode`フラグ）
+2. **ヒアリングモードチェック**: `--hearing`が有効な場合、対話的明確化モードに入る
+3. **Serenaオンボーディング**: 必要に応じて`mcp__serena__check_onboarding_performed`と`mcp__serena__onboarding`を使用
+4. `mcp__serena__list_dir` → `LS`（フォールバック）を使用してプロジェクト構造を分析
+5. `mcp__serena__find_file` → `Read`（フォールバック）を使用してpackage.jsonを読み込みプロジェクトコンテキストを理解
+6. 既存の要件またはドキュメントファイルをチェック
+7. **進捗追跡**: `mcp__serena__think_about_task_adherence`を使用してセットアップ完了を確認
 
-#### 1.1 Mode-Specific Setup
+#### 1.1 モード固有のセットアップ
 
-##### Reverse Engineering Mode (`-m reverse-engineering`)
-When reverse engineering mode is enabled, the system analyzes existing codebase to extract requirements:
+##### リバースエンジニアリングモード（`-m reverse-engineering`）
+リバースエンジニアリングモードが有効な場合、システムは既存のコードベースを分析して要件を抽出します：
 
-**Setup Phase**:
-1. **Codebase Analysis**: Use `mcp__serena__get_symbols_overview` to identify system components
-2. **Pattern Detection**: Use `mcp__serena__search_for_pattern` to find functionality patterns
-3. **Component Mapping**: Map code structure to potential user stories and features
-4. **Behavior Analysis**: Extract existing system behaviors and constraints
+**セットアップフェーズ**:
+1. **コードベース分析**: `mcp__serena__get_symbols_overview`を使用してシステムコンポーネントを特定
+2. **パターン検出**: `mcp__serena__search_for_pattern`を使用して機能パターンを発見
+3. **コンポーネントマッピング**: コード構造を潜在的なユーザーストーリーと機能にマッピング
+4. **動作分析**: 既存のシステム動作と制約を抽出
 
-**Analysis Flow**:
-1. **Component Discovery**:
-   - Identify controllers, services, models, components
-   - Map API endpoints and data flows
-   - Discover business logic and rules
+**分析フロー**:
+1. **コンポーネント発見**:
+   - コントローラー、サービス、モデル、コンポーネントを特定
+   - APIエンドポイントとデータフローをマッピング
+   - ビジネスロジックとルールを発見
 
-2. **Feature Extraction**:
-   - Group related components into features
-   - Identify user-facing functionality
-   - Extract non-functional requirements from implementation
+2. **機能抽出**:
+   - 関連コンポーネントを機能にグループ化
+   - ユーザー向け機能を特定
+   - 実装から非機能要件を抽出
 
-3. **User Story Generation**:
-   - Convert identified features to user stories
-   - Infer user roles from access patterns
-   - Extract acceptance criteria from existing validations
+3. **ユーザーストーリー生成**:
+   - 特定した機能をユーザーストーリーに変換
+   - アクセスパターンからユーザーロールを推測
+   - 既存のバリデーションから受入条件を抽出
 
-##### New Creation Mode (`-m new-creation`) [Default]
-Standard requirements generation from specifications and user input.
+##### 新規作成モード（`-m new-creation`）[デフォルト]
+仕様とユーザー入力からの標準的な要件生成。
 
-#### 1.1 Hearing Mode - Interactive Clarification
+#### 1.1 ヒアリングモード - 対話的明確化
 
-When `--hearing` is enabled, the system enters an interactive mode to clarify abstract requirements:
+`--hearing`が有効な場合、システムは抽象的な要件を明確化するための対話モードに入ります：
 
-##### Question Categories & Flow
+##### 質問カテゴリとフロー
 
-**1. System Type Clarification**
-- "What type of system are you building?"
-  - Web application
-  - Mobile application (iOS/Android/Cross-platform)
-  - Desktop application
-  - API/Backend service
-  - Microservice
-  - Data processing system
-  - Machine learning pipeline
+**1. システムタイプの明確化**
+- 「どのタイプのシステムを構築していますか？」
+  - Webアプリケーション
+  - モバイルアプリケーション（iOS/Android/クロスプラットフォーム）
+  - デスクトップアプリケーション
+  - API/バックエンドサービス
+  - マイクロサービス
+  - データ処理システム
+  - 機械学習パイプライン
 
-**2. Primary Function Discovery**
-- "What is the main purpose of this system?"
-- "Who are the primary users?"
-- "What problem does this solve?"
+**2. 主要機能の発見**
+- 「このシステムの主な目的は何ですか？」
+- 「主要なユーザーは誰ですか？」
+- 「どのような問題を解決しますか？」
 
-**3. Technology Preference**
-- "Do you have preferred technologies?" (if `-t` not specified)
-- "Any technology constraints or existing systems to integrate with?"
+**3. 技術選好**
+- 「お好みの技術はありますか？」（`-t`が指定されていない場合）
+- 「技術的制約や統合すべき既存システムはありますか？」
 
-**4. Scope & Timeline**
-- "What's the target timeline?" (if `-p` not specified)
-- "Is this an MVP, full product, or enterprise solution?" (if `-s` not specified)
+**4. スコープとタイムライン**
+- 「目標タイムラインは？」（`-p`が指定されていない場合）
+- 「MVP、フル製品、エンタープライズソリューションのどれですか？」（`-s`が指定されていない場合）
 
-**5. Domain-Specific Questions**
+**5. ドメイン固有の質問**
 
-Based on detected keywords or user responses, ask domain-specific questions:
+検出されたキーワードやユーザーの回答に基づいて、ドメイン固有の質問をします：
 
-**E-commerce/Retail:**
-- Payment processing requirements?
-- Inventory management needed?
-- Multi-vendor or single vendor?
-- International sales support?
+**Eコマース/小売:**
+- 決済処理の要件は？
+- 在庫管理は必要ですか？
+- マルチベンダーかシングルベンダーか？
+- 海外販売サポートは？
 
-**Social/Community:**
-- User-generated content types?
-- Moderation requirements?
-- Real-time features needed?
-- Privacy/safety concerns?
+**ソーシャル/コミュニティ:**
+- ユーザー生成コンテンツの種類は？
+- モデレーション要件は？
+- リアルタイム機能は必要ですか？
+- プライバシー/安全性の懸念は？
 
-**Enterprise/Business:**
-- Role-based access control?
-- Reporting requirements?
-- Integration with existing systems?
-- Compliance requirements?
+**エンタープライズ/ビジネス:**
+- ロールベースのアクセス制御は？
+- レポート要件は？
+- 既存システムとの統合は？
+- コンプライアンス要件は？
 
-**Data/Analytics:**
-- Data sources and volume?
-- Real-time vs batch processing?
-- Visualization requirements?
-- Data retention policies?
+**データ/分析:**
+- データソースとボリュームは？
+- リアルタイム処理かバッチ処理か？
+- 可視化要件は？
+- データ保持ポリシーは？
 
-##### Interactive Question Flow Example
+##### 対話的質問フローの例
 
 ```
-🎯 Requirements Hearing Mode Activated
+🎯 要件ヒアリングモード起動
 
-System: "Mobile App" detected. Let me ask some clarifying questions:
+システム: "モバイルアプリ"を検出しました。いくつか明確化のための質問をさせてください：
 
-Q1: What type of mobile app are you building?
-   1. Social/Community app
-   2. E-commerce/Shopping app
-   3. Productivity/Business app
-   4. Entertainment/Media app
-   5. Health/Fitness app
-   6. Other (please specify)
+Q1: どのタイプのモバイルアプリを構築していますか？
+   1. ソーシャル/コミュニティアプリ
+   2. Eコマース/ショッピングアプリ
+   3. 生産性/ビジネスアプリ
+   4. エンターテイメント/メディアアプリ
+   5. ヘルス/フィットネスアプリ
+   6. その他（指定してください）
 
-User: 2
+ユーザー: 2
 
-Q2: For your e-commerce app, what are the core features needed?
-   1. Product browsing and search
-   2. Shopping cart and checkout
-   3. User accounts and profiles
-   4. Payment processing
-   5. Order tracking
-   6. All of the above
+Q2: Eコマースアプリに必要なコア機能は何ですか？
+   1. 商品閲覧と検索
+   2. ショッピングカートとチェックアウト
+   3. ユーザーアカウントとプロフィール
+   4. 決済処理
+   5. 注文追跡
+   6. 上記すべて
 
-User: 6
+ユーザー: 6
 
-Q3: What's your target platform?
-   1. iOS only
-   2. Android only
-   3. Cross-platform (React Native/Flutter)
-   4. Web app (PWA)
+Q3: ターゲットプラットフォームは？
+   1. iOSのみ
+   2. Androidのみ
+   3. クロスプラットフォーム（React Native/Flutter）
+   4. Webアプリ（PWA）
 
-User: 3
+ユーザー: 3
 
-Q4: Do you need any specific integrations?
-   1. Payment gateways (Stripe, PayPal)
-   2. Shipping providers
-   3. Inventory management systems
-   4. Analytics platforms
-   5. Social media login
-   6. Multiple selections
+Q4: 特定の統合が必要ですか？
+   1. 決済ゲートウェイ（Stripe、PayPal）
+   2. 配送業者
+   3. 在庫管理システム
+   4. 分析プラットフォーム
+   5. ソーシャルメディアログイン
+   6. 複数選択
 
-User: 1,2,5
+ユーザー: 1,2,5
 
-📋 Based on your answers, I'll generate requirements for:
-- Cross-platform e-commerce mobile app
-- Core features: browsing, cart, checkout, accounts, payments, tracking
-- Integrations: Payment gateways, shipping, social login
-- Technology suggestion: React Native, Node.js backend
+📋 回答に基づいて、以下の要件を生成します：
+- クロスプラットフォームEコマースモバイルアプリ
+- コア機能：閲覧、カート、チェックアウト、アカウント、決済、追跡
+- 統合：決済ゲートウェイ、配送、ソーシャルログイン
+- 技術提案：React Native、Node.jsバックエンド
 ```
 
-##### Smart Question Selection
+##### スマート質問選択
 
-The system intelligently selects questions based on:
+システムは以下に基づいてインテリジェントに質問を選択します：
 
-1. **System name analysis**: Keywords like "mobile", "web", "API", "analytics"
-2. **Provided arguments**: Skip questions for already specified options
-3. **Project context**: Analyze existing files for technology stack clues
-4. **Domain detection**: Trigger domain-specific question sets
+1. **システム名分析**: 「mobile」、「web」、「API」、「analytics」などのキーワード
+2. **提供された引数**: すでに指定されたオプションの質問はスキップ
+3. **プロジェクトコンテキスト**: 既存ファイルから技術スタックの手がかりを分析
+4. **ドメイン検出**: ドメイン固有の質問セットをトリガー
 
-##### Question Skip Logic
+##### 質問スキップロジック
 
-- If `-t` specified: Skip technology preference questions
-- If `-s` specified: Skip scope-related questions
-- If `-p` specified: Skip priority/timeline questions
-- If domain clear from name: Focus on domain-specific questions
+- `-t`が指定された場合：技術選好の質問をスキップ
+- `-s`が指定された場合：スコープ関連の質問をスキップ
+- `-p`が指定された場合：優先度/タイムラインの質問をスキップ
+- ドメインが名前から明確な場合：ドメイン固有の質問に集中
 
-#### 2. Requirements Generation
+#### 2. 要件生成
 
-##### Input Processing
-1. **Mode Selection Processing**:
-   - **Reverse Engineering Mode** (`-m reverse-engineering`):
-     - Execute codebase analysis phase
-     - Extract existing functionality and behaviors
-     - Generate user stories from identified features
-     - Apply EARS format to discovered requirements
+##### 入力処理
+1. **モード選択処理**:
+   - **リバースエンジニアリングモード**（`-m reverse-engineering`）：
+     - コードベース分析フェーズを実行
+     - 既存の機能と動作を抽出
+     - 特定した機能からユーザーストーリーを生成
+     - 発見した要件にEARS形式を適用
 
-   - **New Creation Mode** (`-m new-creation` or default):
-     - Process user specifications and inputs
-     - Generate requirements from business needs
-     - Apply standard requirement engineering practices
+   - **新規作成モード**（`-m new-creation`またはデフォルト）：
+     - ユーザー仕様と入力を処理
+     - ビジネスニーズから要件を生成
+     - 標準的な要件工学プラクティスを適用
 
-2. **Product Backlog Processing** (if `--backlog` enabled):
-   - Structure output as Epic → Feature → User Story hierarchy
-   - Include story point estimation (if `--story-points` enabled)
-   - Add priority and dependency tracking
-   - Apply MoSCoW prioritization method
+2. **プロダクトバックログ処理**（`--backlog`が有効な場合）：
+   - 出力をエピック → フィーチャー → ユーザーストーリー階層で構造化
+   - ストーリーポイント見積もりを含む（`--story-points`が有効な場合）
+   - 優先度と依存関係追跡を追加
+   - MoSCoW優先度付け手法を適用
 
-3. **Hearing Mode Processing** (if `--hearing` enabled):
-   - Execute interactive question flow
-   - Parse and validate user responses
-   - Build refined requirement parameters
-   - Continue with enhanced context
+3. **ヒアリングモード処理**（`--hearing`が有効な場合）：
+   - 対話的質問フローを実行
+   - ユーザー回答を解析・検証
+   - 洗練された要件パラメータを構築
+   - 強化されたコンテキストで続行
 
-4. **Parse Command Arguments**:
-   - Extract system name and options
-   - Validate priority, scope, and template values
-   - Process technology stack specifications
-   - Handle epic name (if `--epic` provided)
+4. **コマンド引数の解析**：
+   - システム名とオプションを抽出
+   - 優先度、スコープ、テンプレート値を検証
+   - 技術スタック仕様を処理
+   - エピック名を処理（`--epic`が提供された場合）
 
-5. **Context Gathering**:
-   - Read existing requirements from `--file` if provided
-   - Analyze project dependencies for technology context
-   - Search for related documentation using `mcp__serena__search_for_pattern`
+5. **コンテキスト収集**：
+   - 提供された場合、`--file`から既存要件を読み込み
+   - 技術コンテキストのためにプロジェクト依存関係を分析
+   - `mcp__serena__search_for_pattern`を使用して関連ドキュメントを検索
 
-6. **Template Selection**:
-   - **Standard**: General purpose requirements with EARS format
-   - **Agile**: User story format with EARS acceptance criteria
-   - **Waterfall**: Detailed specification with EARS functional requirements
-   - **Product-Backlog**: Full backlog structure with epics, features, and stories
+6. **テンプレート選択**：
+   - **Standard**: EARS形式の汎用要件
+   - **Agile**: EARS受入条件付きユーザーストーリー形式
+   - **Waterfall**: EARS機能要件付き詳細仕様
+   - **Product-Backlog**: エピック、フィーチャー、ストーリーを含む完全なバックログ構造
 
-#### 3. Content Generation
+#### 3. コンテンツ生成
 
-##### Document Structure Creation
-1. **Header Information**:
-   - Generation timestamp
-   - System name and application details
-   - Priority and scope specifications
-   - Generation mode (reverse-engineering or new-creation)
-   - Epic information (if `--epic` provided)
+##### ドキュメント構造作成
+1. **ヘッダー情報**：
+   - 生成タイムスタンプ
+   - システム名とアプリケーション詳細
+   - 優先度とスコープ仕様
+   - 生成モード（リバースエンジニアリングまたは新規作成）
+   - エピック情報（`--epic`が提供された場合）
 
-2. **Mode-Specific Content Generation**:
+2. **モード固有コンテンツ生成**：
 
-   **Reverse Engineering Mode Content**:
-   - **Discovered Features Section**:
-     - Components and services identified
-     - API endpoints and data flows mapped
-     - Business logic patterns extracted
+   **リバースエンジニアリングモードコンテンツ**：
+   - **発見した機能セクション**：
+     - 特定したコンポーネントとサービス
+     - マッピングしたAPIエンドポイントとデータフロー
+     - 抽出したビジネスロジックパターン
 
-   - **Generated User Stories**:
-     - User roles inferred from access patterns
-     - Features converted to user story format
-     - EARS acceptance criteria from existing validations
+   - **生成したユーザーストーリー**：
+     - アクセスパターンから推測したユーザーロール
+     - ユーザーストーリー形式に変換した機能
+     - 既存バリデーションからのEARS受入条件
 
-   - **Technical Constraints**:
-     - Architecture patterns identified
-     - Technology stack currently in use
-     - Integration points discovered
+   - **技術的制約**：
+     - 特定したアーキテクチャパターン
+     - 現在使用中の技術スタック
+     - 発見した統合ポイント
 
-   **New Creation Mode Content**:
-   - **Functional Requirements**:
-     - Core features and capabilities (EARS format)
-     - User stories with clear business value
-     - Acceptance criteria in EARS format
+   **新規作成モードコンテンツ**：
+   - **機能要件**：
+     - コア機能と能力（EARS形式）
+     - 明確なビジネス価値を持つユーザーストーリー
+     - EARS形式の受入条件
 
-   - **Non-Functional Requirements**:
-     - Performance specifications (EARS format)
-     - Security requirements
-     - Availability and reliability
-     - Scalability considerations
+   - **非機能要件**：
+     - パフォーマンス仕様（EARS形式）
+     - セキュリティ要件
+     - 可用性と信頼性
+     - スケーラビリティの考慮
 
-3. **Product Backlog Structure** (if `--backlog` enabled):
-   - **Epic Level**: High-level business objectives
-   - **Feature Level**: Major functional areas
-   - **User Story Level**: Specific user capabilities
-   - **EARS Acceptance Criteria**: All levels include EARS-formatted requirements
-   - **Story Points**: Estimation included (if `--story-points` enabled)
-   - **Priority Matrix**: MoSCoW prioritization applied
+3. **プロダクトバックログ構造**（`--backlog`が有効な場合）：
+   - **エピックレベル**: 高レベルビジネス目標
+   - **フィーチャーレベル**: 主要機能エリア
+   - **ユーザーストーリーレベル**: 具体的なユーザー機能
+   - **EARS受入条件**: すべてのレベルにEARS形式の要件を含む
+   - **ストーリーポイント**: 見積もりを含む（`--story-points`が有効な場合）
+   - **優先度マトリックス**: MoSCoW優先度付けを適用
 
-4. **Technical Specifications**:
-   - Architecture overview
-   - Technology stack details (enhanced with Context7)
-   - Integration requirements
-   - Data models and schemas
+4. **技術仕様**：
+   - アーキテクチャ概要
+   - 技術スタック詳細（Context7で強化）
+   - 統合要件
+   - データモデルとスキーマ
 
-5. **Technology Selection** (if `-t` specified):
-   - Use Context7 MCP to reference latest best practices
-   - Generate selection rationale
-   - Version recommendations
-   - Integration considerations
+5. **技術選定**（`-t`が指定された場合）：
+   - Context7 MCPを使用して最新のベストプラクティスを参照
+   - 選定理由を生成
+   - バージョン推奨
+   - 統合の考慮事項
 
-6. **Additional Sections** (if enabled):
-   - Implementation examples (--examples)
-   - Improvement suggestions (--suggest)
-   - Imported requirements (--file)
+6. **追加セクション**（有効な場合）：
+   - 実装例（--examples）
+   - 改善提案（--suggest）
+   - インポートした要件（--file）
 
-#### 3.1 Hearing Mode Implementation
+#### 3.1 ヒアリングモード実装
 
-##### Interactive Prompting System
+##### 対話的プロンプティングシステム
 
-When `--hearing` is enabled, the command should:
+`--hearing`が有効な場合、コマンドは以下を行う必要があります：
 
-1. **Analyze Input Context**:
+1. **入力コンテキストの分析**：
    ```bash
-   # Use Serena MCP to understand project context
-   mcp__serena__list_dir → analyze existing files
-   mcp__serena__find_file "package.json" → detect current tech stack
-   mcp__serena__search_for_pattern "framework|library" → find dependencies
+   # Serena MCPを使用してプロジェクトコンテキストを理解
+   mcp__serena__list_dir → 既存ファイルを分析
+   mcp__serena__find_file "package.json" → 現在の技術スタックを検出
+   mcp__serena__search_for_pattern "framework|library" → 依存関係を発見
    ```
 
-2. **Generate Smart Questions**:
+2. **スマート質問の生成**：
    ```bash
-   # Use thinking tools to formulate relevant questions
-   mcp__serena__think_about_collected_information → analyze system name
-   mcp__serena__think_about_task_adherence → determine question priority
+   # 思考ツールを使用して関連する質問を策定
+   mcp__serena__think_about_collected_information → システム名を分析
+   mcp__serena__think_about_task_adherence → 質問の優先度を決定
    ```
 
-3. **Present Questions Sequentially**:
-   - Display numbered options
-   - Allow multiple selections (comma-separated)
-   - Support "skip" or "other" options
-   - Validate user input before proceeding
+3. **質問を順番に提示**：
+   - 番号付きオプションを表示
+   - 複数選択を許可（カンマ区切り）
+   - 「スキップ」または「その他」オプションをサポート
+   - 続行前にユーザー入力を検証
 
-4. **Build Enhanced Context**:
+4. **強化されたコンテキストを構築**：
    ```bash
-   # Store clarified requirements in memory
-   mcp__serena__write_memory "hearing_mode_responses" → save user answers
-   mcp__serena__write_memory "refined_requirements" → processed requirements
+   # 明確化された要件をメモリに保存
+   mcp__serena__write_memory "hearing_mode_responses" → ユーザー回答を保存
+   mcp__serena__write_memory "refined_requirements" → 処理された要件
    ```
 
-5. **Continue Normal Flow**:
-   - Merge hearing mode results with command arguments
-   - Proceed with standard requirements generation
-   - Include clarification summary in output
+5. **通常フローを続行**：
+   - ヒアリングモード結果をコマンド引数とマージ
+   - 標準的な要件生成を続行
+   - 出力に明確化サマリーを含める
 
-##### Question Database
+##### 質問データベース
 
-The system maintains categorized questions for different domains:
+システムは異なるドメイン用にカテゴリ分けされた質問を維持します：
 
 ```yaml
 system_types:
   web_app:
-    - "Single-page or multi-page application?"
-    - "Authentication requirements?"
-    - "Real-time features needed?"
+    - "シングルページかマルチページアプリケーションか？"
+    - "認証要件は？"
+    - "リアルタイム機能は必要か？"
 
   mobile_app:
-    - "Native or cross-platform?"
-    - "Offline functionality required?"
-    - "Push notifications needed?"
+    - "ネイティブかクロスプラットフォームか？"
+    - "オフライン機能は必要か？"
+    - "プッシュ通知は必要か？"
 
   api_service:
-    - "REST or GraphQL API?"
-    - "Rate limiting requirements?"
-    - "Third-party integrations?"
+    - "RESTかGraphQL APIか？"
+    - "レート制限の要件は？"
+    - "サードパーティ統合は？"
 
 domains:
   ecommerce:
-    - "Payment gateway preferences?"
-    - "Inventory management needed?"
-    - "Multi-vendor support?"
+    - "決済ゲートウェイの選好は？"
+    - "在庫管理は必要か？"
+    - "マルチベンダーサポートは？"
 
   social:
-    - "Content types (text, images, video)?"
-    - "Moderation features required?"
-    - "Privacy settings needed?"
+    - "コンテンツタイプは（テキスト、画像、動画）？"
+    - "モデレーション機能は必要か？"
+    - "プライバシー設定は必要か？"
 ```
 
-##### Response Processing
+##### レスポンス処理
 
-Parse user responses and map to requirement parameters:
+ユーザー回答を解析して要件パラメータにマッピング：
 
 ```javascript
-// Example response processing
+// レスポンス処理例
 const responses = parseUserInput(userAnswers);
 const mappedRequirements = {
   technology: responses.tech_stack || inferTechFromAnswers(responses),
@@ -457,137 +457,137 @@ const mappedRequirements = {
 };
 ```
 
-#### 4. Output Generation
+#### 4. 出力生成
 
-##### File Writing
-1. Use `mcp__serena__replace_symbol_body` or `Write` to create output file
-2. Default output: `requirements.md` unless specified with `-o`
-3. Format with proper Markdown structure
-4. Include table of contents for navigation
+##### ファイル書き込み
+1. `mcp__serena__replace_symbol_body`または`Write`を使用して出力ファイルを作成
+2. デフォルト出力: `-o`で指定しない限り`requirements.md`
+3. 適切なMarkdown構造でフォーマット
+4. ナビゲーション用の目次を含む
 
-##### Progress Verification
-- Use `mcp__serena__think_about_whether_you_are_done` to confirm completion
-- Verify all requested sections are included
-- Check document formatting and structure
+##### 進捗確認
+- `mcp__serena__think_about_whether_you_are_done`を使用して完了を確認
+- すべての要求されたセクションが含まれていることを確認
+- ドキュメントのフォーマットと構造をチェック
 
-### Context7 MCP Integration
+### Context7 MCP統合
 
-#### Technology Documentation Reference
+#### 技術ドキュメント参照
 
-Auto-detect and reference documentation for specified technologies:
+指定された技術のドキュメントを自動検出して参照：
 
-##### Frontend Frameworks
-- **React**: `resolve-library-id: "react"` → Component patterns, hooks, best practices
-- **Vue**: `resolve-library-id: "vue"` → Composition API, reactivity, components
-- **Angular**: `resolve-library-id: "@angular/core"` → Services, dependency injection, modules
+##### フロントエンドフレームワーク
+- **React**: `resolve-library-id: "react"` → コンポーネントパターン、フック、ベストプラクティス
+- **Vue**: `resolve-library-id: "vue"` → Composition API、リアクティビティ、コンポーネント
+- **Angular**: `resolve-library-id: "@angular/core"` → サービス、依存性注入、モジュール
 
-##### Backend Technologies
-- **Node.js**: `resolve-library-id: "nodejs"` → API patterns, middleware, performance
-- **Express**: `resolve-library-id: "express"` → Routing, middleware, error handling
-- **FastAPI**: `resolve-library-id: "fastapi"` → API documentation, validation, async
+##### バックエンド技術
+- **Node.js**: `resolve-library-id: "nodejs"` → APIパターン、ミドルウェア、パフォーマンス
+- **Express**: `resolve-library-id: "express"` → ルーティング、ミドルウェア、エラーハンドリング
+- **FastAPI**: `resolve-library-id: "fastapi"` → APIドキュメント、バリデーション、非同期
 
-##### Database Systems
-- **PostgreSQL**: Best practices, query optimization, indexing
-- **MongoDB**: `resolve-library-id: "mongodb"` → Document design, aggregation, indexing
-- **Redis**: `resolve-library-id: "redis"` → Caching strategies, data structures
+##### データベースシステム
+- **PostgreSQL**: ベストプラクティス、クエリ最適化、インデックス
+- **MongoDB**: `resolve-library-id: "mongodb"` → ドキュメント設計、アグリゲーション、インデックス
+- **Redis**: `resolve-library-id: "redis"` → キャッシング戦略、データ構造
 
-##### Cloud Platforms
-- **AWS**: Service selection, architecture patterns
-- **Docker**: `resolve-library-id: "docker"` → Containerization best practices
-- **Kubernetes**: `resolve-library-id: "kubernetes"` → Orchestration, scaling, deployment
+##### クラウドプラットフォーム
+- **AWS**: サービス選定、アーキテクチャパターン
+- **Docker**: `resolve-library-id: "docker"` → コンテナ化ベストプラクティス
+- **Kubernetes**: `resolve-library-id: "kubernetes"` → オーケストレーション、スケーリング、デプロイ
 
-### Hearing Mode Examples
+### ヒアリングモードの例
 
-#### Scenario 1: Abstract System Name
+#### シナリオ1: 抽象的なシステム名
 ```bash
-/requirements "Business System" --hearing
+/requirements "業務システム" --hearing
 ```
 
-**Interactive Flow:**
+**対話フロー:**
 ```
-🎯 Requirements Hearing Mode Activated
+🎯 要件ヒアリングモード起動
 
-"Business System" is quite broad. Let me help clarify:
+「業務システム」はかなり広範です。明確化をお手伝いします：
 
-Q1: What type of business system?
-   1. Customer Relationship Management (CRM)
-   2. Enterprise Resource Planning (ERP)
-   3. Human Resources Management (HRM)
-   4. Financial Management System
-   5. Project Management System
-   6. Other (please describe)
+Q1: どのタイプの業務システムですか？
+   1. 顧客関係管理（CRM）
+   2. 企業資源計画（ERP）
+   3. 人事管理（HRM）
+   4. 財務管理システム
+   5. プロジェクト管理システム
+   6. その他（説明してください）
 
-User: 1
+ユーザー: 1
 
-Q2: What size organization will use this CRM?
-   1. Small business (< 50 employees)
-   2. Medium business (50-500 employees)
-   3. Enterprise (500+ employees)
+Q2: このCRMを使用する組織の規模は？
+   1. 小規模事業（50人未満）
+   2. 中規模事業（50-500人）
+   3. エンタープライズ（500人以上）
 
-User: 2
+ユーザー: 2
 
-Q3: What are the primary CRM functions needed?
-   1. Contact management
-   2. Sales pipeline tracking
-   3. Customer service tickets
-   4. Marketing campaigns
-   5. Reporting and analytics
-   6. All of the above
+Q3: 必要な主なCRM機能は何ですか？
+   1. 連絡先管理
+   2. 営業パイプライン追跡
+   3. カスタマーサービスチケット
+   4. マーケティングキャンペーン
+   5. レポートと分析
+   6. 上記すべて
 
-User: 1,2,5
+ユーザー: 1,2,5
 
-📋 Refined requirements: Medium-business CRM system focusing on contact management, sales pipeline, and reporting
+📋 洗練された要件: 連絡先管理、営業パイプライン、レポートに焦点を当てた中規模企業向けCRMシステム
 ```
 
-#### Scenario 2: Technology-focused Inquiry
+#### シナリオ2: 技術重視の問い合わせ
 ```bash
-/requirements "Mobile App" -t "flutter" --hearing
+/requirements "モバイルアプリ" -t "flutter" --hearing
 ```
 
-**Interactive Flow:**
+**対話フロー:**
 ```
-🎯 Requirements Hearing Mode Activated
+🎯 要件ヒアリングモード起動
 
-Flutter detected for mobile development. Additional questions:
+モバイル開発用にFlutterを検出しました。追加の質問：
 
-Q1: What category of mobile app?
-   1. Social/Community
-   2. E-commerce/Shopping
-   3. Productivity/Business
-   4. Health/Fitness
-   5. Entertainment/Games
-   6. Educational
+Q1: どのカテゴリのモバイルアプリですか？
+   1. ソーシャル/コミュニティ
+   2. Eコマース/ショッピング
+   3. 生産性/ビジネス
+   4. ヘルス/フィットネス
+   5. エンターテイメント/ゲーム
+   6. 教育
 
-User: 4
+ユーザー: 4
 
-Q2: For health/fitness app, what are the main features?
-   1. Workout tracking
-   2. Nutrition logging
-   3. Progress analytics
-   4. Social features/challenges
-   5. Wearable device integration
-   6. Multiple selections
+Q2: ヘルス/フィットネスアプリの主な機能は何ですか？
+   1. ワークアウト追跡
+   2. 栄養記録
+   3. 進捗分析
+   4. ソーシャル機能/チャレンジ
+   5. ウェアラブルデバイス統合
+   6. 複数選択
 
-User: 1,3,5
+ユーザー: 1,3,5
 
-Q3: Do you need backend services?
-   1. User authentication
-   2. Data synchronization
-   3. Push notifications
-   4. Social features
-   5. All of the above
+Q3: バックエンドサービスは必要ですか？
+   1. ユーザー認証
+   2. データ同期
+   3. プッシュ通知
+   4. ソーシャル機能
+   5. 上記すべて
 
-User: 5
+ユーザー: 5
 
-📋 Refined: Flutter fitness app with workout tracking, analytics, wearable integration, and full backend services
+📋 洗練: ワークアウト追跡、分析、ウェアラブル統合、完全なバックエンドサービスを備えたFlutterフィットネスアプリ
 ```
 
-### Practical Examples
+### 実践的な例
 
-#### 1. E-commerce Platform
+#### 1. Eコマースプラットフォーム
 ```bash
-/requirements "E-commerce Platform" \
-  -a "Online Store" \
+/requirements "Eコマースプラットフォーム" \
+  -a "オンラインストア" \
   -t "react,nodejs,postgresql,redis" \
   -p high \
   -s full \
@@ -596,254 +596,254 @@ User: 5
   --suggest
 ```
 
-**Generated Sections**:
-- User stories for shopping cart, checkout, inventory
-- React component architecture examples
-- Node.js API endpoint specifications
-- PostgreSQL schema design
-- Redis caching strategy
-- Performance requirements (< 200ms response)
-- Security requirements (PCI compliance)
+**生成されるセクション**:
+- ショッピングカート、チェックアウト、在庫のユーザーストーリー
+- Reactコンポーネントアーキテクチャ例
+- Node.js APIエンドポイント仕様
+- PostgreSQLスキーマ設計
+- Redisキャッシング戦略
+- パフォーマンス要件（レスポンス200ms未満）
+- セキュリティ要件（PCIコンプライアンス）
 
-#### 2. API Service with Legacy Integration
+#### 2. レガシー統合付きAPIサービス
 ```bash
-/requirements "Payment API" \
-  -f "Transaction Processing" \
+/requirements "決済API" \
+  -f "トランザクション処理" \
   --file legacy-specs.txt \
   -t "nodejs,mongodb" \
   --template standard
 ```
 
-**Generated Sections**:
-- Transaction processing flow
-- Legacy system integration requirements
-- MongoDB document schemas
-- API versioning strategy
-- Error handling specifications
-- Rate limiting requirements
+**生成されるセクション**:
+- トランザクション処理フロー
+- レガシーシステム統合要件
+- MongoDBドキュメントスキーマ
+- APIバージョニング戦略
+- エラーハンドリング仕様
+- レート制限要件
 
-#### 3. MVP Mobile Application
+#### 3. MVPモバイルアプリケーション
 ```bash
-/requirements "Social Media App" \
-  -a "iOS Client" \
+/requirements "SNSアプリ" \
+  -a "iOSクライアント" \
   -s mvp \
   -p medium \
   --template agile
 ```
 
-**Generated Sections**:
-- Core MVP features (post, follow, feed)
-- User stories with story points
-- Acceptance criteria for each feature
-- Definition of Done
-- Technical debt considerations
-- Phase 2 feature roadmap
+**生成されるセクション**:
+- コアMVP機能（投稿、フォロー、フィード）
+- ストーリーポイント付きユーザーストーリー
+- 各機能の受入条件
+- 完了の定義
+- 技術的負債の考慮
+- フェーズ2機能ロードマップ
 
-### Template Details
+### テンプレート詳細
 
-#### 1. Standard Template Structure
+#### 1. 標準テンプレート構造
 ```markdown
-# Requirements Definition: [System Name]
+# 要件定義: [システム名]
 
-## 1. Overview
-### 1.1 Purpose
-### 1.2 Background
-### 1.3 Expected Benefits
+## 1. 概要
+### 1.1 目的
+### 1.2 背景
+### 1.3 期待される効果
 
-## 2. Functional Requirements
-### 2.1 Core Features
-### 2.2 User Scenarios
-### 2.3 Business Rules
+## 2. 機能要件
+### 2.1 コア機能
+### 2.2 ユーザーシナリオ
+### 2.3 ビジネスルール
 
-## 3. Non-Functional Requirements
-### 3.1 Performance
-### 3.2 Security
-### 3.3 Availability
-### 3.4 Scalability
+## 3. 非機能要件
+### 3.1 パフォーマンス
+### 3.2 セキュリティ
+### 3.3 可用性
+### 3.4 スケーラビリティ
 
-## 4. Technical Specifications
-### 4.1 Architecture
-### 4.2 Technology Stack
-### 4.3 Integration Points
+## 4. 技術仕様
+### 4.1 アーキテクチャ
+### 4.2 技術スタック
+### 4.3 統合ポイント
 
-## 5. Constraints and Assumptions
-## 6. Success Criteria
+## 5. 制約と前提条件
+## 6. 成功基準
 ```
 
-#### 2. Agile Template Structure (Enhanced with EARS)
+#### 2. アジャイルテンプレート構造（EARS強化版）
 ```markdown
-# Product Requirements: [System Name]
+# プロダクト要件: [システム名]
 
-## Epic Definition
-[High-level feature description]
+## エピック定義
+[高レベル機能説明]
 
-## User Stories
+## ユーザーストーリー
 
-### Story 1: [Feature Name]
-**As a** [user type]
-**I want** [goal]
-**So that** [benefit]
+### ストーリー1: [機能名]
+**として** [ユーザータイプ]
+**私は** [目標]
+**したい** [利益]
 
-**Acceptance Criteria (EARS Format):**
-1. WHEN [event] THEN [system] SHALL [response]
-2. IF [precondition] THEN [system] SHALL [response]
-3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
-4. WHERE [location/context] THE SYSTEM SHALL [contextual behavior]
+**受入条件（EARS形式）:**
+1. WHEN [イベント] THEN [システム] SHALL [レスポンス]
+2. IF [前提条件] THEN [システム] SHALL [レスポンス]
+3. WHILE [継続条件] THE SYSTEM SHALL [継続的動作]
+4. WHERE [場所/コンテキスト] THE SYSTEM SHALL [コンテキスト依存動作]
 
-**Story Points:** [1-13]
-**Priority:** [High/Medium/Low]
+**ストーリーポイント:** [1-13]
+**優先度:** [高/中/低]
 
-## Definition of Done
-- Code reviewed
-- Unit tests passing
-- Documentation updated
-- Deployed to staging
-- EARS acceptance criteria verified
+## 完了の定義
+- コードレビュー済み
+- ユニットテスト合格
+- ドキュメント更新済み
+- ステージングにデプロイ済み
+- EARS受入条件検証済み
 ```
 
-#### 3. Waterfall Template Structure (Enhanced with EARS)
+#### 3. ウォーターフォールテンプレート構造（EARS強化版）
 ```markdown
-# Software Requirements Specification: [System Name]
+# ソフトウェア要件仕様書: [システム名]
 
-## 1. Introduction
-### 1.1 Purpose
-### 1.2 Scope
-### 1.3 Definitions
+## 1. はじめに
+### 1.1 目的
+### 1.2 スコープ
+### 1.3 定義
 
-## 2. Overall Description
-### 2.1 Product Perspective
-### 2.2 Product Functions
-### 2.3 User Classes
+## 2. 全体説明
+### 2.1 製品の視点
+### 2.2 製品機能
+### 2.3 ユーザークラス
 
-## 3. Specific Requirements
-### 3.1 Functional Requirements (EARS Format)
-1. WHEN [event] THEN [system] SHALL [response]
-2. IF [precondition] THEN [system] SHALL [response]
-3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
+## 3. 具体的要件
+### 3.1 機能要件（EARS形式）
+1. WHEN [イベント] THEN [システム] SHALL [レスポンス]
+2. IF [前提条件] THEN [システム] SHALL [レスポンス]
+3. WHILE [継続条件] THE SYSTEM SHALL [継続的動作]
 
-### 3.2 Performance Requirements
-### 3.3 Design Constraints
+### 3.2 パフォーマンス要件
+### 3.3 設計制約
 
-## 4. System Design
-### 4.1 Architecture Diagram
-### 4.2 Database Design
-### 4.3 Interface Design
+## 4. システム設計
+### 4.1 アーキテクチャ図
+### 4.2 データベース設計
+### 4.3 インターフェース設計
 
-## 5. Implementation Plan
-### 5.1 Development Phases
-### 5.2 Testing Strategy
-### 5.3 Deployment Plan
+## 5. 実装計画
+### 5.1 開発フェーズ
+### 5.2 テスト戦略
+### 5.3 デプロイ計画
 
-## 6. Maintenance and Support
+## 6. 保守とサポート
 ```
 
-#### 4. Product Backlog Template Structure
+#### 4. プロダクトバックログテンプレート構造
 ```markdown
-# Product Backlog: [System Name]
+# プロダクトバックログ: [システム名]
 
-## Epic: [Epic Name]
-**Epic Description:** [High-level business objective]
-**Business Value:** [Expected value and benefits]
+## エピック: [エピック名]
+**エピック説明:** [高レベルビジネス目標]
+**ビジネス価値:** [期待される価値と利益]
 
-### Theme: [Feature Theme]
+### テーマ: [機能テーマ]
 
-#### Feature: [Feature Name]
-**Feature Description:** [Detailed feature overview]
+#### フィーチャー: [フィーチャー名]
+**フィーチャー説明:** [詳細な機能概要]
 
-##### User Story: [Story Title]
-**As a** [user role]
-**I want** [capability]
-**So that** [benefit/value]
+##### ユーザーストーリー: [ストーリータイトル]
+**として** [ユーザーロール]
+**私は** [機能]
+**したい** [利益/価値]
 
-**Acceptance Criteria (EARS Format):**
-1. WHEN [trigger event] THEN [system] SHALL [expected response]
-2. IF [precondition] THEN [system] SHALL [required behavior]
-3. WHILE [ongoing condition] THE SYSTEM SHALL [continuous behavior]
-4. WHERE [context/location] THE SYSTEM SHALL [contextual behavior]
+**受入条件（EARS形式）:**
+1. WHEN [トリガーイベント] THEN [システム] SHALL [期待されるレスポンス]
+2. IF [前提条件] THEN [システム] SHALL [必要な動作]
+3. WHILE [継続条件] THE SYSTEM SHALL [継続的動作]
+4. WHERE [コンテキスト/場所] THE SYSTEM SHALL [コンテキスト依存動作]
 
-**Story Details:**
-- **Story Points:** [1, 2, 3, 5, 8, 13, 21]
-- **Priority:** [Critical/High/Medium/Low]
-- **Sprint:** [Target sprint number]
-- **Dependencies:** [List of dependent stories]
-- **Assumptions:** [Key assumptions]
+**ストーリー詳細:**
+- **ストーリーポイント:** [1, 2, 3, 5, 8, 13, 21]
+- **優先度:** [Critical/High/Medium/Low]
+- **スプリント:** [目標スプリント番号]
+- **依存関係:** [依存ストーリーリスト]
+- **前提条件:** [主要な前提条件]
 
-**Definition of Ready:**
-- [ ] Story is estimated
-- [ ] Acceptance criteria defined in EARS format
-- [ ] Dependencies identified
-- [ ] Testable and demonstrable
+**準備完了の定義:**
+- [ ] ストーリーは見積もり済み
+- [ ] 受入条件がEARS形式で定義済み
+- [ ] 依存関係が特定済み
+- [ ] テスト可能でデモ可能
 
-**Definition of Done:**
-- [ ] Code implemented and reviewed
-- [ ] All EARS acceptance criteria verified
-- [ ] Unit tests written and passing
-- [ ] Integration tests passing
-- [ ] Documentation updated
-- [ ] Deployed to staging environment
-- [ ] Stakeholder acceptance obtained
+**完了の定義:**
+- [ ] コード実装・レビュー済み
+- [ ] すべてのEARS受入条件検証済み
+- [ ] ユニットテスト作成・合格
+- [ ] 統合テスト合格
+- [ ] ドキュメント更新済み
+- [ ] ステージング環境にデプロイ済み
+- [ ] ステークホルダー承認取得済み
 
-#### Additional Stories...
-[Continue with additional user stories following the same format]
+#### 追加ストーリー...
+[同じ形式で追加のユーザーストーリーを続ける]
 
-### Feature Metrics
-- **Total Story Points:** [Sum of all story points]
-- **Estimated Velocity:** [Points per sprint]
-- **Target Completion:** [Estimated sprint]
+### フィーチャーメトリクス
+- **総ストーリーポイント:** [全ストーリーポイントの合計]
+- **見積もりベロシティ:** [スプリントあたりのポイント]
+- **目標完了:** [見積もりスプリント]
 
-## Backlog Prioritization
-1. **Must Have (Critical)**
-2. **Should Have (High)**
-3. **Could Have (Medium)**
-4. **Won't Have This Release (Low)**
+## バックログ優先順位付け
+1. **Must Have（Critical）**
+2. **Should Have（High）**
+3. **Could Have（Medium）**
+4. **Won't Have This Release（Low）**
 
-## Release Planning
-### Sprint 1 Goals
-### Sprint 2 Goals
-### Future Sprints
+## リリース計画
+### スプリント1目標
+### スプリント2目標
+### 将来のスプリント
 ```
 
-### Features
+### 機能
 
-#### Technology Stack Support
+#### 技術スタックサポート
 
-When `-t` option is specified, the command:
+`-t`オプションが指定された場合、コマンドは以下を行います：
 
-1. **Technology Analysis**:
-   - Parse comma-separated technology list
-   - Validate technology compatibility
-   - Check for common technology combinations
+1. **技術分析**：
+   - カンマ区切りの技術リストを解析
+   - 技術互換性を検証
+   - 一般的な技術組み合わせをチェック
 
-2. **Documentation Generation**:
-   - Selection rationale for each technology
-   - Version recommendations based on stability/features
-   - Related libraries and frameworks
-   - Integration considerations
-   - Best practices and patterns
+2. **ドキュメント生成**：
+   - 各技術の選定理由
+   - 安定性/機能に基づくバージョン推奨
+   - 関連ライブラリとフレームワーク
+   - 統合の考慮事項
+   - ベストプラクティスとパターン
 
-3. **Supported Technologies**:
-   - **Frontend**: React, Vue, Angular, Svelte, Next.js
-   - **Backend**: Node.js, Python, Java, Go, Ruby
-   - **Database**: PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
-   - **Container**: Docker, Kubernetes, Docker Compose
-   - **Cloud**: AWS, GCP, Azure, Vercel, Netlify
+3. **サポートされる技術**：
+   - **フロントエンド**: React、Vue、Angular、Svelte、Next.js
+   - **バックエンド**: Node.js、Python、Java、Go、Ruby
+   - **データベース**: PostgreSQL、MySQL、MongoDB、Redis、Elasticsearch
+   - **コンテナ**: Docker、Kubernetes、Docker Compose
+   - **クラウド**: AWS、GCP、Azure、Vercel、Netlify
 
-#### Implementation Examples (`--examples`)
+#### 実装例（`--examples`）
 
-Generate framework-specific code examples:
+フレームワーク固有のコード例を生成：
 
 ```typescript
-// React Component Example
+// Reactコンポーネント例
 interface UserProfileProps {
   userId: string;
   onUpdate: (user: User) => void;
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ userId, onUpdate }) => {
-  // Implementation based on requirements
+  // 要件に基づく実装
 };
 
-// Express API Example
+// Express API例
 app.post('/api/users', async (req, res) => {
   try {
     const user = await createUser(req.body);
@@ -853,7 +853,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
-// PostgreSQL Schema Example
+// PostgreSQLスキーマ例
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   email VARCHAR(255) UNIQUE NOT NULL,
@@ -861,262 +861,262 @@ CREATE TABLE users (
 );
 ```
 
-#### Improvement Suggestions (`--suggest`)
+#### 改善提案（`--suggest`）
 
-AI-powered analysis provides:
+AI駆動の分析が以下を提供：
 
-1. **Architecture Recommendations**:
-   - Microservices vs monolithic considerations
-   - Caching strategy suggestions
-   - Database optimization tips
+1. **アーキテクチャ推奨**：
+   - マイクロサービスvsモノリシックの考慮
+   - キャッシング戦略の提案
+   - データベース最適化のヒント
 
-2. **Security Enhancements**:
-   - Authentication/authorization improvements
-   - Data encryption recommendations
-   - API security best practices
+2. **セキュリティ強化**：
+   - 認証/認可の改善
+   - データ暗号化の推奨
+   - APIセキュリティベストプラクティス
 
-3. **Performance Optimizations**:
-   - Query optimization suggestions
-   - Caching layer recommendations
-   - CDN integration options
+3. **パフォーマンス最適化**：
+   - クエリ最適化の提案
+   - キャッシングレイヤーの推奨
+   - CDN統合オプション
 
-4. **Development Process**:
-   - CI/CD pipeline suggestions
-   - Testing strategy recommendations
-   - Monitoring and logging setup
+4. **開発プロセス**：
+   - CI/CDパイプラインの提案
+   - テスト戦略の推奨
+   - 監視とロギングのセットアップ
 
-### Output Format
+### 出力形式
 
-The generated document includes:
+生成されるドキュメントには以下が含まれます：
 
-1. **Header Information**
-   - Generation timestamp
-   - System name
-   - Application name (if specified)
-   - Function name (if specified)
-   - Priority level
-   - Scope
+1. **ヘッダー情報**
+   - 生成タイムスタンプ
+   - システム名
+   - アプリケーション名（指定された場合）
+   - 機能名（指定された場合）
+   - 優先度レベル
+   - スコープ
 
-2. **Main Content** (based on selected template)
-   - Requirements sections
-   - Technical specifications
-   - User stories or use cases
+2. **メインコンテンツ**（選択されたテンプレートに基づく）
+   - 要件セクション
+   - 技術仕様
+   - ユーザーストーリーまたはユースケース
 
-3. **Technology Selection** (if specified)
-   - Selected technologies with rationale
-   - Version recommendations
-   - Integration considerations
+3. **技術選定**（指定された場合）
+   - 理由付きで選定された技術
+   - バージョン推奨
+   - 統合の考慮事項
 
-4. **Additional Sections** (if enabled)
-   - Implementation examples
-   - Improvement suggestions
-   - Additional requirements from file
+4. **追加セクション**（有効な場合）
+   - 実装例
+   - 改善提案
+   - ファイルからの追加要件
 
-#### Hearing Mode Output Examples
+#### ヒアリングモード出力例
 
-When hearing mode is used, the generated requirements include a clarification summary:
-
-```markdown
-# Requirements Definition: Fitness Tracking App
-
-*Generated with Hearing Mode Clarifications*
-
-## 📋 Clarification Summary
-
-**Original Request**: "Mobile App" --hearing
-**Refined Through Q&A**:
-- **System Type**: Health & Fitness Mobile Application
-- **Platform**: Cross-platform (Flutter)
-- **Core Features**: Workout tracking, Progress analytics, Wearable integration
-- **Backend Services**: Full backend with auth, sync, notifications
-- **Target Users**: Fitness enthusiasts, Personal trainers
-- **Scope**: MVP with growth potential
-
-## 1. Functional Requirements
-
-Based on clarification responses:
-
-### 1.1 Workout Tracking
-**User Story**: As a fitness enthusiast, I want to track my workouts so that I can monitor my progress over time.
-
-**Acceptance Criteria**:
-- [ ] Create custom workout routines
-- [ ] Log exercises with sets, reps, weights
-- [ ] Timer functionality for rest periods
-- [ ] Exercise library with instructions
-
-### 1.2 Progress Analytics
-**User Story**: As a user, I want to see my fitness progress so that I can stay motivated and adjust my routine.
-
-**Acceptance Criteria**:
-- [ ] Visual progress charts and graphs
-- [ ] Performance trend analysis
-- [ ] Goal setting and tracking
-- [ ] Achievement badges/milestones
-```
-
-#### Execution Completion Report
+ヒアリングモードを使用した場合、生成される要件には明確化サマリーが含まれます：
 
 ```markdown
-📋 Requirements Definition Generated
+# 要件定義: フィットネス追跡アプリ
 
-📁 Output File: requirements.md
-📏 Document Size: 2,456 lines
-📑 Sections Created: 12
+*ヒアリングモードによる明確化で生成*
 
-✅ Included Features:
-- ✓ Functional Requirements (45 items)
-- ✓ Non-Functional Requirements (18 items)
-- ✓ Technology Stack Analysis
-- ✓ Implementation Examples
-- ✓ Improvement Suggestions
+## 📋 明確化サマリー
 
-🛠️ Technology Stack:
-- Frontend: React 18.2.0
-- Backend: Node.js 20.x with Express 4.18
-- Database: PostgreSQL 15
-- Cache: Redis 7.0
+**元のリクエスト**: "モバイルアプリ" --hearing
+**Q&Aによる洗練**:
+- **システムタイプ**: ヘルス&フィットネスモバイルアプリケーション
+- **プラットフォーム**: クロスプラットフォーム（Flutter）
+- **コア機能**: ワークアウト追跡、進捗分析、ウェアラブル統合
+- **バックエンドサービス**: 認証、同期、通知を含む完全なバックエンド
+- **ターゲットユーザー**: フィットネス愛好家、パーソナルトレーナー
+- **スコープ**: 成長可能性のあるMVP
 
-📊 Metrics:
-- User Stories: 23
-- Total Story Points: 144
-- Estimated Timeline: 3-4 sprints
+## 1. 機能要件
+
+明確化回答に基づく：
+
+### 1.1 ワークアウト追跡
+**ユーザーストーリー**: フィットネス愛好家として、進捗を長期的に監視できるようワークアウトを追跡したい。
+
+**受入条件**:
+- [ ] カスタムワークアウトルーティンを作成
+- [ ] セット、レップ、重量付きでエクササイズを記録
+- [ ] 休憩時間用タイマー機能
+- [ ] 説明付きエクササイズライブラリ
+
+### 1.2 進捗分析
+**ユーザーストーリー**: ユーザーとして、モチベーションを維持しルーティンを調整できるようフィットネスの進捗を確認したい。
+
+**受入条件**:
+- [ ] 視覚的な進捗チャートとグラフ
+- [ ] パフォーマンストレンド分析
+- [ ] 目標設定と追跡
+- [ ] 達成バッジ/マイルストーン
 ```
 
-### Error Handling & Limitations
+#### 実行完了レポート
 
-#### Common Issues
+```markdown
+📋 要件定義生成完了
 
-1. **Missing System Name**:
+📁 出力ファイル: requirements.md
+📏 ドキュメントサイズ: 2,456行
+📑 作成セクション: 12
+
+✅ 含まれる機能:
+- ✓ 機能要件（45項目）
+- ✓ 非機能要件（18項目）
+- ✓ 技術スタック分析
+- ✓ 実装例
+- ✓ 改善提案
+
+🛠️ 技術スタック:
+- フロントエンド: React 18.2.0
+- バックエンド: Node.js 20.x with Express 4.18
+- データベース: PostgreSQL 15
+- キャッシュ: Redis 7.0
+
+📊 メトリクス:
+- ユーザーストーリー: 23
+- 総ストーリーポイント: 144
+- 見積もりタイムライン: 3-4スプリント
+```
+
+### エラーハンドリングと制限事項
+
+#### よくある問題
+
+1. **システム名が未指定**：
    ```bash
-   ❌ Error: System name is required
-   Usage: /requirements "System Name" [options]
+   ❌ エラー: システム名は必須です
+   使用法: /requirements "システム名" [オプション]
    ```
 
-2. **Invalid Template Type**:
+2. **無効なテンプレートタイプ**：
    ```bash
-   ❌ Error: Invalid template 'custom'
-   Valid templates: standard, agile, waterfall
+   ❌ エラー: 無効なテンプレート 'custom'
+   有効なテンプレート: standard, agile, waterfall
    ```
 
-3. **File Not Found**:
+3. **ファイルが見つからない**：
    ```bash
-   ❌ Error: Cannot read file 'requirements.txt'
-   Please verify file path and permissions
+   ❌ エラー: ファイル 'requirements.txt' を読み取れません
+   ファイルパスと権限を確認してください
    ```
 
-#### Limitations
+#### 制限事項
 
-- Maximum file input size: 100KB
-- Technology stack limited to 10 technologies
-- Output file size may be large for enterprise scope
-- Examples are framework-specific and may need customization
+- 最大ファイル入力サイズ: 100KB
+- 技術スタックは10技術まで
+- エンタープライズスコープの出力ファイルは大きくなる可能性
+- 例はフレームワーク固有でカスタマイズが必要な場合あり
 
-### Hearing Mode Best Practices
+### ヒアリングモードのベストプラクティス
 
-#### When to Use Hearing Mode
+#### ヒアリングモードを使用するタイミング
 
-**Use `--hearing` when**:
-- System name is abstract ("Business App", "Mobile Solution")
-- You're exploring different approaches
-- Multiple stakeholders need input
-- Requirements are unclear or evolving
-- You want guided requirement discovery
+**`--hearing`を使用する場合**:
+- システム名が抽象的（「業務アプリ」、「モバイルソリューション」）
+- 異なるアプローチを探求中
+- 複数のステークホルダーの入力が必要
+- 要件が不明確または進化中
+- ガイド付き要件発見が必要
 
-**Skip `--hearing` when**:
-- Requirements are well-defined
-- Using specific technical terms in system name
-- All command options already specified
-- Time constraints for quick generation
+**`--hearing`をスキップする場合**:
+- 要件が明確に定義されている
+- システム名に特定の技術用語を使用
+- すべてのコマンドオプションがすでに指定済み
+- 迅速な生成のための時間制約
 
-#### Tips for Effective Hearing Mode Sessions
+#### 効果的なヒアリングモードセッションのヒント
 
-1. **Prepare Context**: Run hearing mode in the project directory for better context analysis
-2. **Be Specific**: Provide detailed answers to get better follow-up questions
-3. **Use Multiple Selections**: Most questions allow comma-separated answers (1,2,5)
-4. **Leverage "Other" Options**: Don't hesitate to specify custom requirements
-5. **Review Generated Questions**: The system learns from your project structure
+1. **コンテキストを準備**: より良いコンテキスト分析のためにプロジェクトディレクトリでヒアリングモードを実行
+2. **具体的に**: 詳細な回答を提供してより良いフォローアップ質問を得る
+3. **複数選択を使用**: ほとんどの質問はカンマ区切りの回答が可能（1,2,5）
+4. **「その他」オプションを活用**: カスタム要件の指定を躊躇しない
+5. **生成された質問をレビュー**: システムはプロジェクト構造から学習
 
-#### Combining with Other Options
+#### 他のオプションとの組み合わせ
 
 ```bash
-# Start with hearing mode, then add specific constraints
-/requirements "Data Platform" --hearing -p high -s enterprise
+# ヒアリングモードから開始し、特定の制約を追加
+/requirements "データプラットフォーム" --hearing -p high -s enterprise
 
-# Use hearing mode with existing technology preferences
-/requirements "Web Service" -t "python,postgresql" --hearing --examples
+# 既存の技術選好でヒアリングモードを使用
+/requirements "Webサービス" -t "python,postgresql" --hearing --examples
 
-# Interactive mode with output customization
-/requirements "Customer Portal" --hearing -o portal-requirements.md --template agile
+# 出力カスタマイズ付き対話モード
+/requirements "顧客ポータル" --hearing -o portal-requirements.md --template agile
 ```
 
-### Best Practices
+### ベストプラクティス
 
-#### Writing Good Requirements
+#### 良い要件の書き方
 
-1. **Be Specific and Measurable**
-   - ❌ "The system should be fast"
-   - ✅ "The system should respond within 200ms for 95% of requests"
+1. **具体的で測定可能に**
+   - ❌ 「システムは速くあるべき」
+   - ✅ 「システムはリクエストの95%に対して200ms以内に応答すべき」
 
-2. **Use Clear Language**
-   - Avoid ambiguous terms
-   - Define technical terminology
-   - Use consistent vocabulary
+2. **明確な言語を使用**
+   - 曖昧な用語を避ける
+   - 技術用語を定義
+   - 一貫した語彙を使用
 
-3. **Prioritize Requirements**
-   - Use MoSCoW method (Must, Should, Could, Won't)
-   - Consider business value vs. effort
-   - Identify dependencies
+3. **要件に優先順位を付ける**
+   - MoSCoW法を使用（Must、Should、Could、Won't）
+   - ビジネス価値vs労力を考慮
+   - 依存関係を特定
 
-4. **Include Acceptance Criteria**
-   - Define "Definition of Done"
-   - Specify test scenarios
-   - Include edge cases
+4. **受入条件を含む**
+   - 「完了の定義」を定義
+   - テストシナリオを指定
+   - エッジケースを含む
 
-5. **Maintain Traceability**
-   - Link requirements to business objectives
-   - Track changes and versions
-   - Document decisions and rationale
+5. **トレーサビリティを維持**
+   - 要件をビジネス目標にリンク
+   - 変更とバージョンを追跡
+   - 決定と理由を文書化
 
-#### Review Checklist
+#### レビューチェックリスト
 
-- [ ] All stakeholders identified
-- [ ] Requirements are testable
-- [ ] Non-functional requirements included
-- [ ] Dependencies documented
-- [ ] Risks identified and mitigated
-- [ ] Compliance requirements addressed
-- [ ] User experience considered
-- [ ] Technical constraints defined
+- [ ] すべてのステークホルダーが特定されている
+- [ ] 要件はテスト可能
+- [ ] 非機能要件が含まれている
+- [ ] 依存関係が文書化されている
+- [ ] リスクが特定・軽減されている
+- [ ] コンプライアンス要件が対処されている
+- [ ] ユーザーエクスペリエンスが考慮されている
+- [ ] 技術的制約が定義されている
 
-### Integration Workflow
+### 統合ワークフロー
 
-1. **Requirements Generation**:
+1. **要件生成**：
    ```bash
-   /requirements "Project Name" -t "react,nodejs" --suggest
+   /requirements "プロジェクト名" -t "react,nodejs" --suggest
    ```
 
-2. **Implementation Planning**:
-   - Convert requirements to user stories
-   - Create development tasks
-   - Estimate effort and timeline
+2. **実装計画**：
+   - 要件をユーザーストーリーに変換
+   - 開発タスクを作成
+   - 労力とタイムラインを見積もり
 
-3. **Development Tracking**:
-   - Use generated requirements as reference
-   - Update requirements as needed
-   - Track implementation progress
+3. **開発追跡**：
+   - 生成された要件を参照として使用
+   - 必要に応じて要件を更新
+   - 実装進捗を追跡
 
-4. **Testing Strategy**:
-   - Generate test cases from requirements
-   - Ensure coverage of all requirements
-   - Validate acceptance criteria
+4. **テスト戦略**：
+   - 要件からテストケースを生成
+   - すべての要件のカバレッジを確保
+   - 受入条件を検証
 
-### Future Enhancements
+### 将来の機能強化
 
-- **Diagram Generation**: Mermaid diagrams for architecture visualization
-- **Effort Estimation**: Automated story point calculation
-- **Requirements Validation**: Completeness and consistency checks
-- **Export Formats**: PDF, HTML, Confluence integration
-- **AI Review**: Quality assessment and gap analysis
-- **Collaboration**: Multi-user editing and commenting
-- **Metrics**: Complexity analysis and traceability matrix
+- **図生成**: アーキテクチャ可視化用Mermaid図
+- **労力見積もり**: 自動ストーリーポイント計算
+- **要件検証**: 完全性と一貫性チェック
+- **エクスポート形式**: PDF、HTML、Confluence統合
+- **AIレビュー**: 品質評価とギャップ分析
+- **コラボレーション**: マルチユーザー編集とコメント
+- **メトリクス**: 複雑性分析とトレーサビリティマトリックス

@@ -1,104 +1,104 @@
 ---
 allowed-tools: mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__list_dir, Bash(gh:*), Bash(git:*), mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-description: Generate PR description and automatically create pull request on GitHub
+description: PR説明を生成し、GitHubでプルリクエストを自動作成
 ---
 
-## Context
+## コンテキスト
 
-- Current git status: !`git status`
-- Changes in this PR: !`git diff develop...HEAD 2>/dev/null || git diff main...HEAD 2>/dev/null || git diff master...HEAD 2>/dev/null || git diff HEAD~1...HEAD`
-- Commits in this PR: !`git log --oneline develop..HEAD 2>/dev/null || git log --oneline main..HEAD 2>/dev/null || git log --oneline master..HEAD 2>/dev/null || git log --oneline HEAD~1..HEAD`
-- PR template: @.github/pull_request_template.md
+- 現在のgitステータス: !`git status`
+- このPRの変更: !`git diff develop...HEAD 2>/dev/null || git diff main...HEAD 2>/dev/null || git diff master...HEAD 2>/dev/null || git diff HEAD~1...HEAD`
+- このPRのコミット: !`git log --oneline develop..HEAD 2>/dev/null || git log --oneline main..HEAD 2>/dev/null || git log --oneline master..HEAD 2>/dev/null || git log --oneline HEAD~1..HEAD`
+- PRテンプレート: @.github/pull_request_template.md
 
-## Tool Usage Priorities
+## ツール使用優先順位
 
-**ALWAYS prioritize mcp__serena__ tools over default Claude Code tools when available:**
+**利用可能な場合は常にmcp__serena__ツールをデフォルトのClaude Codeツールより優先:**
 
-### File Operations (Use Serena MCP First)
-- **Reading files**: Use `mcp__serena__find_file` → `Bash(git:*)` (fallback)
-- **Searching patterns**: Use `mcp__serena__search_for_pattern` → `Bash(git:*)` (fallback)
-- **Directory listing**: Use `mcp__serena__list_dir` → `Bash(git:*)` (fallback)
-- **Finding symbols**: Use `mcp__serena__find_symbol` → `Bash(git:*)` (fallback)
+### ファイル操作 (Serena MCP優先)
+- **ファイル読み込み**: `mcp__serena__find_file` → `Bash(git:*)`（フォールバック）
+- **パターン検索**: `mcp__serena__search_for_pattern` → `Bash(git:*)`（フォールバック）
+- **ディレクトリ一覧**: `mcp__serena__list_dir` → `Bash(git:*)`（フォールバック）
+- **シンボル検索**: `mcp__serena__find_symbol` → `Bash(git:*)`（フォールバック）
 
-### Code Analysis (Serena MCP Exclusive)
-- **Symbol overview**: Use `mcp__serena__get_symbols_overview`
-- **Symbol references**: Use `mcp__serena__find_referencing_symbols`
-- **Code replacement**: Use `mcp__serena__replace_symbol_body` → fallbacks
-- **Pattern replacement**: Use `mcp__serena__replace_regex` → fallbacks
+### コード分析 (Serena MCP専用)
+- **シンボル概要**: `mcp__serena__get_symbols_overview`を使用
+- **シンボル参照**: `mcp__serena__find_referencing_symbols`を使用
+- **コード置換**: `mcp__serena__replace_symbol_body` → フォールバック
+- **パターン置換**: `mcp__serena__replace_regex` → フォールバック
 
-## Your task
+## タスク
 
-Based on the provided option, perform one of the following actions:
+提供されたオプションに基づいて、以下のいずれかのアクションを実行:
 
-### Options:
+### オプション:
 
-- **No option or default**: Generate PR description and create pull request
-- **-p**: Push current branch and create pull request
-- **-u**: Update existing pull request description only
+- **オプションなしまたはデフォルト**: PR説明を生成し、プルリクエストを作成
+- **-p**: 現在のブランチをプッシュし、プルリクエストを作成
+- **-u**: 既存のプルリクエスト説明のみを更新
 
-### Default behavior (no option):
+### デフォルト動作（オプションなし）:
 
-1. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
-2. **Analyze Changes**: Use `mcp__serena__search_for_pattern` to analyze git diff and `mcp__serena__get_symbols_overview` for code understanding
-3. **Read PR Template**: Use `mcp__serena__find_file` to read PR template → fallback to direct file reading
-4. Create a PR description following the **exact format** of the PR template in Japanese
-5. **Use Context7 MCP** to fetch relevant documentation URLs for the Reference section
-6. **Add a Mermaid diagram** that visualizes the changes made in this PR
-7. **Progress Check**: Use `mcp__serena__think_about_task_adherence` to verify completeness
-8. Execute `gh pr create --draft` with the generated title and description
-9. **Store Pattern**: Use `mcp__serena__write_memory` to store successful PR patterns
+1. **Serenaオンボーディング**: `mcp__serena__check_onboarding_performed`と必要に応じて`mcp__serena__onboarding`を使用
+2. **変更分析**: `mcp__serena__search_for_pattern`でgit diffを分析し、`mcp__serena__get_symbols_overview`でコードを理解
+3. **PRテンプレート読み込み**: `mcp__serena__find_file`でPRテンプレートを読み込み → 直接ファイル読み込みにフォールバック
+4. PRテンプレートの**正確なフォーマット**に従ってPR説明を日本語で作成
+5. **Context7 MCP**を使用してReferenceセクション用の関連ドキュメントURLを取得
+6. このPRで行われた変更を視覚化する**Mermaidダイアグラム**を追加
+7. **進捗チェック**: `mcp__serena__think_about_task_adherence`で完全性を検証
+8. 生成されたタイトルと説明で`gh pr create --draft`を実行
+9. **パターン保存**: `mcp__serena__write_memory`で成功したPRパターンを保存
 
-### With -p option:
+### -pオプション付き:
 
-1. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
-2. Push current branch to remote repository using `git push -u origin <current-branch>`
-3. **Analyze Changes**: Use `mcp__serena__search_for_pattern` to analyze git diff and `mcp__serena__get_symbols_overview` for code understanding
-4. **Read PR Template**: Use `mcp__serena__find_file` to read PR template → fallback to direct file reading
-5. Create a PR description following the **exact format** of the PR template in Japanese
-6. **Use Context7 MCP** to fetch relevant documentation URLs for the Reference section
-7. **Add a Mermaid diagram** that visualizes the changes made in this PR
-8. **Progress Check**: Use `mcp__serena__think_about_task_adherence` to verify completeness
-9. Execute `gh pr create --draft` with the generated title and description
-10. **Store Pattern**: Use `mcp__serena__write_memory` to store successful PR patterns
+1. **Serenaオンボーディング**: `mcp__serena__check_onboarding_performed`と必要に応じて`mcp__serena__onboarding`を使用
+2. `git push -u origin <current-branch>`で現在のブランチをリモートリポジトリにプッシュ
+3. **変更分析**: `mcp__serena__search_for_pattern`でgit diffを分析し、`mcp__serena__get_symbols_overview`でコードを理解
+4. **PRテンプレート読み込み**: `mcp__serena__find_file`でPRテンプレートを読み込み → 直接ファイル読み込みにフォールバック
+5. PRテンプレートの**正確なフォーマット**に従ってPR説明を日本語で作成
+6. **Context7 MCP**を使用してReferenceセクション用の関連ドキュメントURLを取得
+7. このPRで行われた変更を視覚化する**Mermaidダイアグラム**を追加
+8. **進捗チェック**: `mcp__serena__think_about_task_adherence`で完全性を検証
+9. 生成されたタイトルと説明で`gh pr create --draft`を実行
+10. **パターン保存**: `mcp__serena__write_memory`で成功したPRパターンを保存
 
-### With -u option:
+### -uオプション付き:
 
-1. **Serena Onboarding**: Use `mcp__serena__check_onboarding_performed` and `mcp__serena__onboarding` if needed
-2. **Analyze Changes**: Use `mcp__serena__search_for_pattern` to analyze git diff and `mcp__serena__get_symbols_overview` for code understanding
-3. **Read PR Template**: Use `mcp__serena__find_file` to read PR template → fallback to direct file reading
-4. **Check Previous Patterns**: Use `mcp__serena__read_memory` to retrieve previous PR patterns
-5. Create a PR description following the **exact format** of the PR template in Japanese
-6. **Use Context7 MCP** to fetch relevant documentation URLs for the Reference section
-7. **Add a Mermaid diagram** that visualizes the changes made in this PR
-8. **Progress Check**: Use `mcp__serena__think_about_task_adherence` to verify completeness
-9. Update existing pull request description using `gh pr edit --body <description>`
-10. **Completion Check**: Use `mcp__serena__think_about_whether_you_are_done` to confirm success
+1. **Serenaオンボーディング**: `mcp__serena__check_onboarding_performed`と必要に応じて`mcp__serena__onboarding`を使用
+2. **変更分析**: `mcp__serena__search_for_pattern`でgit diffを分析し、`mcp__serena__get_symbols_overview`でコードを理解
+3. **PRテンプレート読み込み**: `mcp__serena__find_file`でPRテンプレートを読み込み → 直接ファイル読み込みにフォールバック
+4. **以前のパターン確認**: `mcp__serena__read_memory`で以前のPRパターンを取得
+5. PRテンプレートの**正確なフォーマット**に従ってPR説明を日本語で作成
+6. **Context7 MCP**を使用してReferenceセクション用の関連ドキュメントURLを取得
+7. このPRで行われた変更を視覚化する**Mermaidダイアグラム**を追加
+8. **進捗チェック**: `mcp__serena__think_about_task_adherence`で完全性を検証
+9. `gh pr edit --body <description>`で既存のプルリクエスト説明を更新
+10. **完了チェック**: `mcp__serena__think_about_whether_you_are_done`で成功を確認
 
-### Requirements:
+### 要件:
 
-1. Follow the template structure exactly
-2. Use Japanese for all content
-3. Include specific implementation details
-4. List concrete testing steps
-5. Use Context7 MCP to fetch official documentation URLs for libraries/frameworks used in the changes:
-   - **Analyze dependencies**: Use `mcp__serena__find_referencing_symbols` to identify used libraries
-   - **Think about information**: Use `mcp__serena__think_about_collected_information` to categorize findings
-   - Query Context7 MCP for documentation of relevant technologies
-   - Include official documentation links in the Reference section
-   - Focus on libraries like Next.js, React, TanStack Query, Tailwind CSS, etc. based on the actual changes
-6. Always include a Mermaid diagram that shows:
-   - Architecture changes (if any)
-   - Data flow modifications
-   - Component relationships
-   - Process flows affected by the changes
-7. Be comprehensive but concise
+1. テンプレート構造に正確に従う
+2. すべてのコンテンツは日本語で記述
+3. 具体的な実装の詳細を含める
+4. 具体的なテスト手順を列挙
+5. Context7 MCPを使用して、変更で使用されているライブラリ/フレームワークの公式ドキュメントURLを取得:
+   - **依存関係分析**: `mcp__serena__find_referencing_symbols`で使用ライブラリを特定
+   - **情報の検討**: `mcp__serena__think_about_collected_information`で発見を分類
+   - 関連技術のドキュメントをContext7 MCPにクエリ
+   - Referenceセクションに公式ドキュメントリンクを含める
+   - 実際の変更に基づいてNext.js、React、TanStack Query、Tailwind CSSなどのライブラリに焦点を当てる
+6. 常に以下を示すMermaidダイアグラムを含める:
+   - アーキテクチャの変更（ある場合）
+   - データフローの変更
+   - コンポーネントの関係
+   - 変更によって影響を受けるプロセスフロー
+7. 包括的だが簡潔に
 
-### Mermaid Diagram Guidelines:
+### Mermaidダイアグラムのガイドライン:
 
-- Use appropriate diagram types (flowchart, sequence, class, etc.)
-- Show before/after states if applicable
-- Highlight new or modified components
-- Use consistent styling and colors
-- Add the diagram in a dedicated section of the PR description
+- 適切なダイアグラムタイプを使用（flowchart、sequence、classなど）
+- 該当する場合、変更前/変更後の状態を表示
+- 新規または変更されたコンポーネントをハイライト
+- 一貫したスタイリングと色を使用
+- PR説明の専用セクションにダイアグラムを追加
 
-**Generate the PR description and create the pull request automatically.**
+**PR説明を生成し、プルリクエストを自動的に作成してください。**

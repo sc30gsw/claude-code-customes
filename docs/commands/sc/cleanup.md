@@ -1,93 +1,93 @@
 ---
 name: cleanup
-description: "Systematically clean up code, remove dead code, and optimize project structure"
+description: "体系的なコードクリーンアップ、デッドコード削除、プロジェクト構造最適化"
 category: workflow
 complexity: standard
 mcp-servers: [sequential, context7]
 personas: [architect, quality, security]
 ---
 
-# /sc:cleanup - Code and Project Cleanup
+# /sc:cleanup - コードとプロジェクトのクリーンアップ
 
-## Triggers
-- Code maintenance and technical debt reduction requests
-- Dead code removal and import optimization needs
-- Project structure improvement and organization requirements
-- Codebase hygiene and quality improvement initiatives
+## トリガー
+- コードメンテナンスと技術的負債削減のリクエスト
+- デッドコード削除とインポート最適化のニーズ
+- プロジェクト構造改善と整理の要件
+- コードベースの衛生と品質改善イニシアチブ
 
-## Usage
+## 使用方法
 ```
-/sc:cleanup [target] [--type code|imports|files|all] [--safe|--aggressive] [--interactive]
+/sc:cleanup [対象] [--type code|imports|files|all] [--safe|--aggressive] [--interactive]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Assess cleanup opportunities and safety considerations across target scope
-2. **Plan**: Choose cleanup approach and activate relevant personas for domain expertise
-3. **Execute**: Apply systematic cleanup with intelligent dead code detection and removal
-4. **Validate**: Ensure no functionality loss through testing and safety verification
-5. **Report**: Generate cleanup summary with recommendations for ongoing maintenance
+## 動作フロー
+1. **分析**: 対象スコープ全体でクリーンアップ機会と安全性考慮事項を評価
+2. **計画**: クリーンアップアプローチを選択し、ドメイン専門知識のための関連ペルソナを有効化
+3. **実行**: インテリジェントなデッドコード検出と削除による体系的なクリーンアップの適用
+4. **検証**: テストと安全性確認による機能損失がないことの確認
+5. **レポート**: 継続的なメンテナンスの推奨事項を含むクリーンアップサマリーの生成
 
-Key behaviors:
-- Multi-persona coordination (architect, quality, security) based on cleanup type
-- Framework-specific cleanup patterns via Context7 MCP integration
-- Systematic analysis via Sequential MCP for complex cleanup operations
-- Safety-first approach with backup and rollback capabilities
+主要な動作:
+- クリーンアップタイプに基づくマルチペルソナ連携（architect、quality、security）
+- Context7 MCP統合によるフレームワーク固有のクリーンアップパターン
+- 複雑なクリーンアップ操作のためのSequential MCPによる体系的分析
+- バックアップとロールバック機能を備えた安全第一のアプローチ
 
-## MCP Integration
-- **Sequential MCP**: Auto-activated for complex multi-step cleanup analysis and planning
-- **Context7 MCP**: Framework-specific cleanup patterns and best practices
-- **Persona Coordination**: Architect (structure), Quality (debt), Security (credentials)
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステップクリーンアップ分析と計画の自動有効化
+- **Context7 MCP**: フレームワーク固有のクリーンアップパターンとベストプラクティス
+- **ペルソナ連携**: Architect（構造）、Quality（負債）、Security（認証情報）
 
-## Tool Coordination
-- **Read/Grep/Glob**: Code analysis and pattern detection for cleanup opportunities
-- **Edit/MultiEdit**: Safe code modification and structure optimization
-- **TodoWrite**: Progress tracking for complex multi-file cleanup operations
-- **Task**: Delegation for large-scale cleanup workflows requiring systematic coordination
+## ツール連携
+- **Read/Grep/Glob**: クリーンアップ機会のためのコード分析とパターン検出
+- **Edit/MultiEdit**: 安全なコード修正と構造最適化
+- **TodoWrite**: 複雑なマルチファイルクリーンアップ操作の進捗追跡
+- **Task**: 体系的な連携を必要とする大規模クリーンアップワークフローの委任
 
-## Key Patterns
-- **Dead Code Detection**: Usage analysis → safe removal with dependency validation
-- **Import Optimization**: Dependency analysis → unused import removal and organization
-- **Structure Cleanup**: Architectural analysis → file organization and modular improvements
-- **Safety Validation**: Pre/during/post checks → preserve functionality throughout cleanup
+## 主要パターン
+- **デッドコード検出**: 使用状況分析 → 依存関係検証による安全な削除
+- **インポート最適化**: 依存関係分析 → 未使用インポートの削除と整理
+- **構造クリーンアップ**: アーキテクチャ分析 → ファイル整理とモジュール改善
+- **安全性検証**: 事前/実行中/事後チェック → クリーンアップ全体で機能を保持
 
-## Examples
+## 使用例
 
-### Safe Code Cleanup
+### 安全なコードクリーンアップ
 ```
 /sc:cleanup src/ --type code --safe
-# Conservative cleanup with automatic safety validation
-# Removes dead code while preserving all functionality
+# 自動安全性検証による保守的なクリーンアップ
+# すべての機能を保持しながらデッドコードを削除
 ```
 
-### Import Optimization
+### インポート最適化
 ```
 /sc:cleanup --type imports --preview
-# Analyzes and shows unused import cleanup without execution
-# Framework-aware optimization via Context7 patterns
+# 実行なしで未使用インポートクリーンアップを分析・表示
+# Context7パターンによるフレームワーク対応最適化
 ```
 
-### Comprehensive Project Cleanup
+### 包括的なプロジェクトクリーンアップ
 ```
 /sc:cleanup --type all --interactive
-# Multi-domain cleanup with user guidance for complex decisions
-# Activates all personas for comprehensive analysis
+# 複雑な決定にユーザーガイダンスを含むマルチドメインクリーンアップ
+# 包括的分析のためにすべてのペルソナを有効化
 ```
 
-### Framework-Specific Cleanup
+### フレームワーク固有クリーンアップ
 ```
 /sc:cleanup components/ --aggressive
-# Thorough cleanup with Context7 framework patterns
-# Sequential analysis for complex dependency management
+# Context7フレームワークパターンによる徹底的なクリーンアップ
+# 複雑な依存関係管理のためのSequential分析
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Systematically clean code, remove dead code, and optimize project structure
-- Provide comprehensive safety validation with backup and rollback capabilities
-- Apply intelligent cleanup algorithms with framework-specific pattern recognition
+**対応範囲:**
+- 体系的なコードクリーンアップ、デッドコード削除、プロジェクト構造最適化
+- バックアップとロールバック機能を備えた包括的な安全性検証の提供
+- フレームワーク固有のパターン認識によるインテリジェントなクリーンアップアルゴリズムの適用
 
-**Will Not:**
-- Remove code without thorough safety analysis and validation
-- Override project-specific cleanup exclusions or architectural constraints
-- Apply cleanup operations that compromise functionality or introduce bugs
+**対応外:**
+- 徹底的な安全性分析と検証なしのコード削除
+- プロジェクト固有のクリーンアップ除外やアーキテクチャ制約の上書き
+- 機能を損なうまたはバグを導入するクリーンアップ操作の適用

@@ -1,148 +1,148 @@
 ---
 name: help
-description: "List all available /sc commands and their functionality"
+description: "利用可能なすべての/scコマンドとその機能の一覧表示"
 category: utility
 complexity: low
 mcp-servers: []
 personas: []
 ---
 
-# /sc:help - Command Reference Documentation
+# /sc:help - コマンドリファレンスドキュメント
 
-## Triggers
-- Command discovery and reference lookup requests
-- Framework exploration and capability understanding needs
-- Documentation requests for available SuperClaude commands
+## トリガー
+- コマンド発見とリファレンス検索リクエスト
+- フレームワーク探索と機能理解のニーズ
+- 利用可能なSuperClaudeコマンドのドキュメントリクエスト
 
-## Behavioral Flow
-1. **Display**: Present complete command list with descriptions
-2. **Complete**: End interaction after displaying information
+## 動作フロー
+1. **表示**: 説明を含む完全なコマンドリストを提示
+2. **完了**: 情報表示後にインタラクションを終了
 
-Key behaviors:
-- Information display only - no execution or implementation
-- Reference documentation mode without action triggers
+主要な動作:
+- 情報表示のみ - 実行や実装なし
+- アクショントリガーなしのリファレンスドキュメントモード
 
-Here is a complete list of all available SuperClaude (`/sc`) commands.
+利用可能なすべてのSuperClaude（`/sc`）コマンドの完全なリストです。
 
-| Command | Description |
+| コマンド | 説明 |
 |---|---|
-| `/sc:analyze` | Comprehensive code analysis across quality, security, performance, and architecture domains |
-| `/sc:brainstorm` | Interactive requirements discovery through Socratic dialogue and systematic exploration |
-| `/sc:build` | Build, compile, and package projects with intelligent error handling and optimization |
-| `/sc:business-panel` | Multi-expert business analysis with adaptive interaction modes |
-| `/sc:cleanup` | Systematically clean up code, remove dead code, and optimize project structure |
-| `/sc:design` | Design system architecture, APIs, and component interfaces with comprehensive specifications |
-| `/sc:document` | Generate focused documentation for components, functions, APIs, and features |
-| `/sc:estimate` | Provide development estimates for tasks, features, or projects with intelligent analysis |
-| `/sc:explain` | Provide clear explanations of code, concepts, and system behavior with educational clarity |
-| `/sc:git` | Git operations with intelligent commit messages and workflow optimization |
-| `/sc:help` | List all available /sc commands and their functionality |
-| `/sc:implement` | Feature and code implementation with intelligent persona activation and MCP integration |
-| `/sc:improve` | Apply systematic improvements to code quality, performance, and maintainability |
-| `/sc:index` | Generate comprehensive project documentation and knowledge base with intelligent organization |
-| `/sc:load` | Session lifecycle management with Serena MCP integration for project context loading |
-| `/sc:reflect` | Task reflection and validation using Serena MCP analysis capabilities |
-| `/sc:save` | Session lifecycle management with Serena MCP integration for session context persistence |
-| `/sc:select-tool` | Intelligent MCP tool selection based on complexity scoring and operation analysis |
-| `/sc:spawn` | Meta-system task orchestration with intelligent breakdown and delegation |
-| `/sc:spec-panel` | Multi-expert specification review and improvement using renowned specification and software engineering experts |
-| `/sc:task` | Execute complex tasks with intelligent workflow management and delegation |
-| `/sc:test` | Execute tests with coverage analysis and automated quality reporting |
-| `/sc:troubleshoot` | Diagnose and resolve issues in code, builds, deployments, and system behavior |
-| `/sc:workflow` | Generate structured implementation workflows from PRDs and feature requirements |
+| `/sc:analyze` | 品質、セキュリティ、パフォーマンス、アーキテクチャの各ドメインにわたる包括的なコード分析 |
+| `/sc:brainstorm` | ソクラテス式対話と体系的探索による対話型要件発見 |
+| `/sc:build` | インテリジェントなエラー処理と最適化によるプロジェクトのビルド、コンパイル、パッケージング |
+| `/sc:business-panel` | 適応的なインタラクションモードを備えたマルチエキスパートビジネス分析 |
+| `/sc:cleanup` | 体系的なコードクリーンアップ、デッドコード削除、プロジェクト構造最適化 |
+| `/sc:design` | 包括的な仕様を含むシステムアーキテクチャ、API、コンポーネントインターフェースの設計 |
+| `/sc:document` | コンポーネント、関数、API、機能向けの集中ドキュメント生成 |
+| `/sc:estimate` | インテリジェント分析によるタスク、機能、プロジェクトの開発見積もり提供 |
+| `/sc:explain` | 教育的明確さを備えたコード、コンセプト、システム動作の明確な説明提供 |
+| `/sc:git` | インテリジェントなコミットメッセージとワークフロー最適化によるGit操作 |
+| `/sc:help` | 利用可能なすべての/scコマンドとその機能の一覧表示 |
+| `/sc:implement` | インテリジェントなペルソナ有効化とMCP統合による機能・コード実装 |
+| `/sc:improve` | コード品質、パフォーマンス、保守性への体系的改善の適用 |
+| `/sc:index` | インテリジェントな整理による包括的なプロジェクトドキュメントとナレッジベースの生成 |
+| `/sc:load` | プロジェクトコンテキスト読み込みのためのSerena MCP統合によるセッションライフサイクル管理 |
+| `/sc:reflect` | Serena MCP分析機能を使用したタスク振り返りと検証 |
+| `/sc:save` | セッションコンテキスト永続化のためのSerena MCP統合によるセッションライフサイクル管理 |
+| `/sc:select-tool` | 複雑さスコアリングと操作分析に基づくインテリジェントなMCPツール選択 |
+| `/sc:spawn` | インテリジェントな分解と委任によるメタシステムタスクオーケストレーション |
+| `/sc:spec-panel` | 著名な仕様・ソフトウェアエンジニアリング専門家によるマルチエキスパート仕様レビューと改善 |
+| `/sc:task` | インテリジェントなワークフロー管理と委任による複雑なタスクの実行 |
+| `/sc:test` | カバレッジ分析と自動品質レポートによるテスト実行 |
+| `/sc:troubleshoot` | コード、ビルド、デプロイ、システム動作の問題診断と解決 |
+| `/sc:workflow` | PRDと機能要件からの構造化された実装ワークフローの生成 |
 
-## SuperClaude Framework Flags
+## SuperClaudeフレームワークフラグ
 
-SuperClaude supports behavioral flags to enable specific execution modes and tool selection patterns. Use these flags with any `/sc` command to customize behavior.
+SuperClaudeは、特定の実行モードとツール選択パターンを有効にする動作フラグをサポートしています。これらのフラグを任意の`/sc`コマンドと共に使用して動作をカスタマイズできます。
 
-### Mode Activation Flags
+### モード有効化フラグ
 
-| Flag | Trigger | Behavior |
+| フラグ | トリガー | 動作 |
 |------|---------|----------|
-| `--brainstorm` | Vague project requests, exploration keywords | Activate collaborative discovery mindset, ask probing questions |
-| `--introspect` | Self-analysis requests, error recovery | Expose thinking process with transparency markers |
-| `--task-manage` | Multi-step operations (>3 steps) | Orchestrate through delegation, systematic organization |
-| `--orchestrate` | Multi-tool operations, parallel execution | Optimize tool selection matrix, enable parallel thinking |
-| `--token-efficient` | Context usage >75%, large-scale operations | Symbol-enhanced communication, 30-50% token reduction |
+| `--brainstorm` | 曖昧なプロジェクトリクエスト、探索キーワード | 協調的発見マインドセットを有効化、探索的質問を実施 |
+| `--introspect` | 自己分析リクエスト、エラー回復 | 透明性マーカーで思考プロセスを公開 |
+| `--task-manage` | マルチステップ操作（3ステップ以上） | 委任によるオーケストレーション、体系的な整理 |
+| `--orchestrate` | マルチツール操作、並行実行 | ツール選択マトリックスを最適化、並行思考を有効化 |
+| `--token-efficient` | コンテキスト使用量75%以上、大規模操作 | シンボル強化コミュニケーション、30-50%トークン削減 |
 
-### MCP Server Flags
+### MCPサーバーフラグ
 
-| Flag | Trigger | Behavior |
+| フラグ | トリガー | 動作 |
 |------|---------|----------|
-| `--c7` / `--context7` | Library imports, framework questions | Enable Context7 for curated documentation lookup |
-| `--seq` / `--sequential` | Complex debugging, system design | Enable Sequential for structured multi-step reasoning |
-| `--magic` | UI component requests (/ui, /21) | Enable Magic for modern UI generation from 21st.dev |
-| `--morph` / `--morphllm` | Bulk code transformations | Enable Morphllm for efficient multi-file pattern application |
-| `--serena` | Symbol operations, project memory | Enable Serena for semantic understanding and session persistence |
-| `--play` / `--playwright` | Browser testing, E2E scenarios | Enable Playwright for real browser automation and testing |
-| `--all-mcp` | Maximum complexity scenarios | Enable all MCP servers for comprehensive capability |
-| `--no-mcp` | Native-only execution needs | Disable all MCP servers, use native tools |
+| `--c7` / `--context7` | ライブラリインポート、フレームワーク質問 | キュレートされたドキュメント検索のためにContext7を有効化 |
+| `--seq` / `--sequential` | 複雑なデバッグ、システム設計 | 構造化されたマルチステップ推論のためにSequentialを有効化 |
+| `--magic` | UIコンポーネントリクエスト（/ui、/21） | 21st.devからのモダンUI生成のためにMagicを有効化 |
+| `--morph` / `--morphllm` | 一括コード変換 | 効率的なマルチファイルパターン適用のためにMorphllmを有効化 |
+| `--serena` | シンボル操作、プロジェクトメモリ | セマンティック理解とセッション永続化のためにSerenaを有効化 |
+| `--play` / `--playwright` | ブラウザテスト、E2Eシナリオ | 実ブラウザ自動化とテストのためにPlaywrightを有効化 |
+| `--all-mcp` | 最大複雑さシナリオ | 包括的な機能のためにすべてのMCPサーバーを有効化 |
+| `--no-mcp` | ネイティブのみの実行ニーズ | すべてのMCPサーバーを無効化、ネイティブツールを使用 |
 
-### Analysis Depth Flags
+### 分析深度フラグ
 
-| Flag | Trigger | Behavior |
+| フラグ | トリガー | 動作 |
 |------|---------|----------|
-| `--think` | Multi-component analysis needs | Standard structured analysis (~4K tokens), enables Sequential |
-| `--think-hard` | Architectural analysis, system-wide dependencies | Deep analysis (~10K tokens), enables Sequential + Context7 |
-| `--ultrathink` | Critical system redesign, legacy modernization | Maximum depth analysis (~32K tokens), enables all MCP servers |
+| `--think` | マルチコンポーネント分析ニーズ | 標準構造化分析（〜4Kトークン）、Sequentialを有効化 |
+| `--think-hard` | アーキテクチャ分析、システム全体の依存関係 | 深い分析（〜10Kトークン）、Sequential + Context7を有効化 |
+| `--ultrathink` | 重要なシステム再設計、レガシー近代化 | 最大深度分析（〜32Kトークン）、すべてのMCPサーバーを有効化 |
 
-### Execution Control Flags
+### 実行制御フラグ
 
-| Flag | Trigger | Behavior |
+| フラグ | トリガー | 動作 |
 |------|---------|----------|
-| `--delegate [auto\|files\|folders]` | >7 directories OR >50 files | Enable sub-agent parallel processing with intelligent routing |
-| `--concurrency [n]` | Resource optimization needs | Control max concurrent operations (range: 1-15) |
-| `--loop` | Improvement keywords (polish, refine, enhance) | Enable iterative improvement cycles with validation gates |
-| `--iterations [n]` | Specific improvement cycle requirements | Set improvement cycle count (range: 1-10) |
-| `--validate` | Risk score >0.7, resource usage >75% | Pre-execution risk assessment and validation gates |
-| `--safe-mode` | Resource usage >85%, production environment | Maximum validation, conservative execution |
+| `--delegate [auto\|files\|folders]` | 7ディレクトリ以上または50ファイル以上 | インテリジェントルーティングによるサブエージェント並行処理を有効化 |
+| `--concurrency [n]` | リソース最適化ニーズ | 最大同時操作数を制御（範囲: 1-15） |
+| `--loop` | 改善キーワード（polish、refine、enhance） | 検証ゲート付き反復改善サイクルを有効化 |
+| `--iterations [n]` | 特定の改善サイクル要件 | 改善サイクル数を設定（範囲: 1-10） |
+| `--validate` | リスクスコア0.7以上、リソース使用量75%以上 | 実行前リスク評価と検証ゲート |
+| `--safe-mode` | リソース使用量85%以上、本番環境 | 最大検証、保守的実行 |
 
-### Output Optimization Flags
+### 出力最適化フラグ
 
-| Flag | Trigger | Behavior |
+| フラグ | トリガー | 動作 |
 |------|---------|----------|
-| `--uc` / `--ultracompressed` | Context pressure, efficiency requirements | Symbol communication system, 30-50% token reduction |
-| `--scope [file\|module\|project\|system]` | Analysis boundary needs | Define operational scope and analysis depth |
-| `--focus [performance\|security\|quality\|architecture\|accessibility\|testing]` | Domain-specific optimization | Target specific analysis domain and expertise application |
+| `--uc` / `--ultracompressed` | コンテキスト圧迫、効率性要件 | シンボルコミュニケーションシステム、30-50%トークン削減 |
+| `--scope [file\|module\|project\|system]` | 分析境界ニーズ | 操作スコープと分析深度を定義 |
+| `--focus [performance\|security\|quality\|architecture\|accessibility\|testing]` | ドメイン固有最適化 | 特定の分析ドメインと専門知識適用をターゲット |
 
-### Flag Priority Rules
+### フラグ優先順位ルール
 
-- **Safety First**: `--safe-mode` > `--validate` > optimization flags
-- **Explicit Override**: User flags > auto-detection
-- **Depth Hierarchy**: `--ultrathink` > `--think-hard` > `--think`
-- **MCP Control**: `--no-mcp` overrides all individual MCP flags
-- **Scope Precedence**: system > project > module > file
+- **安全性優先**: `--safe-mode` > `--validate` > 最適化フラグ
+- **明示的オーバーライド**: ユーザーフラグ > 自動検出
+- **深度階層**: `--ultrathink` > `--think-hard` > `--think`
+- **MCP制御**: `--no-mcp`はすべての個別MCPフラグを上書き
+- **スコープ優先**: system > project > module > file
 
-### Usage Examples
+### 使用例
 
 ```bash
-# Deep analysis with Context7 enabled
+# Context7有効化による深い分析
 /sc:analyze --think-hard --context7 src/
 
-# UI development with Magic and validation
-/sc:implement --magic --validate "Add user dashboard"
+# Magicと検証によるUI開発
+/sc:implement --magic --validate "ユーザーダッシュボードを追加"
 
-# Token-efficient task management
-/sc:task --token-efficient --delegate auto "Refactor authentication system"
+# トークン効率的なタスク管理
+/sc:task --token-efficient --delegate auto "認証システムをリファクタリング"
 
-# Safe production deployment
+# 安全な本番デプロイ
 /sc:build --safe-mode --validate --focus security
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Display comprehensive list of available SuperClaude commands
-- Provide clear descriptions of each command's functionality
-- Present information in readable tabular format
-- Show all available SuperClaude framework flags and their usage
-- Provide flag usage examples and priority rules
+**対応範囲:**
+- 利用可能なSuperClaudeコマンドの包括的なリストの表示
+- 各コマンドの機能の明確な説明の提供
+- 読みやすい表形式での情報提示
+- すべてのSuperClaudeフレームワークフラグとその使用法の表示
+- フラグ使用例と優先順位ルールの提供
 
-**Will Not:**
-- Execute any commands or create any files
-- Activate implementation modes or start projects
-- Engage TodoWrite or any execution tools
+**対応外:**
+- コマンドの実行やファイルの作成
+- 実装モードの有効化やプロジェクトの開始
+- TodoWriteや実行ツールの使用
 
 ---
 
-**Note:** This list is manually generated and may become outdated. If you suspect it is inaccurate, please consider regenerating it or contacting a maintainer.
+**注記:** このリストは手動で生成されており、古くなっている可能性があります。不正確だと思われる場合は、再生成するかメンテナーに連絡することを検討してください。

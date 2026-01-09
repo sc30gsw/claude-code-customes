@@ -1,88 +1,88 @@
 ---
 name: design
-description: "Design system architecture, APIs, and component interfaces with comprehensive specifications"
+description: "包括的な仕様を含むシステムアーキテクチャ、API、コンポーネントインターフェースの設計"
 category: utility
 complexity: basic
 mcp-servers: []
 personas: []
 ---
 
-# /sc:design - System and Component Design
+# /sc:design - システムとコンポーネント設計
 
-## Triggers
-- Architecture planning and system design requests
-- API specification and interface design needs
-- Component design and technical specification requirements
-- Database schema and data model design requests
+## トリガー
+- アーキテクチャ計画とシステム設計リクエスト
+- API仕様とインターフェース設計のニーズ
+- コンポーネント設計と技術仕様の要件
+- データベーススキーマとデータモデル設計リクエスト
 
-## Usage
+## 使用方法
 ```
-/sc:design [target] [--type architecture|api|component|database] [--format diagram|spec|code]
+/sc:design [対象] [--type architecture|api|component|database] [--format diagram|spec|code]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine target requirements and existing system context
-2. **Plan**: Define design approach and structure based on type and format
-3. **Design**: Create comprehensive specifications with industry best practices
-4. **Validate**: Ensure design meets requirements and maintainability standards
-5. **Document**: Generate clear design documentation with diagrams and specifications
+## 動作フロー
+1. **分析**: 対象要件と既存システムコンテキストの調査
+2. **計画**: タイプとフォーマットに基づく設計アプローチと構造の定義
+3. **設計**: 業界ベストプラクティスを含む包括的な仕様の作成
+4. **検証**: 設計が要件と保守性基準を満たすことの確認
+5. **ドキュメント**: 図と仕様を含む明確な設計ドキュメントの生成
 
-Key behaviors:
-- Requirements-driven design approach with scalability considerations
-- Industry best practices integration for maintainable solutions
-- Multi-format output (diagrams, specifications, code) based on needs
-- Validation against existing system architecture and constraints
+主要な動作:
+- スケーラビリティ考慮事項を含む要件駆動型設計アプローチ
+- 保守可能なソリューションのための業界ベストプラクティスの統合
+- ニーズに基づくマルチフォーマット出力（図、仕様、コード）
+- 既存システムアーキテクチャと制約に対する検証
 
-## Tool Coordination
-- **Read**: Requirements analysis and existing system examination
-- **Grep/Glob**: Pattern analysis and system structure investigation
-- **Write**: Design documentation and specification generation
-- **Bash**: External design tool integration when needed
+## ツール連携
+- **Read**: 要件分析と既存システムの調査
+- **Grep/Glob**: パターン分析とシステム構造調査
+- **Write**: 設計ドキュメントと仕様生成
+- **Bash**: 必要に応じた外部設計ツール統合
 
-## Key Patterns
-- **Architecture Design**: Requirements → system structure → scalability planning
-- **API Design**: Interface specification → RESTful/GraphQL patterns → documentation
-- **Component Design**: Functional requirements → interface design → implementation guidance
-- **Database Design**: Data requirements → schema design → relationship modeling
+## 主要パターン
+- **アーキテクチャ設計**: 要件 → システム構造 → スケーラビリティ計画
+- **API設計**: インターフェース仕様 → RESTful/GraphQLパターン → ドキュメント
+- **コンポーネント設計**: 機能要件 → インターフェース設計 → 実装ガイダンス
+- **データベース設計**: データ要件 → スキーマ設計 → リレーションシップモデリング
 
-## Examples
+## 使用例
 
-### System Architecture Design
+### システムアーキテクチャ設計
 ```
 /sc:design user-management-system --type architecture --format diagram
-# Creates comprehensive system architecture with component relationships
-# Includes scalability considerations and best practices
+# コンポーネント関係を含む包括的なシステムアーキテクチャを作成
+# スケーラビリティ考慮事項とベストプラクティスを含む
 ```
 
-### API Specification Design
+### API仕様設計
 ```
 /sc:design payment-api --type api --format spec
-# Generates detailed API specification with endpoints and data models
-# Follows RESTful design principles and industry standards
+# エンドポイントとデータモデルを含む詳細なAPI仕様を生成
+# RESTful設計原則と業界標準に従う
 ```
 
-### Component Interface Design
+### コンポーネントインターフェース設計
 ```
 /sc:design notification-service --type component --format code
-# Designs component interfaces with clear contracts and dependencies
-# Provides implementation guidance and integration patterns
+# 明確な契約と依存関係を持つコンポーネントインターフェースを設計
+# 実装ガイダンスと統合パターンを提供
 ```
 
-### Database Schema Design
+### データベーススキーマ設計
 ```
 /sc:design e-commerce-db --type database --format diagram
-# Creates database schema with entity relationships and constraints
-# Includes normalization and performance considerations
+# エンティティ関係と制約を含むデータベーススキーマを作成
+# 正規化とパフォーマンス考慮事項を含む
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Create comprehensive design specifications with industry best practices
-- Generate multiple format outputs (diagrams, specs, code) based on requirements
-- Validate designs against maintainability and scalability standards
+**対応範囲:**
+- 業界ベストプラクティスを含む包括的な設計仕様の作成
+- 要件に基づく複数フォーマット出力（図、仕様、コード）の生成
+- 保守性とスケーラビリティ基準に対する設計の検証
 
-**Will Not:**
-- Generate actual implementation code (use /sc:implement for implementation)
-- Modify existing system architecture without explicit design approval
-- Create designs that violate established architectural constraints
+**対応外:**
+- 実際の実装コードの生成（実装には/sc:implementを使用）
+- 明示的な設計承認なしの既存システムアーキテクチャの変更
+- 確立されたアーキテクチャ制約に違反する設計の作成

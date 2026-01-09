@@ -1,88 +1,88 @@
 ---
 name: troubleshoot
-description: "Diagnose and resolve issues in code, builds, deployments, and system behavior"
+description: "コード、ビルド、デプロイメント、システム動作の問題診断と解決"
 category: utility
 complexity: basic
 mcp-servers: []
 personas: []
 ---
 
-# /sc:troubleshoot - Issue Diagnosis and Resolution
+# /sc:troubleshoot - 問題診断と解決
 
-## Triggers
-- Code defects and runtime error investigation requests
-- Build failure analysis and resolution needs
-- Performance issue diagnosis and optimization requirements
-- Deployment problem analysis and system behavior debugging
+## トリガー
+- コード欠陥とランタイムエラーの調査リクエスト
+- ビルド失敗の分析と解決ニーズ
+- パフォーマンス問題の診断と最適化要件
+- デプロイメント問題の分析とシステム動作のデバッグ
 
-## Usage
+## 使用方法
 ```
-/sc:troubleshoot [issue] [--type bug|build|performance|deployment] [--trace] [--fix]
-```
-
-## Behavioral Flow
-1. **Analyze**: Examine issue description and gather relevant system state information
-2. **Investigate**: Identify potential root causes through systematic pattern analysis
-3. **Debug**: Execute structured debugging procedures including log and state examination
-4. **Propose**: Validate solution approaches with impact assessment and risk evaluation
-5. **Resolve**: Apply appropriate fixes and verify resolution effectiveness
-
-Key behaviors:
-- Systematic root cause analysis with hypothesis testing and evidence collection
-- Multi-domain troubleshooting (code, build, performance, deployment)
-- Structured debugging methodologies with comprehensive problem analysis
-- Safe fix application with verification and documentation
-
-## Tool Coordination
-- **Read**: Log analysis and system state examination
-- **Bash**: Diagnostic command execution and system investigation
-- **Grep**: Error pattern detection and log analysis
-- **Write**: Diagnostic reports and resolution documentation
-
-## Key Patterns
-- **Bug Investigation**: Error analysis → stack trace examination → code inspection → fix validation
-- **Build Troubleshooting**: Build log analysis → dependency checking → configuration validation
-- **Performance Diagnosis**: Metrics analysis → bottleneck identification → optimization recommendations
-- **Deployment Issues**: Environment analysis → configuration verification → service validation
-
-## Examples
-
-### Code Bug Investigation
-```
-/sc:troubleshoot "Null pointer exception in user service" --type bug --trace
-# Systematic analysis of error context and stack traces
-# Identifies root cause and provides targeted fix recommendations
+/sc:troubleshoot [問題] [--type bug|build|performance|deployment] [--trace] [--fix]
 ```
 
-### Build Failure Analysis
+## 動作フロー
+1. **分析**: 問題の説明を調査し関連するシステム状態情報を収集
+2. **調査**: 体系的なパターン分析による潜在的な根本原因を特定
+3. **デバッグ**: ログと状態の調査を含む構造化されたデバッグ手順を実行
+4. **提案**: 影響評価とリスク評価を含むソリューションアプローチを検証
+5. **解決**: 適切な修正を適用し解決の有効性を確認
+
+主要な動作:
+- 仮説検証とエビデンス収集による体系的な根本原因分析
+- マルチドメイントラブルシューティング（コード、ビルド、パフォーマンス、デプロイメント）
+- 包括的な問題分析を含む構造化されたデバッグ方法論
+- 検証とドキュメントを伴う安全な修正適用
+
+## ツール連携
+- **Read**: ログ分析とシステム状態調査
+- **Bash**: 診断コマンド実行とシステム調査
+- **Grep**: エラーパターン検出とログ分析
+- **Write**: 診断レポートと解決ドキュメント
+
+## 主要パターン
+- **バグ調査**: エラー分析 → スタックトレース調査 → コード検査 → 修正検証
+- **ビルドトラブルシューティング**: ビルドログ分析 → 依存関係チェック → 設定検証
+- **パフォーマンス診断**: メトリクス分析 → ボトルネック特定 → 最適化推奨
+- **デプロイメント問題**: 環境分析 → 設定検証 → サービス検証
+
+## 使用例
+
+### コードバグ調査
 ```
-/sc:troubleshoot "TypeScript compilation errors" --type build --fix
-# Analyzes build logs and TypeScript configuration
-# Automatically applies safe fixes for common compilation issues
+/sc:troubleshoot "ユーザーサービスでNullポインタ例外" --type bug --trace
+# エラーコンテキストとスタックトレースの体系的分析
+# 根本原因を特定しターゲットを絞った修正推奨を提供
 ```
 
-### Performance Issue Diagnosis
+### ビルド失敗分析
 ```
-/sc:troubleshoot "API response times degraded" --type performance
-# Performance metrics analysis and bottleneck identification
-# Provides optimization recommendations and monitoring guidance
-```
-
-### Deployment Problem Resolution
-```
-/sc:troubleshoot "Service not starting in production" --type deployment --trace
-# Environment and configuration analysis
-# Systematic verification of deployment requirements and dependencies
+/sc:troubleshoot "TypeScriptコンパイルエラー" --type build --fix
+# ビルドログとTypeScript設定を分析
+# 一般的なコンパイル問題に対する安全な修正を自動適用
 ```
 
-## Boundaries
+### パフォーマンス問題診断
+```
+/sc:troubleshoot "APIレスポンス時間が低下" --type performance
+# パフォーマンスメトリクス分析とボトルネック特定
+# 最適化推奨と監視ガイダンスを提供
+```
 
-**Will:**
-- Execute systematic issue diagnosis using structured debugging methodologies
-- Provide validated solution approaches with comprehensive problem analysis
-- Apply safe fixes with verification and detailed resolution documentation
+### デプロイメント問題解決
+```
+/sc:troubleshoot "本番環境でサービスが起動しない" --type deployment --trace
+# 環境と設定の分析
+# デプロイメント要件と依存関係の体系的検証
+```
 
-**Will Not:**
-- Apply risky fixes without proper analysis and user confirmation
-- Modify production systems without explicit permission and safety validation
-- Make architectural changes without understanding full system impact
+## 境界
+
+**対応範囲:**
+- 構造化されたデバッグ方法論を使用した体系的な問題診断の実行
+- 包括的な問題分析を伴う検証済みソリューションアプローチの提供
+- 検証と詳細な解決ドキュメント付きの安全な修正の適用
+
+**対応外:**
+- 適切な分析とユーザー確認なしのリスクのある修正の適用
+- 明示的な許可と安全性検証なしの本番システムの変更
+- システム全体への影響を理解せずのアーキテクチャ変更

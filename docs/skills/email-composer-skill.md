@@ -1,317 +1,317 @@
 ---
 name: Email Composer
-description: Draft professional emails for various contexts including business, technical, and customer communication. Use when the user needs help writing emails or composing professional messages.
+description: ビジネス、技術、カスタマーコミュニケーションを含む様々なコンテキストでのプロフェッショナルなメール作成。ユーザーがメール作成やプロフェッショナルなメッセージの構成に助けが必要な場合に使用。
 ---
 
-# Email Composer
+# メールコンポーザー
 
-## Quick start
+## クイックスタート
 
-Provide context and purpose, and I'll draft an appropriate email.
+コンテキストと目的を提供すれば、適切なメールを下書きする。
 
-**What I need:**
-- Purpose of email (request, follow-up, announcement, etc.)
-- Recipient relationship (colleague, customer, manager, vendor)
-- Key points to include
-- Desired tone (formal, casual, urgent, friendly)
+**必要な情報:**
+- メールの目的（依頼、フォローアップ、お知らせなど）
+- 受信者との関係（同僚、顧客、上司、ベンダー）
+- 含めるべき要点
+- 希望するトーン（フォーマル、カジュアル、緊急、フレンドリー）
 
-## Email structure
+## メール構成
 
-Standard professional email format:
-
-```
-Subject: [Clear, specific subject line]
-
-[Greeting],
-
-[Opening - context/purpose]
-
-[Body - main points]
-
-[Closing - call to action]
-
-[Sign-off]
-[Your name]
-```
-
-## Common email types
-
-### Request for information
+標準的なプロフェッショナルメールフォーマット:
 
 ```
-Subject: Question about Q4 project timeline
+件名: [明確で具体的な件名]
 
-Hi [Name],
+[挨拶]、
 
-I hope this email finds you well. I'm reaching out regarding the Q4 product launch timeline.
+[冒頭 - コンテキスト/目的]
 
-Could you provide an update on:
-- Current progress on feature development
-- Expected completion date for testing phase
-- Any blockers or dependencies we should be aware of
+[本文 - 要点]
 
-This will help us coordinate with the marketing team for the launch materials.
+[締め - アクションの呼びかけ]
 
-Thanks in advance for your help!
-
-Best regards,
-[Your name]
+[結び]
+[あなたの名前]
 ```
 
-### Follow-up email
+## 一般的なメールタイプ
+
+### 情報のリクエスト
 
 ```
-Subject: Following up: Proposal for new payment system
+件名: Q4プロジェクトタイムラインについての質問
 
-Hi [Name],
+[名前]様
 
-I wanted to follow up on the payment system proposal I sent last week. I understand you're busy, so I wanted to make sure it didn't get lost in your inbox.
+お元気でお過ごしのことと存じます。Q4製品ローンチのタイムラインについてお伺いしたく、ご連絡いたしました。
 
-To recap, the proposed system would:
-- Reduce transaction fees by 30%
-- Integrate with existing accounting software
-- Improve customer checkout experience
+以下についてアップデートをいただけますでしょうか：
+- 機能開発の現在の進捗状況
+- テストフェーズの予定完了日
+- 把握しておくべきブロッカーや依存関係
 
-I'd be happy to schedule a brief call to discuss any questions you might have.
+これにより、マーケティングチームとローンチ資料の調整が可能になります。
 
-Looking forward to hearing from you.
+ご協力に感謝いたします。
 
-Best,
-[Your name]
+よろしくお願いいたします。
+[あなたの名前]
 ```
 
-### Technical update
+### フォローアップメール
 
 ```
-Subject: API Maintenance Window - [Date]
+件名: フォローアップ: 新しい決済システムの提案について
 
-Team,
+[名前]様
 
-This is a reminder that we'll be performing scheduled maintenance on our API infrastructure on [Date] from [Time] to [Time] [Timezone].
+先週お送りした決済システム提案についてフォローアップさせていただきたく存じます。お忙しいところ恐れ入りますが、受信箱に埋もれていないか確認させていただければ幸いです。
 
-During this window:
-- API endpoints will be unavailable
-- Database will be upgraded to v14
-- SSL certificates will be renewed
+概要として、提案システムでは以下が可能です：
+- 取引手数料を30%削減
+- 既存の会計ソフトウェアとの統合
+- 顧客のチェックアウト体験の向上
 
-Expected downtime: 2 hours
+ご質問がございましたら、簡単なお電話をスケジュールさせていただきます。
 
-What you need to do:
-- Notify your users of the planned downtime
-- Ensure retry logic is in place for API calls
-- Monitor your application after maintenance completes
+ご返信をお待ちしております。
 
-If you have any concerns or conflicts with this schedule, please let me know by [Date].
-
-Technical details available in our status page: [link]
-
-Thanks,
-[Your name]
+よろしくお願いいたします。
+[あなたの名前]
 ```
 
-### Customer support
+### 技術アップデート
 
 ```
-Subject: Re: Issue with order #12345
+件名: APIメンテナンスウィンドウ - [日付]
 
-Hi [Customer name],
+チームの皆様、
 
-Thank you for reaching out about your order. I'm sorry to hear you're experiencing this issue.
+[日付]の[時間]から[時間][タイムゾーン]まで、APIインフラストラクチャの定期メンテナンスを実施することをお知らせいたします。
 
-I've looked into your order (#12345) and found the following:
+この期間中：
+- APIエンドポイントは利用不可となります
+- データベースはv14にアップグレードされます
+- SSL証明書が更新されます
 
-[Explanation of the issue]
+予想ダウンタイム：2時間
 
-To resolve this, I've:
-- [Action taken 1]
-- [Action taken 2]
+必要なアクション：
+- 計画されたダウンタイムをユーザーに通知
+- API呼び出しのリトライロジックが実装されていることを確認
+- メンテナンス完了後、アプリケーションを監視
 
-You should see [expected outcome] within [timeframe].
+このスケジュールに懸念や競合がある場合は、[日付]までにお知らせください。
 
-If you continue to experience any problems, please don't hesitate to reply to this email or call us at [phone number].
+技術的な詳細はステータスページでご確認いただけます：[リンク]
 
-We appreciate your patience and understanding.
-
-Best regards,
-[Your name]
-Customer Support Team
+よろしくお願いいたします。
+[あなたの名前]
 ```
 
-### Meeting request
+### カスタマーサポート
 
 ```
-Subject: Meeting request: Discuss database migration strategy
+件名: Re: 注文 #12345 に関する問題
 
-Hi [Name],
+[顧客名]様
 
-I'd like to schedule a meeting to discuss our approach for the upcoming database migration.
+ご注文についてご連絡いただきありがとうございます。この問題が発生していることをお詫び申し上げます。
 
-Agenda items:
-- Review migration timeline and milestones
-- Discuss rollback strategy
-- Identify potential risks and mitigation plans
-- Assign team responsibilities
+お客様の注文（#12345）を確認したところ、以下のことがわかりました：
 
-Estimated duration: 45 minutes
+[問題の説明]
 
-I'm available:
-- Monday 2-4 PM
-- Wednesday 10 AM - 12 PM
-- Friday 1-3 PM
+これを解決するために、以下を実施いたしました：
+- [実施したアクション1]
+- [実施したアクション2]
 
-Please let me know what works best for you, or feel free to suggest alternative times.
+[期間]以内に[期待される結果]がご確認いただけるはずです。
 
-Best,
-[Your name]
+引き続き問題が発生する場合は、このメールにご返信いただくか、[電話番号]までお電話ください。
+
+ご理解とご協力に感謝いたします。
+
+よろしくお願いいたします。
+[あなたの名前]
+カスタマーサポートチーム
 ```
 
-## Tone guidelines
-
-### Formal tone
-- Use complete sentences
-- Avoid contractions
-- Professional language
-- Proper titles (Dr., Mr., Ms.)
-
-### Casual tone
-- Contractions acceptable
-- Conversational language
-- Still professional
-- First names
-
-### Urgent tone
-- Clear subject line with [URGENT] or [ACTION REQUIRED]
-- Bold key points
-- Explicit deadline
-- Direct call to action
-
-## Subject line best practices
-
-**Good subject lines:**
-- "Action required: Submit timesheet by Friday"
-- "Q4 Sales Report - Review needed"
-- "Meeting rescheduled: Project kickoff now Thursday"
-- "Quick question about deployment process"
-
-**Bad subject lines:**
-- "Update"
-- "Question"
-- "Hello"
-- "Following up"
-
-## Email etiquette
-
-**DO:**
-- Respond within 24 hours (even if just to acknowledge)
-- Use clear, specific subject lines
-- Keep it concise
-- Proofread before sending
-- Include relevant context
-- Use bullet points for multiple items
-- End with clear call to action
-
-**DON'T:**
-- Use ALL CAPS
-- Over-use exclamation marks!!!
-- Mark everything as urgent
-- Reply all unless necessary
-- Send when emotional
-- Include unnecessary recipients
-- Forget attachments mentioned in email
-
-## Templates by scenario
-
-### Decline request politely
+### ミーティングリクエスト
 
 ```
-Subject: Re: [Original subject]
+件名: ミーティングリクエスト: データベース移行戦略の議論
 
-Hi [Name],
+[名前]様
 
-Thank you for thinking of me for [request/opportunity].
+今後のデータベース移行のアプローチについて議論するミーティングをスケジュールさせていただきたく存じます。
 
-Unfortunately, I won't be able to [participate/help/attend] due to [brief reason - optional]. However, I'd recommend [alternative suggestion if applicable].
+議題：
+- 移行タイムラインとマイルストーンのレビュー
+- ロールバック戦略の議論
+- 潜在的なリスクと緩和計画の特定
+- チーム責任の割り当て
 
-I appreciate your understanding, and I hope we can collaborate on future opportunities.
+予定時間：45分
 
-Best regards,
-[Your name]
+私の空き時間：
+- 月曜日 14:00-16:00
+- 水曜日 10:00-12:00
+- 金曜日 13:00-15:00
+
+ご都合の良い時間をお知らせいただくか、別の時間をご提案ください。
+
+よろしくお願いいたします。
+[あなたの名前]
 ```
 
-### Apologize for mistake
+## トーンガイドライン
+
+### フォーマルなトーン
+- 完全な文を使用
+- 短縮形を避ける
+- プロフェッショナルな言葉遣い
+- 適切な敬称（博士、様など）
+
+### カジュアルなトーン
+- 短縮形は許容
+- 会話的な言葉遣い
+- それでもプロフェッショナル
+- ファーストネーム
+
+### 緊急のトーン
+- 件名に[緊急]または[要対応]を明記
+- 要点を太字に
+- 明確な期限
+- 直接的なアクションの呼びかけ
+
+## 件名のベストプラクティス
+
+**良い件名:**
+- 「要対応：金曜日までにタイムシートを提出」
+- 「Q4売上レポート - レビュー依頼」
+- 「ミーティング変更：プロジェクトキックオフは木曜日に」
+- 「デプロイプロセスについての簡単な質問」
+
+**悪い件名:**
+- 「アップデート」
+- 「質問」
+- 「こんにちは」
+- 「フォローアップ」
+
+## メールエチケット
+
+**すべきこと：**
+- 24時間以内に返信（確認のみでも）
+- 明確で具体的な件名を使用
+- 簡潔に保つ
+- 送信前に校正
+- 関連するコンテキストを含める
+- 複数項目には箇条書きを使用
+- 明確なアクションの呼びかけで終える
+
+**すべきでないこと：**
+- 全て大文字を使用
+- 感嘆符を多用する!!!
+- すべてを緊急としてマークする
+- 必要ない限り全員に返信
+- 感情的な状態で送信
+- 不要な受信者を含める
+- メールで言及した添付ファイルを忘れる
+
+## シナリオ別テンプレート
+
+### リクエストを丁寧に断る
 
 ```
-Subject: Apology and correction: [Issue]
+件名: Re: [元の件名]
 
-Hi [Name],
+[名前]様
 
-I'm writing to apologize for [specific mistake]. This was an error on my part, and I take full responsibility.
+[リクエスト/機会]について私をお考えいただきありがとうございます。
 
-To correct this:
-- [Action 1 already taken]
-- [Action 2 in progress]
-- [Preventive measure for future]
+残念ながら、[簡単な理由 - オプション]のため、[参加/お手伝い/出席]することができません。ただし、[該当する場合は代替案の提案]をお勧めいたします。
 
-I understand this may have caused [impact], and I'm committed to ensuring it doesn't happen again.
+ご理解いただき感謝するとともに、将来の機会でご協力できることを願っております。
 
-If you have any concerns or questions, please don't hesitate to reach out.
-
-Sincerely,
-[Your name]
+よろしくお願いいたします。
+[あなたの名前]
 ```
 
-### Share good news
+### ミスを謝罪する
 
 ```
-Subject: Great news: [Achievement/milestone]
+件名: お詫びと訂正: [問題]
 
-Team,
+[名前]様
 
-I'm excited to share that we've [accomplished goal]!
+[具体的なミス]についてお詫び申し上げます。これは私の誤りであり、全責任を負います。
 
-This success is thanks to:
-- [Team/person contribution 1]
-- [Team/person contribution 2]
+これを訂正するために：
+- [既に実施したアクション1]
+- [進行中のアクション2]
+- [将来の予防措置]
 
-Impact:
-- [Metric improvement]
-- [Business benefit]
+これにより[影響]が生じた可能性があることを理解しており、再発しないよう努めます。
 
-Thank you all for your hard work and dedication. Let's keep up the momentum!
+懸念やご質問がございましたら、お気軽にご連絡ください。
 
-Cheers,
-[Your name]
+謹んでお詫び申し上げます。
+[あなたの名前]
 ```
 
-## Closing phrases by context
+### 良いニュースを共有する
 
-**Formal:**
-- Sincerely
-- Best regards
-- Respectfully
-- Cordially
+```
+件名: 素晴らしいニュース: [達成/マイルストーン]
 
-**Professional:**
-- Best
-- Thanks
-- Kind regards
-- Regards
+チームの皆様、
 
-**Casual:**
-- Cheers
-- Thanks!
-- Talk soon
-- Best
+[目標を達成した]ことをご報告できることを嬉しく思います！
 
-## Email composition checklist
+この成功は以下の方々のおかげです：
+- [チーム/個人の貢献1]
+- [チーム/個人の貢献2]
 
-- [ ] Clear, specific subject line
-- [ ] Appropriate greeting
-- [ ] Purpose stated upfront
-- [ ] Key points organized with bullets/numbers
-- [ ] Clear call to action or next steps
-- [ ] Appropriate tone for audience
-- [ ] Proofread for typos
-- [ ] Attachments included (if mentioned)
-- [ ] Recipients correct (To, CC, BCC)
-- [ ] Professional signature
+影響：
+- [指標の改善]
+- [ビジネス上のメリット]
+
+皆様の努力と献身に感謝いたします。この勢いを維持しましょう！
+
+乾杯、
+[あなたの名前]
+```
+
+## コンテキスト別の結びの言葉
+
+**フォーマル:**
+- 敬具
+- よろしくお願いいたします
+- 謹んで
+- 敬白
+
+**プロフェッショナル:**
+- よろしくお願いします
+- ありがとうございます
+- どうぞよろしくお願いします
+- 引き続きよろしくお願いいたします
+
+**カジュアル:**
+- では
+- ありがとう！
+- また連絡します
+- よろしく
+
+## メール作成チェックリスト
+
+- [ ] 明確で具体的な件名
+- [ ] 適切な挨拶
+- [ ] 冒頭で目的を明示
+- [ ] 要点を箇条書き/番号で整理
+- [ ] 明確なアクションの呼びかけまたは次のステップ
+- [ ] 対象者に適切なトーン
+- [ ] タイプミスを校正
+- [ ] 添付ファイルを含める（言及した場合）
+- [ ] 受信者が正しい（To、CC、BCC）
+- [ ] プロフェッショナルな署名

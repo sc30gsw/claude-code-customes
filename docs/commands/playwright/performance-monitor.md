@@ -1,93 +1,93 @@
 ---
 allowed-tools: Read, Write, Bash, TodoWrite, mcp__playwright__browser_navigate, mcp__playwright__browser_evaluate, mcp__playwright__browser_network_requests, mcp__playwright__browser_console_messages, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_wait_for
-description: Performance monitoring and Core Web Vitals measurement command using Playwright MCP
+description: Playwright MCPを使用したパフォーマンスモニタリングとCore Web Vitals測定コマンド
 ---
 
-# Performance Monitor - Performance Monitoring
+# パフォーマンスモニター - パフォーマンス監視
 
-## Overview
+## 概要
 
-A command that integrates Playwright MCP with Serena tools to automatically perform web application performance measurement and optimization suggestions.
+Playwright MCPとSerenaツールを統合し、Webアプリケーションのパフォーマンス測定と最適化提案を自動実行するコマンドです。
 
-## Usage
+## 使用方法
 
-### Basic Syntax
+### 基本構文
 ```bash
-/performance-monitor <target> [options]
+/performance-monitor <ターゲット> [オプション]
 ```
 
-### Target Specification
+### ターゲット指定
 
-| Target Type | Example | Description |
+| ターゲットタイプ | 例 | 説明 |
 |-------------|---------|-------------|
-| **URL** | `http://localhost:3000` | Test development app |
-| **Production URL** | `https://myapp.com` | Production environment monitoring |
-| **Page Path** | `/dashboard`, `/checkout` | Specific page measurement |
-| **User Flow** | `login-flow`, `purchase-flow` | Complete flow measurement |
+| **URL** | `http://localhost:3000` | 開発アプリのテスト |
+| **本番URL** | `https://myapp.com` | 本番環境のモニタリング |
+| **ページパス** | `/dashboard`, `/checkout` | 特定ページの測定 |
+| **ユーザーフロー** | `login-flow`, `purchase-flow` | 完全なフローの測定 |
 
-### Options
+### オプション
 
-| Option | Description | Default |
+| オプション | 説明 | デフォルト |
 |--------|-------------|---------|
-| `-v, --vitals` | Core Web Vitals measurement | true |
-| `-l, --lighthouse` | Run Lighthouse audit | false |
-| `-n, --network` | Detailed network analysis | false |
-| `-j, --javascript` | JavaScript execution time analysis | false |
-| `-m, --memory` | Memory usage monitoring | false |
-| `-c, --cpu` | CPU usage measurement | false |
-| `-r, --runs` | Number of measurement runs | 3 |
-| `-d, --device` | Device condition setting | desktop |
-| `-t, --throttling` | Network/CPU throttling | none |
-| `--report` | Generate detailed report | false |
-| `--baseline` | Baseline comparison | false |
-| `--alerts` | Threshold alert settings | false |
+| `-v, --vitals` | Core Web Vitals測定 | true |
+| `-l, --lighthouse` | Lighthouse監査実行 | false |
+| `-n, --network` | 詳細ネットワーク分析 | false |
+| `-j, --javascript` | JavaScript実行時間分析 | false |
+| `-m, --memory` | メモリ使用量モニタリング | false |
+| `-c, --cpu` | CPU使用量測定 | false |
+| `-r, --runs` | 測定実行回数 | 3 |
+| `-d, --device` | デバイス条件設定 | desktop |
+| `-t, --throttling` | ネットワーク/CPUスロットリング | none |
+| `--report` | 詳細レポート生成 | false |
+| `--baseline` | ベースライン比較 | false |
+| `--alerts` | しきい値アラート設定 | false |
 
-### Usage Examples
+### 使用例
 
 ```bash
-# Basic performance measurement
+# 基本パフォーマンス測定
 /performance-monitor http://localhost:3000
 
-# Core Web Vitals + Lighthouse audit
+# Core Web Vitals + Lighthouse監査
 /performance-monitor /dashboard -v -l --report
 
-# Detailed performance analysis
+# 詳細パフォーマンス分析
 /performance-monitor /checkout -n -j -m -c
 
-# Mobile environment measurement
+# モバイル環境測定
 /performance-monitor https://myapp.com -d mobile -t "slow-3g"
 
-# Multiple runs for reliability
+# 信頼性向上のための複数回測定
 /performance-monitor /api-heavy-page -r 10 --baseline
 
-# Monitoring with alerts
+# アラート付きモニタリング
 /performance-monitor https://production.com --alerts --report
 ```
 
-## Feature Details
+## 機能詳細
 
-### 1. Core Web Vitals Measurement (-v option)
+### 1. Core Web Vitals測定（-vオプション）
 
-#### Measurement Metrics
+#### 測定メトリクス
 ```typescript
 interface CoreWebVitals {
-  // Page load performance
+  // ページ読み込みパフォーマンス
   LCP: number      // Largest Contentful Paint (ms)
 
-  // Interactivity
+  // インタラクティビティ
   FID: number      // First Input Delay (ms)
   INP: number      // Interaction to Next Paint (ms)
 
-  // Visual stability
-  CLS: number      // Cumulative Layout Shift (score)
+  // 視覚的安定性
+  CLS: number      // Cumulative Layout Shift (スコア)
 
-  // Loading speed
+  // 読み込み速度
   FCP: number      // First Contentful Paint (ms)
   TTFB: number     // Time to First Byte (ms)
 }
 ```
 
-#### Evaluation by Google Standards
+#### Google標準による評価
 ```typescript
 const webVitalsThresholds = {
   LCP: { good: 2500, needsImprovement: 4000 },
@@ -106,13 +106,13 @@ function evaluateScore(metric: string, value: number): 'good' | 'needs-improveme
 }
 ```
 
-### 2. Lighthouse Audit (-l option)
+### 2. Lighthouse監査（-lオプション）
 
-#### Audit Categories
+#### 監査カテゴリ
 ```typescript
 interface LighthouseAudit {
   performance: {
-    score: number    // 0-100 performance score
+    score: number    // 0-100 パフォーマンススコア
     metrics: {
       firstContentfulPaint: number
       largestContentfulPaint: number
@@ -136,30 +136,30 @@ interface LighthouseAudit {
 }
 ```
 
-#### Identifying Optimization Opportunities
+#### 最適化機会の特定
 ```typescript
 const optimizationOpportunities = [
   {
     audit: 'unused-css-rules',
     impact: 'high',
-    description: 'Removing unused CSS can reduce ~500KB'
+    description: '未使用CSSの削除により約500KB削減可能'
   },
   {
     audit: 'efficient-animated-content',
     impact: 'medium',
-    description: 'Animation optimization reduces rendering load'
+    description: 'アニメーション最適化によりレンダリング負荷を軽減'
   },
   {
     audit: 'offscreen-images',
     impact: 'high',
-    description: 'Lazy loading can reduce initial load by ~2 seconds'
+    description: '遅延読み込みにより初期読み込みを約2秒短縮可能'
   }
 ]
 ```
 
-### 3. Network Analysis (-n option)
+### 3. ネットワーク分析（-nオプション）
 
-#### Resource Analysis
+#### リソース分析
 ```typescript
 interface NetworkAnalysis {
   totalRequests: number
@@ -184,9 +184,9 @@ interface ResourceMetrics {
 }
 ```
 
-#### Bottleneck Identification
+#### ボトルネック特定
 ```typescript
-// Identify slow requests
+// 遅いリクエストの特定
 function identifySlowRequests(requests: NetworkRequest[]): SlowRequest[] {
   return requests
     .filter(req => req.duration > 1000)
@@ -200,9 +200,9 @@ function identifySlowRequests(requests: NetworkRequest[]): SlowRequest[] {
 }
 ```
 
-### 4. JavaScript Execution Analysis (-j option)
+### 4. JavaScript実行分析（-jオプション）
 
-#### Performance Profiling
+#### パフォーマンスプロファイリング
 ```typescript
 interface JavaScriptAnalysis {
   mainThreadBlocking: number
@@ -221,12 +221,12 @@ interface HeavyTask {
 }
 ```
 
-#### Performance Bottleneck Detection
+#### パフォーマンスボトルネック検出
 ```typescript
-// Detect heavy JavaScript processing
+// 重いJavaScript処理の検出
 async function analyzeJavaScriptPerformance() {
   const performanceEntries = await mcp__playwright__browser_evaluate(`
-    // Performance Observer for Long Tasks
+    // Long TasksのPerformance Observer
     const longTasks = [];
 
     new PerformanceObserver((list) => {
@@ -241,7 +241,7 @@ async function analyzeJavaScriptPerformance() {
       });
     }).observe({entryTypes: ['longtask', 'measure']});
 
-    // Memory usage
+    // メモリ使用量
     const memoryInfo = performance.memory ? {
       used: performance.memory.usedJSHeapSize,
       total: performance.memory.totalJSHeapSize,
@@ -255,9 +255,9 @@ async function analyzeJavaScriptPerformance() {
 }
 ```
 
-### 5. Memory Usage Monitoring (-m option)
+### 5. メモリ使用量モニタリング（-mオプション）
 
-#### Memory Profile
+#### メモリプロファイル
 ```typescript
 interface MemoryProfile {
   heapUsed: number
@@ -266,7 +266,7 @@ interface MemoryProfile {
   external: number
   arrayBuffers: number
 
-  // Garbage collection information
+  // ガベージコレクション情報
   gcEvents: GCEvent[]
   memoryLeaks: MemoryLeak[]
 }
@@ -279,18 +279,18 @@ interface MemoryLeak {
 }
 ```
 
-#### Memory Leak Detection
+#### メモリリーク検出
 ```typescript
-// Detect memory leaks
+// メモリリークの検出
 async function detectMemoryLeaks() {
   const initialMemory = await measureMemoryUsage()
 
-  // Execute user actions
+  // ユーザーアクションの実行
   await simulateUserInteractions()
 
   const finalMemory = await measureMemoryUsage()
 
-  // Analyze memory growth
+  // メモリ増加の分析
   const memoryGrowth = finalMemory.heapUsed - initialMemory.heapUsed
 
   if (memoryGrowth > MEMORY_LEAK_THRESHOLD) {
@@ -299,15 +299,15 @@ async function detectMemoryLeaks() {
 }
 ```
 
-### 6. Serena Integration Features
+### 6. Serena統合機能
 
-#### Codebase Analysis Integration
+#### コードベース分析統合
 ```typescript
-// Identify performance-critical components
+// パフォーマンスクリティカルなコンポーネントの特定
 async function identifyPerformanceCriticalComponents() {
   const components = await mcp__serena__get_symbols_overview()
 
-  // Search for heavy component patterns
+  // 重いコンポーネントパターンの検索
   const heavyComponents = await mcp__serena__search_for_pattern([
     'useState.*array.*length.*1000',
     'useEffect.*dependencies.*length.*10',
@@ -319,15 +319,15 @@ async function identifyPerformanceCriticalComponents() {
 }
 ```
 
-#### Optimization Suggestion Generation
+#### 最適化提案生成
 ```typescript
-// Generate optimization suggestions using Serena knowledge
+// Serena知識を使用した最適化提案の生成
 async function generateOptimizationSuggestions(performanceData: PerformanceMetrics) {
   const pastOptimizations = await mcp__serena__read_memory('performance-optimizations')
 
   const suggestions = analyzeOptimizationOpportunities(performanceData, pastOptimizations)
 
-  // Save as learning data
+  // 学習データとして保存
   await mcp__serena__write_memory('performance-analysis', {
     timestamp: Date.now(),
     metrics: performanceData,
@@ -339,9 +339,9 @@ async function generateOptimizationSuggestions(performanceData: PerformanceMetri
 }
 ```
 
-### 7. Baseline Comparison (--baseline option)
+### 7. ベースライン比較（--baselineオプション）
 
-#### Continuous Performance Monitoring
+#### 継続的パフォーマンスモニタリング
 ```typescript
 interface PerformanceBaseline {
   timestamp: number
@@ -354,7 +354,7 @@ interface PerformanceBaseline {
   }
 }
 
-// Performance trend analysis
+// パフォーマンストレンド分析
 function analyzePerformanceTrends(current: PerformanceMetrics, baselines: PerformanceBaseline[]) {
   const trends = {
     LCP: calculateTrend(baselines.map(b => b.metrics.LCP), current.LCP),
@@ -370,9 +370,9 @@ function analyzePerformanceTrends(current: PerformanceMetrics, baselines: Perfor
 }
 ```
 
-### 8. Alert Features (--alerts option)
+### 8. アラート機能（--alertsオプション）
 
-#### Threshold Monitoring
+#### しきい値モニタリング
 ```typescript
 interface PerformanceAlert {
   metric: string
@@ -388,46 +388,46 @@ const alertRules = [
     metric: 'LCP',
     warningThreshold: 2500,
     criticalThreshold: 4000,
-    message: 'Page load speed is degrading'
+    message: 'ページ読み込み速度が低下しています'
   },
   {
     metric: 'CLS',
     warningThreshold: 0.1,
     criticalThreshold: 0.25,
-    message: 'Layout shift is occurring'
+    message: 'レイアウトシフトが発生しています'
   }
 ]
 ```
 
-## Implementation Workflow
+## 実装ワークフロー
 
-### Step 1: Environment Setup and Preparation
+### ステップ1: 環境準備とセットアップ
 ```typescript
-// Project analysis with Serena
+// Serenaでプロジェクト分析
 await mcp__serena__onboarding()
 const projectStructure = await mcp__serena__get_symbols_overview()
 
-// Identify performance measurement targets
+// パフォーマンス測定対象の特定
 const criticalPaths = await mcp__serena__search_for_pattern('performance-critical')
 ```
 
-### Step 2: Page Access and Initial Measurement
+### ステップ2: ページアクセスと初期測定
 ```typescript
-// Page access
+// ページアクセス
 await mcp__playwright__browser_navigate(targetUrl)
 
-// Performance Observer setup
+// Performance Observerのセットアップ
 await mcp__playwright__browser_evaluate(`
   window.performanceMetrics = {};
 
-  // Web Vitals measurement
+  // Web Vitals測定
   new PerformanceObserver((list) => {
     list.getEntries().forEach((entry) => {
       window.performanceMetrics[entry.name] = entry.value;
     });
   }).observe({entryTypes: ['paint', 'navigation', 'measure']});
 
-  // Layout Shift measurement
+  // Layout Shift測定
   new PerformanceObserver((list) => {
     let cls = 0;
     list.getEntries().forEach((entry) => {
@@ -440,31 +440,31 @@ await mcp__playwright__browser_evaluate(`
 `)
 ```
 
-### Step 3: Detailed Metrics Collection
+### ステップ3: 詳細メトリクス収集
 ```typescript
-// Core Web Vitals measurement
+// Core Web Vitals測定
 const webVitals = await measureCoreWebVitals()
 
-// Network analysis
+// ネットワーク分析
 if (options.network) {
   const networkData = await mcp__playwright__browser_network_requests()
   const networkAnalysis = analyzeNetworkPerformance(networkData)
 }
 
-// JavaScript analysis
+// JavaScript分析
 if (options.javascript) {
   const jsAnalysis = await analyzeJavaScriptPerformance()
 }
 
-// Memory analysis
+// メモリ分析
 if (options.memory) {
   const memoryProfile = await profileMemoryUsage()
 }
 ```
 
-### Step 4: Lighthouse Audit Execution (-l option)
+### ステップ4: Lighthouse監査実行（-lオプション）
 ```typescript
-// Execute Lighthouse audit
+// Lighthouse監査の実行
 const lighthouseResult = await runLighthouseAudit(targetUrl, {
   device: options.device,
   throttling: options.throttling,
@@ -472,9 +472,9 @@ const lighthouseResult = await runLighthouseAudit(targetUrl, {
 })
 ```
 
-### Step 5: Data Analysis and Optimization Suggestions
+### ステップ5: データ分析と最適化提案
 ```typescript
-// Comprehensive analysis
+// 包括的分析
 const comprehensiveAnalysis = {
   coreWebVitals: webVitals,
   lighthouse: lighthouseResult,
@@ -483,10 +483,10 @@ const comprehensiveAnalysis = {
   memory: memoryProfile
 }
 
-// Optimization suggestions using Serena
+// Serenaを使用した最適化提案
 const optimizationSuggestions = await generateOptimizationSuggestions(comprehensiveAnalysis)
 
-// Save results
+// 結果の保存
 await mcp__serena__write_memory('performance-monitoring', {
   url: targetUrl,
   timestamp: Date.now(),
@@ -495,84 +495,84 @@ await mcp__serena__write_memory('performance-monitoring', {
 })
 ```
 
-## Report Generation Feature (--report option)
+## レポート生成機能（--reportオプション）
 
-### Detailed Report Structure
+### 詳細レポート構造
 ```markdown
-# Performance Monitoring Report
+# パフォーマンスモニタリングレポート
 
-## 📊 Overview
-- Target: {target-url}
-- Measurement Date: {timestamp}
-- Device: {device-type}
-- Network: {network-condition}
+## 📊 概要
+- ターゲット: {target-url}
+- 測定日時: {timestamp}
+- デバイス: {device-type}
+- ネットワーク: {network-condition}
 
 ## 🚀 Core Web Vitals
 
 ### Largest Contentful Paint (LCP)
-- **Current Value**: 1,847ms ✅ Good
-- **Target**: < 2,500ms
-- **Improvement**: -340ms from previous
+- **現在値**: 1,847ms ✅ 良好
+- **目標**: < 2,500ms
+- **改善**: 前回より-340ms
 
 ### First Input Delay (FID)
-- **Current Value**: 12ms ✅ Good
-- **Target**: < 100ms
+- **現在値**: 12ms ✅ 良好
+- **目標**: < 100ms
 
 ### Cumulative Layout Shift (CLS)
-- **Current Value**: 0.06 ✅ Good
-- **Target**: < 0.1
+- **現在値**: 0.06 ✅ 良好
+- **目標**: < 0.1
 
-## ⚡ Lighthouse Scores
-- **Performance**: 89/100 ✅
-- **Accessibility**: 92/100 ✅
-- **Best Practices**: 87/100 ⚠️
+## ⚡ Lighthouseスコア
+- **パフォーマンス**: 89/100 ✅
+- **アクセシビリティ**: 92/100 ✅
+- **ベストプラクティス**: 87/100 ⚠️
 - **SEO**: 100/100 ✅
 
-## 🔍 Detailed Analysis
+## 🔍 詳細分析
 
-### Network Optimization
-- Total requests: 47
-- Total data size: 1.2MB
-- **Improvement Suggestions**:
-  1. Image optimization can reduce 500KB
-  2. Unused CSS removal can reduce 200KB
+### ネットワーク最適化
+- 総リクエスト数: 47
+- 総データサイズ: 1.2MB
+- **改善提案**:
+  1. 画像最適化により500KB削減可能
+  2. 未使用CSS削除により200KB削減可能
 
-### JavaScript Performance
-- Main thread blocking time: 230ms
-- **Heavy Processing**:
-  1. Data processing library (120ms)
-  2. Chart rendering (85ms)
+### JavaScriptパフォーマンス
+- メインスレッドブロッキング時間: 230ms
+- **重い処理**:
+  1. データ処理ライブラリ (120ms)
+  2. チャートレンダリング (85ms)
 
-### Memory Usage
-- Heap usage: 45MB / 128MB
-- **Memory Leaks**: None detected ✅
+### メモリ使用量
+- ヒープ使用量: 45MB / 128MB
+- **メモリリーク**: 検出されず ✅
 
-## 🎯 Optimization Recommendations
+## 🎯 最適化推奨事項
 
-### High Priority
-1. **Implement Image Lazy Loading**
-   - Effect: -800ms LCP reduction
-   - Implementation difficulty: Low
+### 高優先度
+1. **画像遅延読み込みの実装**
+   - 効果: LCP -800ms改善
+   - 実装難易度: 低
 
-2. **Remove Unused JavaScript**
-   - Effect: -400ms FCP reduction
-   - Implementation difficulty: Medium
+2. **未使用JavaScriptの削除**
+   - 効果: FCP -400ms改善
+   - 実装難易度: 中
 
-### Medium Priority
-3. **Consider CDN Implementation**
-   - Effect: -200ms TTFB reduction
-   - Implementation difficulty: Medium
+### 中優先度
+3. **CDN導入の検討**
+   - 効果: TTFB -200ms改善
+   - 実装難易度: 中
 
-## 📈 Trend Analysis
+## 📈 トレンド分析
 {performance-trends}
 
-## 🔧 Code Improvement Suggestions
+## 🔧 コード改善提案
 {code-optimization-suggestions}
 ```
 
-### Graphical Reports
+### グラフィカルレポート
 ```typescript
-// Performance chart generation
+// パフォーマンスチャート生成
 const performanceChart = {
   type: 'line',
   data: {
@@ -593,14 +593,14 @@ const performanceChart = {
 }
 ```
 
-## Continuous Monitoring and CI/CD Integration
+## 継続的モニタリングとCI/CD統合
 
-### GitHub Actions Integration
+### GitHub Actions統合
 ```yaml
-name: Performance Monitoring
+name: パフォーマンスモニタリング
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
+    - cron: '0 */6 * * *'  # 6時間ごと
   push:
     branches: [main]
 
@@ -610,50 +610,50 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Node.jsセットアップ
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: 依存関係インストール
         run: npm ci
 
-      - name: Start application
+      - name: アプリケーション起動
         run: npm start &
 
-      - name: Wait for application
+      - name: アプリケーション待機
         run: npx wait-on http://localhost:3000
 
-      - name: Run performance monitoring
+      - name: パフォーマンスモニタリング実行
         run: |
           /performance-monitor http://localhost:3000 \
             -v -l -n -j --report --baseline --alerts
 
-      - name: Performance Budget Check
+      - name: パフォーマンス予算チェック
         run: |
           if [ $(cat performance-report.json | jq '.lighthouse.performance.score') -lt 80 ]; then
-            echo "Performance score below threshold"
+            echo "パフォーマンススコアがしきい値を下回っています"
             exit 1
           fi
 
-      - name: Upload performance report
+      - name: パフォーマンスレポートアップロード
         uses: actions/upload-artifact@v3
         with:
           name: performance-report
           path: performance-report.html
 
-      - name: Slack notification
+      - name: Slack通知
         if: failure()
         uses: 8398a7/action-slack@v3
         with:
           status: custom
           custom_payload: |
             {
-              text: "Performance regression detected",
+              text: "パフォーマンス低下を検出しました",
               attachments: [{
                 color: "danger",
                 fields: [{
-                  title: "Performance Score",
+                  title: "パフォーマンススコア",
                   value: "${{ env.PERFORMANCE_SCORE }}",
                   short: true
                 }]
@@ -661,7 +661,7 @@ jobs:
             }
 ```
 
-### Performance Budget
+### パフォーマンス予算
 ```json
 {
   "budget": {
@@ -680,11 +680,11 @@ jobs:
 }
 ```
 
-## Advanced Features
+## 高度な機能
 
-### 1. User Flow Measurement
+### 1. ユーザーフロー測定
 ```typescript
-// Performance measurement across multiple pages
+// 複数ページにわたるパフォーマンス測定
 async function measureUserJourney(flowSteps: FlowStep[]) {
   let journeyMetrics = []
 
@@ -709,14 +709,14 @@ async function measureUserJourney(flowSteps: FlowStep[]) {
 
 ### 2. Real User Monitoring (RUM)
 ```typescript
-// RUM data collection setup
+// RUMデータ収集セットアップ
 const rumScript = `
 (function() {
   // Navigation Timing
   window.addEventListener('load', function() {
     const navigation = performance.getEntriesByType('navigation')[0];
 
-    // Real User Metrics
+    // リアルユーザーメトリクス
     const rumData = {
       loadTime: navigation.loadEventEnd - navigation.fetchStart,
       domComplete: navigation.domComplete - navigation.fetchStart,
@@ -725,7 +725,7 @@ const rumScript = `
       timestamp: Date.now()
     };
 
-    // Send data
+    // データ送信
     fetch('/api/rum', {
       method: 'POST',
       body: JSON.stringify(rumData)
@@ -735,9 +735,9 @@ const rumScript = `
 `
 ```
 
-### 3. A/B Test Performance Comparison
+### 3. A/Bテストパフォーマンス比較
 ```typescript
-// Compare A/B test performance
+// A/Bテストのパフォーマンス比較
 async function compareABTestPerformance(variantA: string, variantB: string) {
   const resultA = await measurePerformance(variantA)
   const resultB = await measurePerformance(variantB)
@@ -750,11 +750,11 @@ async function compareABTestPerformance(variantA: string, variantB: string) {
 }
 ```
 
-## Performance Optimization
+## パフォーマンス最適化
 
-### Batch Processing and Parallel Execution
+### バッチ処理と並列実行
 ```typescript
-// Parallel measurement of multiple pages
+// 複数ページの並列測定
 async function measureMultiplePages(urls: string[]) {
   const batchSize = 3
   const results = []
@@ -771,9 +771,9 @@ async function measureMultiplePages(urls: string[]) {
 }
 ```
 
-### Cache Optimization
+### キャッシュ最適化
 ```typescript
-// Cache measurement results
+// 測定結果のキャッシュ
 const performanceCache = new Map()
 
 async function cachedPerformanceMeasurement(url: string, options: MeasureOptions) {
@@ -796,71 +796,71 @@ async function cachedPerformanceMeasurement(url: string, options: MeasureOptions
 }
 ```
 
-## Error Handling
+## エラーハンドリング
 
-### Common Errors and Solutions
+### 一般的なエラーと解決策
 
-#### Measurement Timeout Error
+#### 測定タイムアウトエラー
 ```bash
-❌ Error: Performance measurement timed out
-Solutions:
-1. Extend time with --timeout option
-2. Check network environment
-3. Execute measurements in stages
+❌ エラー: パフォーマンス測定がタイムアウトしました
+解決策:
+1. --timeoutオプションで時間を延長
+2. ネットワーク環境を確認
+3. 段階的に測定を実行
 ```
 
-#### Memory Shortage Error
+#### メモリ不足エラー
 ```bash
-❌ Error: Measurement failed due to memory shortage
-Solutions:
-1. Reduce number of runs (-r option)
-2. Disable detailed analysis
-3. Reduce batch size
+❌ エラー: メモリ不足により測定に失敗
+解決策:
+1. 測定回数（-rオプション）を減らす
+2. 詳細分析を無効化
+3. バッチサイズを縮小
 ```
 
-#### Lighthouse Execution Error
+#### Lighthouse実行エラー
 ```bash
-❌ Error: Lighthouse audit failed
-Solutions:
-1. Check Chrome version
-2. Run in headless mode
-3. Limit audit categories
+❌ エラー: Lighthouse監査に失敗
+解決策:
+1. Chromeのバージョンを確認
+2. ヘッドレスモードで実行
+3. 監査カテゴリを制限
 ```
 
-## Limitations and Considerations
+## 制限事項と考慮事項
 
-### Measurement Environment Considerations
-- Network environment variations
-- System resource impact
-- Browser cache state
-- External service response times
+### 測定環境の考慮
+- ネットワーク環境の変動
+- システムリソースの影響
+- ブラウザキャッシュの状態
+- 外部サービスの応答時間
 
-### Improving Measurement Accuracy
-- Ensure reliability through multiple measurements
-- Measure under consistent environment conditions
-- Eliminate external factors
-- Analysis using statistical methods
+### 測定精度の向上
+- 複数回測定による信頼性確保
+- 一貫した環境条件での測定
+- 外部要因の排除
+- 統計的手法による分析
 
-## Best Practices
+## ベストプラクティス
 
-### Effective Measurement Strategy
-1. **Priority Measurement of Important Pages**
-   - Landing pages
-   - Conversion pages
-   - Key feature pages
+### 効果的な測定戦略
+1. **重要ページの優先測定**
+   - ランディングページ
+   - コンバージョンページ
+   - 主要機能ページ
 
-2. **Implement Continuous Monitoring**
-   - CI/CD pipeline integration
-   - Regular automated measurements
-   - Set performance budgets
+2. **継続的モニタリングの実装**
+   - CI/CDパイプライン統合
+   - 定期的な自動測定
+   - パフォーマンス予算の設定
 
-3. **Establish Improvement Cycle**
-   - Measure → Analyze → Improve → Re-measure
-   - Implement optimizations gradually
-   - Measure and verify effectiveness
+3. **改善サイクルの確立**
+   - 測定 → 分析 → 改善 → 再測定
+   - 段階的な最適化の実施
+   - 効果の測定と検証
 
-### Team Operations
-- Share performance standards
-- Hold regular review meetings
-- Prioritize improvement suggestions
-- Accumulate knowledge and expertise
+### チーム運用
+- パフォーマンス基準の共有
+- 定期的なレビュー会議の開催
+- 改善提案の優先順位付け
+- 知識とノウハウの蓄積

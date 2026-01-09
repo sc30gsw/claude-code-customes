@@ -1,103 +1,103 @@
 ---
 name: research
-description: Deep web research with adaptive planning and intelligent search
+description: 適応的計画とインテリジェント検索による深いWeb調査
 category: command
 complexity: advanced
 mcp-servers: [tavily, sequential, playwright, serena]
 personas: [deep-research-agent]
 ---
 
-# /sc:research - Deep Research Command
+# /sc:research - 深い調査コマンド
 
-> **Context Framework Note**: This command activates comprehensive research capabilities with adaptive planning, multi-hop reasoning, and evidence-based synthesis.
+> **コンテキストフレームワーク注記**: このコマンドは、適応的計画、マルチホップ推論、エビデンスベースの統合を備えた包括的な調査機能を有効化します。
 
-## Triggers
-- Research questions beyond knowledge cutoff
-- Complex research questions
-- Current events and real-time information
-- Academic or technical research requirements
-- Market analysis and competitive intelligence
+## トリガー
+- 知識カットオフを超える調査質問
+- 複雑な調査質問
+- 現在のイベントとリアルタイム情報
+- 学術的または技術的調査要件
+- 市場分析と競合インテリジェンス
 
-## Context Trigger Pattern
+## コンテキストトリガーパターン
 ```
-/sc:research "[query]" [--depth quick|standard|deep|exhaustive] [--strategy planning|intent|unified]
-```
-
-## Behavioral Flow
-
-### 1. Understand (5-10% effort)
-- Assess query complexity and ambiguity
-- Identify required information types
-- Determine resource requirements
-- Define success criteria
-
-### 2. Plan (10-15% effort)
-- Select planning strategy based on complexity
-- Identify parallelization opportunities
-- Generate research question decomposition
-- Create investigation milestones
-
-### 3. TodoWrite (5% effort)
-- Create adaptive task hierarchy
-- Scale tasks to query complexity (3-15 tasks)
-- Establish task dependencies
-- Set progress tracking
-
-### 4. Execute (50-60% effort)
-- **Parallel-first searches**: Always batch similar queries
-- **Smart extraction**: Route by content complexity
-- **Multi-hop exploration**: Follow entity and concept chains
-- **Evidence collection**: Track sources and confidence
-
-### 5. Track (Continuous)
-- Monitor TodoWrite progress
-- Update confidence scores
-- Log successful patterns
-- Identify information gaps
-
-### 6. Validate (10-15% effort)
-- Verify evidence chains
-- Check source credibility
-- Resolve contradictions
-- Ensure completeness
-
-## Key Patterns
-
-### Parallel Execution
-- Batch all independent searches
-- Run concurrent extractions
-- Only sequential for dependencies
-
-### Evidence Management
-- Track search results
-- Provide clear citations when available
-- Note uncertainties explicitly
-
-### Adaptive Depth
-- **Quick**: Basic search, 1 hop, summary output
-- **Standard**: Extended search, 2-3 hops, structured report
-- **Deep**: Comprehensive search, 3-4 hops, detailed analysis
-- **Exhaustive**: Maximum depth, 5 hops, complete investigation
-
-## MCP Integration
-- **Tavily**: Primary search and extraction engine
-- **Sequential**: Complex reasoning and synthesis
-- **Playwright**: JavaScript-heavy content extraction
-- **Serena**: Research session persistence
-
-## Output Standards
-- Save reports to `claudedocs/research_[topic]_[timestamp].md`
-- Include executive summary
-- Provide confidence levels
-- List all sources with citations
-
-## Examples
-```
-/sc:research "latest developments in quantum computing 2024"
-/sc:research "competitive analysis of AI coding assistants" --depth deep
-/sc:research "best practices for distributed systems" --strategy unified
+/sc:research "[クエリ]" [--depth quick|standard|deep|exhaustive] [--strategy planning|intent|unified]
 ```
 
-## Boundaries
-**Will**: Current information, intelligent search, evidence-based analysis
-**Won't**: Make claims without sources, skip validation, access restricted content
+## 動作フロー
+
+### 1. 理解 (5-10%の労力)
+- クエリの複雑さと曖昧さを評価
+- 必要な情報タイプを特定
+- リソース要件を決定
+- 成功基準を定義
+
+### 2. 計画 (10-15%の労力)
+- 複雑さに基づいて計画戦略を選択
+- 並列化の機会を特定
+- 調査質問の分解を生成
+- 調査マイルストーンを作成
+
+### 3. TodoWrite (5%の労力)
+- 適応的タスク階層を作成
+- クエリの複雑さに合わせてタスクをスケール（3-15タスク）
+- タスク依存関係を確立
+- 進捗追跡を設定
+
+### 4. 実行 (50-60%の労力)
+- **並列優先検索**: 常に類似クエリをバッチ処理
+- **スマート抽出**: コンテンツの複雑さによるルーティング
+- **マルチホップ探索**: エンティティとコンセプトチェーンをたどる
+- **エビデンス収集**: ソースと信頼度を追跡
+
+### 5. 追跡 (継続的)
+- TodoWrite進捗を監視
+- 信頼度スコアを更新
+- 成功パターンをログ
+- 情報ギャップを特定
+
+### 6. 検証 (10-15%の労力)
+- エビデンスチェーンを確認
+- ソースの信頼性をチェック
+- 矛盾を解決
+- 完全性を確保
+
+## 主要パターン
+
+### 並列実行
+- すべての独立検索をバッチ処理
+- 同時抽出を実行
+- 依存関係がある場合のみ順次実行
+
+### エビデンス管理
+- 検索結果を追跡
+- 利用可能な場合は明確な引用を提供
+- 不確実性を明示的に注記
+
+### 適応的深度
+- **Quick**: 基本検索、1ホップ、サマリー出力
+- **Standard**: 拡張検索、2-3ホップ、構造化レポート
+- **Deep**: 包括的検索、3-4ホップ、詳細分析
+- **Exhaustive**: 最大深度、5ホップ、完全調査
+
+## MCP統合
+- **Tavily**: 主要な検索と抽出エンジン
+- **Sequential**: 複雑な推論と統合
+- **Playwright**: JavaScript重視コンテンツの抽出
+- **Serena**: 調査セッションの永続化
+
+## 出力標準
+- レポートを`claudedocs/research_[topic]_[timestamp].md`に保存
+- エグゼクティブサマリーを含める
+- 信頼度レベルを提供
+- 引用付きですべてのソースをリスト
+
+## 使用例
+```
+/sc:research "2024年の量子コンピューティングの最新動向"
+/sc:research "AIコーディングアシスタントの競合分析" --depth deep
+/sc:research "分散システムのベストプラクティス" --strategy unified
+```
+
+## 境界
+**対応範囲**: 現在の情報、インテリジェント検索、エビデンスベースの分析
+**対応外**: ソースなしの主張、検証のスキップ、制限コンテンツへのアクセス

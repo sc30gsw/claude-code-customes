@@ -1,206 +1,206 @@
 ---
 allowed-tools: Read, Write, Bash, TodoWrite, mcp__playwright__browser_navigate, mcp__playwright__browser_click, mcp__playwright__browser_type, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_wait_for
-description: E2E testing and application behavior verification command using Playwright MCP
+description: Playwright MCPを使用したE2Eテストとアプリケーション動作検証コマンド
 ---
 
-# Playwright E2E Testing & Behavior Verification Command
+# Playwright E2Eテスト＆動作検証コマンド
 
-## Overview
+## 概要
 
-A command that integrates Playwright MCP with Serena tools to automate application behavior testing and specification verification.
+Playwright MCPとSerenaツールを統合し、アプリケーション動作テストと仕様検証を自動化するコマンドです。
 
-## Usage
+## 使用方法
 
-### Basic Syntax
+### 基本構文
 ```bash
-/playwright-test <target> [options]
+/playwright-test <ターゲット> [オプション]
 ```
 
-### Target Specification
+### ターゲット指定
 
-| Target Type | Example | Description |
+| ターゲットタイプ | 例 | 説明 |
 |-------------|---------|-------------|
-| **URL** | `https://example.com` | External website testing |
-| **Local URL** | `http://localhost:3000` | Development app testing |
-| **Page Path** | `/login`, `/dashboard` | Specific page testing |
-| **Feature Name** | `authentication`, `checkout` | Feature flow testing |
+| **URL** | `https://example.com` | 外部ウェブサイトテスト |
+| **ローカルURL** | `http://localhost:3000` | 開発アプリテスト |
+| **ページパス** | `/login`, `/dashboard` | 特定ページテスト |
+| **機能名** | `authentication`, `checkout` | 機能フローテスト |
 
-### Options
+### オプション
 
-| Option | Description | Default |
+| オプション | 説明 | デフォルト |
 |--------|-------------|---------|
-| `-s, --spec` | Compare with specification files | false |
-| `-r, --report` | Generate detailed report | false |
-| `-i, --interactive` | Interactive mode execution | false |
-| `-w, --wait` | Wait for element display (seconds) | 5 |
-| `-d, --device` | Device emulation | desktop |
-| `-b, --browser` | Browser specification | chromium |
-| `--headless` | Headless mode | true |
-| `--record` | Record test execution video | false |
-| `--network` | Network monitoring | false |
-| `--console` | Capture console logs | false |
+| `-s, --spec` | 仕様ファイルと比較 | false |
+| `-r, --report` | 詳細レポート生成 | false |
+| `-i, --interactive` | インタラクティブモード実行 | false |
+| `-w, --wait` | 要素表示待機時間（秒） | 5 |
+| `-d, --device` | デバイスエミュレーション | desktop |
+| `-b, --browser` | ブラウザ指定 | chromium |
+| `--headless` | ヘッドレスモード | true |
+| `--record` | テスト実行動画記録 | false |
+| `--network` | ネットワーク監視 | false |
+| `--console` | コンソールログキャプチャ | false |
 
-### Usage Examples
+### 使用例
 
 ```bash
-# Basic page testing
+# 基本ページテスト
 /playwright-test https://myapp.com/login
 
-# Local development environment testing
+# ローカル開発環境テスト
 /playwright-test http://localhost:3000/dashboard -i -w 10
 
-# Specification verification
+# 仕様検証
 /playwright-test /checkout -s -r
 
-# Mobile device testing
+# モバイルデバイステスト
 /playwright-test https://myapp.com -d mobile -r
 
-# Network monitoring test
+# ネットワーク監視テスト
 /playwright-test /api-heavy-page --network --console -r
 ```
 
-## Feature Details
+## 機能詳細
 
-### 1. Application Behavior Testing
+### 1. アプリケーション動作テスト
 
-#### Basic Flow Verification
-- Page load time measurement
-- Essential element presence verification
-- Interactive element behavior confirmation
-- Form submission process verification
+#### 基本フロー検証
+- ページ読み込み時間測定
+- 必須要素の存在確認
+- インタラクティブ要素の動作確認
+- フォーム送信プロセス検証
 
-#### Error Handling Tests
-- Invalid input behavior confirmation
-- Network error handling
-- JavaScript error detection
-- 404/500 error display verification
+#### エラーハンドリングテスト
+- 不正入力動作確認
+- ネットワークエラー処理
+- JavaScriptエラー検出
+- 404/500エラー表示検証
 
-### 2. Serena Tool Integration
+### 2. Serenaツール統合
 
-#### Codebase Analysis
+#### コードベース分析
 ```bash
-# Identify test targets within project
+# プロジェクト内のテスト対象を特定
 mcp__serena__get_symbols_overview -> component-list
 mcp__serena__search_for_pattern -> test-targets
 ```
 
-#### Test Result Storage and Learning
+#### テスト結果保存と学習
 ```bash
-# Save test results to Serena memory
+# テスト結果をSerenaメモリに保存
 mcp__serena__write_memory: test-results-{timestamp}
-# Compare with previous test results
+# 過去のテスト結果と比較
 mcp__serena__read_memory: previous-test-results
 ```
 
-### 3. Specification Verification Feature (-s option)
+### 3. 仕様検証機能（-sオプション）
 
-#### Supported Specification File Formats
-- **Requirements**: `requirements/*.md`
-- **Design Documents**: `docs/design/*.md`
-- **API Specifications**: `openapi.yaml`, `swagger.json`
-- **User Stories**: `stories/*.md`
+#### 対応仕様ファイル形式
+- **要件**: `requirements/*.md`
+- **設計ドキュメント**: `docs/design/*.md`
+- **API仕様**: `openapi.yaml`, `swagger.json`
+- **ユーザーストーリー**: `stories/*.md`
 
-#### Verification Items
-1. **UI Element Specification Compliance**
-   - Button text and placement verification
-   - Form field completeness
-   - Error message accuracy
+#### 検証項目
+1. **UI要素仕様準拠**
+   - ボタンテキストと配置の検証
+   - フォームフィールドの完全性
+   - エラーメッセージの正確性
 
-2. **Behavior Specification Compliance**
-   - Input validation rules
-   - Screen transition flows
-   - Data processing logic
+2. **動作仕様準拠**
+   - 入力検証ルール
+   - 画面遷移フロー
+   - データ処理ロジック
 
-3. **Performance Specifications**
-   - Page load times
-   - API response times
-   - Resource usage
+3. **パフォーマンス仕様**
+   - ページ読み込み時間
+   - APIレスポンス時間
+   - リソース使用量
 
-### 4. Report Generation Feature (-r option)
+### 4. レポート生成機能（-rオプション）
 
-#### Auto-Generated Report
+#### 自動生成レポート
 ```markdown
-# Test Execution Report - {timestamp}
+# テスト実行レポート - {timestamp}
 
-## Execution Overview
-- Target URL: {target-url}
-- Execution Time: {duration}
-- Browser: {browser-type}
-- Device: {device-type}
+## 実行概要
+- ターゲットURL: {target-url}
+- 実行時間: {duration}
+- ブラウザ: {browser-type}
+- デバイス: {device-type}
 
-## Test Results
-### ✅ Successful Items ({success-count})
-- Page Load: {load-time}ms
-- Essential Elements: All present
-- Form Submission: Normal operation
+## テスト結果
+### ✅ 成功項目 ({success-count})
+- ページ読み込み: {load-time}ms
+- 必須要素: すべて存在
+- フォーム送信: 正常動作
 
-### ❌ Failed Items ({failure-count})
-- Login Button: Not clickable
-- Error Details: {error-message}
+### ❌ 失敗項目 ({failure-count})
+- ログインボタン: クリック不可
+- エラー詳細: {error-message}
 
-## Specification Compliance (-s option)
-### 📋 Comparison with Specifications
-- UI Specification Compliance: 95.2%
-- Behavior Specification Compliance: 88.7%
-- Non-compliance Items: 3
+## 仕様準拠状況（-sオプション）
+### 📋 仕様との比較
+- UI仕様準拠率: 95.2%
+- 動作仕様準拠率: 88.7%
+- 非準拠項目: 3件
 
-## Performance Metrics
+## パフォーマンスメトリクス
 - First Contentful Paint: {fcp}ms
 - Largest Contentful Paint: {lcp}ms
-- Network Requests: {network-requests}
+- ネットワークリクエスト: {network-requests}
 
-## Recommended Improvements
+## 改善推奨事項
 1. {improvement-1}
 2. {improvement-2}
 3. {improvement-3}
 ```
 
-### 5. Interactive Testing Feature (-i option)
+### 5. インタラクティブテスト機能（-iオプション）
 
-#### Combination with Manual Operations
+#### 手動操作との組み合わせ
 ```bash
-# Interactive mode test execution example
+# インタラクティブモードテスト実行例
 /playwright-test localhost:3000/app -i
 
-# Interactive prompts during execution:
-> Page loaded. Select next operation:
-  1. Click element
-  2. Enter text
-  3. Take screenshot
-  4. Check specifications
-  5. Complete test
+# 実行中のインタラクティブプロンプト:
+> ページが読み込まれました。次の操作を選択:
+  1. 要素をクリック
+  2. テキストを入力
+  3. スクリーンショットを撮る
+  4. 仕様をチェック
+  5. テストを完了
 ```
 
-## Implementation Workflow
+## 実装ワークフロー
 
-### Step 1: Preparation
+### ステップ1: 準備
 ```typescript
-// Project analysis with Serena
+// Serenaでプロジェクト分析
 mcp__serena__onboarding()
 project_structure = mcp__serena__get_symbols_overview()
 test_targets = mcp__serena__search_for_pattern("test-patterns")
 ```
 
-### Step 2: Browser Launch & Navigation
+### ステップ2: ブラウザ起動＆ナビゲーション
 ```typescript
-// Browser operations with Playwright
+// Playwrightでブラウザ操作
 mcp__playwright__browser_navigate(target_url)
 await mcp__playwright__browser_wait_for({time: wait_seconds})
 ```
 
-### Step 3: Basic Operation Verification
+### ステップ3: 基本操作検証
 ```typescript
-// Get DOM structure
+// DOM構造を取得
 page_snapshot = mcp__playwright__browser_snapshot()
-// Verify essential elements
+// 必須要素を検証
 essential_elements = extract_essential_elements(page_snapshot)
-// Identify interactive elements
+// インタラクティブ要素を特定
 interactive_elements = find_interactive_elements(page_snapshot)
 ```
 
-### Step 4: Function Test Execution
+### ステップ4: 機能テスト実行
 ```typescript
-// Form test example
+// フォームテスト例
 test_form_submission() {
   mcp__playwright__browser_type("email-input", "test@example.com")
   mcp__playwright__browser_type("password-input", "testpass123")
@@ -209,115 +209,115 @@ test_form_submission() {
 }
 ```
 
-### Step 5: Specification Verification (-s option)
+### ステップ5: 仕様検証（-sオプション）
 ```typescript
-// Load specification files
+// 仕様ファイルを読み込み
 spec_files = find_specification_files()
-// Compare actual behavior with specifications
+// 実際の動作と仕様を比較
 compliance_check = compare_with_specifications(
   actual_behavior,
   spec_requirements
 )
 ```
 
-### Step 6: Report Generation & Storage
+### ステップ6: レポート生成＆保存
 ```typescript
-// Aggregate test results
+// テスト結果を集計
 test_results = aggregate_test_results()
-// Save to Serena memory
+// Serenaメモリに保存
 mcp__serena__write_memory("test-results", test_results)
-// Generate report file
+// レポートファイルを生成
 generate_report(test_results, report_format)
 ```
 
-## Error Handling
+## エラーハンドリング
 
-### Common Errors and Solutions
+### 一般的なエラーと解決策
 
-#### Page Load Error
+#### ページ読み込みエラー
 ```bash
-❌ Error: Failed to load page
-Solutions:
-1. Verify URL accuracy
-2. Check network connection
-3. Extend wait time with --wait option
+❌ エラー: ページの読み込みに失敗
+解決策:
+1. URLの正確性を確認
+2. ネットワーク接続をチェック
+3. --waitオプションで待機時間を延長
 ```
 
-#### Element Not Found Error
+#### 要素が見つからないエラー
 ```bash
-❌ Error: Specified element not found
-Solutions:
-1. Verify element selector
-2. Wait for page load completion
-3. Manual verification with --interactive mode
+❌ エラー: 指定された要素が見つからない
+解決策:
+1. 要素セレクターを確認
+2. ページ読み込み完了を待機
+3. --interactiveモードで手動確認
 ```
 
-#### JavaScript Execution Error
+#### JavaScript実行エラー
 ```bash
-❌ Error: Error occurred during JavaScript execution
-Solutions:
-1. Check logs with --console option
-2. Detailed verification with browser dev tools
-3. Visual verification with --headless=false
+❌ エラー: JavaScript実行中にエラー発生
+解決策:
+1. --consoleオプションでログをチェック
+2. ブラウザ開発ツールで詳細確認
+3. --headless=falseで目視確認
 ```
 
-## Performance Optimization
+## パフォーマンス最適化
 
-### Large-Scale Test Efficiency
-- Time reduction through parallel execution
-- Redundant processing reduction through cache utilization
-- Processing speed improvement through smart element discovery
+### 大規模テストの効率化
+- 並列実行による時間短縮
+- キャッシュ活用による冗長処理削減
+- スマート要素検出による処理速度向上
 
-### Resource Usage Optimization
-- Memory usage monitoring
-- Proper browser process termination
-- Split execution for large data processing
+### リソース使用量最適化
+- メモリ使用量モニタリング
+- ブラウザプロセスの適切な終了
+- 大量データ処理の分割実行
 
-## Integration Features
+## 統合機能
 
-### CI/CD Pipeline Integration
+### CI/CDパイプライン統合
 ```yaml
-# GitHub Actions example
-- name: Playwright E2E Test
+# GitHub Actions例
+- name: Playwright E2Eテスト
   run: /playwright-test ${{ env.STAGING_URL }} -s -r --headless
 ```
 
-### Integration with Other Commands
+### 他コマンドとの連携
 ```bash
-# Complete workflow: Test → Analysis → Report
+# 完全ワークフロー: テスト → 分析 → レポート
 /playwright-test localhost:3000 -r
 /web-analyzer localhost:3000 -r
 /visual-regression localhost:3000 -b
 ```
 
-## Limitations
+## 制限事項
 
-### Supported
-- ✅ Modern browsers (Chrome, Firefox, Safari)
-- ✅ Responsive design
-- ✅ SPA (Single Page Application)
-- ✅ SSR (Server Side Rendering)
+### 対応範囲
+- ✅ モダンブラウザ（Chrome、Firefox、Safari）
+- ✅ レスポンシブデザイン
+- ✅ SPA（シングルページアプリケーション）
+- ✅ SSR（サーバーサイドレンダリング）
 
-### Limitations
-- ❌ Legacy technologies (Flash/Silverlight, etc.)
-- ❌ Complex authentication flows (OAuth, SAML, etc.)
-- ❌ Large data performance testing
-- ❌ Complex multi-tab interactions
+### 制限事項
+- ❌ レガシー技術（Flash/Silverlight等）
+- ❌ 複雑な認証フロー（OAuth、SAML等）
+- ❌ 大量データパフォーマンステスト
+- ❌ 複雑なマルチタブインタラクション
 
-## Support & Troubleshooting
+## サポート＆トラブルシューティング
 
-### Debug Mode
+### デバッグモード
 ```bash
-# Test execution with debug information
+# デバッグ情報付きテスト実行
 /playwright-test target-url -i --console --network --record
 ```
 
-### Log Files
-- Test execution log: `logs/playwright-test-{timestamp}.log`
-- Screenshots: `screenshots/test-{timestamp}.png`
-- Video recording: `videos/test-{timestamp}.mp4`
+### ログファイル
+- テスト実行ログ: `logs/playwright-test-{timestamp}.log`
+- スクリーンショット: `screenshots/test-{timestamp}.png`
+- 動画記録: `videos/test-{timestamp}.mp4`
 
-### Community Support
-- GitHub Issues: Technical problem reporting
-- Documentation: Detailed setup and usage
-- Samples: Implementation examples and best practices
+### コミュニティサポート
+- GitHub Issues: 技術的問題の報告
+- ドキュメント: 詳細なセットアップと使用方法
+- サンプル: 実装例とベストプラクティス

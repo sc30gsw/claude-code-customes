@@ -1,209 +1,209 @@
 ---
 name: senior-frontend
-description: Comprehensive frontend development skill for building modern, performant web applications using ReactJS, NextJS, TypeScript, Tailwind CSS. Includes component scaffolding, performance optimization, bundle analysis, and UI best practices. Use when developing frontend features, optimizing performance, implementing UI/UX designs, managing state, or reviewing frontend code.
+description: ReactJS、NextJS、TypeScript、Tailwind CSSを使用した最新のパフォーマンスに優れたWebアプリケーション構築のための包括的なフロントエンド開発スキル。コンポーネントのスキャフォールディング、パフォーマンス最適化、バンドル分析、UIベストプラクティスを含む。フロントエンド機能の開発、パフォーマンス最適化、UI/UXデザインの実装、状態管理、フロントエンドコードのレビュー時に使用。
 ---
 
-# Senior Frontend
+# シニアフロントエンド
 
-Complete toolkit for senior frontend with modern tools and best practices.
+モダンなツールとベストプラクティスを備えたシニアフロントエンド向けの完全なツールキット。
 
-## Quick Start
+## クイックスタート
 
-### Main Capabilities
+### 主要機能
 
-This skill provides three core capabilities through automated scripts:
+このスキルは自動化スクリプトを通じて3つのコア機能を提供:
 
 ```bash
-# Script 1: Component Generator
+# スクリプト1: コンポーネントジェネレータ
 python scripts/component_generator.py [options]
 
-# Script 2: Bundle Analyzer
+# スクリプト2: バンドルアナライザ
 python scripts/bundle_analyzer.py [options]
 
-# Script 3: Frontend Scaffolder
+# スクリプト3: フロントエンドスキャフォールダー
 python scripts/frontend_scaffolder.py [options]
 ```
 
-## Core Capabilities
+## コア機能
 
-### 1. Component Generator
+### 1. コンポーネントジェネレータ
 
-Automated tool for component generator tasks.
+コンポーネント生成タスクのための自動化ツール。
 
-**Features:**
-- Automated scaffolding
-- Best practices built-in
-- Configurable templates
-- Quality checks
+**特徴:**
+- 自動スキャフォールディング
+- ベストプラクティス組み込み
+- 設定可能なテンプレート
+- 品質チェック
 
-**Usage:**
+**使用方法:**
 ```bash
 python scripts/component_generator.py <project-path> [options]
 ```
 
-### 2. Bundle Analyzer
+### 2. バンドルアナライザ
 
-Comprehensive analysis and optimization tool.
+包括的な分析と最適化ツール。
 
-**Features:**
-- Deep analysis
-- Performance metrics
-- Recommendations
-- Automated fixes
+**特徴:**
+- 深い分析
+- パフォーマンスメトリクス
+- 推奨事項
+- 自動修正
 
-**Usage:**
+**使用方法:**
 ```bash
 python scripts/bundle_analyzer.py <target-path> [--verbose]
 ```
 
-### 3. Frontend Scaffolder
+### 3. フロントエンドスキャフォールダー
 
-Advanced tooling for specialized tasks.
+専門的なタスク用の高度なツール。
 
-**Features:**
-- Expert-level automation
-- Custom configurations
-- Integration ready
-- Production-grade output
+**特徴:**
+- エキスパートレベルの自動化
+- カスタム設定
+- 統合対応
+- プロダクショングレードの出力
 
-**Usage:**
+**使用方法:**
 ```bash
 python scripts/frontend_scaffolder.py [arguments] [options]
 ```
 
-## Reference Documentation
+## リファレンスドキュメント
 
-### React Patterns
+### Reactパターン
 
-Comprehensive guide available in `references/react_patterns.md`:
+`references/react_patterns.md`で利用可能な包括的なガイド:
 
-- Detailed patterns and practices
-- Code examples
-- Best practices
-- Anti-patterns to avoid
-- Real-world scenarios
+- 詳細なパターンとプラクティス
+- コード例
+- ベストプラクティス
+- 避けるべきアンチパターン
+- 実世界のシナリオ
 
-### Nextjs Optimization Guide
+### Next.js最適化ガイド
 
-Complete workflow documentation in `references/nextjs_optimization_guide.md`:
+`references/nextjs_optimization_guide.md`の完全なワークフロードキュメント:
 
-- Step-by-step processes
-- Optimization strategies
-- Tool integrations
-- Performance tuning
-- Troubleshooting guide
+- ステップバイステップのプロセス
+- 最適化戦略
+- ツール統合
+- パフォーマンスチューニング
+- トラブルシューティングガイド
 
-### Frontend Best Practices
+### フロントエンドベストプラクティス
 
-Technical reference guide in `references/frontend_best_practices.md`:
+`references/frontend_best_practices.md`のテクニカルリファレンスガイド:
 
-- Technology stack details
-- Configuration examples
-- Integration patterns
-- Security considerations
-- Scalability guidelines
+- テクノロジースタックの詳細
+- 設定例
+- 統合パターン
+- セキュリティ考慮事項
+- スケーラビリティガイドライン
 
-## Tech Stack
+## テックスタック
 
-**Languages:** TypeScript, JavaScript, Python, Go, Swift, Kotlin
-**Frontend:** React, Next.js, React Native, Flutter
-**Backend:** Node.js, Express, GraphQL, REST APIs
-**Database:** PostgreSQL, Prisma, NeonDB, Supabase
-**DevOps:** Docker, Kubernetes, Terraform, GitHub Actions, CircleCI
-**Cloud:** AWS, GCP, Azure
+**言語:** TypeScript、JavaScript、Python、Go、Swift、Kotlin
+**フロントエンド:** React、Next.js、React Native、Flutter
+**バックエンド:** Node.js、Express、GraphQL、REST API
+**データベース:** PostgreSQL、Prisma、NeonDB、Supabase
+**DevOps:** Docker、Kubernetes、Terraform、GitHub Actions、CircleCI
+**クラウド:** AWS、GCP、Azure
 
-## Development Workflow
+## 開発ワークフロー
 
-### 1. Setup and Configuration
+### 1. セットアップと設定
 
 ```bash
-# Install dependencies
+# 依存関係のインストール
 npm install
-# or
+# または
 pip install -r requirements.txt
 
-# Configure environment
+# 環境設定
 cp .env.example .env
 ```
 
-### 2. Run Quality Checks
+### 2. 品質チェックの実行
 
 ```bash
-# Use the analyzer script
+# アナライザスクリプトを使用
 python scripts/bundle_analyzer.py .
 
-# Review recommendations
-# Apply fixes
+# 推奨事項をレビュー
+# 修正を適用
 ```
 
-### 3. Implement Best Practices
+### 3. ベストプラクティスの実装
 
-Follow the patterns and practices documented in:
+以下にドキュメント化されたパターンとプラクティスに従う:
 - `references/react_patterns.md`
 - `references/nextjs_optimization_guide.md`
 - `references/frontend_best_practices.md`
 
-## Best Practices Summary
+## ベストプラクティス概要
 
-### Code Quality
-- Follow established patterns
-- Write comprehensive tests
-- Document decisions
-- Review regularly
+### コード品質
+- 確立されたパターンに従う
+- 包括的なテストを作成
+- 決定事項をドキュメント化
+- 定期的にレビュー
 
-### Performance
-- Measure before optimizing
-- Use appropriate caching
-- Optimize critical paths
-- Monitor in production
+### パフォーマンス
+- 最適化前に測定
+- 適切なキャッシュを使用
+- クリティカルパスを最適化
+- 本番環境でモニタリング
 
-### Security
-- Validate all inputs
-- Use parameterized queries
-- Implement proper authentication
-- Keep dependencies updated
+### セキュリティ
+- すべての入力を検証
+- パラメータ化されたクエリを使用
+- 適切な認証を実装
+- 依存関係を更新
 
-### Maintainability
-- Write clear code
-- Use consistent naming
-- Add helpful comments
-- Keep it simple
+### 保守性
+- 明確なコードを書く
+- 一貫した命名を使用
+- 有用なコメントを追加
+- シンプルに保つ
 
-## Common Commands
+## よく使うコマンド
 
 ```bash
-# Development
+# 開発
 npm run dev
 npm run build
 npm run test
 npm run lint
 
-# Analysis
+# 分析
 python scripts/bundle_analyzer.py .
 python scripts/frontend_scaffolder.py --analyze
 
-# Deployment
+# デプロイ
 docker build -t app:latest .
 docker-compose up -d
 kubectl apply -f k8s/
 ```
 
-## Troubleshooting
+## トラブルシューティング
 
-### Common Issues
+### よくある問題
 
-Check the comprehensive troubleshooting section in `references/frontend_best_practices.md`.
+`references/frontend_best_practices.md`の包括的なトラブルシューティングセクションを確認。
 
-### Getting Help
+### ヘルプの取得
 
-- Review reference documentation
-- Check script output messages
-- Consult tech stack documentation
-- Review error logs
+- リファレンスドキュメントをレビュー
+- スクリプト出力メッセージを確認
+- テックスタックのドキュメントを参照
+- エラーログをレビュー
 
-## Resources
+## リソース
 
-- Pattern Reference: `references/react_patterns.md`
-- Workflow Guide: `references/nextjs_optimization_guide.md`
-- Technical Guide: `references/frontend_best_practices.md`
-- Tool Scripts: `scripts/` directory
+- パターンリファレンス: `references/react_patterns.md`
+- ワークフローガイド: `references/nextjs_optimization_guide.md`
+- テクニカルガイド: `references/frontend_best_practices.md`
+- ツールスクリプト: `scripts/`ディレクトリ

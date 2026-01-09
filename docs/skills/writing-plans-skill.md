@@ -1,60 +1,60 @@
 ---
 name: writing-plans
-description: Use when you have a spec or requirements for a multi-step task, before touching code
+description: マルチステップタスクの仕様や要件がある場合、コードに触れる前に使用
 ---
 
-# Writing Plans
+# 計画の作成
 
-## Overview
+## 概要
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+コードベースについてコンテキストがゼロで、センスが疑わしいエンジニアを想定して、包括的な実装計画を書く。各タスクでどのファイルに触れるか、コード、テスト、確認が必要なドキュメント、テスト方法など、知る必要があるすべてを文書化する。計画全体を一口サイズのタスクとして渡す。DRY。YAGNI。TDD。頻繁なコミット。
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+熟練した開発者だが、ツールセットや問題ドメインについてほとんど知らないと仮定。良いテスト設計をあまり知らないと仮定。
 
-**Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+**開始時に宣言:** 「writing-plansスキルを使用して実装計画を作成しています。」
 
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+**コンテキスト:** これは専用のワークツリーで実行すべき（brainstormingスキルで作成）。
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+**計画の保存先:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
 
-## Bite-Sized Task Granularity
+## 一口サイズのタスク粒度
 
-**Each step is one action (2-5 minutes):**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
+**各ステップは1つのアクション（2-5分）:**
+- 「失敗するテストを書く」 - ステップ
+- 「実行して失敗することを確認」 - ステップ
+- 「テストをパスするための最小限のコードを実装」 - ステップ
+- 「テストを実行してパスすることを確認」 - ステップ
+- 「コミット」 - ステップ
 
-## Plan Document Header
+## 計画ドキュメントヘッダー
 
-**Every plan MUST start with this header:**
+**すべての計画はこのヘッダーで始まらなければならない:**
 
 ```markdown
-# [Feature Name] Implementation Plan
+# [機能名] 実装計画
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **Claudeへ:** 必須サブスキル: superpowers:executing-plansを使用してこの計画をタスクごとに実装してください。
 
-**Goal:** [One sentence describing what this builds]
+**目標:** [これが何を構築するかを1文で説明]
 
-**Architecture:** [2-3 sentences about approach]
+**アーキテクチャ:** [アプローチについて2-3文]
 
-**Tech Stack:** [Key technologies/libraries]
+**テックスタック:** [主要な技術/ライブラリ]
 
 ---
 ```
 
-## Task Structure
+## タスク構造
 
 ```markdown
-### Task N: [Component Name]
+### タスク N: [コンポーネント名]
 
-**Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+**ファイル:**
+- 作成: `exact/path/to/file.py`
+- 修正: `exact/path/to/existing.py:123-145`
+- テスト: `tests/exact/path/to/test.py`
 
-**Step 1: Write the failing test**
+**ステップ 1: 失敗するテストを書く**
 
 ```python
 def test_specific_behavior():
@@ -62,24 +62,24 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-**Step 2: Run test to verify it fails**
+**ステップ 2: テストを実行して失敗を確認**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+実行: `pytest tests/path/test.py::test_name -v`
+期待: 「function not defined」でFAIL
 
-**Step 3: Write minimal implementation**
+**ステップ 3: 最小限の実装を書く**
 
 ```python
 def function(input):
     return expected
 ```
 
-**Step 4: Run test to verify it passes**
+**ステップ 4: テストを実行してパスを確認**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
+実行: `pytest tests/path/test.py::test_name -v`
+期待: PASS
 
-**Step 5: Commit**
+**ステップ 5: コミット**
 
 ```bash
 git add tests/path/test.py src/path/file.py
@@ -87,30 +87,30 @@ git commit -m "feat: add specific feature"
 ```
 ```
 
-## Remember
-- Exact file paths always
-- Complete code in plan (not "add validation")
-- Exact commands with expected output
-- Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
+## 覚えておくこと
+- 常に正確なファイルパス
+- 計画に完全なコード（「検証を追加」ではなく）
+- 期待される出力付きの正確なコマンド
+- @構文で関連スキルを参照
+- DRY、YAGNI、TDD、頻繁なコミット
 
-## Execution Handoff
+## 実行ハンドオフ
 
-After saving the plan, offer execution choice:
+計画を保存した後、実行の選択肢を提示:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**「計画が完了し、`docs/plans/<filename>.md`に保存されました。2つの実行オプション:**
 
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+**1. サブエージェント駆動（このセッション）** - タスクごとにフレッシュなサブエージェントをディスパッチ、タスク間でレビュー、高速イテレーション
 
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+**2. 並列セッション（別）** - executing-plansで新しいセッションを開く、チェックポイント付きバッチ実行
 
-**Which approach?"**
+**どのアプローチ？」**
 
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Stay in this session
-- Fresh subagent per task + code review
+**サブエージェント駆動を選択した場合:**
+- **必須サブスキル:** superpowers:subagent-driven-developmentを使用
+- このセッションに留まる
+- タスクごとにフレッシュなサブエージェント + コードレビュー
 
-**If Parallel Session chosen:**
-- Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses superpowers:executing-plans
+**並列セッションを選択した場合:**
+- ワークツリーで新しいセッションを開くようガイド
+- **必須サブスキル:** 新しいセッションでsuperpowers:executing-plansを使用

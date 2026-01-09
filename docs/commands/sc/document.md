@@ -1,88 +1,88 @@
 ---
 name: document
-description: "Generate focused documentation for components, functions, APIs, and features"
+description: "コンポーネント、関数、API、機能向けの集中ドキュメント生成"
 category: utility
 complexity: basic
 mcp-servers: []
 personas: []
 ---
 
-# /sc:document - Focused Documentation Generation
+# /sc:document - 集中ドキュメント生成
 
-## Triggers
-- Documentation requests for specific components, functions, or features
-- API documentation and reference material generation needs
-- Code comment and inline documentation requirements
-- User guide and technical documentation creation requests
+## トリガー
+- 特定のコンポーネント、関数、機能のドキュメントリクエスト
+- APIドキュメントとリファレンス資料生成のニーズ
+- コードコメントとインラインドキュメントの要件
+- ユーザーガイドと技術ドキュメント作成リクエスト
 
-## Usage
+## 使用方法
 ```
-/sc:document [target] [--type inline|external|api|guide] [--style brief|detailed]
+/sc:document [対象] [--type inline|external|api|guide] [--style brief|detailed]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine target component structure, interfaces, and functionality
-2. **Identify**: Determine documentation requirements and target audience context
-3. **Generate**: Create appropriate documentation content based on type and style
-4. **Format**: Apply consistent structure and organizational patterns
-5. **Integrate**: Ensure compatibility with existing project documentation ecosystem
+## 動作フロー
+1. **分析**: 対象コンポーネントの構造、インターフェース、機能の調査
+2. **特定**: ドキュメント要件と対象オーディエンスコンテキストの決定
+3. **生成**: タイプとスタイルに基づく適切なドキュメントコンテンツの作成
+4. **フォーマット**: 一貫した構造と組織パターンの適用
+5. **統合**: 既存プロジェクトドキュメントエコシステムとの互換性確保
 
-Key behaviors:
-- Code structure analysis with API extraction and usage pattern identification
-- Multi-format documentation generation (inline, external, API reference, guides)
-- Consistent formatting and cross-reference integration
-- Language-specific documentation patterns and conventions
+主要な動作:
+- API抽出と使用パターン特定を含むコード構造分析
+- マルチフォーマットドキュメント生成（インライン、外部、APIリファレンス、ガイド）
+- 一貫したフォーマットと相互参照統合
+- 言語固有のドキュメントパターンと規約
 
-## Tool Coordination
-- **Read**: Component analysis and existing documentation review
-- **Grep**: Reference extraction and pattern identification
-- **Write**: Documentation file creation with proper formatting
-- **Glob**: Multi-file documentation projects and organization
+## ツール連携
+- **Read**: コンポーネント分析と既存ドキュメントレビュー
+- **Grep**: リファレンス抽出とパターン特定
+- **Write**: 適切なフォーマットでのドキュメントファイル作成
+- **Glob**: マルチファイルドキュメントプロジェクトと整理
 
-## Key Patterns
-- **Inline Documentation**: Code analysis → JSDoc/docstring generation → inline comments
-- **API Documentation**: Interface extraction → reference material → usage examples
-- **User Guides**: Feature analysis → tutorial content → implementation guidance
-- **External Docs**: Component overview → detailed specifications → integration instructions
+## 主要パターン
+- **インラインドキュメント**: コード分析 → JSDoc/docstring生成 → インラインコメント
+- **APIドキュメント**: インターフェース抽出 → リファレンス資料 → 使用例
+- **ユーザーガイド**: 機能分析 → チュートリアルコンテンツ → 実装ガイダンス
+- **外部ドキュメント**: コンポーネント概要 → 詳細仕様 → 統合手順
 
-## Examples
+## 使用例
 
-### Inline Code Documentation
+### インラインコードドキュメント
 ```
 /sc:document src/auth/login.js --type inline
-# Generates JSDoc comments with parameter and return descriptions
-# Adds comprehensive inline documentation for functions and classes
+# パラメータと戻り値の説明を含むJSDocコメントを生成
+# 関数とクラスの包括的なインラインドキュメントを追加
 ```
 
-### API Reference Generation
+### APIリファレンス生成
 ```
 /sc:document src/api --type api --style detailed
-# Creates comprehensive API documentation with endpoints and schemas
-# Generates usage examples and integration guidelines
+# エンドポイントとスキーマを含む包括的なAPIドキュメントを作成
+# 使用例と統合ガイドラインを生成
 ```
 
-### User Guide Creation
+### ユーザーガイド作成
 ```
 /sc:document payment-module --type guide --style brief
-# Creates user-focused documentation with practical examples
-# Focuses on implementation patterns and common use cases
+# 実践的な例を含むユーザー向けドキュメントを作成
+# 実装パターンと一般的なユースケースに焦点
 ```
 
-### Component Documentation
+### コンポーネントドキュメント
 ```
 /sc:document components/ --type external
-# Generates external documentation files for component library
-# Includes props, usage examples, and integration patterns
+# コンポーネントライブラリの外部ドキュメントファイルを生成
+# props、使用例、統合パターンを含む
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Generate focused documentation for specific components and features
-- Create multiple documentation formats based on target audience needs
-- Integrate with existing documentation ecosystems and maintain consistency
+**対応範囲:**
+- 特定のコンポーネントと機能向けの集中ドキュメント生成
+- 対象オーディエンスのニーズに基づく複数ドキュメントフォーマットの作成
+- 既存ドキュメントエコシステムとの統合と一貫性の維持
 
-**Will Not:**
-- Generate documentation without proper code analysis and context understanding
-- Override existing documentation standards or project-specific conventions
-- Create documentation that exposes sensitive implementation details
+**対応外:**
+- 適切なコード分析とコンテキスト理解なしのドキュメント生成
+- 既存のドキュメント標準やプロジェクト固有の規約の上書き
+- 機密性の高い実装詳細を公開するドキュメントの作成

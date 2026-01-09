@@ -1,93 +1,93 @@
 ---
 name: test
-description: "Execute tests with coverage analysis and automated quality reporting"
+description: "カバレッジ分析と自動品質レポートによるテスト実行"
 category: utility
 complexity: enhanced
 mcp-servers: [playwright]
 personas: [qa-specialist]
 ---
 
-# /sc:test - Testing and Quality Assurance
+# /sc:test - テストと品質保証
 
-## Triggers
-- Test execution requests for unit, integration, or e2e tests
-- Coverage analysis and quality gate validation needs
-- Continuous testing and watch mode scenarios
-- Test failure analysis and debugging requirements
+## トリガー
+- ユニット、インテグレーション、e2eテストの実行リクエスト
+- カバレッジ分析と品質ゲート検証のニーズ
+- 継続的テストとウォッチモードシナリオ
+- テスト失敗の分析とデバッグ要件
 
-## Usage
+## 使用方法
 ```
-/sc:test [target] [--type unit|integration|e2e|all] [--coverage] [--watch] [--fix]
+/sc:test [ターゲット] [--type unit|integration|e2e|all] [--coverage] [--watch] [--fix]
 ```
 
-## Behavioral Flow
-1. **Discover**: Categorize available tests using runner patterns and conventions
-2. **Configure**: Set up appropriate test environment and execution parameters
-3. **Execute**: Run tests with monitoring and real-time progress tracking
-4. **Analyze**: Generate coverage reports and failure diagnostics
-5. **Report**: Provide actionable recommendations and quality metrics
+## 動作フロー
+1. **検出**: ランナーパターンと規約を使用して利用可能なテストを分類
+2. **設定**: 適切なテスト環境と実行パラメータをセットアップ
+3. **実行**: 監視とリアルタイム進捗追跡でテストを実行
+4. **分析**: カバレッジレポートと失敗診断を生成
+5. **レポート**: アクション可能な推奨事項と品質メトリクスを提供
 
-Key behaviors:
-- Auto-detect test framework and configuration
-- Generate comprehensive coverage reports with metrics
-- Activate Playwright MCP for e2e browser testing
-- Provide intelligent test failure analysis
-- Support continuous watch mode for development
+主要な動作:
+- テストフレームワークと設定を自動検出
+- メトリクス付きの包括的なカバレッジレポートを生成
+- e2eブラウザテストでPlaywright MCPを有効化
+- インテリジェントなテスト失敗分析を提供
+- 開発用の継続的ウォッチモードをサポート
 
-## MCP Integration
-- **Playwright MCP**: Auto-activated for `--type e2e` browser testing
-- **QA Specialist Persona**: Activated for test analysis and quality assessment
-- **Enhanced Capabilities**: Cross-browser testing, visual validation, performance metrics
+## MCP統合
+- **Playwright MCP**: `--type e2e`ブラウザテストで自動有効化
+- **QA Specialistペルソナ**: テスト分析と品質評価で有効化
+- **強化機能**: クロスブラウザテスト、ビジュアル検証、パフォーマンスメトリクス
 
-## Tool Coordination
-- **Bash**: Test runner execution and environment management
-- **Glob**: Test discovery and file pattern matching
-- **Grep**: Result parsing and failure analysis
-- **Write**: Coverage reports and test summaries
+## ツール連携
+- **Bash**: テストランナー実行と環境管理
+- **Glob**: テスト検出とファイルパターンマッチング
+- **Grep**: 結果解析と失敗分析
+- **Write**: カバレッジレポートとテストサマリー
 
-## Key Patterns
-- **Test Discovery**: Pattern-based categorization → appropriate runner selection
-- **Coverage Analysis**: Execution metrics → comprehensive coverage reporting
-- **E2E Testing**: Browser automation → cross-platform validation
-- **Watch Mode**: File monitoring → continuous test execution
+## 主要パターン
+- **テスト検出**: パターンベースの分類 → 適切なランナー選択
+- **カバレッジ分析**: 実行メトリクス → 包括的カバレッジレポート
+- **E2Eテスト**: ブラウザ自動化 → クロスプラットフォーム検証
+- **ウォッチモード**: ファイル監視 → 継続的テスト実行
 
-## Examples
+## 使用例
 
-### Basic Test Execution
+### 基本テスト実行
 ```
 /sc:test
-# Discovers and runs all tests with standard configuration
-# Generates pass/fail summary and basic coverage
+# 標準設定ですべてのテストを検出して実行
+# 合格/失敗サマリーと基本カバレッジを生成
 ```
 
-### Targeted Coverage Analysis
+### ターゲットカバレッジ分析
 ```
 /sc:test src/components --type unit --coverage
-# Unit tests for specific directory with detailed coverage metrics
+# 詳細カバレッジメトリクス付きの特定ディレクトリのユニットテスト
 ```
 
-### Browser Testing
+### ブラウザテスト
 ```
 /sc:test --type e2e
-# Activates Playwright MCP for comprehensive browser testing
-# Cross-browser compatibility and visual validation
+# 包括的ブラウザテストでPlaywright MCPを有効化
+# クロスブラウザ互換性とビジュアル検証
 ```
 
-### Development Watch Mode
+### 開発ウォッチモード
 ```
 /sc:test --watch --fix
-# Continuous testing with automatic simple failure fixes
-# Real-time feedback during development
+# 自動的な単純失敗修正付きの継続的テスト
+# 開発中のリアルタイムフィードバック
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Execute existing test suites using project's configured test runner
-- Generate coverage reports and quality metrics
-- Provide intelligent test failure analysis with actionable recommendations
+**対応範囲:**
+- プロジェクトの設定済みテストランナーを使用した既存テストスイートの実行
+- カバレッジレポートと品質メトリクスの生成
+- アクション可能な推奨事項付きのインテリジェントなテスト失敗分析の提供
 
-**Will Not:**
-- Generate test cases or modify test framework configuration
-- Execute tests requiring external services without proper setup
-- Make destructive changes to test files without explicit permission
+**対応外:**
+- テストケースの生成やテストフレームワーク設定の変更
+- 適切なセットアップなしの外部サービスを必要とするテストの実行
+- 明示的な許可なしのテストファイルへの破壊的変更

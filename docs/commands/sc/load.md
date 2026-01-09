@@ -1,93 +1,93 @@
 ---
 name: load
-description: "Session lifecycle management with Serena MCP integration for project context loading"
+description: "プロジェクトコンテキスト読み込みのためのSerena MCP統合によるセッションライフサイクル管理"
 category: session
 complexity: standard
 mcp-servers: [serena]
 personas: []
 ---
 
-# /sc:load - Project Context Loading
+# /sc:load - プロジェクトコンテキスト読み込み
 
-## Triggers
-- Session initialization and project context loading requests
-- Cross-session persistence and memory retrieval needs
-- Project activation and context management requirements
-- Session lifecycle management and checkpoint loading scenarios
+## トリガー
+- セッション初期化とプロジェクトコンテキスト読み込みリクエスト
+- クロスセッション永続化とメモリ取得のニーズ
+- プロジェクト有効化とコンテキスト管理の要件
+- セッションライフサイクル管理とチェックポイント読み込みシナリオ
 
-## Usage
+## 使用方法
 ```
-/sc:load [target] [--type project|config|deps|checkpoint] [--refresh] [--analyze]
+/sc:load [対象] [--type project|config|deps|checkpoint] [--refresh] [--analyze]
 ```
 
-## Behavioral Flow
-1. **Initialize**: Establish Serena MCP connection and session context management
-2. **Discover**: Analyze project structure and identify context loading requirements
-3. **Load**: Retrieve project memories, checkpoints, and cross-session persistence data
-4. **Activate**: Establish project context and prepare for development workflow
-5. **Validate**: Ensure loaded context integrity and session readiness
+## 動作フロー
+1. **初期化**: Serena MCP接続とセッションコンテキスト管理の確立
+2. **発見**: プロジェクト構造の分析とコンテキスト読み込み要件の特定
+3. **読み込み**: プロジェクトメモリ、チェックポイント、クロスセッション永続化データの取得
+4. **有効化**: プロジェクトコンテキストの確立と開発ワークフローの準備
+5. **検証**: 読み込まれたコンテキストの整合性とセッション準備状態の確認
 
-Key behaviors:
-- Serena MCP integration for memory management and cross-session persistence
-- Project activation with comprehensive context loading and validation
-- Performance-critical operation with <500ms initialization target
-- Session lifecycle management with checkpoint and memory coordination
+主要な動作:
+- メモリ管理とクロスセッション永続化のためのSerena MCP統合
+- 包括的なコンテキスト読み込みと検証によるプロジェクト有効化
+- 500ms未満の初期化目標を持つパフォーマンスクリティカルな操作
+- チェックポイントとメモリ連携によるセッションライフサイクル管理
 
-## MCP Integration
-- **Serena MCP**: Mandatory integration for project activation, memory retrieval, and session management
-- **Memory Operations**: Cross-session persistence, checkpoint loading, and context restoration
-- **Performance Critical**: <200ms for core operations, <1s for checkpoint creation
+## MCP統合
+- **Serena MCP**: プロジェクト有効化、メモリ取得、セッション管理のための必須統合
+- **メモリ操作**: クロスセッション永続化、チェックポイント読み込み、コンテキスト復元
+- **パフォーマンスクリティカル**: コア操作で200ms未満、チェックポイント作成で1秒未満
 
-## Tool Coordination
-- **activate_project**: Core project activation and context establishment
-- **list_memories/read_memory**: Memory retrieval and session context loading
-- **Read/Grep/Glob**: Project structure analysis and configuration discovery
-- **Write**: Session context documentation and checkpoint creation
+## ツール連携
+- **activate_project**: コアプロジェクト有効化とコンテキスト確立
+- **list_memories/read_memory**: メモリ取得とセッションコンテキスト読み込み
+- **Read/Grep/Glob**: プロジェクト構造分析と設定発見
+- **Write**: セッションコンテキストドキュメントとチェックポイント作成
 
-## Key Patterns
-- **Project Activation**: Directory analysis → memory retrieval → context establishment
-- **Session Restoration**: Checkpoint loading → context validation → workflow preparation
-- **Memory Management**: Cross-session persistence → context continuity → development efficiency
-- **Performance Critical**: Fast initialization → immediate productivity → session readiness
+## 主要パターン
+- **プロジェクト有効化**: ディレクトリ分析 → メモリ取得 → コンテキスト確立
+- **セッション復元**: チェックポイント読み込み → コンテキスト検証 → ワークフロー準備
+- **メモリ管理**: クロスセッション永続化 → コンテキスト継続性 → 開発効率
+- **パフォーマンスクリティカル**: 高速初期化 → 即時生産性 → セッション準備
 
-## Examples
+## 使用例
 
-### Basic Project Loading
+### 基本プロジェクト読み込み
 ```
 /sc:load
-# Loads current directory project context with Serena memory integration
-# Establishes session context and prepares for development workflow
+# Serenaメモリ統合で現在のディレクトリプロジェクトコンテキストを読み込み
+# セッションコンテキストを確立し開発ワークフローを準備
 ```
 
-### Specific Project Loading
+### 特定プロジェクト読み込み
 ```
 /sc:load /path/to/project --type project --analyze
-# Loads specific project with comprehensive analysis
-# Activates project context and retrieves cross-session memories
+# 包括的分析で特定プロジェクトを読み込み
+# プロジェクトコンテキストを有効化しクロスセッションメモリを取得
 ```
 
-### Checkpoint Restoration
+### チェックポイント復元
 ```
 /sc:load --type checkpoint --checkpoint session_123
-# Restores specific checkpoint with session context
-# Continues previous work session with full context preservation
+# セッションコンテキストで特定チェックポイントを復元
+# 完全なコンテキスト保持で以前の作業セッションを継続
 ```
 
-### Dependency Context Loading
+### 依存関係コンテキスト読み込み
 ```
 /sc:load --type deps --refresh
-# Loads dependency context with fresh analysis
-# Updates project understanding and dependency mapping
+# 新鮮な分析で依存関係コンテキストを読み込み
+# プロジェクト理解と依存関係マッピングを更新
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Load project context using Serena MCP integration for memory management
-- Provide session lifecycle management with cross-session persistence
-- Establish project activation with comprehensive context loading
+**対応範囲:**
+- メモリ管理のためのSerena MCP統合によるプロジェクトコンテキストの読み込み
+- クロスセッション永続化によるセッションライフサイクル管理の提供
+- 包括的なコンテキスト読み込みによるプロジェクト有効化の確立
 
-**Will Not:**
-- Modify project structure or configuration without explicit permission
-- Load context without proper Serena MCP integration and validation
-- Override existing session context without checkpoint preservation
+**対応外:**
+- 明示的な許可なしのプロジェクト構造や設定の変更
+- 適切なSerena MCP統合と検証なしのコンテキスト読み込み
+- チェックポイント保持なしの既存セッションコンテキストの上書き

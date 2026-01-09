@@ -2,10 +2,13 @@
 このプロジェクトはClaude CodeのCustom Slash Commands および Subagentsを管理するためのプロジェクトです
 
 ## Custom Slash Command
-[COMMANDS.md](COMMANDS.md)では各コマンドの概要および使用方法を記載しています
+[コマンド一覧](docs/commands/README.md)では各コマンドの概要および使用方法を記載しています
+
+## Skills
+[スキル一覧](docs/skills/README.md)では各スキルの概要および使用方法を記載しています
 
 ## Subagents
-[SUB-AGENTS.md](SUB-AGENTS.md)では各エージェントの概要及び使用方法・ユースケースを記載しています
+[専門家一覧](docs/sub-agents/README.md)では各エージェントの概要及び使用方法・ユースケースを記載しています
 
 ## 備考
 ※ Claude CodeにPlugin機能が実装されたら、導入自体が不要になる可能性あり

@@ -1,92 +1,92 @@
 ---
 name: explain
-description: "Provide clear explanations of code, concepts, and system behavior with educational clarity"
+description: "教育的明確さを備えたコード、コンセプト、システム動作の明確な説明提供"
 category: workflow
 complexity: standard
 mcp-servers: [sequential, context7]
 personas: [educator, architect, security]
 ---
 
-# /sc:explain - Code and Concept Explanation
+# /sc:explain - コードとコンセプトの説明
 
-## Triggers
-- Code understanding and documentation requests for complex functionality
-- System behavior explanation needs for architectural components
-- Educational content generation for knowledge transfer
-- Framework-specific concept clarification requirements
+## トリガー
+- 複雑な機能のコード理解とドキュメントリクエスト
+- アーキテクチャコンポーネントのシステム動作説明ニーズ
+- 知識移転のための教育コンテンツ生成
+- フレームワーク固有のコンセプト明確化要件
 
-## Usage
+## 使用方法
 ```
-/sc:explain [target] [--level basic|intermediate|advanced] [--format text|examples|interactive] [--context domain]
+/sc:explain [対象] [--level basic|intermediate|advanced] [--format text|examples|interactive] [--context domain]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine target code, concept, or system for comprehensive understanding
-2. **Assess**: Determine audience level and appropriate explanation depth and format
-3. **Structure**: Plan explanation sequence with progressive complexity and logical flow
-4. **Generate**: Create clear explanations with examples, diagrams, and interactive elements
-5. **Validate**: Verify explanation accuracy and educational effectiveness
+## 動作フロー
+1. **分析**: 包括的な理解のために対象コード、コンセプト、システムを調査
+2. **評価**: オーディエンスレベルと適切な説明の深さとフォーマットの決定
+3. **構造化**: プログレッシブな複雑さと論理的フローで説明シーケンスを計画
+4. **生成**: 例、図、インタラクティブ要素を含む明確な説明の作成
+5. **検証**: 説明の正確性と教育効果の確認
 
-Key behaviors:
-- Multi-persona coordination for domain expertise (educator, architect, security)
-- Framework-specific explanations via Context7 integration
-- Systematic analysis via Sequential MCP for complex concept breakdown
-- Adaptive explanation depth based on audience and complexity
+主要な動作:
+- ドメイン専門知識のためのマルチペルソナ連携（educator、architect、security）
+- Context7統合によるフレームワーク固有の説明
+- 複雑なコンセプト分解のためのSequential MCPによる体系的分析
+- オーディエンスと複雑さに基づく適応的な説明深度
 
-## MCP Integration
-- **Sequential MCP**: Auto-activated for complex multi-component analysis and structured reasoning
-- **Context7 MCP**: Framework documentation and official pattern explanations
-- **Persona Coordination**: Educator (learning), Architect (systems), Security (practices)
+## MCP統合
+- **Sequential MCP**: 複雑なマルチコンポーネント分析と構造化推論の自動有効化
+- **Context7 MCP**: フレームワークドキュメントと公式パターン説明
+- **ペルソナ連携**: Educator（学習）、Architect（システム）、Security（プラクティス）
 
-## Tool Coordination
-- **Read/Grep/Glob**: Code analysis and pattern identification for explanation content
-- **TodoWrite**: Progress tracking for complex multi-part explanations
-- **Task**: Delegation for comprehensive explanation workflows requiring systematic breakdown
+## ツール連携
+- **Read/Grep/Glob**: 説明コンテンツのためのコード分析とパターン特定
+- **TodoWrite**: 複雑なマルチパート説明の進捗追跡
+- **Task**: 体系的な分解を必要とする包括的な説明ワークフローの委任
 
-## Key Patterns
-- **Progressive Learning**: Basic concepts → intermediate details → advanced implementation
-- **Framework Integration**: Context7 documentation → accurate official patterns and practices
-- **Multi-Domain Analysis**: Technical accuracy + educational clarity + security awareness
-- **Interactive Explanation**: Static content → examples → interactive exploration
+## 主要パターン
+- **プログレッシブ学習**: 基本コンセプト → 中級詳細 → 高度な実装
+- **フレームワーク統合**: Context7ドキュメント → 正確な公式パターンとプラクティス
+- **マルチドメイン分析**: 技術的正確性 + 教育的明確さ + セキュリティ認識
+- **インタラクティブ説明**: 静的コンテンツ → 例 → インタラクティブ探索
 
-## Examples
+## 使用例
 
-### Basic Code Explanation
+### 基本コード説明
 ```
 /sc:explain authentication.js --level basic
-# Clear explanation with practical examples for beginners
-# Educator persona provides learning-optimized structure
+# 初心者向けの実践的な例を含む明確な説明
+# Educatorペルソナが学習最適化された構造を提供
 ```
 
-### Framework Concept Explanation
+### フレームワークコンセプト説明
 ```
 /sc:explain react-hooks --level intermediate --context react
-# Context7 integration for official React documentation patterns
-# Structured explanation with progressive complexity
+# 公式Reactドキュメントパターンのためのcontext7統合
+# プログレッシブな複雑さを持つ構造化された説明
 ```
 
-### System Architecture Explanation
+### システムアーキテクチャ説明
 ```
 /sc:explain microservices-system --level advanced --format interactive
-# Architect persona explains system design and patterns
-# Interactive exploration with Sequential analysis breakdown
+# Architectペルソナがシステム設計とパターンを説明
+# Sequential分析分解によるインタラクティブ探索
 ```
 
-### Security Concept Explanation
+### セキュリティコンセプト説明
 ```
 /sc:explain jwt-authentication --context security --level basic
-# Security persona explains authentication concepts and best practices
-# Framework-agnostic security principles with practical examples
+# Securityペルソナが認証コンセプトとベストプラクティスを説明
+# 実践的な例を含むフレームワーク非依存のセキュリティ原則
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Provide clear, comprehensive explanations with educational clarity
-- Auto-activate relevant personas for domain expertise and accurate analysis
-- Generate framework-specific explanations with official documentation integration
+**対応範囲:**
+- 教育的明確さを備えた明確で包括的な説明の提供
+- ドメイン専門知識と正確な分析のための関連ペルソナの自動有効化
+- 公式ドキュメント統合によるフレームワーク固有の説明の生成
 
-**Will Not:**
-- Generate explanations without thorough analysis and accuracy verification
-- Override project-specific documentation standards or reveal sensitive details
-- Bypass established explanation validation or educational quality requirements
+**対応外:**
+- 徹底的な分析と正確性検証なしの説明生成
+- プロジェクト固有のドキュメント標準の上書きや機密詳細の公開
+- 確立された説明検証や教育品質要件のバイパス

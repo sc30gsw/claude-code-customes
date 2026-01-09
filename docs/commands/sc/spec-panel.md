@@ -1,428 +1,167 @@
 ---
 name: spec-panel
-description: "Multi-expert specification review and improvement using renowned specification and software engineering experts"
+description: "著名な仕様・ソフトウェアエンジニアリング専門家によるマルチエキスパート仕様レビューと改善"
 category: analysis
 complexity: enhanced
 mcp-servers: [sequential, context7]
 personas: [technical-writer, system-architect, quality-engineer]
 ---
 
-# /sc:spec-panel - Expert Specification Review Panel
+# /sc:spec-panel - エキスパート仕様レビューパネル
 
-## Triggers
-- Specification quality review and improvement requests
-- Technical documentation validation and enhancement needs
-- Requirements analysis and completeness verification
-- Professional specification writing guidance and mentoring
+## トリガー
+- 仕様品質レビューと改善リクエスト
+- 技術ドキュメント検証と強化のニーズ
+- 要件分析と完全性検証
+- プロフェッショナル仕様ライティングガイダンスとメンタリング
 
-## Usage
+## 使用方法
 ```
-/sc:spec-panel [specification_content|@file] [--mode discussion|critique|socratic] [--experts "name1,name2"] [--focus requirements|architecture|testing|compliance] [--iterations N] [--format standard|structured|detailed]
-```
-
-## Behavioral Flow
-1. **Analyze**: Parse specification content and identify key components, gaps, and quality issues
-2. **Assemble**: Select appropriate expert panel based on specification type and focus area
-3. **Review**: Multi-expert analysis using distinct methodologies and quality frameworks
-4. **Collaborate**: Expert interaction through discussion, critique, or socratic questioning
-5. **Synthesize**: Generate consolidated findings with prioritized recommendations
-6. **Improve**: Create enhanced specification incorporating expert feedback and best practices
-
-Key behaviors:
-- Multi-expert perspective analysis with distinct methodologies and quality frameworks
-- Intelligent expert selection based on specification domain and focus requirements
-- Structured review process with evidence-based recommendations and improvement guidance
-- Iterative improvement cycles with quality validation and progress tracking
-
-## Expert Panel System
-
-### Core Specification Experts
-
-**Karl Wiegers** - Requirements Engineering Pioneer
-- **Domain**: Functional/non-functional requirements, requirement quality frameworks
-- **Methodology**: SMART criteria, testability analysis, stakeholder validation
-- **Critique Focus**: "This requirement lacks measurable acceptance criteria. How would you validate compliance in production?"
-
-**Gojko Adzic** - Specification by Example Creator
-- **Domain**: Behavior-driven specifications, living documentation, executable requirements
-- **Methodology**: Given/When/Then scenarios, example-driven requirements, collaborative specification
-- **Critique Focus**: "Can you provide concrete examples demonstrating this requirement in real-world scenarios?"
-
-**Alistair Cockburn** - Use Case Expert
-- **Domain**: Use case methodology, agile requirements, human-computer interaction
-- **Methodology**: Goal-oriented analysis, primary actor identification, scenario modeling
-- **Critique Focus**: "Who is the primary stakeholder here, and what business goal are they trying to achieve?"
-
-**Martin Fowler** - Software Architecture & Design
-- **Domain**: API design, system architecture, design patterns, evolutionary design
-- **Methodology**: Interface segregation, bounded contexts, refactoring patterns
-- **Critique Focus**: "This interface violates the single responsibility principle. Consider separating concerns."
-
-### Technical Architecture Experts
-
-**Michael Nygard** - Release It! Author
-- **Domain**: Production systems, reliability patterns, operational requirements, failure modes
-- **Methodology**: Failure mode analysis, circuit breaker patterns, operational excellence
-- **Critique Focus**: "What happens when this component fails? Where are the monitoring and recovery mechanisms?"
-
-**Sam Newman** - Microservices Expert
-- **Domain**: Distributed systems, service boundaries, API evolution, system integration
-- **Methodology**: Service decomposition, API versioning, distributed system patterns
-- **Critique Focus**: "How does this specification handle service evolution and backward compatibility?"
-
-**Gregor Hohpe** - Enterprise Integration Patterns
-- **Domain**: Messaging patterns, system integration, enterprise architecture, data flow
-- **Methodology**: Message-driven architecture, integration patterns, event-driven design
-- **Critique Focus**: "What's the message exchange pattern here? How do you handle ordering and delivery guarantees?"
-
-### Quality & Testing Experts
-
-**Lisa Crispin** - Agile Testing Expert
-- **Domain**: Testing strategies, quality requirements, acceptance criteria, test automation
-- **Methodology**: Whole-team testing, risk-based testing, quality attribute specification
-- **Critique Focus**: "How would the testing team validate this requirement? What are the edge cases and failure scenarios?"
-
-**Janet Gregory** - Testing Advocate
-- **Domain**: Collaborative testing, specification workshops, quality practices, team dynamics
-- **Methodology**: Specification workshops, three amigos, quality conversation facilitation
-- **Critique Focus**: "Did the whole team participate in creating this specification? Are quality expectations clearly defined?"
-
-### Modern Software Experts
-
-**Kelsey Hightower** - Cloud Native Expert
-- **Domain**: Kubernetes, cloud architecture, operational excellence, infrastructure as code
-- **Methodology**: Cloud-native patterns, infrastructure automation, operational observability
-- **Critique Focus**: "How does this specification handle cloud-native deployment and operational concerns?"
-
-## MCP Integration
-- **Sequential MCP**: Primary engine for expert panel coordination, structured analysis, and iterative improvement
-- **Context7 MCP**: Auto-activated for specification patterns, documentation standards, and industry best practices
-- **Technical Writer Persona**: Activated for professional specification writing and documentation quality
-- **System Architect Persona**: Activated for architectural analysis and system design validation
-- **Quality Engineer Persona**: Activated for quality assessment and testing strategy validation
-
-## Analysis Modes
-
-### Discussion Mode (`--mode discussion`)
-**Purpose**: Collaborative improvement through expert dialogue and knowledge sharing
-
-**Expert Interaction Pattern**:
-- Sequential expert commentary building upon previous insights
-- Cross-expert validation and refinement of recommendations
-- Consensus building around critical improvements
-- Collaborative solution development
-
-**Example Output**:
-```
-KARL WIEGERS: "The requirement 'SHALL handle failures gracefully' lacks specificity.
-What constitutes graceful handling? What types of failures are we addressing?"
-
-MICHAEL NYGARD: "Building on Karl's point, we need specific failure modes: network
-timeouts, service unavailable, rate limiting. Each requires different handling strategies."
-
-GOJKO ADZIC: "Let's make this concrete with examples:
-  Given: Service timeout after 30 seconds
-  When: Circuit breaker activates
-  Then: Return cached response within 100ms"
-
-MARTIN FOWLER: "The specification should also define the failure notification interface.
-How do upstream services know what type of failure occurred?"
+/sc:spec-panel [仕様内容|@ファイル] [--mode discussion|critique|socratic] [--experts "名前1,名前2"] [--focus requirements|architecture|testing|compliance] [--iterations N] [--format standard|structured|detailed]
 ```
 
-### Critique Mode (`--mode critique`)
-**Purpose**: Systematic review with specific improvement suggestions and priority rankings
+## 動作フロー
+1. **分析**: 仕様内容を解析し主要コンポーネント、ギャップ、品質問題を特定
+2. **編成**: 仕様タイプとフォーカスエリアに基づいて適切なエキスパートパネルを選択
+3. **レビュー**: 異なる方法論と品質フレームワークを使用したマルチエキスパート分析
+4. **協働**: 議論、批評、ソクラテス式質問によるエキスパートインタラクション
+5. **統合**: 優先順位付けされた推奨事項を含む統合された発見の生成
+6. **改善**: エキスパートフィードバックとベストプラクティスを組み込んだ強化仕様の作成
 
-**Analysis Structure**:
-- Issue identification with severity classification
-- Specific improvement recommendations with rationale
-- Priority ranking based on impact and effort
-- Quality metrics and validation criteria
+主要な動作:
+- 異なる方法論と品質フレームワークを持つマルチエキスパート視点分析
+- 仕様ドメインとフォーカス要件に基づくインテリジェントなエキスパート選択
+- エビデンスベースの推奨事項と改善ガイダンスを含む構造化されたレビュープロセス
+- 品質検証と進捗追跡を含む反復改善サイクル
 
-**Example Output**:
-```
-=== REQUIREMENTS ANALYSIS ===
+## エキスパートパネルシステム
 
-KARL WIEGERS - Requirements Quality Assessment:
-CRITICAL: Requirement R-001 lacks measurable acceptance criteria
-RECOMMENDATION: Replace "handle failures gracefully" with "open circuit breaker after 5 consecutive failures within 30 seconds"
-PRIORITY: High - Affects testability and validation
-QUALITY IMPACT: +40% testability, +60% clarity
+### コア仕様エキスパート
 
-GOJKO ADZIC - Specification Testability:
-MAJOR: No executable examples provided for complex behaviors
-RECOMMENDATION: Add Given/When/Then scenarios for each requirement
-PRIORITY: Medium - Improves understanding and validation
-QUALITY IMPACT: +50% comprehensibility, +35% validation coverage
+**Karl Wiegers** - 要件エンジニアリングのパイオニア
+- **ドメイン**: 機能/非機能要件、要件品質フレームワーク
+- **方法論**: SMART基準、テスト可能性分析、ステークホルダー検証
+- **批評フォーカス**: 「この要件には測定可能な受入基準がありません。本番環境でコンプライアンスをどのように検証しますか？」
 
-=== ARCHITECTURE ANALYSIS ===
+**Gojko Adzic** - Specification by Example創設者
+- **ドメイン**: 行動駆動仕様、生きたドキュメント、実行可能な要件
+- **方法論**: Given/When/Thenシナリオ、例駆動要件、協調的仕様
+- **批評フォーカス**: 「実世界シナリオでこの要件を示す具体例を提供できますか？」
 
-MARTIN FOWLER - Interface Design:
-MINOR: CircuitBreaker interface couples state management with execution logic
-RECOMMENDATION: Separate CircuitBreakerState from CircuitBreakerExecutor
-PRIORITY: Low - Design improvement, not functional issue
-QUALITY IMPACT: +20% maintainability, +15% testability
-```
+**Alistair Cockburn** - ユースケースエキスパート
+- **ドメイン**: ユースケース方法論、アジャイル要件、人間-コンピュータインタラクション
+- **方法論**: 目標指向分析、プライマリアクター特定、シナリオモデリング
+- **批評フォーカス**: 「ここでのプライマリステークホルダーは誰で、どのビジネス目標を達成しようとしていますか？」
 
-### Socratic Mode (`--mode socratic`)
-**Purpose**: Learning-focused questioning to deepen understanding and improve thinking
+**Martin Fowler** - ソフトウェアアーキテクチャ&設計
+- **ドメイン**: API設計、システムアーキテクチャ、設計パターン、進化的設計
+- **方法論**: インターフェース分離、境界コンテキスト、リファクタリングパターン
+- **批評フォーカス**: 「このインターフェースは単一責任原則に違反しています。関心の分離を検討してください。」
 
-**Question Categories**:
-- Foundational understanding questions
-- Stakeholder and purpose clarification
-- Assumption identification and validation
-- Alternative approach exploration
+### 技術アーキテクチャエキスパート
 
-**Example Output**:
-```
-ALISTAIR COCKBURN: "What is the fundamental problem this specification is trying to solve?"
+**Michael Nygard** - Release It!著者
+- **ドメイン**: 本番システム、信頼性パターン、運用要件、障害モード
+- **方法論**: 障害モード分析、サーキットブレーカーパターン、運用エクセレンス
+- **批評フォーカス**: 「このコンポーネントが失敗した場合何が起こりますか？監視と回復メカニズムはどこにありますか？」
 
-KARL WIEGERS: "Who are the primary stakeholders affected by these requirements?"
+**Sam Newman** - マイクロサービスエキスパート
+- **ドメイン**: 分散システム、サービス境界、API進化、システム統合
+- **方法論**: サービス分解、APIバージョニング、分散システムパターン
+- **批評フォーカス**: 「この仕様はサービス進化と後方互換性をどのように処理しますか？」
 
-MICHAEL NYGARD: "What assumptions are you making about the deployment environment and operational context?"
+**Gregor Hohpe** - エンタープライズ統合パターン
+- **ドメイン**: メッセージングパターン、システム統合、エンタープライズアーキテクチャ、データフロー
+- **方法論**: メッセージ駆動アーキテクチャ、統合パターン、イベント駆動設計
+- **批評フォーカス**: 「ここでのメッセージ交換パターンは何ですか？順序と配信保証をどのように処理しますか？」
 
-GOJKO ADZIC: "How would you explain these requirements to a non-technical business stakeholder?"
+### 品質&テストエキスパート
 
-MARTIN FOWLER: "What would happen if we removed this requirement entirely? What breaks?"
+**Lisa Crispin** - アジャイルテストエキスパート
+- **ドメイン**: テスト戦略、品質要件、受入基準、テスト自動化
+- **方法論**: チーム全体テスト、リスクベーステスト、品質属性仕様
+- **批評フォーカス**: 「テストチームはこの要件をどのように検証しますか？エッジケースと障害シナリオは何ですか？」
 
-LISA CRISPIN: "How would you validate that this specification is working correctly in production?"
+**Janet Gregory** - テストアドボケート
+- **ドメイン**: 協調的テスト、仕様ワークショップ、品質プラクティス、チームダイナミクス
+- **方法論**: 仕様ワークショップ、スリーアミーゴス、品質会話ファシリテーション
+- **批評フォーカス**: 「この仕様作成にチーム全体が参加しましたか？品質期待は明確に定義されていますか？」
 
-KELSEY HIGHTOWER: "What operational and monitoring capabilities does this specification require?"
-```
+### モダンソフトウェアエキスパート
 
-## Focus Areas
+**Kelsey Hightower** - クラウドネイティブエキスパート
+- **ドメイン**: Kubernetes、クラウドアーキテクチャ、運用エクセレンス、Infrastructure as Code
+- **方法論**: クラウドネイティブパターン、インフラ自動化、運用オブザーバビリティ
+- **批評フォーカス**: 「この仕様はクラウドネイティブデプロイと運用上の懸念をどのように処理しますか？」
 
-### Requirements Focus (`--focus requirements`)
-**Expert Panel**: Wiegers (lead), Adzic, Cockburn
-**Analysis Areas**:
-- Requirement clarity, completeness, and consistency
-- Testability and measurability assessment
-- Stakeholder needs alignment and validation
-- Acceptance criteria quality and coverage
-- Requirements traceability and verification
+## MCP統合
+- **Sequential MCP**: エキスパートパネル連携、構造化分析、反復改善のための主要エンジン
+- **Context7 MCP**: 仕様パターン、ドキュメント標準、業界ベストプラクティスの自動有効化
+- **Technical Writerペルソナ**: プロフェッショナル仕様ライティングとドキュメント品質のために有効化
+- **System Architectペルソナ**: アーキテクチャ分析とシステム設計検証のために有効化
+- **Quality Engineerペルソナ**: 品質評価とテスト戦略検証のために有効化
 
-### Architecture Focus (`--focus architecture`)
-**Expert Panel**: Fowler (lead), Newman, Hohpe, Nygard
-**Analysis Areas**:
-- Interface design quality and consistency
-- System boundary definitions and service decomposition
-- Scalability and maintainability characteristics
-- Design pattern appropriateness and implementation
-- Integration and communication specifications
+## 分析モード
 
-### Testing Focus (`--focus testing`)
-**Expert Panel**: Crispin (lead), Gregory, Adzic
-**Analysis Areas**:
-- Test strategy and coverage requirements
-- Quality attribute specifications and validation
-- Edge case identification and handling
-- Acceptance criteria and definition of done
-- Test automation and continuous validation
+### 議論モード (`--mode discussion`)
+**目的**: エキスパート対話と知識共有による協調的改善
 
-### Compliance Focus (`--focus compliance`)
-**Expert Panel**: Wiegers (lead), Nygard, Hightower
-**Analysis Areas**:
-- Regulatory requirement coverage and validation
-- Security specifications and threat modeling
-- Operational requirements and observability
-- Audit trail and compliance verification
-- Risk assessment and mitigation strategies
+### 批評モード (`--mode critique`)
+**目的**: 具体的な改善提案と優先順位付けを含む体系的レビュー
 
-## Tool Coordination
-- **Read**: Specification content analysis and parsing
-- **Sequential**: Expert panel coordination and iterative analysis
-- **Context7**: Specification patterns and industry best practices
-- **Grep**: Cross-reference validation and consistency checking
-- **Write**: Improved specification generation and report creation
-- **MultiEdit**: Collaborative specification enhancement and refinement
+### ソクラテスモード (`--mode socratic`)
+**目的**: 理解を深め思考を改善するための学習重視の質問
 
-## Iterative Improvement Process
+## フォーカスエリア
 
-### Single Iteration (Default)
-1. **Initial Analysis**: Expert panel reviews specification
-2. **Issue Identification**: Systematic problem and gap identification
-3. **Improvement Recommendations**: Specific, actionable enhancement suggestions
-4. **Priority Ranking**: Critical path and impact-based prioritization
+### 要件フォーカス (`--focus requirements`)
+**エキスパートパネル**: Wiegers（リード）、Adzic、Cockburn
 
-### Multi-Iteration (`--iterations N`)
-**Iteration 1**: Structural and fundamental issues
-- Requirements clarity and completeness
-- Architecture consistency and boundaries
-- Major gaps and critical problems
+### アーキテクチャフォーカス (`--focus architecture`)
+**エキスパートパネル**: Fowler（リード）、Newman、Hohpe、Nygard
 
-**Iteration 2**: Detail refinement and enhancement
-- Specific improvement implementation
-- Edge case handling and error scenarios
-- Quality attribute specifications
+### テストフォーカス (`--focus testing`)
+**エキスパートパネル**: Crispin（リード）、Gregory、Adzic
 
-**Iteration 3**: Polish and optimization
-- Documentation quality and clarity
-- Example and scenario enhancement
-- Final validation and consistency checks
+### コンプライアンスフォーカス (`--focus compliance`)
+**エキスパートパネル**: Wiegers（リード）、Nygard、Hightower
 
-## Output Formats
+## 使用例
 
-### Standard Format (`--format standard`)
-```yaml
-specification_review:
-  original_spec: "authentication_service.spec.yml"
-  review_date: "2025-01-15"
-  expert_panel: ["wiegers", "adzic", "nygard", "fowler"]
-  focus_areas: ["requirements", "architecture", "testing"]
-
-quality_assessment:
-  overall_score: 7.2/10
-  requirements_quality: 8.1/10
-  architecture_clarity: 6.8/10
-  testability_score: 7.5/10
-
-critical_issues:
-  - category: "requirements"
-    severity: "high"
-    expert: "wiegers"
-    issue: "Authentication timeout not specified"
-    recommendation: "Define session timeout with configurable values"
-
-  - category: "architecture"
-    severity: "medium"
-    expert: "fowler"
-    issue: "Token refresh mechanism unclear"
-    recommendation: "Specify refresh token lifecycle and rotation policy"
-
-expert_consensus:
-  - "Specification needs concrete failure handling definitions"
-  - "Missing operational monitoring and alerting requirements"
-  - "Authentication flow is well-defined but lacks error scenarios"
-
-improvement_roadmap:
-  immediate: ["Define timeout specifications", "Add error handling scenarios"]
-  short_term: ["Specify monitoring requirements", "Add performance criteria"]
-  long_term: ["Comprehensive security review", "Integration testing strategy"]
-```
-
-### Structured Format (`--format structured`)
-Token-efficient format using SuperClaude symbol system for concise communication.
-
-### Detailed Format (`--format detailed`)
-Comprehensive analysis with full expert commentary, examples, and implementation guidance.
-
-## Examples
-
-### API Specification Review
+### API仕様レビュー
 ```
 /sc:spec-panel @auth_api.spec.yml --mode critique --focus requirements,architecture
-# Comprehensive API specification review
-# Focus on requirements quality and architectural consistency
-# Generate detailed improvement recommendations
+# 包括的なAPI仕様レビュー
+# 要件品質とアーキテクチャ一貫性にフォーカス
+# 詳細な改善推奨事項を生成
 ```
 
-### Requirements Workshop
+### 要件ワークショップ
 ```
-/sc:spec-panel "user story content" --mode discussion --experts "wiegers,adzic,cockburn"
-# Collaborative requirements analysis and improvement
-# Expert dialogue for requirement refinement
-# Consensus building around acceptance criteria
+/sc:spec-panel "ユーザーストーリー内容" --mode discussion --experts "wiegers,adzic,cockburn"
+# 協調的な要件分析と改善
+# 要件改良のためのエキスパート対話
+# 受入基準に関するコンセンサス構築
 ```
 
-### Architecture Validation
+### アーキテクチャ検証
 ```
 /sc:spec-panel @microservice.spec.yml --mode socratic --focus architecture
-# Learning-focused architectural review
-# Deep questioning about design decisions
-# Alternative approach exploration
+# 学習重視のアーキテクチャレビュー
+# 設計決定についての深い質問
+# 代替アプローチの探索
 ```
 
-### Iterative Improvement
-```
-/sc:spec-panel @complex_system.spec.yml --iterations 3 --format detailed
-# Multi-iteration improvement process
-# Progressive refinement with expert guidance
-# Comprehensive quality enhancement
-```
+## 境界
 
-### Compliance Review
-```
-/sc:spec-panel @security_requirements.yml --focus compliance --experts "wiegers,nygard"
-# Compliance and security specification review
-# Regulatory requirement validation
-# Risk assessment and mitigation planning
-```
+**対応範囲:**
+- エキスパートレベルの仕様レビューと改善ガイダンスの提供
+- 優先順位付けを含む具体的でアクション可能な推奨事項の生成
+- 異なるユースケースと学習目標のための複数分析モードのサポート
+- 包括的なワークフローサポートのための仕様生成ツールとの統合
 
-## Integration Patterns
-
-### Workflow Integration with /sc:code-to-spec
-```bash
-# Generate initial specification from code
-/sc:code-to-spec ./authentication_service --type api --format yaml
-
-# Review and improve with expert panel
-/sc:spec-panel @generated_auth_spec.yml --mode critique --focus requirements,testing
-
-# Iterative refinement based on feedback
-/sc:spec-panel @improved_auth_spec.yml --mode discussion --iterations 2
-```
-
-### Learning and Development Workflow
-```bash
-# Start with socratic mode for learning
-/sc:spec-panel @my_first_spec.yml --mode socratic --iterations 2
-
-# Apply learnings with discussion mode
-/sc:spec-panel @revised_spec.yml --mode discussion --focus requirements
-
-# Final quality validation with critique mode
-/sc:spec-panel @final_spec.yml --mode critique --format detailed
-```
-
-## Quality Assurance Features
-
-### Expert Validation
-- Cross-expert consistency checking and validation
-- Methodology alignment and best practice verification
-- Quality metric calculation and progress tracking
-- Recommendation prioritization and impact assessment
-
-### Specification Quality Metrics
-- **Clarity Score**: Language precision and understandability (0-10)
-- **Completeness Score**: Coverage of essential specification elements (0-10)
-- **Testability Score**: Measurability and validation capability (0-10)
-- **Consistency Score**: Internal coherence and contradiction detection (0-10)
-
-### Continuous Improvement
-- Pattern recognition from successful improvements
-- Expert recommendation effectiveness tracking
-- Specification quality trend analysis
-- Best practice pattern library development
-
-## Advanced Features
-
-### Custom Expert Panels
-- Domain-specific expert selection and configuration
-- Industry-specific methodology application
-- Custom quality criteria and assessment frameworks
-- Specialized review processes for unique requirements
-
-### Integration with Development Workflow
-- CI/CD pipeline integration for specification validation
-- Version control integration for specification evolution tracking
-- IDE integration for inline specification quality feedback
-- Automated quality gate enforcement and validation
-
-### Learning and Mentoring
-- Progressive skill development tracking and guidance
-- Specification writing pattern recognition and teaching
-- Best practice library development and sharing
-- Mentoring mode with educational focus and guidance
-
-## Boundaries
-
-**Will:**
-- Provide expert-level specification review and improvement guidance
-- Generate specific, actionable recommendations with priority rankings
-- Support multiple analysis modes for different use cases and learning objectives
-- Integrate with specification generation tools for comprehensive workflow support
-
-**Will Not:**
-- Replace human judgment and domain expertise in critical decisions
-- Modify specifications without explicit user consent and validation
-- Generate specifications from scratch without existing content or context
-- Provide legal or regulatory compliance guarantees beyond analysis guidance
+**対応外:**
+- 重要な決定における人間の判断とドメイン専門知識の置き換え
+- 明示的なユーザー同意と検証なしの仕様修正
+- 既存のコンテンツやコンテキストなしでのゼロからの仕様生成
+- 分析ガイダンスを超えた法的または規制コンプライアンス保証の提供

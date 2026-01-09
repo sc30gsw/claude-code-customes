@@ -1,89 +1,89 @@
 ---
 name: analyze
-description: "Comprehensive code analysis across quality, security, performance, and architecture domains"
+description: "品質、セキュリティ、パフォーマンス、アーキテクチャの各ドメインにわたる包括的なコード分析"
 category: utility
 complexity: basic
 mcp-servers: []
 personas: []
 ---
 
-# /sc:analyze - Code Analysis and Quality Assessment
+# /sc:analyze - コード分析と品質評価
 
-## Triggers
-- Code quality assessment requests for projects or specific components
-- Security vulnerability scanning and compliance validation needs
-- Performance bottleneck identification and optimization planning
-- Architecture review and technical debt assessment requirements
+## トリガー
+- プロジェクトまたは特定コンポーネントのコード品質評価リクエスト
+- セキュリティ脆弱性スキャンとコンプライアンス検証のニーズ
+- パフォーマンスボトルネックの特定と最適化計画
+- アーキテクチャレビューと技術的負債評価の要件
 
-## Usage
+## 使用方法
 ```
-/sc:analyze [target] [--focus quality|security|performance|architecture] [--depth quick|deep] [--format text|json|report]
+/sc:analyze [対象] [--focus quality|security|performance|architecture] [--depth quick|deep] [--format text|json|report]
 ```
 
-## Behavioral Flow
-1. **Discover**: Categorize source files using language detection and project analysis
-2. **Scan**: Apply domain-specific analysis techniques and pattern matching
-3. **Evaluate**: Generate prioritized findings with severity ratings and impact assessment
-4. **Recommend**: Create actionable recommendations with implementation guidance
-5. **Report**: Present comprehensive analysis with metrics and improvement roadmap
+## 動作フロー
+1. **発見**: 言語検出とプロジェクト分析によるソースファイルの分類
+2. **スキャン**: ドメイン固有の分析手法とパターンマッチングの適用
+3. **評価**: 重要度評価と影響評価を含む優先順位付けされた発見事項の生成
+4. **推奨**: 実装ガイダンスを含むアクション可能な推奨事項の作成
+5. **レポート**: メトリクスと改善ロードマップを含む包括的な分析の提示
 
-Key behaviors:
-- Multi-domain analysis combining static analysis and heuristic evaluation
-- Intelligent file discovery and language-specific pattern recognition
-- Severity-based prioritization of findings and recommendations
-- Comprehensive reporting with metrics, trends, and actionable insights
+主要な動作:
+- 静的分析とヒューリスティック評価を組み合わせたマルチドメイン分析
+- インテリジェントなファイル検出と言語固有のパターン認識
+- 発見事項と推奨事項の重要度ベースの優先順位付け
+- メトリクス、トレンド、アクション可能なインサイトを含む包括的なレポート
 
-## Tool Coordination
-- **Glob**: File discovery and project structure analysis
-- **Grep**: Pattern analysis and code search operations
-- **Read**: Source code inspection and configuration analysis
-- **Bash**: External analysis tool execution and validation
-- **Write**: Report generation and metrics documentation
+## ツール連携
+- **Glob**: ファイル検出とプロジェクト構造分析
+- **Grep**: パターン分析とコード検索操作
+- **Read**: ソースコード検査と設定分析
+- **Bash**: 外部分析ツールの実行と検証
+- **Write**: レポート生成とメトリクスドキュメント
 
-## Key Patterns
-- **Domain Analysis**: Quality/Security/Performance/Architecture → specialized assessment
-- **Pattern Recognition**: Language detection → appropriate analysis techniques
-- **Severity Assessment**: Issue classification → prioritized recommendations
-- **Report Generation**: Analysis results → structured documentation
+## 主要パターン
+- **ドメイン分析**: 品質/セキュリティ/パフォーマンス/アーキテクチャ → 専門的評価
+- **パターン認識**: 言語検出 → 適切な分析手法
+- **重要度評価**: 問題分類 → 優先順位付けされた推奨事項
+- **レポート生成**: 分析結果 → 構造化されたドキュメント
 
-## Examples
+## 使用例
 
-### Comprehensive Project Analysis
+### 包括的なプロジェクト分析
 ```
 /sc:analyze
-# Multi-domain analysis of entire project
-# Generates comprehensive report with key findings and roadmap
+# プロジェクト全体のマルチドメイン分析
+# 主要な発見事項とロードマップを含む包括的なレポートを生成
 ```
 
-### Focused Security Assessment
+### 重点的なセキュリティ評価
 ```
 /sc:analyze src/auth --focus security --depth deep
-# Deep security analysis of authentication components
-# Vulnerability assessment with detailed remediation guidance
+# 認証コンポーネントの詳細なセキュリティ分析
+# 詳細な修正ガイダンスを含む脆弱性評価
 ```
 
-### Performance Optimization Analysis
+### パフォーマンス最適化分析
 ```
 /sc:analyze --focus performance --format report
-# Performance bottleneck identification
-# Generates HTML report with optimization recommendations
+# パフォーマンスボトルネックの特定
+# 最適化推奨事項を含むHTMLレポートを生成
 ```
 
-### Quick Quality Check
+### クイック品質チェック
 ```
 /sc:analyze src/components --focus quality --depth quick
-# Rapid quality assessment of component directory
-# Identifies code smells and maintainability issues
+# コンポーネントディレクトリの迅速な品質評価
+# コードスメルと保守性の問題を特定
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Perform comprehensive static code analysis across multiple domains
-- Generate severity-rated findings with actionable recommendations
-- Provide detailed reports with metrics and improvement guidance
+**対応範囲:**
+- 複数ドメインにわたる包括的な静的コード分析の実行
+- アクション可能な推奨事項を含む重要度評価された発見事項の生成
+- メトリクスと改善ガイダンスを含む詳細なレポートの提供
 
-**Will Not:**
-- Execute dynamic analysis requiring code compilation or runtime
-- Modify source code or apply fixes without explicit user consent
-- Analyze external dependencies beyond import and usage patterns
+**対応外:**
+- コードコンパイルやランタイムを必要とする動的分析の実行
+- 明示的なユーザー同意なしのソースコードの修正や修正の適用
+- インポートと使用パターンを超えた外部依存関係の分析

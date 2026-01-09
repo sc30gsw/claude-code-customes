@@ -1,60 +1,60 @@
 ---
 allowed-tools: Read, Write, Bash, TodoWrite, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_console_messages, mcp__playwright__browser_network_requests, Glob, Grep
-description: Integration specification and usage guide for Playwright MCP integrated command system
+description: Playwright MCP統合コマンドシステムの統合仕様と使用ガイド
 ---
 
-# Playwright MCP Integration System - Integration Specification
+# Playwright MCP統合システム - 統合仕様
 
-## Overview
+## 概要
 
-This is the comprehensive integration specification for a complete web application testing and analysis system that integrates Playwright MCP with Serena tools.
+Playwright MCPとSerenaツールを統合した、完全なWebアプリケーションテストと分析システムの包括的な統合仕様です。
 
-## System Architecture
+## システムアーキテクチャ
 
-### Command List
+### コマンド一覧
 ```
 /Users/kakikaito/.claude/commands/playwright/
-├── e2e.md                   # E2E testing & behavior verification
-├── web-analyzer.md          # Website analysis & specification extraction
-├── visual-regression.md     # Visual regression testing
-├── accessibility-test.md    # Accessibility testing
-└── performance-monitor.md   # Performance monitoring
+├── e2e.md                   # E2Eテスト・動作検証
+├── web-analyzer.md          # ウェブサイト分析・仕様抽出
+├── visual-regression.md     # ビジュアルリグレッションテスト
+├── accessibility-test.md    # アクセシビリティテスト
+└── performance-monitor.md   # パフォーマンス監視
 
 /Users/kakikaito/.claude/commands/spec/
-└── playwright-integration.md # Integration specification (this file)
+└── playwright-integration.md # 統合仕様（このファイル）
 ```
 
-### Feature Matrix
+### 機能マトリックス
 
-| Feature Category | e2e | web-analyzer | visual-regression | accessibility-test | performance-monitor |
-|-----------------|-----|--------------|------------------|-------------------|-------------------|
-| **E2E Automation** | ✅ Primary | ❌ | ❌ | ❌ | ❌ |
-| **UI/UX Analysis** | ❌ | ✅ Primary | ❌ | ❌ | ❌ |
-| **Visual Change Detection** | ❌ | ❌ | ✅ Primary | ❌ | ❌ |
-| **Accessibility** | ⚠️ Basic check | ⚠️ Basic analysis | ❌ | ✅ Primary | ❌ |
-| **Performance** | ⚠️ Basic measurement | ❌ | ❌ | ❌ | ✅ Primary |
-| **Specification Comparison** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Competitive Analysis** | ❌ | ✅ | ❌ | ❌ | ❌ |
-| **Report Generation** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **CI/CD Integration** | ✅ | ⚠️ | ✅ | ✅ | ✅ |
+| 機能カテゴリ | e2e | web-analyzer | visual-regression | accessibility-test | performance-monitor |
+|------------|-----|--------------|------------------|-------------------|-------------------|
+| **E2E自動化** | ✅ 主機能 | ❌ | ❌ | ❌ | ❌ |
+| **UI/UX分析** | ❌ | ✅ 主機能 | ❌ | ❌ | ❌ |
+| **ビジュアル変更検出** | ❌ | ❌ | ✅ 主機能 | ❌ | ❌ |
+| **アクセシビリティ** | ⚠️ 基本チェック | ⚠️ 基本分析 | ❌ | ✅ 主機能 | ❌ |
+| **パフォーマンス** | ⚠️ 基本計測 | ❌ | ❌ | ❌ | ✅ 主機能 |
+| **仕様比較** | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **競合分析** | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **レポート生成** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **CI/CD統合** | ✅ | ⚠️ | ✅ | ✅ | ✅ |
 
-## Technical Integration Specification
+## 技術的統合仕様
 
-### Playwright MCP Integration
+### Playwright MCP統合
 
-#### Common Tool Utilization
+#### 共通ツール利用
 ```typescript
-// Common Playwright MCP tools for all commands
+// 全コマンド共通のPlaywright MCPツール
 const commonPlaywrightTools = [
-  'mcp__playwright__browser_navigate',      // Page navigation
-  'mcp__playwright__browser_snapshot',      // DOM structure retrieval
-  'mcp__playwright__browser_take_screenshot', // Screenshots
-  'mcp__playwright__browser_wait_for',      // Wait processing
-  'mcp__playwright__browser_evaluate',      // JavaScript execution
-  'mcp__playwright__browser_close'          // Browser termination
+  'mcp__playwright__browser_navigate',      // ページナビゲーション
+  'mcp__playwright__browser_snapshot',      // DOM構造取得
+  'mcp__playwright__browser_take_screenshot', // スクリーンショット
+  'mcp__playwright__browser_wait_for',      // 待機処理
+  'mcp__playwright__browser_evaluate',      // JavaScript実行
+  'mcp__playwright__browser_close'          // ブラウザ終了
 ]
 
-// Command-specific tools
+// コマンド固有ツール
 const specializedTools = {
   'e2e': [
     'mcp__playwright__browser_click',
@@ -72,9 +72,9 @@ const specializedTools = {
 }
 ```
 
-#### Unified Browser Configuration
+#### 統一ブラウザ設定
 ```typescript
-// Common browser settings for all commands
+// 全コマンド共通のブラウザ設定
 const browserConfig = {
   headless: true,
   viewport: { width: 1920, height: 1080 },
@@ -83,7 +83,7 @@ const browserConfig = {
   userAgent: 'Claude-Code-Playwright-Integration/1.0'
 }
 
-// Device-specific settings
+// デバイス固有設定
 const deviceConfigs = {
   desktop: { width: 1920, height: 1080 },
   laptop: { width: 1366, height: 768 },
@@ -92,13 +92,13 @@ const deviceConfigs = {
 }
 ```
 
-### Serena Integration Specification
+### Serena統合仕様
 
-#### Common Memory Structure
+#### 共通メモリ構造
 ```typescript
-// Unified Serena memory structure
+// Serena統一メモリ構造
 interface SerenaMemoryStructure {
-  // Basic project information
+  // 基本プロジェクト情報
   project_info: {
     name: string
     structure: ProjectStructure
@@ -106,7 +106,7 @@ interface SerenaMemoryStructure {
     last_updated: number
   }
 
-  // Test result history
+  // テスト結果履歴
   test_results: {
     e2e_tests: E2ETestResult[]
     visual_regression: VisualTestResult[]
@@ -114,14 +114,14 @@ interface SerenaMemoryStructure {
     performance: PerformanceTestResult[]
   }
 
-  // Analysis results
+  // 分析結果
   analysis_results: {
     web_analysis: WebAnalysisResult[]
     competitor_analysis: CompetitorAnalysisResult[]
     ux_patterns: UXPatternLibrary
   }
 
-  // Learning data
+  // 学習データ
   learning_data: {
     optimization_patterns: OptimizationPattern[]
     best_practices: BestPractice[]
@@ -130,19 +130,19 @@ interface SerenaMemoryStructure {
 }
 ```
 
-#### Inter-Command Data Collaboration
+#### コマンド間データ連携
 ```typescript
-// Data sharing patterns between commands
+// コマンド間でのデータ共有パターン
 class PlaywrightIntegration {
-  // web-analyzer → e2e collaboration
+  // web-analyzer → e2e の連携
   async analyzeAndTest(competitorUrl: string, localUrl: string) {
-    // 1. Competitor site analysis
+    // 1. 競合サイト分析
     const analysis = await this.runWebAnalyzer(competitorUrl)
 
-    // 2. Save analysis results to Serena memory
+    // 2. 分析結果をSerenaメモリに保存
     await mcp__serena__write_memory('competitor_patterns', analysis.patterns)
 
-    // 3. Execute tests referencing patterns
+    // 3. パターンを参照してテスト実行
     const testResults = await this.runE2ETest(localUrl, {
       referencePatterns: analysis.patterns
     })
@@ -150,103 +150,103 @@ class PlaywrightIntegration {
     return { analysis, testResults }
   }
 
-  // visual-regression → accessibility-test collaboration
+  // visual-regression → accessibility-test の連携
   async comprehensiveQualityCheck(url: string) {
-    // 1. Visual regression testing
+    // 1. ビジュアルリグレッションテスト
     const visualResults = await this.runVisualRegression(url)
 
-    // 2. Accessibility testing
+    // 2. アクセシビリティテスト
     const a11yResults = await this.runAccessibilityTest(url)
 
-    // 3. Integrate results and generate report
+    // 3. 結果を統合してレポート生成
     return this.generateQualityReport(visualResults, a11yResults)
   }
 }
 ```
 
-## Workflow Integration
+## ワークフロー統合
 
-### Development Lifecycle Integration
+### 開発ライフサイクル統合
 
-#### 1. Requirements Definition & Design Phase
+#### 1. 要件定義・設計フェーズ
 ```bash
-# Requirements clarification through competitive analysis
+# 競合分析による要件明確化
 /web-analyzer https://competitor1.com -d -u -x -t -c -r
 /web-analyzer https://competitor2.com -d -u -x -t -c -r
 
-# Generate comparison report from analysis results
+# 分析結果から比較レポート生成
 /web-analyzer --compare competitor1.com competitor2.com
 ```
 
-#### 2. Development Phase
+#### 2. 開発フェーズ
 ```bash
-# Continuous E2E testing
+# 継続的なE2Eテスト
 /e2e http://localhost:3000 -i -w 10
 
-# Real-time performance monitoring
+# リアルタイムパフォーマンス監視
 /performance-monitor http://localhost:3000 -v -n --alerts
 ```
 
-#### 3. Testing & Quality Assurance Phase
+#### 3. テスト・品質保証フェーズ
 ```bash
-# Comprehensive quality check
+# 包括的な品質チェック
 /e2e http://staging.myapp.com -s -r
 /visual-regression http://staging.myapp.com -c -m -r
 /accessibility-test http://staging.myapp.com -l AA -r
 /performance-monitor http://staging.myapp.com -v -l --baseline
 ```
 
-#### 4. Release & Monitoring Phase
+#### 4. リリース・監視フェーズ
 ```bash
-# Production environment monitoring
+# 本番環境監視
 /performance-monitor https://myapp.com --alerts --baseline
 /accessibility-test https://myapp.com -l AAA --alerts
 ```
 
-### Team Collaboration Workflows
+### チームコラボレーションワークフロー
 
-#### For Designers & UX Designers
+#### デザイナー・UXデザイナー向け
 ```bash
-# Design research
+# デザインリサーチ
 /web-analyzer https://inspirational-site.com -u -c -s
-# Component specification extraction
+# コンポーネント仕様抽出
 /web-analyzer https://design-system.com -c --components
 ```
 
-#### For Frontend Developers
+#### フロントエンド開発者向け
 ```bash
-# Post-implementation behavior verification
+# 実装後の動作確認
 /e2e http://localhost:3000/new-feature -r
-# Visual regression testing
+# ビジュアルリグレッションテスト
 /visual-regression http://localhost:3000 -c -m
 ```
 
-#### For QA Engineers
+#### QAエンジニア向け
 ```bash
-# Overall quality check
+# 総合品質チェック
 /accessibility-test http://staging.myapp.com -l AA -r
 /performance-monitor http://staging.myapp.com -v -l -n -j
 ```
 
-#### For DevOps Engineers
+#### DevOpsエンジニア向け
 ```bash
-# CI/CD integration
+# CI/CD統合
 /e2e $STAGING_URL -s -r --ci-mode
 /performance-monitor $PRODUCTION_URL --alerts --ci-mode
 ```
 
-## CI/CD Integration Specification
+## CI/CD統合仕様
 
-### GitHub Actions Integration Template
+### GitHub Actions統合テンプレート
 ```yaml
-name: Comprehensive Web Testing
+name: 包括的Webテスト
 on:
   push:
     branches: [main, develop]
   pull_request:
     branches: [main]
   schedule:
-    - cron: '0 6 * * *'  # Daily at 6 AM
+    - cron: '0 6 * * *'  # 毎日6時
 
 jobs:
   setup:
@@ -255,22 +255,22 @@ jobs:
       staging-url: ${{ steps.deploy.outputs.url }}
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy to Staging
+      - name: ステージングにデプロイ
         id: deploy
         run: |
-          # Staging environment deployment
+          # ステージング環境へのデプロイ
           echo "url=https://staging-${{ github.sha }}.myapp.com" >> $GITHUB_OUTPUT
 
   e2e-testing:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: E2E Testing
+      - name: E2Eテスト
         run: |
           /e2e ${{ needs.setup.outputs.staging-url }} \
             -s -r --ci-mode --report-format=json
 
-      - name: Upload E2E Results
+      - name: E2E結果をアップロード
         uses: actions/upload-artifact@v3
         with:
           name: e2e-results
@@ -280,7 +280,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Visual Regression Testing
+      - name: ビジュアルリグレッションテスト
         run: |
           /visual-regression ${{ needs.setup.outputs.staging-url }} \
             -c -m -d "desktop,tablet,mobile" --report
@@ -289,7 +289,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Accessibility Testing
+      - name: アクセシビリティテスト
         run: |
           /accessibility-test ${{ needs.setup.outputs.staging-url }} \
             -l AA -s 2.1 -r --ci-mode
@@ -298,7 +298,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Performance Monitoring
+      - name: パフォーマンス監視
         run: |
           /performance-monitor ${{ needs.setup.outputs.staging-url }} \
             -v -l -n -j --baseline --alerts
@@ -307,9 +307,9 @@ jobs:
     needs: [e2e-testing, visual-regression, accessibility-testing, performance-monitoring]
     runs-on: ubuntu-latest
     steps:
-      - name: Quality Gate Check
+      - name: 品質ゲートチェック
         run: |
-          # Quality standard check
+          # 品質基準チェック
           python check_quality_gates.py \
             --e2e-results=e2e-results.json \
             --visual-results=visual-results.json \
@@ -320,12 +320,12 @@ jobs:
     needs: quality-gate
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Comprehensive Report
+      - name: 包括的レポート生成
         run: |
           python generate_comprehensive_report.py \
             --output=comprehensive-quality-report.html
 
-      - name: Comment PR with Results
+      - name: PRに結果をコメント
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
@@ -340,7 +340,7 @@ jobs:
             });
 ```
 
-### Quality Gate Configuration
+### 品質ゲート設定
 ```yaml
 # .github/quality-gates.yml
 quality_gates:
@@ -369,9 +369,9 @@ blocking_conditions:
   - performance_below_threshold
 ```
 
-## Report Integration System
+## レポート統合システム
 
-### Comprehensive Report Generation
+### 包括的レポート生成
 ```typescript
 class ComprehensiveReportGenerator {
   async generateReport(testResults: AllTestResults): Promise<ComprehensiveReport> {
@@ -387,10 +387,10 @@ class ComprehensiveReportGenerator {
   }
 
   private async generateRecommendations(results: AllTestResults): Promise<Recommendation[]> {
-    // Reference past patterns from Serena memory
+    // Serenaメモリから過去のパターンを参照
     const pastPatterns = await mcp__serena__read_memory('optimization_patterns')
 
-    // Cross-functional improvement suggestions
+    // 横断的な改善提案を生成
     return [
       ...this.analyzeE2EIssues(results.e2e, pastPatterns),
       ...this.analyzePerformanceBottlenecks(results.performance, pastPatterns),
@@ -401,58 +401,58 @@ class ComprehensiveReportGenerator {
 }
 ```
 
-### Dashboard Integration
+### ダッシュボード統合
 ```html
-<!-- Integrated dashboard HTML -->
+<!-- 統合ダッシュボードHTML -->
 <div class="quality-dashboard">
   <div class="summary-cards">
     <div class="card e2e">
-      <h3>E2E Tests</h3>
+      <h3>E2Eテスト</h3>
       <div class="score">{e2e_pass_rate}%</div>
     </div>
     <div class="card visual">
-      <h3>Visual Quality</h3>
+      <h3>ビジュアル品質</h3>
       <div class="score">{visual_score}</div>
     </div>
     <div class="card accessibility">
-      <h3>Accessibility</h3>
+      <h3>アクセシビリティ</h3>
       <div class="score">{a11y_score}/100</div>
     </div>
     <div class="card performance">
-      <h3>Performance</h3>
+      <h3>パフォーマンス</h3>
       <div class="score">{lighthouse_score}/100</div>
     </div>
   </div>
 
   <div class="detailed-results">
-    <!-- Detailed results display -->
+    <!-- 詳細結果表示 -->
   </div>
 
   <div class="trends-chart">
-    <!-- Trend chart -->
+    <!-- トレンドチャート -->
   </div>
 </div>
 ```
 
-## Learning & Optimization System
+## 学習・最適化システム
 
-### Serena Learning Patterns
+### Serena学習パターン
 ```typescript
-// Continuous learning system
+// 継続的学習システム
 class PlaywrightLearningSystem {
   async learnFromResults(results: TestResults) {
-    // Pattern analysis
+    // パターン分析
     const patterns = this.analyzePatterns(results)
 
-    // Learn success patterns
+    // 成功パターンを学習
     const successPatterns = patterns.filter(p => p.success)
     await mcp__serena__write_memory('success_patterns', successPatterns)
 
-    // Learn failure patterns
+    // 失敗パターンを学習
     const failurePatterns = patterns.filter(p => !p.success)
     await mcp__serena__write_memory('failure_patterns', failurePatterns)
 
-    // Generate optimization suggestions
+    // 最適化提案を生成
     const optimizations = this.generateOptimizations(patterns)
     await mcp__serena__write_memory('optimization_suggestions', optimizations)
   }
@@ -465,9 +465,9 @@ class PlaywrightLearningSystem {
 }
 ```
 
-### Automatic Improvement Suggestions
+### 自動改善提案
 ```typescript
-// Automatic improvement suggestion system
+// 自動改善提案システム
 interface ImprovementSuggestion {
   category: 'performance' | 'accessibility' | 'visual' | 'e2e'
   priority: 'critical' | 'high' | 'medium' | 'low'
@@ -483,28 +483,28 @@ async function generateImprovementSuggestions(
 ): Promise<ImprovementSuggestion[]> {
   const suggestions: ImprovementSuggestion[] = []
 
-  // Performance improvement suggestions
+  // パフォーマンス改善提案
   if (allResults.performance.lighthouse.score < 80) {
     suggestions.push({
       category: 'performance',
       priority: 'high',
-      issue: 'Lighthouse score is below 80',
-      solution: 'Remove unused JavaScript and optimize images',
-      estimatedImpact: '20% improvement in page load speed',
-      implementationTime: '2-3 days'
+      issue: 'Lighthouseスコアが80未満です',
+      solution: '未使用のJavaScriptを削除し、画像を最適化してください',
+      estimatedImpact: 'ページ読み込み速度が20%改善',
+      implementationTime: '2-3日'
     })
   }
 
-  // Accessibility improvement suggestions
+  // アクセシビリティ改善提案
   if (allResults.accessibility.score < 85) {
     suggestions.push({
       category: 'accessibility',
       priority: 'critical',
-      issue: 'Does not meet WCAG AA standards',
-      solution: 'Add alt attributes and improve keyboard navigation',
-      codeExample: '<img src="..." alt="Product image" />',
-      estimatedImpact: 'Reach accessibility score of 95',
-      implementationTime: '1-2 days'
+      issue: 'WCAG AA基準を満たしていません',
+      solution: 'alt属性を追加し、キーボードナビゲーションを改善してください',
+      codeExample: '<img src="..." alt="商品画像" />',
+      estimatedImpact: 'アクセシビリティスコア95達成',
+      implementationTime: '1-2日'
     })
   }
 
@@ -512,25 +512,25 @@ async function generateImprovementSuggestions(
 }
 ```
 
-## Security & Privacy Considerations
+## セキュリティとプライバシーの考慮事項
 
-### Data Protection
+### データ保護
 ```typescript
-// Confidential data protection
+// 機密データ保護
 const securityConfig = {
-  // Remove sensitive information from screenshots
+  // スクリーンショットから機密情報を削除
   screenshot_masking: {
     selectors: ['.personal-info', '.credit-card', '.ssn'],
     mask_type: 'blur' | 'black-box' | 'remove'
   },
 
-  // Filter sensitive information from network data
+  // ネットワークデータから機密情報をフィルタ
   network_filtering: {
     exclude_headers: ['authorization', 'cookie', 'x-api-key'],
     exclude_body_patterns: [/password/i, /token/i, /secret/i]
   },
 
-  // Serena memory encryption
+  // Serenaメモリ暗号化
   memory_encryption: {
     enabled: true,
     key_rotation: '30d',
@@ -539,15 +539,15 @@ const securityConfig = {
 }
 ```
 
-### GDPR/Privacy Compliance
+### GDPR/プライバシー準拠
 ```typescript
-// Privacy compliance settings
+// プライバシー準拠設定
 const privacyConfig = {
   data_retention: {
     test_results: '90d',
     screenshots: '30d',
     network_logs: '7d',
-    user_data: '0d'  // Delete immediately
+    user_data: '0d'  // 即時削除
   },
 
   consent_management: {
@@ -563,34 +563,34 @@ const privacyConfig = {
 }
 ```
 
-## Extensibility & Customization
+## 拡張性とカスタマイズ
 
-### Plugin System
+### プラグインシステム
 ```typescript
-// Plugin development interface
+// プラグイン開発インターフェース
 interface PlaywrightPlugin {
   name: string
   version: string
 
-  // Lifecycle hooks
+  // ライフサイクルフック
   beforeTest?(context: TestContext): Promise<void>
   afterTest?(context: TestContext, results: TestResults): Promise<void>
 
-  // Custom analysis
+  // カスタム分析
   analyze?(page: Page): Promise<AnalysisResult>
 
-  // Report extension
+  // レポート拡張
   extendReport?(report: Report): Promise<ExtendedReport>
 }
 
-// Plugin example: Custom metrics collection
+// プラグイン例: カスタムメトリクス収集
 class CustomMetricsPlugin implements PlaywrightPlugin {
   name = 'custom-metrics'
   version = '1.0.0'
 
   async analyze(page: Page): Promise<CustomMetrics> {
     return await page.evaluate(() => {
-      // Custom metrics collection logic
+      // カスタムメトリクス収集ロジック
       return {
         customLoadTime: performance.now(),
         userInteractionCount: window.userInteractions || 0,
@@ -601,7 +601,7 @@ class CustomMetricsPlugin implements PlaywrightPlugin {
 }
 ```
 
-### Configuration Customization
+### 設定カスタマイズ
 ```json
 {
   "playwright_integration_config": {
@@ -634,87 +634,87 @@ class CustomMetricsPlugin implements PlaywrightPlugin {
 }
 ```
 
-## Troubleshooting & Support
+## トラブルシューティングとサポート
 
-### Integrated Debugging
+### 統合デバッグ
 ```bash
-# Overall diagnostic command
+# 全体診断コマンド
 /playwright-integration --diagnose
 
-# Execution content:
-# 1. Verify operation of each command
-# 2. Check Playwright MCP connection
-# 3. Serena memory integrity check
-# 4. Configuration file validation
-# 5. Permission & security check
+# 実行内容:
+# 1. 各コマンドの動作確認
+# 2. Playwright MCP接続チェック
+# 3. Serenaメモリ整合性確認
+# 4. 設定ファイルの検証
+# 5. 権限・セキュリティチェック
 ```
 
-### Common Issues and Solutions
+### よくある問題と解決策
 
-#### Browser Launch Error
+#### ブラウザ起動エラー
 ```bash
-# Diagnosis
+# 診断
 /playwright-integration --check-browser
 
-# Solutions
-# 1. Reinstall Playwright browser
-# 2. Check permission settings
-# 3. Check system resources
+# 解決策
+# 1. Playwrightブラウザを再インストール
+# 2. 権限設定を確認
+# 3. システムリソースを確認
 ```
 
-#### Serena Integration Error
+#### Serena統合エラー
 ```bash
-# Diagnosis
+# 診断
 /playwright-integration --check-serena
 
-# Solutions
-# 1. Re-run Serena onboarding
-# 2. Re-analyze project structure
-# 3. Repair memory integrity
+# 解決策
+# 1. Serenaオンボーディングを再実行
+# 2. プロジェクト構造を再分析
+# 3. メモリ整合性を修復
 ```
 
-#### Performance Issues
+#### パフォーマンス問題
 ```bash
-# Diagnosis
+# 診断
 /playwright-integration --performance-debug
 
-# Optimization suggestions
-# 1. Adjust parallel execution count
-# 2. Review cache settings
-# 3. Narrow down measurement targets
+# 最適化提案
+# 1. 並列実行数を調整
+# 2. キャッシュ設定を見直し
+# 3. 計測対象を絞り込み
 ```
 
-## Future Extension Plans
+## 将来の拡張計画
 
-### Phase 2 Feature Additions
-- **Enhanced AI Analysis**: Advanced analysis using LLMs
-- **Cross-Browser Testing**: Firefox, Safari support
-- **Mobile App Testing**: React Native, Flutter support
-- **Security Testing**: OWASP-compliant vulnerability testing
+### フェーズ2 機能追加
+- **AI強化分析**: LLMを活用した高度な分析
+- **クロスブラウザテスト**: Firefox、Safari対応
+- **モバイルアプリテスト**: React Native、Flutter対応
+- **セキュリティテスト**: OWASP準拠の脆弱性テスト
 
-### Phase 3 Ecosystem Integration
-- **Third-Party Tool Integration**: Jira, Slack, Confluence integration
-- **Cloud Support**: AWS, Azure, GCP execution
-- **Enterprise Features**: RBAC, audit logs, compliance
+### フェーズ3 エコシステム統合
+- **サードパーティツール統合**: Jira、Slack、Confluence連携
+- **クラウドサポート**: AWS、Azure、GCPでの実行
+- **エンタープライズ機能**: RBAC、監査ログ、コンプライアンス
 
-### Long-Term Vision
-- Fully automated quality assurance platform
-- Predictive quality management system
-- AI assistant integration for development teams
+### 長期ビジョン
+- 完全自動化された品質保証プラットフォーム
+- 予測的品質管理システム
+- 開発チーム向けAIアシスタント統合
 
-## Licensing & Compliance
+## ライセンスとコンプライアンス
 
-### Open Source Licenses
+### オープンソースライセンス
 - Playwright: Apache License 2.0
-- Integration System: MIT License
+- 統合システム: MIT License
 
-### Enterprise Support
-- Commercial use licensing
-- Premium support
-- Customization services
+### エンタープライズサポート
+- 商用利用ライセンス
+- プレミアムサポート
+- カスタマイズサービス
 
 ---
 
-**Playwright MCP Integration System v1.0**
-**Created**: 2025
-**Last Updated**: Auto-updated
+**Playwright MCP統合システム v1.0**
+**作成日**: 2025年
+**最終更新**: 自動更新

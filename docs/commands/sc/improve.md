@@ -1,93 +1,93 @@
 ---
 name: improve
-description: "Apply systematic improvements to code quality, performance, and maintainability"
+description: "コード品質、パフォーマンス、保守性への体系的改善の適用"
 category: workflow
 complexity: standard
 mcp-servers: [sequential, context7]
 personas: [architect, performance, quality, security]
 ---
 
-# /sc:improve - Code Improvement
+# /sc:improve - コード改善
 
-## Triggers
-- Code quality enhancement and refactoring requests
-- Performance optimization and bottleneck resolution needs
-- Maintainability improvements and technical debt reduction
-- Best practices application and coding standards enforcement
+## トリガー
+- コード品質向上とリファクタリングリクエスト
+- パフォーマンス最適化とボトルネック解決のニーズ
+- 保守性向上と技術的負債削減
+- ベストプラクティス適用とコーディング標準の実施
 
-## Usage
+## 使用方法
 ```
-/sc:improve [target] [--type quality|performance|maintainability|style] [--safe] [--interactive]
+/sc:improve [対象] [--type quality|performance|maintainability|style] [--safe] [--interactive]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine codebase for improvement opportunities and quality issues
-2. **Plan**: Choose improvement approach and activate relevant personas for expertise
-3. **Execute**: Apply systematic improvements with domain-specific best practices
-4. **Validate**: Ensure improvements preserve functionality and meet quality standards
-5. **Document**: Generate improvement summary and recommendations for future work
+## 動作フロー
+1. **分析**: 改善機会と品質問題のためのコードベース調査
+2. **計画**: 改善アプローチの選択と専門知識のための関連ペルソナの有効化
+3. **実行**: ドメイン固有のベストプラクティスによる体系的改善の適用
+4. **検証**: 改善が機能を保持し品質標準を満たすことの確認
+5. **ドキュメント**: 改善サマリーと将来作業への推奨事項の生成
 
-Key behaviors:
-- Multi-persona coordination (architect, performance, quality, security) based on improvement type
-- Framework-specific optimization via Context7 integration for best practices
-- Systematic analysis via Sequential MCP for complex multi-component improvements
-- Safe refactoring with comprehensive validation and rollback capabilities
+主要な動作:
+- 改善タイプに基づくマルチペルソナ連携（architect、performance、quality、security）
+- ベストプラクティスのためのContext7統合によるフレームワーク固有の最適化
+- 複雑なマルチコンポーネント改善のためのSequential MCPによる体系的分析
+- 包括的な検証とロールバック機能を備えた安全なリファクタリング
 
-## MCP Integration
-- **Sequential MCP**: Auto-activated for complex multi-step improvement analysis and planning
-- **Context7 MCP**: Framework-specific best practices and optimization patterns
-- **Persona Coordination**: Architect (structure), Performance (speed), Quality (maintainability), Security (safety)
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステップ改善分析と計画の自動有効化
+- **Context7 MCP**: フレームワーク固有のベストプラクティスと最適化パターン
+- **ペルソナ連携**: Architect（構造）、Performance（速度）、Quality（保守性）、Security（安全性）
 
-## Tool Coordination
-- **Read/Grep/Glob**: Code analysis and improvement opportunity identification
-- **Edit/MultiEdit**: Safe code modification and systematic refactoring
-- **TodoWrite**: Progress tracking for complex multi-file improvement operations
-- **Task**: Delegation for large-scale improvement workflows requiring systematic coordination
+## ツール連携
+- **Read/Grep/Glob**: コード分析と改善機会の特定
+- **Edit/MultiEdit**: 安全なコード修正と体系的リファクタリング
+- **TodoWrite**: 複雑なマルチファイル改善操作の進捗追跡
+- **Task**: 体系的な連携を必要とする大規模改善ワークフローの委任
 
-## Key Patterns
-- **Quality Improvement**: Code analysis → technical debt identification → refactoring application
-- **Performance Optimization**: Profiling analysis → bottleneck identification → optimization implementation
-- **Maintainability Enhancement**: Structure analysis → complexity reduction → documentation improvement
-- **Security Hardening**: Vulnerability analysis → security pattern application → validation verification
+## 主要パターン
+- **品質改善**: コード分析 → 技術的負債特定 → リファクタリング適用
+- **パフォーマンス最適化**: プロファイリング分析 → ボトルネック特定 → 最適化実装
+- **保守性向上**: 構造分析 → 複雑さ削減 → ドキュメント改善
+- **セキュリティ強化**: 脆弱性分析 → セキュリティパターン適用 → 検証確認
 
-## Examples
+## 使用例
 
-### Code Quality Enhancement
+### コード品質向上
 ```
 /sc:improve src/ --type quality --safe
-# Systematic quality analysis with safe refactoring application
-# Improves code structure, reduces technical debt, enhances readability
+# 安全なリファクタリング適用による体系的な品質分析
+# コード構造改善、技術的負債削減、可読性向上
 ```
 
-### Performance Optimization
+### パフォーマンス最適化
 ```
 /sc:improve api-endpoints --type performance --interactive
-# Performance persona analyzes bottlenecks and optimization opportunities
-# Interactive guidance for complex performance improvement decisions
+# Performanceペルソナがボトルネックと最適化機会を分析
+# 複雑なパフォーマンス改善決定へのインタラクティブガイダンス
 ```
 
-### Maintainability Improvements
+### 保守性改善
 ```
 /sc:improve legacy-modules --type maintainability --preview
-# Architect persona analyzes structure and suggests maintainability improvements
-# Preview mode shows changes before application for review
+# Architectペルソナが構造を分析し保守性改善を提案
+# レビューのためのプレビューモードで適用前に変更を表示
 ```
 
-### Security Hardening
+### セキュリティ強化
 ```
 /sc:improve auth-service --type security --validate
-# Security persona identifies vulnerabilities and applies security patterns
-# Comprehensive validation ensures security improvements are effective
+# Securityペルソナが脆弱性を特定しセキュリティパターンを適用
+# セキュリティ改善が効果的であることを確認する包括的検証
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Apply systematic improvements with domain-specific expertise and validation
-- Provide comprehensive analysis with multi-persona coordination and best practices
-- Execute safe refactoring with rollback capabilities and quality preservation
+**対応範囲:**
+- ドメイン固有の専門知識と検証による体系的改善の適用
+- マルチペルソナ連携とベストプラクティスによる包括的分析の提供
+- ロールバック機能と品質保持による安全なリファクタリングの実行
 
-**Will Not:**
-- Apply risky improvements without proper analysis and user confirmation
-- Make architectural changes without understanding full system impact
-- Override established coding standards or project-specific conventions
+**対応外:**
+- 適切な分析とユーザー確認なしのリスクのある改善の適用
+- システム全体の影響を理解せずのアーキテクチャ変更
+- 確立されたコーディング標準やプロジェクト固有規約の上書き

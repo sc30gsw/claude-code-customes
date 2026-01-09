@@ -1,478 +1,478 @@
 ---
 allowed-tools: Read, Write, Bash, WebSearch, WebFetch, TodoWrite, mcp__sequential-thinking__sequentialthinking, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__serena__search_for_pattern
-description: Advanced technical research command with extended thinking modes and MCP integration for comprehensive analysis
+description: 拡張思考モードとMCP統合による包括的分析のための高度な技術調査コマンド
 ---
 
-## Context
+## コンテキスト
 
-- Project tech stacks: @package.json
-- Project requirements: !`find . -name ".claude/requirements.md"`
-- Existing documentation: !`find . -name "*.md" | head -10`
-- Project structure: !`ls -la`
+- プロジェクト技術スタック: @package.json
+- プロジェクト要件: !`find . -name ".claude/requirements.md"`
+- 既存ドキュメント: !`find . -name "*.md" | head -10`
+- プロジェクト構造: !`ls -la`
 
-## Quick Reference
+## クイックリファレンス
 
 ```bash
-/tech-research "<topic>"                              # Standard research
-/tech-research "React vs Vue" -m think-harder        # Deep analysis
-/tech-research "GraphQL best practices" -m ultrathink -b 50000  # Maximum depth
-/tech-research "OAuth 2.0" -t technical --diagrams   # Technical with visuals
+/tech-research "<トピック>"                              # 標準調査
+/tech-research "React vs Vue" -m think-harder        # 深い分析
+/tech-research "GraphQL best practices" -m ultrathink -b 50000  # 最大深度
+/tech-research "OAuth 2.0" -t technical --diagrams   # 図解付き技術調査
 ```
 
-## Thinking Modes
+## 思考モード
 
-| Mode | Token Budget | Depth | Use Case |
-|------|--------------|-------|----------|
-| `think` | 10,000 | Standard analysis | Quick research, overviews |
-| `think-hard` | 20,000 | Enhanced validation | Detailed comparisons |
-| `think-harder` | 30,000 | Structured reasoning | Complex topics, decisions |
-| `ultrathink` | 50,000 | Maximum depth | Critical analysis, academic |
+| モード | トークン予算 | 深度 | 使用ケース |
+|------|------------|-------|----------|
+| `think` | 10,000 | 標準分析 | 簡易調査、概要 |
+| `think-hard` | 20,000 | 強化検証 | 詳細比較 |
+| `think-harder` | 30,000 | 構造化推論 | 複雑なトピック、意思決定 |
+| `ultrathink` | 50,000 | 最大深度 | 重要な分析、学術的 |
 
-## Core Options
+## コアオプション
 
-| Option | Description | Default | Example |
+| オプション | 説明 | デフォルト | 例 |
 |--------|-------------|---------|---------|
-| `-m, --mode` | Thinking mode | `think` | `-m ultrathink` |
-| `-b, --budget` | Token budget | Auto | `-b 25000` |
-| `-o, --output` | Output file | `research-report.md` | `-o analysis.md` |
-| `-f, --format` | Output format | `markdown` | `-f json` |
-| `--mcp` | MCP tools to use | `all` | `--mcp "context7,sequential"` |
+| `-m, --mode` | 思考モード | `think` | `-m ultrathink` |
+| `-b, --budget` | トークン予算 | 自動 | `-b 25000` |
+| `-o, --output` | 出力ファイル | `research-report.md` | `-o analysis.md` |
+| `-f, --format` | 出力形式 | `markdown` | `-f json` |
+| `--mcp` | 使用するMCPツール | `all` | `--mcp "context7,sequential"` |
 
-## Research Options
+## 調査オプション
 
-| Option | Description | Values | Example |
+| オプション | 説明 | 値 | 例 |
 |--------|-------------|--------|---------|
-| `-d, --depth` | Search depth | `quick\|standard\|deep\|exhaustive` | `-d deep` |
-| `-t, --template` | Report template | `overview\|comprehensive\|academic\|technical` | `-t academic` |
-| `-i, --iterations` | Max iterations | Number | `-i 10` |
-| `-c, --confidence` | Confidence threshold | 0-1 | `-c 0.9` |
-| `--sources` | Include citations | Boolean | `--sources` |
-| `--diagrams` | Generate diagrams | Boolean | `--diagrams` |
-| `-l, --language` | Output language | `en\|ja\|es\|fr\|de\|zh` | `-l ja` |
+| `-d, --depth` | 検索深度 | `quick\|standard\|deep\|exhaustive` | `-d deep` |
+| `-t, --template` | レポートテンプレート | `overview\|comprehensive\|academic\|technical` | `-t academic` |
+| `-i, --iterations` | 最大反復回数 | 数値 | `-i 10` |
+| `-c, --confidence` | 信頼度閾値 | 0-1 | `-c 0.9` |
+| `--sources` | 引用を含む | Boolean | `--sources` |
+| `--diagrams` | 図を生成 | Boolean | `--diagrams` |
+| `-l, --language` | 出力言語 | `en\|ja\|es\|fr\|de\|zh` | `-l ja` |
 
-## MCP Tool Integration
+## MCP ツール統合
 
-## Tool Usage Priorities
+## ツール使用優先度
 
-**ALWAYS prioritize mcp__serena__ tools for codebase analysis, with other MCPs for specialized needs:**
+**常にコードベース分析にはmcp__serena__ツールを優先し、専門的なニーズには他のMCPを使用:**
 
-### Codebase Intelligence (Serena MCP First)
-- **Pattern Analysis**: Use `mcp__serena__search_for_pattern` to find existing implementation patterns
-- **Symbol Context**: Use `mcp__serena__find_symbol` to understand current architecture
-- **Code Overview**: Use `mcp__serena__get_symbols_overview` for architecture-aware recommendations
-- **Memory Integration**: Use `mcp__serena__read_memory` / `mcp__serena__write_memory` for research continuity
+### コードベースインテリジェンス (Serena MCP優先)
+- **パターン分析**: `mcp__serena__search_for_pattern`で既存の実装パターンを発見
+- **シンボルコンテキスト**: `mcp__serena__find_symbol`で現在のアーキテクチャを理解
+- **コード概要**: `mcp__serena__get_symbols_overview`でアーキテクチャを考慮した推奨
+- **メモリ統合**: `mcp__serena__read_memory` / `mcp__serena__write_memory`で調査の継続性を確保
 
-### Research Enhancement (Other MCPs)
-- **Documentation**: Use `mcp__context7__resolve-library-id` and `mcp__context7__get-library-docs` for library research
-- **Deep Thinking**: Use `mcp__sequential-thinking__sequentialthinking` for complex analysis
-- **Web Research**: Use `mcp__playwright__browser_navigate` for live web research
+### 調査強化 (他のMCP)
+- **ドキュメント**: `mcp__context7__resolve-library-id`と`mcp__context7__get-library-docs`でライブラリ調査
+- **深い思考**: `mcp__sequential-thinking__sequentialthinking`で複雑な分析
+- **Web調査**: `mcp__playwright__browser_navigate`でライブWeb調査
 
-### Standard Tools (Fallback)
-- **File Operations**: Use Read, Write, Edit for documentation creation
-- **Search Operations**: Use Grep, Glob when MCP tools unavailable
-- **Process Management**: Use TodoWrite for breaking down research tasks
+### 標準ツール (フォールバック)
+- **ファイル操作**: Read, Write, Editでドキュメント作成
+- **検索操作**: MCPツールが利用不可の場合はGrep, Globを使用
+- **プロセス管理**: TodoWriteで調査タスクを分解
 
-### Available Tools
+### 利用可能なツール
 
-| Tool | Purpose | Best For | Priority |
+| ツール | 目的 | 最適な用途 | 優先度 |
 |------|---------|----------|----------|
-| `serena` | **Codebase-aware analysis** | **Implementation planning, pattern analysis** | **Primary** |
-| `context7` | Library docs & examples | Framework research, API docs | Secondary |
-| `sequential` | Step-by-step reasoning | Complex analysis, algorithms | Secondary |
-| `playwright` | Web automation | Live testing, screenshots | Optional |
+| `serena` | **コードベース対応分析** | **実装計画、パターン分析** | **主要** |
+| `context7` | ライブラリドキュメントと例 | フレームワーク調査、API文書 | 二次 |
+| `sequential` | ステップバイステップ推論 | 複雑な分析、アルゴリズム | 二次 |
+| `playwright` | Web自動化 | ライブテスト、スクリーンショット | オプション |
 
-### Serena-Specific Features
+### Serena固有機能
 
-| Feature | Tool | Purpose | When to Use |
+| 機能 | ツール | 目的 | 使用タイミング |
 |---------|------|---------|-------------|
-| **Codebase Pattern Analysis** | `mcp__serena__search_for_pattern` | Find existing implementation patterns | Always for technical research |
-| **Symbol Context** | `mcp__serena__find_symbol` | Understand current architecture | For implementation-focused research |
-| **Memory Integration** | `mcp__serena__read_memory` / `mcp__serena__write_memory` | Learn from previous research | For building research knowledge |
-| **Implementation Planning** | `mcp__serena__get_symbols_overview` | Architecture-aware recommendations | For technical feasibility analysis |
+| **コードベースパターン分析** | `mcp__serena__search_for_pattern` | 既存の実装パターンを発見 | 常に技術調査時 |
+| **シンボルコンテキスト** | `mcp__serena__find_symbol` | 現在のアーキテクチャを理解 | 実装重視の調査 |
+| **メモリ統合** | `mcp__serena__read_memory` / `mcp__serena__write_memory` | 過去の調査から学習 | 調査知識の構築 |
+| **実装計画** | `mcp__serena__get_symbols_overview` | アーキテクチャを考慮した推奨 | 技術的実現可能性分析 |
 
-### Tool Combinations
+### ツール組み合わせ
 
 ```bash
-# Documentation research
+# ドキュメント調査
 /tech-research "Next.js 14 features" --mcp "context7"
 
-# Codebase-aware research with Serena
+# Serenaによるコードベース対応調査
 /tech-research "React patterns in our codebase" --mcp "serena,context7" --codebase-context
 
-# Complex algorithm analysis
+# 複雑なアルゴリズム分析
 /tech-research "Quantum computing basics" --mcp "sequential" -m think-harder
 
-# Live web research with screenshots
+# スクリーンショット付きライブWeb調査
 /tech-research "Top UI frameworks 2024" --mcp "playwright,context7" --diagrams
 
-# Full analysis with all tools and codebase integration
+# 全ツールとコードベース統合での完全分析
 /tech-research "Microservices architecture" --mcp all -m ultrathink --serena-memory
 
-# Technical research with implementation context
+# 実装コンテキスト付き技術調査
 /tech-research "GraphQL vs REST" --mcp "serena,context7" --implementation-ready
 ```
 
-## Research Templates
+## 調査テンプレート
 
-### Overview Template
-Quick summary with key points
+### 概要テンプレート
+要点をまとめた簡易サマリー
 ```bash
 /tech-research "Docker basics" -t overview -d quick
 ```
 
-### Comprehensive Template
-Full analysis with all aspects
+### 包括的テンプレート
+全側面を含む完全分析
 ```bash
 /tech-research "Kubernetes deployment" -t comprehensive -m think-hard
 ```
 
-### Academic Template
-Research paper format with citations
+### 学術テンプレート
+引用付きの論文形式
 ```bash
 /tech-research "Machine learning trends" -t academic --sources --diagrams
 ```
 
-### Technical Template
-Implementation-focused with code
+### 技術テンプレート
+コード付きの実装重視
 ```bash
 /tech-research "REST API design" -t technical -c 0.95
 ```
 
-## Usage Patterns
+## 使用パターン
 
-### Quick Research
+### 簡易調査
 ```bash
-# Fast overview for decisions
+# 意思決定のための高速概要
 /tech-research "Redis vs Memcached" -d quick -t overview
 
-# Technology comparison
+# 技術比較
 /tech-research "Python vs Node.js for backend" -m think
 ```
 
-### Deep Analysis
+### 深い分析
 ```bash
-# Comprehensive framework analysis
+# 包括的なフレームワーク分析
 /tech-research "React architecture patterns" -m think-harder -t comprehensive --diagrams
 
-# Security research with high confidence
+# 高信頼度のセキュリティ調査
 /tech-research "Zero-trust security model" -m ultrathink -c 0.95 --sources
 ```
 
-### Implementation Research
+### 実装調査
 ```bash
-# Technical implementation guide
+# 技術実装ガイド
 /tech-research "Implementing OAuth 2.0 with PKCE" -t technical -m think-hard
 
-# Code-focused with examples
+# 例付きコード重視
 /tech-research "WebSocket implementation" -t technical --mcp "context7" -d deep
 ```
 
-### Academic Research
+### 学術調査
 ```bash
-# Literature review with citations
+# 引用付き文献レビュー
 /tech-research "Distributed systems consensus" -t academic -m ultrathink --sources
 
-# Research paper preparation
+# 論文準備用調査
 /tech-research "Blockchain scalability solutions" -t academic -b 50000 --diagrams
 ```
 
-## Advanced Features
+## 高度な機能
 
-### Serena-Enhanced Research
+### Serena強化調査
 ```bash
-# Research with current codebase context
+# 現在のコードベースコンテキスト付き調査
 /tech-research "State management options" --serena-context --current-patterns
 
-# Implementation-ready research
+# 実装対応調査
 /tech-research "Authentication methods" --mcp "serena,context7" --implementation-plan
 
-# Pattern-aware technology selection
+# パターン認識技術選定
 /tech-research "Testing frameworks" --serena-patterns --compatibility-check
 
-# Memory-enhanced research (learns from past decisions)
+# メモリ強化調査（過去の決定から学習）
 /tech-research "Database options" --serena-memory --decision-history
 ```
 
-### Multi-Language Output
+### 多言語出力
 ```bash
-# Japanese technical documentation
+# 日本語技術ドキュメント
 /tech-research "Docker コンテナ化" -l ja -t technical
 
-# Spanish overview
+# スペイン語概要
 /tech-research "Cloud computing basics" -l es -t overview
 ```
 
-### Custom Confidence Levels
+### カスタム信頼度レベル
 ```bash
-# High confidence for critical decisions
+# 重要な決定には高信頼度
 /tech-research "Database selection for fintech" -c 0.95 -m ultrathink
 
-# Exploratory research with lower threshold
+# 低閾値での探索的調査
 /tech-research "Emerging web technologies" -c 0.6 -d quick
 ```
 
-### Iteration Control
+### 反復制御
 ```bash
-# Thorough investigation with more iterations
+# より多くの反復での徹底調査
 /tech-research "Performance optimization techniques" -i 15 -m think-harder
 
-# Quick single-pass research
+# 簡易シングルパス調査
 /tech-research "Git basics" -i 1 -d quick
 ```
 
-## Integration with Claude Code
+## Claude Code との統合
 
-### Workflow Integration
+### ワークフロー統合
 
-1. **Research Phase**
+1. **調査フェーズ**
    ```bash
    /tech-research "Best testing framework for React" -t technical
    ```
 
-2. **Decision Documentation**
+2. **決定ドキュメント**
    ```bash
    /tech-research "Architecture decision: Monolith vs Microservices" -t comprehensive --sources
    ```
 
-3. **Implementation Planning**
+3. **実装計画**
    ```bash
    /tech-research "Migration strategy to TypeScript" -t technical -m think-harder
    ```
 
-### Combining with Other Commands
+### 他のコマンドとの組み合わせ
 
 ```bash
-# Research then implement with Serena continuity
+# Serena継続性での調査から実装
 /tech-research "State management solutions" -t technical --mcp "serena" --save-context
 /serena "implement Redux toolkit" -s -t --use-research-context
 
-# Research with debugging context
+# デバッグコンテキスト付き調査
 /tech-research "Performance optimization" --mcp "serena" --current-issues
 /debug-error "slow queries" --serena --use-research
 
-# Research then smart thinking
+# 調査からスマート思考へ
 /tech-research "Architecture options" --mcp "serena,context7" --save-findings
 /smart-think "Choose microservices vs monolith" -m think-harder --serena --use-research
 
-# Research then create requirements
+# 調査から要件作成へ
 /tech-research "Authentication methods" -m think-hard --serena-context
 /requirements "Auth System" -t "jwt,oauth2" --suggest
 ```
 
-## Output Examples
+## 出力例
 
-### Standard Report Structure
+### 標準レポート構造
 ```markdown
-# Technical Research Report: [Topic]
+# 技術調査レポート: [トピック]
 
-## Executive Summary
-- Key findings and recommendations
+## エグゼクティブサマリー
+- 主要な発見と推奨事項
 
-## Table of Contents
-1. Introduction
-2. Core Concepts
-3. Technical Analysis
-4. Implementation Considerations
-5. Best Practices
-6. Comparisons
-7. Recommendations
-8. Conclusion
-9. References
+## 目次
+1. はじめに
+2. 核心コンセプト
+3. 技術分析
+4. 実装考慮事項
+5. ベストプラクティス
+6. 比較
+7. 推奨事項
+8. 結論
+9. 参考文献
 
-## Detailed Analysis
-[Content based on template and depth]
+## 詳細分析
+[テンプレートと深度に基づくコンテンツ]
 
-## Confidence Scores
-- Finding 1: 95% confidence
-- Finding 2: 88% confidence
+## 信頼度スコア
+- 発見1: 95%信頼度
+- 発見2: 88%信頼度
 ```
 
-### With Diagrams
+### 図付き
 ```mermaid
 graph TD
-    A[Research Topic] --> B[Analysis]
-    B --> C[Findings]
-    C --> D[Recommendations]
+    A[調査トピック] --> B[分析]
+    B --> C[発見]
+    C --> D[推奨事項]
 ```
 
-## Best Practices
+## ベストプラクティス
 
-### Choosing Thinking Modes with Serena
+### Serenaでの思考モード選択
 
-1. **Quick Overview with Context**: Use `think` mode + Serena
+1. **コンテキスト付き簡易概要**: `think`モード + Serena
    ```bash
    /tech-research "REST basics" -m think -d quick --mcp "serena" --current-context
    ```
 
-2. **Important Decisions**: Use `think-harder` + Serena memory
+2. **重要な決定**: `think-harder` + Serenaメモリ
    ```bash
    /tech-research "Database for high-traffic app" -m ultrathink --serena-memory --patterns
    ```
 
-3. **Complex Topics**: Always use higher modes + full Serena integration
+3. **複雑なトピック**: 常に高いモード + 完全なSerena統合
    ```bash
    /tech-research "Distributed systems design" -m think-harder -b 40000 --mcp "serena,context7" --implementation-ready
    ```
 
-### Serena Integration Patterns
+### Serena統合パターン
 
-1. **Architecture Research**: Always include codebase context
+1. **アーキテクチャ調査**: 常にコードベースコンテキストを含む
    ```bash
    /tech-research "Choose framework" --mcp "serena,context7" --current-architecture
    ```
 
-2. **Implementation Research**: Use symbol analysis
+2. **実装調査**: シンボル分析を使用
    ```bash
    /tech-research "Refactoring approach" --mcp "serena" --symbol-analysis --impact-assessment
    ```
 
-3. **Decision Documentation**: Store in Serena memory
+3. **決定ドキュメント**: Serenaメモリに保存
    ```bash
    /tech-research "Technology choice" --mcp "serena" --document-decision --store-rationale
    ```
 
-### Optimizing Token Usage
+### トークン使用量の最適化
 
-1. **Start with lower budgets** for exploration
-2. **Increase budget** for critical research
-3. **Use caching** for repeated research
-4. **Specify MCP tools** instead of "all" when possible
+1. **探索には低い予算から開始**
+2. **重要な調査には予算を増加**
+3. **繰り返し調査にはキャッシュを使用**
+4. **可能な場合は"all"ではなくMCPツールを指定**
 
-### Quality Assurance
+### 品質保証
 
-1. **Set appropriate confidence thresholds**
-   - 0.9+ for production decisions
-   - 0.8+ for important features
-   - 0.6+ for exploration
+1. **適切な信頼度閾値を設定**
+   - 本番決定には0.9以上
+   - 重要な機能には0.8以上
+   - 探索には0.6以上
 
-2. **Enable sources** for verification
+2. **検証のためにソースを有効化**
    ```bash
    /tech-research "Security best practices" --sources -c 0.95
    ```
 
-3. **Use multiple iterations** for complex topics
+3. **複雑なトピックには複数回の反復**
    ```bash
    /tech-research "System architecture" -i 10 -m think-harder
    ```
 
-## Troubleshooting
+## トラブルシューティング
 
-### Common Issues
+### よくある問題
 
-| Issue | Solution |
+| 問題 | 解決策 |
 |-------|----------|
-| "Budget exceeded" | Reduce budget or use lower thinking mode |
-| "Low confidence results" | Increase iterations or use deeper mode |
-| "Missing details" | Switch to comprehensive or technical template |
-| "No code examples" | Use technical template with context7 MCP |
+| 「予算超過」 | 予算を減らすか低い思考モードを使用 |
+| 「低信頼度の結果」 | 反復を増やすか深いモードを使用 |
+| 「詳細不足」 | 包括的または技術テンプレートに切り替え |
+| 「コード例なし」 | context7 MCPで技術テンプレートを使用 |
 
-### Performance Tips
+### パフォーマンスのヒント
 
-1. **Use caching** for repeated research
-2. **Specify exact MCP tools** needed
-3. **Start with standard depth**, increase if needed
-4. **Use appropriate templates** for your needs
+1. **繰り返し調査にはキャッシュを使用**
+2. **必要な正確なMCPツールを指定**
+3. **標準深度から開始し、必要に応じて増加**
+4. **ニーズに適したテンプレートを使用**
 
-## Command Examples
+## コマンド例
 
-### For Different Scenarios with Serena Integration
+### Serena統合での異なるシナリオ
 
 ```bash
-# Quick decision making with current context
+# 現在のコンテキストでの簡易意思決定
 /tech-research "Tailwind vs Bootstrap" -d quick -t overview --mcp "serena" --current-styles
 
-# Architecture planning with codebase awareness
+# コードベース認識でのアーキテクチャ計画
 /tech-research "Microservices patterns" -m think-harder -t comprehensive --diagrams --mcp "serena" --current-architecture
 
-# Technology evaluation with existing patterns
+# 既存パターンでの技術評価
 /tech-research "GraphQL adoption" -m think-hard -c 0.9 --sources --mcp "serena" --migration-analysis
 
-# Learning new technology with implementation context
+# 実装コンテキストでの新技術学習
 /tech-research "Rust for web development" -t technical --mcp "context7,serena" --feasibility-check
 
-# Security analysis with current vulnerabilities
+# 現在の脆弱性でのセキュリティ分析
 /tech-research "OWASP Top 10 2024" -m ultrathink -t comprehensive -c 0.95 --mcp "serena" --security-audit
 
-# Performance research with current bottlenecks
+# 現在のボトルネックでのパフォーマンス調査
 /tech-research "Database indexing strategies" -t technical -m think-hard --mcp "serena" --performance-analysis
 
-# Framework comparison with migration planning
+# 移行計画付きフレームワーク比較
 /tech-research "Vue 3 vs React 18" -m think-harder --diagrams -t comprehensive --mcp "serena" --migration-strategy
 
-# Best practices research with current implementation
+# 現在の実装でのベストプラクティス調査
 /tech-research "CI/CD best practices" -t technical --sources --mcp "serena" --current-pipeline-analysis
 ```
 
-### Serena-Specific Research Patterns
+### Serena固有調査パターン
 
 ```bash
-# Pattern discovery in current codebase
+# 現在のコードベースでのパターン発見
 /tech-research "Error handling patterns" --mcp "serena" --pattern-analysis --best-practices
 
-# Technology compatibility analysis
+# 技術互換性分析
 /tech-research "New library integration" --mcp "serena" --compatibility-check --dependency-analysis
 
-# Refactoring research with impact analysis
+# 影響分析付きリファクタリング調査
 /tech-research "Code organization patterns" --mcp "serena" --refactoring-safe --impact-minimal
 
-# Performance optimization with current metrics
+# 現在のメトリクスでのパフォーマンス最適化
 /tech-research "Performance improvements" --mcp "serena" --current-metrics --optimization-targets
 
-# Architecture evolution planning
+# アーキテクチャ進化計画
 /tech-research "System scalability" --mcp "serena" --evolution-path --backward-compatible
 ```
 
-## Integration with Todo System and Serena Memory
+## ToDoシステムとSerenaメモリとの統合
 
-The command automatically creates todos and stores research context:
+コマンドは自動的にToDoを作成し、調査コンテキストを保存します:
 
 ```bash
-# Research with automatic todo generation and Serena integration
+# 自動ToDo生成とSerena統合での調査
 /tech-research "API Gateway implementation" -t technical --mcp "serena" --create-todos
 
-# Creates todos like:
-# - [ ] Validate API Gateway findings
-# - [ ] Create proof of concept using Serena analysis
-# - [ ] Test performance implications
-# - [ ] Document architecture decision in Serena memory
-# - [ ] Update existing codebase patterns
+# 作成されるToDo例:
+# - [ ] API Gatewayの発見を検証
+# - [ ] Serena分析を使用してPoCを作成
+# - [ ] パフォーマンスへの影響をテスト
+# - [ ] アーキテクチャ決定をSerenaメモリにドキュメント化
+# - [ ] 既存のコードベースパターンを更新
 ```
 
-### Serena Memory Integration
+### Serenaメモリ統合
 
 ```bash
-# Store research findings for future reference
+# 将来の参照のために調査結果を保存
 /tech-research "Framework comparison" --mcp "serena" --store-findings
 
-# Later retrieve and build upon previous research
+# 後で取得して過去の調査を基に構築
 /tech-research "Framework implementation" --mcp "serena" --use-previous-research
 
-# Cross-reference with existing decisions
+# 既存の決定と相互参照
 /tech-research "New feature architecture" --mcp "serena" --decision-history --consistency-check
 ```
 
-## Caching System
+## キャッシュシステム
 
-- Results cached for 24 hours by default
-- Cache key: `topic-mode-depth`
-- Location: `~/.claude-research-cache/`
-- Disable: Use `--no-cache` flag
+- 結果はデフォルトで24時間キャッシュ
+- キャッシュキー: `topic-mode-depth`
+- 場所: `~/.claude-research-cache/`
+- 無効化: `--no-cache`フラグを使用
 
-## Future Enhancements
+## 将来の機能強化
 
-Planned features:
-- **Real-time web scraping** for latest information
-- **Comparison matrices** for multiple technologies
-- **Export to Confluence/Notion**
-- **Team collaboration** features
-- **Custom research templates**
-- **API integration** for data sources
-- **Automated testing** of findings
+計画中の機能:
+- **リアルタイムWebスクレイピング**で最新情報
+- **比較マトリックス**で複数技術
+- **Confluence/Notionへのエクスポート**
+- **チームコラボレーション**機能
+- **カスタム調査テンプレート**
+- **データソース向けAPI統合**
+- **発見の自動テスト**
 
-### Serena-Specific Enhancements
-- **Intelligent Research Caching**: Serena-based research result caching and retrieval
-- **Pattern-Based Recommendations**: AI-driven suggestions based on codebase patterns
-- **Implementation Impact Modeling**: Predict implementation effort and risks
-- **Continuous Learning**: Improve research quality based on implementation outcomes
-- **Cross-Project Intelligence**: Learn from multiple projects and teams
-- **Automated Decision Tracking**: Track technology decisions and their outcomes over time
+### Serena固有機能強化
+- **インテリジェント調査キャッシング**: Serenaベースの調査結果キャッシングと取得
+- **パターンベース推奨**: コードベースパターンに基づくAI駆動提案
+- **実装影響モデリング**: 実装労力とリスクを予測
+- **継続学習**: 実装結果に基づく調査品質の向上
+- **クロスプロジェクトインテリジェンス**: 複数プロジェクトとチームから学習
+- **自動決定追跡**: 技術決定とその結果を長期追跡

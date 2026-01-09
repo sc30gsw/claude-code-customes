@@ -1,79 +1,79 @@
 ---
 allowed-tools: Read, Write, Bash, TodoWrite, mcp__playwright__browser_navigate, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_snapshot, mcp__playwright__browser_wait_for, Glob, Grep
-description: Visual regression testing and UI change detection command using Playwright MCP
+description: Playwright MCPを使用したビジュアルリグレッションテストとUI変更検出コマンド
 ---
 
-# Visual Regression Test - Visual Regression Testing
+# Visual Regression Test - ビジュアルリグレッションテスト
 
-## Overview
+## 概要
 
-A visual regression testing command that integrates Playwright MCP with Serena tools to detect visual changes in UI and prevent unintended modifications.
+Playwright MCPとSerenaツールを統合し、UIのビジュアル変更を検出して意図しない修正を防止するビジュアルリグレッションテストコマンドです。
 
-## Usage
+## 使用方法
 
-### Basic Syntax
+### 基本構文
 ```bash
 /visual-regression <target> [options]
 ```
 
-### Target Specification
+### ターゲット指定
 
-| Target Type | Example | Description |
+| ターゲットタイプ | 例 | 説明 |
 |-------------|---------|-------------|
-| **URL** | `http://localhost:3000` | Development app testing |
-| **Production URL** | `https://myapp.com` | Production environment comparison |
-| **Page Path** | `/dashboard`, `/profile` | Specific page testing |
-| **Component** | `Button`, `Modal` | Component-level testing |
+| **URL** | `http://localhost:3000` | 開発アプリのテスト |
+| **本番URL** | `https://myapp.com` | 本番環境との比較 |
+| **ページパス** | `/dashboard`, `/profile` | 特定ページのテスト |
+| **コンポーネント** | `Button`, `Modal` | コンポーネントレベルテスト |
 
-### Options
+### オプション
 
-| Option | Description | Default |
+| オプション | 説明 | デフォルト |
 |--------|-------------|---------|
-| `-b, --baseline` | Create baseline images | false |
-| `-c, --compare` | Compare with existing baseline | true |
-| `-f, --full-page` | Full page screenshot | false |
-| `-m, --mobile` | Test mobile version simultaneously | false |
-| `-d, --devices` | Multiple device testing | desktop |
-| `-t, --threshold` | Difference tolerance threshold (%) | 0.2 |
-| `-i, --ignore-regions` | Specify regions to ignore | none |
-| `-r, --report` | Generate detailed report | false |
-| `-a, --auto-update` | Auto-update confirmation on differences | false |
-| `--animations` | Disable animations | true |
-| `--wait-for` | Wait for element display | 2 seconds |
+| `-b, --baseline` | ベースライン画像を作成 | false |
+| `-c, --compare` | 既存ベースラインと比較 | true |
+| `-f, --full-page` | フルページスクリーンショット | false |
+| `-m, --mobile` | モバイル版も同時テスト | false |
+| `-d, --devices` | 複数デバイステスト | desktop |
+| `-t, --threshold` | 差分許容閾値 (%) | 0.2 |
+| `-i, --ignore-regions` | 無視する領域を指定 | none |
+| `-r, --report` | 詳細レポート生成 | false |
+| `-a, --auto-update` | 差分時の自動更新確認 | false |
+| `--animations` | アニメーション無効化 | true |
+| `--wait-for` | 要素表示待機時間 | 2秒 |
 
-### Usage Examples
+### 使用例
 
 ```bash
-# Create initial baseline images
+# 初期ベースライン画像を作成
 /visual-regression http://localhost:3000 -b -f
 
-# Comparison test after changes
+# 変更後の比較テスト
 /visual-regression http://localhost:3000 -c -r
 
-# Multi-device testing
+# マルチデバイステスト
 /visual-regression /dashboard -m -d "desktop,tablet,mobile"
 
-# Comparison with specific threshold
+# 特定閾値での比較
 /visual-regression /profile -c -t 0.5
 
-# Production environment comparison
+# 本番環境との比較
 /visual-regression https://staging.myapp.com -c --baseline-url=https://myapp.com
 
-# Component-level testing
+# コンポーネントレベルテスト
 /visual-regression /storybook -c --component=Button --states=all
 ```
 
-## Feature Details
+## 機能詳細
 
-### 1. Baseline Management (-b option)
+### 1. ベースライン管理 (-b オプション)
 
-#### Initial Baseline Creation
+#### 初期ベースライン作成
 ```bash
-# Create baseline for entire project
+# プロジェクト全体のベースラインを作成
 /visual-regression http://localhost:3000 -b -f
 ```
 
-#### Baseline Image Structure
+#### ベースライン画像構造
 ```
 visual-tests/
 ├── baselines/
@@ -89,19 +89,19 @@ visual-tests/
 └── diffs/
 ```
 
-#### Version Control
-- Git integration for baseline history management
-- Branch-specific baseline settings
-- Tag-based baseline fixing
+#### バージョン管理
+- ベースライン履歴管理のためのGit統合
+- ブランチ固有のベースライン設定
+- タグベースのベースライン固定
 
-### 2. Difference Detection & Comparison (-c option)
+### 2. 差分検出と比較 (-c オプション)
 
-#### Image Comparison Algorithm
+#### 画像比較アルゴリズム
 ```typescript
 interface ComparisonResult {
-  similarity: number        // Similarity (0-100%)
-  pixelDifference: number   // Number of different pixels
-  regions: DiffRegion[]     // Detailed difference regions
+  similarity: number        // 類似度 (0-100%)
+  pixelDifference: number   // 差分ピクセル数
+  regions: DiffRegion[]     // 詳細差分領域
   severity: 'minor' | 'major' | 'breaking'
 }
 
@@ -110,19 +110,19 @@ interface DiffRegion {
   y: number
   width: number
   height: number
-  significance: number  // Importance (0-1)
+  significance: number  // 重要度 (0-1)
 }
 ```
 
-#### Difference Visualization
-- Highlight display of difference areas
-- Pixel-level change detection
-- Color change analysis
-- Layout shift detection
+#### 差分可視化
+- 差分エリアのハイライト表示
+- ピクセルレベルの変更検出
+- 色変更分析
+- レイアウトシフト検出
 
-### 3. Multi-Device Support (-d option)
+### 3. マルチデバイス対応 (-d オプション)
 
-#### Supported Devices
+#### サポートデバイス
 ```typescript
 const DevicePresets = {
   desktop: { width: 1920, height: 1080 },
@@ -133,55 +133,55 @@ const DevicePresets = {
 }
 ```
 
-#### Responsive Testing
-- Breakpoint-specific screenshots
-- Cross-device consistency checks
-- Screen rotation support verification
+#### レスポンシブテスト
+- ブレークポイント固有のスクリーンショット
+- クロスデバイス整合性チェック
+- 画面回転対応検証
 
-### 4. Ignore Region Settings (-i option)
+### 4. 無視領域設定 (-i オプション)
 
-#### Dynamic Content Exclusion
+#### 動的コンテンツ除外
 ```json
 {
   "ignoreRegions": [
     {
       "selector": ".timestamp",
-      "reason": "Dynamic time display"
+      "reason": "動的な時刻表示"
     },
     {
       "selector": ".user-avatar",
-      "reason": "User-specific image"
+      "reason": "ユーザー固有の画像"
     },
     {
       "coordinates": { "x": 0, "y": 0, "width": 100, "height": 50 },
-      "reason": "Advertisement area"
+      "reason": "広告エリア"
     }
   ]
 }
 ```
 
-#### Exclusion Setting Patterns
-- Element exclusion by selector specification
-- Region exclusion by coordinate specification
-- Text exclusion by regular expressions
-- Automatic detection of dynamic content
+#### 除外設定パターン
+- セレクタ指定による要素除外
+- 座標指定による領域除外
+- 正規表現によるテキスト除外
+- 動的コンテンツの自動検出
 
-### 5. Serena Integration Features
+### 5. Serena統合機能
 
-#### Component Analysis Integration
+#### コンポーネント分析統合
 ```typescript
-// Get component structure and identify test targets
+// コンポーネント構造を取得してテスト対象を特定
 const components = await mcp__serena__get_symbols_overview()
 const testTargets = identifyVisualTestTargets(components)
 
-// Compare with past test results
+// 過去のテスト結果と比較
 const previousResults = await mcp__serena__read_memory('visual-test-history')
 const trendAnalysis = analyzeTrends(previousResults, currentResults)
 ```
 
-#### Learning & Improvement Features
+#### 学習・改善機能
 ```typescript
-// Learn frequently false-positive areas
+// 頻繁に誤検出される領域を学習
 await mcp__serena__write_memory('false-positive-patterns', {
   selector: '.dynamic-element',
   frequency: falsePositiveCount,
@@ -189,11 +189,11 @@ await mcp__serena__write_memory('false-positive-patterns', {
 })
 ```
 
-### 6. Auto-Update Feature (-a option)
+### 6. 自動更新機能 (-a オプション)
 
-#### Intelligent Updates
+#### インテリジェント更新
 ```bash
-# Auto-update confirmation for intentional changes
+# 意図的な変更に対する自動更新確認
 Visual diff detected in login-page.png
 Changes appear to be intentional (UI redesign)
 Update baseline? [y/N/review]: review
@@ -206,35 +206,35 @@ Showing differences:
 Confirm update? [y/N]: y
 ```
 
-#### Update Policies
-- Automatic design change detection
-- Mandatory team review settings
-- Gradual updates (partial approval)
-- Rollback functionality
+#### 更新ポリシー
+- 自動デザイン変更検出
+- 必須チームレビュー設定
+- 段階的更新（部分承認）
+- ロールバック機能
 
-## Implementation Workflow
+## 実装ワークフロー
 
-### Step 1: Environment Preparation & Setup
+### ステップ1: 環境準備とセットアップ
 ```typescript
-// Project structure analysis with Serena
+// Serenaでプロジェクト構造を分析
 await mcp__serena__onboarding()
 const projectStructure = await mcp__serena__get_symbols_overview()
 
-// Identify pages and components
+// ページとコンポーネントを特定
 const testTargets = await mcp__serena__search_for_pattern('visual-test-targets')
 ```
 
-### Step 2: Baseline Creation (Initial)
+### ステップ2: ベースライン作成（初回）
 ```typescript
 for (const device of targetDevices) {
-  // Device configuration
+  // デバイス設定
   await mcp__playwright__browser_resize(device.width, device.height)
 
-  // Page access
+  // ページアクセス
   await mcp__playwright__browser_navigate(targetUrl)
   await mcp__playwright__browser_wait_for({time: waitTime})
 
-  // Disable animations
+  // アニメーション無効化
   if (options.disableAnimations) {
     await mcp__playwright__browser_evaluate(`
       document.querySelectorAll('*').forEach(el => {
@@ -244,7 +244,7 @@ for (const device of targetDevices) {
     `)
   }
 
-  // Take screenshot
+  // スクリーンショット取得
   const screenshot = await mcp__playwright__browser_take_screenshot({
     fullPage: options.fullPage,
     filename: `baseline-${device.name}-${pageName}.png`
@@ -252,12 +252,12 @@ for (const device of targetDevices) {
 }
 ```
 
-### Step 3: Comparison Test Execution
+### ステップ3: 比較テスト実行
 ```typescript
-// Capture current screen
+// 現在の画面をキャプチャ
 const currentScreenshot = await captureCurrentState(targetUrl, device)
 
-// Compare with baseline
+// ベースラインと比較
 const comparisonResult = await compareImages(
   baselineImage,
   currentScreenshot,
@@ -267,13 +267,13 @@ const comparisonResult = await compareImages(
   }
 )
 
-// Analyze differences
+// 差分を分析
 const diffAnalysis = await analyzeDifferences(comparisonResult)
 ```
 
-### Step 4: Result Analysis & Report Generation
+### ステップ4: 結果分析とレポート生成
 ```typescript
-// Aggregate test results
+// テスト結果を集計
 const testResults = {
   totalTests: testCount,
   passed: passedCount,
@@ -282,7 +282,7 @@ const testResults = {
   severity: calculateSeverity(detectedDiffs)
 }
 
-// Save to Serena memory
+// Serenaメモリに保存
 await mcp__serena__write_memory('visual-regression-results', {
   timestamp: Date.now(),
   results: testResults,
@@ -290,54 +290,54 @@ await mcp__serena__write_memory('visual-regression-results', {
 })
 ```
 
-## Report Generation Feature (-r option)
+## レポート生成機能 (-r オプション)
 
-### Detailed Report Structure
+### 詳細レポート構造
 ```markdown
-# Visual Regression Test Report
+# ビジュアルリグレッションテストレポート
 
-## 📊 Test Overview
-- Execution Date: {timestamp}
-- Target URLs: {target-urls}
-- Test Devices: {device-list}
-- Baseline: {baseline-version}
+## 📊 テスト概要
+- 実行日時: {timestamp}
+- 対象URL: {target-urls}
+- テストデバイス: {device-list}
+- ベースライン: {baseline-version}
 
-## 🎯 Test Results Summary
-- Total Tests: {total-tests}
-- Passed: {passed-tests} ✅
-- Failed: {failed-tests} ❌
-- Differences Detected: {detected-diffs} ⚠️
+## 🎯 テスト結果サマリー
+- 総テスト数: {total-tests}
+- 合格: {passed-tests} ✅
+- 不合格: {failed-tests} ❌
+- 差分検出: {detected-diffs} ⚠️
 
-## 📸 Difference Details
+## 📸 差分詳細
 
-### Breaking Changes
-1. **Login Page** - Desktop
-   - Difference Rate: 15.2%
-   - Impact: Layout breakdown
-   - 📷 [Comparison Image](./diffs/login-desktop-diff.png)
+### 破壊的変更
+1. **ログインページ** - デスクトップ
+   - 差分率: 15.2%
+   - 影響: レイアウト崩壊
+   - 📷 [比較画像](./diffs/login-desktop-diff.png)
 
-### Minor Changes
-1. **Dashboard** - Mobile
-   - Difference Rate: 2.1%
-   - Impact: Color changes
-   - 📷 [Comparison Image](./diffs/dashboard-mobile-diff.png)
+### 軽微な変更
+1. **ダッシュボード** - モバイル
+   - 差分率: 2.1%
+   - 影響: 色変更
+   - 📷 [比較画像](./diffs/dashboard-mobile-diff.png)
 
-## 🔧 Recommended Actions
+## 🔧 推奨アクション
 {recommendations}
 
-## 📈 Trend Analysis
+## 📈 トレンド分析
 {trend-analysis}
 ```
 
-### Image-Included Reports
-- Before/After side-by-side display
-- Difference highlight images
-- Pixel-level change maps
-- Regional impact analysis
+### 画像付きレポート
+- Before/After並列表示
+- 差分ハイライト画像
+- ピクセルレベル変更マップ
+- 領域別影響分析
 
-## CI/CD Integration
+## CI/CD統合
 
-### GitHub Actions Integration
+### GitHub Actions統合
 ```yaml
 name: Visual Regression Test
 on: [push, pull_request]
@@ -372,20 +372,20 @@ jobs:
           path: visual-tests/
 ```
 
-### Automation Policies
-- Mandatory checks before PR merge
-- Automatic blocking on failure
-- Required review flag settings
-- Slack/Teams notification integration
+### 自動化ポリシー
+- PRマージ前の必須チェック
+- 失敗時の自動ブロック
+- 必須レビューフラグ設定
+- Slack/Teams通知統合
 
-## Advanced Features
+## 高度な機能
 
-### 1. Component Isolation Testing
+### 1. コンポーネント分離テスト
 ```bash
-# Storybook integration
+# Storybook統合
 /visual-regression http://localhost:6006 --storybook --component=Button --states=all
 
-# Generated test cases:
+# 生成されるテストケース:
 # - Button/Default
 # - Button/Primary
 # - Button/Secondary
@@ -393,20 +393,20 @@ jobs:
 # - Button/Loading
 ```
 
-### 2. Animation Support
+### 2. アニメーション対応
 ```typescript
-// Animation completion waiting
+// アニメーション完了待機
 const animationSettings = {
   disableAnimations: true,
   waitForAnimations: false,
-  captureAnimationFrames: false,  // Video capture
+  captureAnimationFrames: false,  // ビデオキャプチャ
   animationTimeout: 5000
 }
 ```
 
-### 3. Dynamic Content Normalization
+### 3. 動的コンテンツ正規化
 ```typescript
-// Dynamic element masking
+// 動的要素のマスキング
 const normalizationRules = [
   { selector: '.timestamp', replacement: 'MOCKED_TIME' },
   { selector: '.user-id', replacement: 'USER_123' },
@@ -414,85 +414,85 @@ const normalizationRules = [
 ]
 ```
 
-## Performance Optimization
+## パフォーマンス最適化
 
-### Image Processing Optimization
-- Use of compression algorithms
-- Acceleration through parallel processing
-- Cache feature utilization
-- Comparison of difference regions only
+### 画像処理最適化
+- 圧縮アルゴリズムの使用
+- 並列処理による高速化
+- キャッシュ機能の活用
+- 差分領域のみの比較
 
-### Storage Management
-- Automatic deletion of old screenshots
-- Space saving through compression
-- Cloud storage integration
-- Synchronization with version control
+### ストレージ管理
+- 古いスクリーンショットの自動削除
+- 圧縮によるスペース節約
+- クラウドストレージ統合
+- バージョン管理との同期
 
-## Error Handling
+## エラーハンドリング
 
-### Common Errors and Solutions
+### よくあるエラーと解決策
 
-#### Baseline Mismatch Error
+#### ベースライン不一致エラー
 ```bash
 ❌ Error: Baseline image not found
-Solutions:
-1. Create baseline with -b option
-2. Check file paths
-3. Verify branch settings
+解決策:
+1. -b オプションでベースラインを作成
+2. ファイルパスを確認
+3. ブランチ設定を検証
 ```
 
-#### Threshold Exceeded Error
+#### 閾値超過エラー
 ```bash
 ❌ Error: Difference exceeds threshold (0.2%)
-Solutions:
-1. Adjust threshold with -t option
-2. Update with -a for intentional changes
-3. Consider adding ignore regions
+解決策:
+1. -t オプションで閾値を調整
+2. 意図的な変更の場合は -a で更新
+3. 無視領域の追加を検討
 ```
 
-#### Rendering Error
+#### レンダリングエラー
 ```bash
 ❌ Error: Page rendering incomplete
-Solutions:
-1. Extend wait time with --wait-for option
-2. Verify required element loading
-3. Investigate JavaScript errors
+解決策:
+1. --wait-for オプションで待機時間を延長
+2. 必要な要素の読み込みを確認
+3. JavaScriptエラーを調査
 ```
 
-## Limitations & Considerations
+## 制限事項と考慮点
 
-### Test Targets
-- ✅ Static content
-- ✅ CSS/layout changes
-- ✅ Responsive design
-- ⚠️ Dynamic content (requires configuration)
+### テスト対象
+- ✅ 静的コンテンツ
+- ✅ CSS/レイアウト変更
+- ✅ レスポンシブデザイン
+- ⚠️ 動的コンテンツ（設定が必要）
 
-### Limitations
-- ❌ Video/GIF animations
-- ❌ Detailed Canvas element comparison
-- ❌ 3D/WebGL elements
-- ❌ Non-deterministic rendering
+### 制限事項
+- ❌ ビデオ/GIFアニメーション
+- ❌ 詳細なCanvas要素比較
+- ❌ 3D/WebGL要素
+- ❌ 非決定論的レンダリング
 
-## Best Practices
+## ベストプラクティス
 
-### Effective Test Design
-1. **Priority Important Pages**
-   - Landing pages
-   - Payment/login pages
-   - Dashboard screens
+### 効果的なテスト設計
+1. **重要ページを優先**
+   - ランディングページ
+   - 決済/ログインページ
+   - ダッシュボード画面
 
-2. **Appropriate Threshold Settings**
-   - Strict: 0.1-0.2% (important pages)
-   - Standard: 0.5-1.0% (general pages)
-   - Relaxed: 2.0-5.0% (with dynamic elements)
+2. **適切な閾値設定**
+   - 厳格: 0.1-0.2%（重要ページ）
+   - 標準: 0.5-1.0%（一般ページ）
+   - 緩和: 2.0-5.0%（動的要素あり）
 
-3. **Maintenance Strategy**
-   - Regular baseline updates
-   - Delete unnecessary screenshots
-   - Analyze and improve test results
+3. **メンテナンス戦略**
+   - 定期的なベースライン更新
+   - 不要なスクリーンショットの削除
+   - テスト結果の分析と改善
 
-### Team Operations
-- Baseline update flow for design changes
-- Establish review processes
-- False positive learning & improvement cycles
-- Test expansion when adding new features
+### チーム運用
+- デザイン変更時のベースライン更新フロー
+- レビュープロセスの確立
+- 誤検出の学習・改善サイクル
+- 新機能追加時のテスト拡張

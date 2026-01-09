@@ -1,86 +1,86 @@
 ---
 name: estimate
-description: "Provide development estimates for tasks, features, or projects with intelligent analysis"
+description: "インテリジェント分析によるタスク、機能、プロジェクトの開発見積もり提供"
 category: special
 complexity: standard
 mcp-servers: [sequential, context7]
 personas: [architect, performance, project-manager]
 ---
 
-# /sc:estimate - Development Estimation
+# /sc:estimate - 開発見積もり
 
-## Triggers
-- Development planning requiring time, effort, or complexity estimates
-- Project scoping and resource allocation decisions
-- Feature breakdown needing systematic estimation methodology
-- Risk assessment and confidence interval analysis requirements
+## トリガー
+- 時間、工数、複雑さの見積もりが必要な開発計画
+- プロジェクトスコーピングとリソース配分の決定
+- 体系的な見積もり方法論が必要な機能分解
+- リスク評価と信頼区間分析の要件
 
-## Usage
+## 使用方法
 ```
-/sc:estimate [target] [--type time|effort|complexity] [--unit hours|days|weeks] [--breakdown]
-```
-
-## Behavioral Flow
-1. **Analyze**: Examine scope, complexity factors, dependencies, and framework patterns
-2. **Calculate**: Apply estimation methodology with historical benchmarks and complexity scoring
-3. **Validate**: Cross-reference estimates with project patterns and domain expertise
-4. **Present**: Provide detailed breakdown with confidence intervals and risk assessment
-5. **Track**: Document estimation accuracy for continuous methodology improvement
-
-Key behaviors:
-- Multi-persona coordination (architect, performance, project-manager) based on estimation scope
-- Sequential MCP integration for systematic analysis and complexity assessment
-- Context7 MCP integration for framework-specific patterns and historical benchmarks
-- Intelligent breakdown analysis with confidence intervals and risk factors
-
-## MCP Integration
-- **Sequential MCP**: Complex multi-step estimation analysis and systematic complexity assessment
-- **Context7 MCP**: Framework-specific estimation patterns and historical benchmark data
-- **Persona Coordination**: Architect (design complexity), Performance (optimization effort), Project Manager (timeline)
-
-## Tool Coordination
-- **Read/Grep/Glob**: Codebase analysis for complexity assessment and scope evaluation
-- **TodoWrite**: Estimation breakdown and progress tracking for complex estimation workflows
-- **Task**: Advanced delegation for multi-domain estimation requiring systematic coordination
-- **Bash**: Project analysis and dependency evaluation for accurate complexity scoring
-
-## Key Patterns
-- **Scope Analysis**: Project requirements → complexity factors → framework patterns → risk assessment
-- **Estimation Methodology**: Time-based → Effort-based → Complexity-based → Cost-based approaches
-- **Multi-Domain Assessment**: Architecture complexity → Performance requirements → Project timeline
-- **Validation Framework**: Historical benchmarks → cross-validation → confidence intervals → accuracy tracking
-
-## Examples
-
-### Feature Development Estimation
-```
-/sc:estimate "user authentication system" --type time --unit days --breakdown
-# Systematic analysis: Database design (2 days) + Backend API (3 days) + Frontend UI (2 days) + Testing (1 day)
-# Total: 8 days with 85% confidence interval
+/sc:estimate [対象] [--type time|effort|complexity] [--unit hours|days|weeks] [--breakdown]
 ```
 
-### Project Complexity Assessment
+## 動作フロー
+1. **分析**: スコープ、複雑さ要因、依存関係、フレームワークパターンの調査
+2. **計算**: 過去のベンチマークと複雑さスコアリングによる見積もり方法論の適用
+3. **検証**: プロジェクトパターンとドメイン専門知識との相互参照
+4. **提示**: 信頼区間とリスク評価を含む詳細な内訳の提供
+5. **追跡**: 継続的な方法論改善のための見積もり精度の記録
+
+主要な動作:
+- 見積もりスコープに基づくマルチペルソナ連携（architect、performance、project-manager）
+- 体系的分析と複雑さ評価のためのSequential MCP統合
+- フレームワーク固有のパターンと過去のベンチマークのためのContext7 MCP統合
+- 信頼区間とリスク要因を含むインテリジェントな内訳分析
+
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステップ見積もり分析と体系的な複雑さ評価
+- **Context7 MCP**: フレームワーク固有の見積もりパターンと過去のベンチマークデータ
+- **ペルソナ連携**: Architect（設計複雑さ）、Performance（最適化工数）、Project Manager（タイムライン）
+
+## ツール連携
+- **Read/Grep/Glob**: 複雑さ評価とスコープ評価のためのコードベース分析
+- **TodoWrite**: 複雑な見積もりワークフローの見積もり内訳と進捗追跡
+- **Task**: 体系的な連携を必要とするマルチドメイン見積もりのための高度な委任
+- **Bash**: 正確な複雑さスコアリングのためのプロジェクト分析と依存関係評価
+
+## 主要パターン
+- **スコープ分析**: プロジェクト要件 → 複雑さ要因 → フレームワークパターン → リスク評価
+- **見積もり方法論**: 時間ベース → 工数ベース → 複雑さベース → コストベースアプローチ
+- **マルチドメイン評価**: アーキテクチャ複雑さ → パフォーマンス要件 → プロジェクトタイムライン
+- **検証フレームワーク**: 過去のベンチマーク → 相互検証 → 信頼区間 → 精度追跡
+
+## 使用例
+
+### 機能開発見積もり
 ```
-/sc:estimate "migrate monolith to microservices" --type complexity --breakdown
-# Architecture complexity analysis with risk factors and dependency mapping
-# Multi-persona coordination for comprehensive assessment
+/sc:estimate "ユーザー認証システム" --type time --unit days --breakdown
+# 体系的分析: データベース設計（2日）+ バックエンドAPI（3日）+ フロントエンドUI（2日）+ テスト（1日）
+# 合計: 8日（信頼区間85%）
 ```
 
-### Performance Optimization Effort
+### プロジェクト複雑さ評価
 ```
-/sc:estimate "optimize application performance" --type effort --unit hours
-# Performance persona analysis with benchmark comparisons
-# Effort breakdown by optimization category and expected impact
+/sc:estimate "モノリスからマイクロサービスへの移行" --type complexity --breakdown
+# リスク要因と依存関係マッピングを含むアーキテクチャ複雑さ分析
+# 包括的な評価のためのマルチペルソナ連携
 ```
 
-## Boundaries
+### パフォーマンス最適化工数
+```
+/sc:estimate "アプリケーションパフォーマンス最適化" --type effort --unit hours
+# ベンチマーク比較を含むパフォーマンスペルソナ分析
+# 最適化カテゴリと期待される影響による工数内訳
+```
 
-**Will:**
-- Provide systematic development estimates with confidence intervals and risk assessment
-- Apply multi-persona coordination for comprehensive complexity analysis
-- Generate detailed breakdown analysis with historical benchmark comparisons
+## 境界
 
-**Will Not:**
-- Guarantee estimate accuracy without proper scope analysis and validation
-- Provide estimates without appropriate domain expertise and complexity assessment
-- Override historical benchmarks without clear justification and analysis
+**対応範囲:**
+- 信頼区間とリスク評価を含む体系的な開発見積もりの提供
+- 包括的な複雑さ分析のためのマルチペルソナ連携の適用
+- 過去のベンチマーク比較を含む詳細な内訳分析の生成
+
+**対応外:**
+- 適切なスコープ分析と検証なしの見積もり精度の保証
+- 適切なドメイン専門知識と複雑さ評価なしの見積もり提供
+- 明確な根拠と分析なしの過去のベンチマークの上書き

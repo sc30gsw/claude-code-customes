@@ -1,86 +1,86 @@
 ---
 name: select-tool
-description: "Intelligent MCP tool selection based on complexity scoring and operation analysis"
+description: "複雑さスコアリングと操作分析に基づくインテリジェントなMCPツール選択"
 category: special
 complexity: high
 mcp-servers: [serena, morphllm]
 personas: []
 ---
 
-# /sc:select-tool - Intelligent MCP Tool Selection
+# /sc:select-tool - インテリジェントMCPツール選択
 
-## Triggers
-- Operations requiring optimal MCP tool selection between Serena and Morphllm
-- Meta-system decisions needing complexity analysis and capability matching
-- Tool routing decisions requiring performance vs accuracy trade-offs
-- Operations benefiting from intelligent tool capability assessment
+## トリガー
+- SerenaとMorphllm間の最適なMCPツール選択を必要とする操作
+- 複雑さ分析と機能マッチングを必要とするメタシステム決定
+- パフォーマンス vs 精度のトレードオフを必要とするツールルーティング決定
+- インテリジェントなツール機能評価から恩恵を受ける操作
 
-## Usage
+## 使用方法
 ```
-/sc:select-tool [operation] [--analyze] [--explain]
-```
-
-## Behavioral Flow
-1. **Parse**: Analyze operation type, scope, file count, and complexity indicators
-2. **Score**: Apply multi-dimensional complexity scoring across various operation factors
-3. **Match**: Compare operation requirements against Serena and Morphllm capabilities
-4. **Select**: Choose optimal tool based on scoring matrix and performance requirements
-5. **Validate**: Verify selection accuracy and provide confidence metrics
-
-Key behaviors:
-- Complexity scoring based on file count, operation type, language, and framework requirements
-- Performance assessment evaluating speed vs accuracy trade-offs for optimal selection
-- Decision logic matrix with direct mappings and threshold-based routing rules
-- Tool capability matching for Serena (semantic operations) vs Morphllm (pattern operations)
-
-## MCP Integration
-- **Serena MCP**: Optimal for semantic operations, LSP functionality, symbol navigation, and project context
-- **Morphllm MCP**: Optimal for pattern-based edits, bulk transformations, and speed-critical operations
-- **Decision Matrix**: Intelligent routing based on complexity scoring and operation characteristics
-
-## Tool Coordination
-- **get_current_config**: System configuration analysis for tool capability assessment
-- **execute_sketched_edit**: Operation testing and validation for selection accuracy
-- **Read/Grep**: Operation context analysis and complexity factor identification
-- **Integration**: Automatic selection logic used by refactor, edit, implement, and improve commands
-
-## Key Patterns
-- **Direct Mapping**: Symbol operations → Serena, Pattern edits → Morphllm, Memory operations → Serena
-- **Complexity Thresholds**: Score >0.6 → Serena, Score <0.4 → Morphllm, 0.4-0.6 → Feature-based
-- **Performance Trade-offs**: Speed requirements → Morphllm, Accuracy requirements → Serena
-- **Fallback Strategy**: Serena → Morphllm → Native tools degradation chain
-
-## Examples
-
-### Complex Refactoring Operation
-```
-/sc:select-tool "rename function across 10 files" --analyze
-# Analysis: High complexity (multi-file, symbol operations)
-# Selection: Serena MCP (LSP capabilities, semantic understanding)
+/sc:select-tool [操作] [--analyze] [--explain]
 ```
 
-### Pattern-Based Bulk Edit
+## 動作フロー
+1. **解析**: 操作タイプ、スコープ、ファイル数、複雑さ指標を分析
+2. **スコアリング**: 様々な操作要因にわたるマルチ次元複雑さスコアリングを適用
+3. **マッチング**: 操作要件とSerena・Morphllm機能を比較
+4. **選択**: スコアリングマトリックスとパフォーマンス要件に基づいて最適なツールを選択
+5. **検証**: 選択精度を確認し信頼度メトリクスを提供
+
+主要な動作:
+- ファイル数、操作タイプ、言語、フレームワーク要件に基づく複雑さスコアリング
+- 最適な選択のための速度 vs 精度トレードオフを評価するパフォーマンス評価
+- 直接マッピングとしきい値ベースのルーティングルールを含む決定ロジックマトリックス
+- Serena（セマンティック操作）vs Morphllm（パターン操作）のツール機能マッチング
+
+## MCP統合
+- **Serena MCP**: セマンティック操作、LSP機能、シンボルナビゲーション、プロジェクトコンテキストに最適
+- **Morphllm MCP**: パターンベースの編集、一括変換、速度重視の操作に最適
+- **決定マトリックス**: 複雑さスコアリングと操作特性に基づくインテリジェントルーティング
+
+## ツール連携
+- **get_current_config**: ツール機能評価のためのシステム設定分析
+- **execute_sketched_edit**: 選択精度のための操作テストと検証
+- **Read/Grep**: 操作コンテキスト分析と複雑さ要因特定
+- **統合**: refactor、edit、implement、improveコマンドが使用する自動選択ロジック
+
+## 主要パターン
+- **直接マッピング**: シンボル操作 → Serena、パターン編集 → Morphllm、メモリ操作 → Serena
+- **複雑さしきい値**: スコア>0.6 → Serena、スコア<0.4 → Morphllm、0.4-0.6 → 機能ベース
+- **パフォーマンストレードオフ**: 速度要件 → Morphllm、精度要件 → Serena
+- **フォールバック戦略**: Serena → Morphllm → ネイティブツール劣化チェーン
+
+## 使用例
+
+### 複雑なリファクタリング操作
 ```
-/sc:select-tool "update console.log to logger.info across project" --explain
-# Analysis: Pattern-based transformation, speed priority
-# Selection: Morphllm MCP (pattern matching, bulk operations)
+/sc:select-tool "10ファイルにわたる関数のリネーム" --analyze
+# 分析: 高複雑さ（マルチファイル、シンボル操作）
+# 選択: Serena MCP（LSP機能、セマンティック理解）
 ```
 
-### Memory Management Operation
+### パターンベースの一括編集
 ```
-/sc:select-tool "save project context and discoveries"
-# Direct mapping: Memory operations → Serena MCP
-# Rationale: Project context and cross-session persistence
+/sc:select-tool "プロジェクト全体でconsole.logをlogger.infoに更新" --explain
+# 分析: パターンベースの変換、速度優先
+# 選択: Morphllm MCP（パターンマッチング、一括操作）
 ```
 
-## Boundaries
+### メモリ管理操作
+```
+/sc:select-tool "プロジェクトコンテキストと発見を保存"
+# 直接マッピング: メモリ操作 → Serena MCP
+# 理由: プロジェクトコンテキストとクロスセッション永続化
+```
 
-**Will:**
-- Analyze operations and provide optimal tool selection between Serena and Morphllm
-- Apply complexity scoring based on file count, operation type, and requirements
-- Provide sub-100ms decision time with >95% selection accuracy
+## 境界
 
-**Will Not:**
-- Override explicit tool specifications when user has clear preference
-- Select tools without proper complexity analysis and capability matching
-- Compromise performance requirements for convenience or speed
+**対応範囲:**
+- 操作を分析しSerenaとMorphllm間の最適なツール選択を提供
+- ファイル数、操作タイプ、要件に基づく複雑さスコアリングの適用
+- 100ms未満の決定時間で95%以上の選択精度を提供
+
+**対応外:**
+- ユーザーが明確な好みを持つ場合の明示的なツール指定の上書き
+- 適切な複雑さ分析と機能マッチングなしのツール選択
+- 利便性や速度のためのパフォーマンス要件の妥協

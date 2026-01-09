@@ -1,93 +1,93 @@
 ---
 name: save
-description: "Session lifecycle management with Serena MCP integration for session context persistence"
+description: "セッションコンテキスト永続化のためのSerena MCP統合によるセッションライフサイクル管理"
 category: session
 complexity: standard
 mcp-servers: [serena]
 personas: []
 ---
 
-# /sc:save - Session Context Persistence
+# /sc:save - セッションコンテキスト永続化
 
-## Triggers
-- Session completion and project context persistence needs
-- Cross-session memory management and checkpoint creation requests
-- Project understanding preservation and discovery archival scenarios
-- Session lifecycle management and progress tracking requirements
+## トリガー
+- セッション完了とプロジェクトコンテキスト永続化のニーズ
+- クロスセッションメモリ管理とチェックポイント作成リクエスト
+- プロジェクト理解保存と発見アーカイブシナリオ
+- セッションライフサイクル管理と進捗追跡の要件
 
-## Usage
+## 使用方法
 ```
 /sc:save [--type session|learnings|context|all] [--summarize] [--checkpoint]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine session progress and identify discoveries worth preserving
-2. **Persist**: Save session context and learnings using Serena MCP memory management
-3. **Checkpoint**: Create recovery points for complex sessions and progress tracking
-4. **Validate**: Ensure session data integrity and cross-session compatibility
-5. **Prepare**: Ready session context for seamless continuation in future sessions
+## 動作フロー
+1. **分析**: セッション進捗の調査と保存価値のある発見の特定
+2. **永続化**: Serena MCPメモリ管理を使用したセッションコンテキストと学習の保存
+3. **チェックポイント**: 複雑なセッションと進捗追跡のための回復ポイント作成
+4. **検証**: セッションデータの整合性とクロスセッション互換性の確保
+5. **準備**: 将来のセッションでのシームレスな継続のためのセッションコンテキスト準備
 
-Key behaviors:
-- Serena MCP integration for memory management and cross-session persistence
-- Automatic checkpoint creation based on session progress and critical tasks
-- Session context preservation with comprehensive discovery and pattern archival
-- Cross-session learning with accumulated project insights and technical decisions
+主要な動作:
+- メモリ管理とクロスセッション永続化のためのSerena MCP統合
+- セッション進捗と重要タスクに基づく自動チェックポイント作成
+- 包括的な発見とパターンアーカイブによるセッションコンテキスト保存
+- 蓄積されたプロジェクトインサイトと技術的決定によるクロスセッション学習
 
-## MCP Integration
-- **Serena MCP**: Mandatory integration for session management, memory operations, and cross-session persistence
-- **Memory Operations**: Session context storage, checkpoint creation, and discovery archival
-- **Performance Critical**: <200ms for memory operations, <1s for checkpoint creation
+## MCP統合
+- **Serena MCP**: セッション管理、メモリ操作、クロスセッション永続化のための必須統合
+- **メモリ操作**: セッションコンテキスト保存、チェックポイント作成、発見アーカイブ
+- **パフォーマンスクリティカル**: メモリ操作で200ms未満、チェックポイント作成で1秒未満
 
-## Tool Coordination
-- **write_memory/read_memory**: Core session context persistence and retrieval
-- **think_about_collected_information**: Session analysis and discovery identification
-- **summarize_changes**: Session summary generation and progress documentation
-- **TodoRead**: Task completion tracking for automatic checkpoint triggers
+## ツール連携
+- **write_memory/read_memory**: コアセッションコンテキスト永続化と取得
+- **think_about_collected_information**: セッション分析と発見特定
+- **summarize_changes**: セッションサマリー生成と進捗ドキュメント
+- **TodoRead**: 自動チェックポイントトリガーのためのタスク完了追跡
 
-## Key Patterns
-- **Session Preservation**: Discovery analysis → memory persistence → checkpoint creation
-- **Cross-Session Learning**: Context accumulation → pattern archival → enhanced project understanding
-- **Progress Tracking**: Task completion → automatic checkpoints → session continuity
-- **Recovery Planning**: State preservation → checkpoint validation → restoration readiness
+## 主要パターン
+- **セッション保存**: 発見分析 → メモリ永続化 → チェックポイント作成
+- **クロスセッション学習**: コンテキスト蓄積 → パターンアーカイブ → プロジェクト理解強化
+- **進捗追跡**: タスク完了 → 自動チェックポイント → セッション継続性
+- **回復計画**: 状態保存 → チェックポイント検証 → 復元準備
 
-## Examples
+## 使用例
 
-### Basic Session Save
+### 基本セッション保存
 ```
 /sc:save
-# Saves current session discoveries and context to Serena MCP
-# Automatically creates checkpoint if session exceeds 30 minutes
+# 現在のセッション発見とコンテキストをSerena MCPに保存
+# セッションが30分を超える場合は自動的にチェックポイントを作成
 ```
 
-### Comprehensive Session Checkpoint
+### 包括的セッションチェックポイント
 ```
 /sc:save --type all --checkpoint
-# Complete session preservation with recovery checkpoint
-# Includes all learnings, context, and progress for session restoration
+# 回復チェックポイント付きの完全なセッション保存
+# セッション復元のためのすべての学習、コンテキスト、進捗を含む
 ```
 
-### Session Summary Generation
+### セッションサマリー生成
 ```
 /sc:save --summarize
-# Creates session summary with discovery documentation
-# Updates cross-session learning patterns and project insights
+# 発見ドキュメント付きのセッションサマリーを作成
+# クロスセッション学習パターンとプロジェクトインサイトを更新
 ```
 
-### Discovery-Only Persistence
+### 発見のみの永続化
 ```
 /sc:save --type learnings
-# Saves only new patterns and insights discovered during session
-# Updates project understanding without full session preservation
+# セッション中に発見した新しいパターンとインサイトのみを保存
+# 完全なセッション保存なしでプロジェクト理解を更新
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Save session context using Serena MCP integration for cross-session persistence
-- Create automatic checkpoints based on session progress and task completion
-- Preserve discoveries and patterns for enhanced project understanding
+**対応範囲:**
+- クロスセッション永続化のためのSerena MCP統合によるセッションコンテキストの保存
+- セッション進捗とタスク完了に基づく自動チェックポイントの作成
+- プロジェクト理解強化のための発見とパターンの保存
 
-**Will Not:**
-- Operate without proper Serena MCP integration and memory access
-- Save session data without validation and integrity verification
-- Override existing session context without proper checkpoint preservation
+**対応外:**
+- 適切なSerena MCP統合とメモリアクセスなしの操作
+- 検証と整合性確認なしのセッションデータ保存
+- 適切なチェックポイント保存なしの既存セッションコンテキストの上書き

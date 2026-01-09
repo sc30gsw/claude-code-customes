@@ -1,85 +1,86 @@
 ---
 name: spawn
-description: "Meta-system task orchestration with intelligent breakdown and delegation"
+description: "インテリジェントな分解と委任によるメタシステムタスクオーケストレーション"
 category: special
 complexity: high
 mcp-servers: []
 personas: []
 ---
 
-# /sc:spawn - Meta-System Task Orchestration
+# /sc:spawn - メタシステムタスクオーケストレーション
 
-## Triggers
-- Complex multi-domain operations requiring intelligent task breakdown
-- Large-scale system operations spanning multiple technical areas
-- Operations requiring parallel coordination and dependency management
-- Meta-level orchestration beyond standard command capabilities
+## トリガー
+- インテリジェントなタスク分解を必要とする複雑なマルチドメイン操作
+- 複数の技術領域にまたがる大規模システム操作
+- 並列連携と依存関係管理を必要とする操作
+- 標準コマンド機能を超えるメタレベルオーケストレーション
 
-## Usage
+## 使用方法
 ```
-/sc:spawn [complex-task] [--strategy sequential|parallel|adaptive] [--depth normal|deep]
-```
-
-## Behavioral Flow
-1. **Analyze**: Parse complex operation requirements and assess scope across domains
-2. **Decompose**: Break down operation into coordinated subtask hierarchies
-3. **Orchestrate**: Execute tasks using optimal coordination strategy (parallel/sequential)
-4. **Monitor**: Track progress across task hierarchies with dependency management
-5. **Integrate**: Aggregate results and provide comprehensive orchestration summary
-
-Key behaviors:
-- Meta-system task decomposition with Epic → Story → Task → Subtask breakdown
-- Intelligent coordination strategy selection based on operation characteristics
-- Cross-domain operation management with parallel and sequential execution patterns
-- Advanced dependency analysis and resource optimization across task hierarchies
-## MCP Integration
-- **Native Orchestration**: Meta-system command uses native coordination without MCP dependencies
-- **Progressive Integration**: Coordination with systematic execution for progressive enhancement
-- **Framework Integration**: Advanced integration with SuperClaude orchestration layers
-
-## Tool Coordination
-- **TodoWrite**: Hierarchical task breakdown and progress tracking across Epic → Story → Task levels
-- **Read/Grep/Glob**: System analysis and dependency mapping for complex operations
-- **Edit/MultiEdit/Write**: Coordinated file operations with parallel and sequential execution
-- **Bash**: System-level operations coordination with intelligent resource management
-
-## Key Patterns
-- **Hierarchical Breakdown**: Epic-level operations → Story coordination → Task execution → Subtask granularity
-- **Strategy Selection**: Sequential (dependency-ordered) → Parallel (independent) → Adaptive (dynamic)
-- **Meta-System Coordination**: Cross-domain operations → resource optimization → result integration
-- **Progressive Enhancement**: Systematic execution → quality gates → comprehensive validation
-
-## Examples
-
-### Complex Feature Implementation
-```
-/sc:spawn "implement user authentication system"
-# Breakdown: Database design → Backend API → Frontend UI → Testing
-# Coordinates across multiple domains with dependency management
+/sc:spawn [複雑タスク] [--strategy sequential|parallel|adaptive] [--depth normal|deep]
 ```
 
-### Large-Scale System Operation
+## 動作フロー
+1. **分析**: 複雑な操作要件を解析しドメイン全体のスコープを評価
+2. **分解**: 連携されたサブタスク階層に操作を分解
+3. **オーケストレーション**: 最適な連携戦略（並列/順次）を使用してタスクを実行
+4. **監視**: 依存関係管理を備えたタスク階層全体の進捗を追跡
+5. **統合**: 結果を集約し包括的なオーケストレーションサマリーを提供
+
+主要な動作:
+- Epic → Story → Task → Subtask分解によるメタシステムタスク分解
+- 操作特性に基づくインテリジェントな連携戦略選択
+- 並列・順次実行パターンによるクロスドメイン操作管理
+- タスク階層全体での高度な依存関係分析とリソース最適化
+
+## MCP統合
+- **ネイティブオーケストレーション**: メタシステムコマンドはMCP依存なしでネイティブ連携を使用
+- **プログレッシブ統合**: プログレッシブ強化のための体系的実行との連携
+- **フレームワーク統合**: SuperClaudeオーケストレーションレイヤーとの高度な統合
+
+## ツール連携
+- **TodoWrite**: Epic → Story → Taskレベル全体での階層的タスク分解と進捗追跡
+- **Read/Grep/Glob**: 複雑な操作のためのシステム分析と依存関係マッピング
+- **Edit/MultiEdit/Write**: 並列・順次実行による連携されたファイル操作
+- **Bash**: インテリジェントなリソース管理によるシステムレベル操作連携
+
+## 主要パターン
+- **階層的分解**: Epicレベル操作 → Story連携 → Task実行 → Subtask粒度
+- **戦略選択**: Sequential（依存関係順） → Parallel（独立） → Adaptive（動的）
+- **メタシステム連携**: クロスドメイン操作 → リソース最適化 → 結果統合
+- **プログレッシブ強化**: 体系的実行 → 品質ゲート → 包括的検証
+
+## 使用例
+
+### 複雑な機能実装
 ```
-/sc:spawn "migrate legacy monolith to microservices" --strategy adaptive --depth deep
-# Enterprise-scale operation with sophisticated orchestration
-# Adaptive coordination based on operation characteristics
+/sc:spawn "ユーザー認証システムを実装"
+# 分解: データベース設計 → バックエンドAPI → フロントエンドUI → テスト
+# 依存関係管理で複数ドメイン間を連携
 ```
 
-### Cross-Domain Infrastructure
+### 大規模システム操作
 ```
-/sc:spawn "establish CI/CD pipeline with security scanning"
-# System-wide infrastructure operation spanning DevOps, Security, Quality domains
-# Parallel execution of independent components with validation gates
+/sc:spawn "レガシーモノリスをマイクロサービスに移行" --strategy adaptive --depth deep
+# 洗練されたオーケストレーションによるエンタープライズスケール操作
+# 操作特性に基づく適応的連携
 ```
 
-## Boundaries
+### クロスドメインインフラストラクチャ
+```
+/sc:spawn "セキュリティスキャン付きCI/CDパイプラインを確立"
+# DevOps、Security、Qualityドメインにまたがるシステム全体のインフラ操作
+# 検証ゲート付きの独立コンポーネントの並列実行
+```
 
-**Will:**
-- Decompose complex multi-domain operations into coordinated task hierarchies
-- Provide intelligent orchestration with parallel and sequential coordination strategies
-- Execute meta-system operations beyond standard command capabilities
+## 境界
 
-**Will Not:**
-- Replace domain-specific commands for simple operations
-- Override user coordination preferences or execution strategies
-- Execute operations without proper dependency analysis and validation
+**対応範囲:**
+- 複雑なマルチドメイン操作を連携されたタスク階層に分解
+- 並列・順次連携戦略によるインテリジェントなオーケストレーションを提供
+- 標準コマンド機能を超えるメタシステム操作を実行
+
+**対応外:**
+- 単純な操作に対するドメイン固有コマンドの置き換え
+- ユーザーの連携好みや実行戦略の上書き
+- 適切な依存関係分析と検証なしの操作実行

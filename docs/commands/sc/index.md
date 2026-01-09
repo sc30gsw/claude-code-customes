@@ -1,86 +1,86 @@
 ---
 name: index
-description: "Generate comprehensive project documentation and knowledge base with intelligent organization"
+description: "インテリジェントな整理による包括的なプロジェクトドキュメントとナレッジベースの生成"
 category: special
 complexity: standard
 mcp-servers: [sequential, context7]
 personas: [architect, scribe, quality]
 ---
 
-# /sc:index - Project Documentation
+# /sc:index - プロジェクトドキュメント
 
-## Triggers
-- Project documentation creation and maintenance requirements
-- Knowledge base generation and organization needs
-- API documentation and structure analysis requirements
-- Cross-referencing and navigation enhancement requests
+## トリガー
+- プロジェクトドキュメント作成と保守の要件
+- ナレッジベース生成と整理のニーズ
+- APIドキュメントと構造分析の要件
+- クロスリファレンスとナビゲーション強化のリクエスト
 
-## Usage
+## 使用方法
 ```
-/sc:index [target] [--type docs|api|structure|readme] [--format md|json|yaml]
+/sc:index [対象] [--type docs|api|structure|readme] [--format md|json|yaml]
 ```
 
-## Behavioral Flow
-1. **Analyze**: Examine project structure and identify key documentation components
-2. **Organize**: Apply intelligent organization patterns and cross-referencing strategies
-3. **Generate**: Create comprehensive documentation with framework-specific patterns
-4. **Validate**: Ensure documentation completeness and quality standards
-5. **Maintain**: Update existing documentation while preserving manual additions and customizations
+## 動作フロー
+1. **分析**: プロジェクト構造の調査と主要ドキュメントコンポーネントの特定
+2. **整理**: インテリジェントな整理パターンとクロスリファレンス戦略の適用
+3. **生成**: フレームワーク固有のパターンによる包括的なドキュメントの作成
+4. **検証**: ドキュメントの完全性と品質標準の確保
+5. **保守**: 手動追加とカスタマイズを保持しながら既存ドキュメントを更新
 
-Key behaviors:
-- Multi-persona coordination (architect, scribe, quality) based on documentation scope and complexity
-- Sequential MCP integration for systematic analysis and comprehensive documentation workflows
-- Context7 MCP integration for framework-specific patterns and documentation standards
-- Intelligent organization with cross-referencing capabilities and automated maintenance
+主要な動作:
+- ドキュメントスコープと複雑さに基づくマルチペルソナ連携（architect、scribe、quality）
+- 体系的分析と包括的ドキュメントワークフローのためのSequential MCP統合
+- フレームワーク固有のパターンとドキュメント標準のためのContext7 MCP統合
+- クロスリファレンス機能と自動保守を備えたインテリジェントな整理
 
-## MCP Integration
-- **Sequential MCP**: Complex multi-step project analysis and systematic documentation generation
-- **Context7 MCP**: Framework-specific documentation patterns and established standards
-- **Persona Coordination**: Architect (structure), Scribe (content), Quality (validation)
+## MCP統合
+- **Sequential MCP**: 複雑なマルチステッププロジェクト分析と体系的なドキュメント生成
+- **Context7 MCP**: フレームワーク固有のドキュメントパターンと確立された標準
+- **ペルソナ連携**: Architect（構造）、Scribe（コンテンツ）、Quality（検証）
 
-## Tool Coordination
-- **Read/Grep/Glob**: Project structure analysis and content extraction for documentation generation
-- **Write**: Documentation creation with intelligent organization and cross-referencing
-- **TodoWrite**: Progress tracking for complex multi-component documentation workflows
-- **Task**: Advanced delegation for large-scale documentation requiring systematic coordination
+## ツール連携
+- **Read/Grep/Glob**: ドキュメント生成のためのプロジェクト構造分析とコンテンツ抽出
+- **Write**: インテリジェントな整理とクロスリファレンスによるドキュメント作成
+- **TodoWrite**: 複雑なマルチコンポーネントドキュメントワークフローの進捗追跡
+- **Task**: 体系的な連携を必要とする大規模ドキュメントの高度な委任
 
-## Key Patterns
-- **Structure Analysis**: Project examination → component identification → logical organization → cross-referencing
-- **Documentation Types**: API docs → Structure docs → README → Knowledge base approaches
-- **Quality Validation**: Completeness assessment → accuracy verification → standard compliance → maintenance planning
-- **Framework Integration**: Context7 patterns → official standards → best practices → consistency validation
+## 主要パターン
+- **構造分析**: プロジェクト調査 → コンポーネント特定 → 論理的整理 → クロスリファレンス
+- **ドキュメントタイプ**: APIドキュメント → 構造ドキュメント → README → ナレッジベースアプローチ
+- **品質検証**: 完全性評価 → 正確性確認 → 標準準拠 → 保守計画
+- **フレームワーク統合**: Context7パターン → 公式標準 → ベストプラクティス → 一貫性検証
 
-## Examples
+## 使用例
 
-### Project Structure Documentation
+### プロジェクト構造ドキュメント
 ```
 /sc:index project-root --type structure --format md
-# Comprehensive project structure documentation with intelligent organization
-# Creates navigable structure with cross-references and component relationships
+# インテリジェントな整理による包括的なプロジェクト構造ドキュメント
+# クロスリファレンスとコンポーネント関係を含むナビゲート可能な構造を作成
 ```
 
-### API Documentation Generation
+### APIドキュメント生成
 ```
 /sc:index src/api --type api --format json
-# API documentation with systematic analysis and validation
-# Scribe and quality personas ensure completeness and accuracy
+# 体系的分析と検証によるAPIドキュメント
+# ScribeとQualityペルソナが完全性と正確性を確保
 ```
 
-### Knowledge Base Creation
+### ナレッジベース作成
 ```
 /sc:index . --type docs
-# Interactive knowledge base generation with project-specific patterns
-# Architect persona provides structural organization and cross-referencing
+# プロジェクト固有のパターンによるインタラクティブなナレッジベース生成
+# Architectペルソナが構造的整理とクロスリファレンスを提供
 ```
 
-## Boundaries
+## 境界
 
-**Will:**
-- Generate comprehensive project documentation with intelligent organization and cross-referencing
-- Apply multi-persona coordination for systematic analysis and quality validation
-- Provide framework-specific patterns and established documentation standards
+**対応範囲:**
+- インテリジェントな整理とクロスリファレンスによる包括的なプロジェクトドキュメントの生成
+- 体系的分析と品質検証のためのマルチペルソナ連携の適用
+- フレームワーク固有のパターンと確立されたドキュメント標準の提供
 
-**Will Not:**
-- Override existing manual documentation without explicit update permission
-- Generate documentation without appropriate project structure analysis and validation
-- Bypass established documentation standards or quality requirements
+**対応外:**
+- 明示的な更新許可なしの既存手動ドキュメントの上書き
+- 適切なプロジェクト構造分析と検証なしのドキュメント生成
+- 確立されたドキュメント標準や品質要件のバイパス
