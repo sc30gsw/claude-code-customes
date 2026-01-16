@@ -13,11 +13,13 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 - [senior-frontend-skill](./senior-frontend-skill.md) - シニアフロントエンド開発
 - [senior-backend-skill](./senior-backend-skill.md) - シニアバックエンド開発
 - [frontend-design-skill](./frontend-design-skill.md) - フロントエンドデザイン
+- [vercel-react-best-practices-skill](./vercel-react-best-practices-skill.md) - React/Next.js パフォーマンス最適化
 
 ### 品質・レビュースキル
 - [code-reviewer-skill](./code-reviewer-skill.md) - コードレビュー専門
 - [systematic-debugging-skill](./systematic-debugging-skill.md) - 体系的デバッグ
 - [webapp-testing-skill](./webapp-testing-skill.md) - Webアプリテスト
+- [web-design-guidelines-skill](./web-design-guidelines-skill.md) - Web Interface Guidelines レビュー
 
 ### AI・プロンプトスキル
 - [senior-prompt-engineer-skill](./senior-prompt-engineer-skill.md) - プロンプトエンジニアリング
