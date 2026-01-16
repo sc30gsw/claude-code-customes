@@ -21,8 +21,8 @@
 - [cc-sdd](https://github.com/gotalab/cc-sdd)
 
 
-### SuperClaudeを導入したい場合:
+### Claude Code Framework
+
+- [Claude Code Templates](https://www.aitmpl.com/agents)
 - [公式ドキュメント](https://superclaude.netlify.app/)
 - [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
-- [個人ドキュメント](docs/sc)
-- 各種MDファイル: CLAUDE.mdのコンテキスト

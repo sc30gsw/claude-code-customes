@@ -31,3 +31,10 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 ## 使用方法
 
 各スキルは自動的に適切なコンテキストで有効化されます。詳細な機能や使用例については、各スキルファイルを参照してください。
+
+## 公式Skills
+
+- [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)
+- [Expo Skills](https://github.com/expo/skills)
+- [Awesome Claude Skills](https://github.com/ComposioHQ/awesome-claude-skills)
+- [Claude Scientific Skills](https://github.com/K-Dense-AI/claude-scientific-skills)
