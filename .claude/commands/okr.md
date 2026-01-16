@@ -1,231 +1,232 @@
 ---
 allowed-tools: Read, Write, Glob, TodoWrite, mcp__sequential-thinking__sequentialthinking
-description: チームの上位目標と役割に基づいて四半期OKRを作成支援。3つのObjectiveと各3つのKey Result（合計9つ）を生成し、各KRに70%/100%達成基準を設定。
+description: Create quarterly OKRs based on team goals and role. Generates 3 Objectives with 3 Key Results each (9 total), with 70%/100% achievement criteria.
 argument-hint: --role <role> <team-goals>
 ---
 
-# /okr - OKR設定支援コマンド
+# /okr - OKR Creation Support Command
 
-## 概要
-チームの上位目標に基づいて、個人の四半期OKRを対話的に作成支援するコマンド。
+## Overview
+An interactive command that helps create individual quarterly OKRs based on team-level goals.
 
-## 使用方法
+## Usage
 ```bash
 /okr --role <role> "<team-goals>"
 ```
 
-### 引数
-| 引数 | 必須 | 説明 |
-|------|------|------|
-| `--role` | はい | 役割（engineer, pm, designer, qa, data-analyst, etc.） |
-| `<team-goals>` | はい | チームの上位目標（自然言語テキスト） |
+### Arguments
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `--role` | Yes | Role (engineer, pm, designer, qa, data-analyst, etc.) |
+| `<team-goals>` | Yes | Team-level goals (natural language text) |
 
-### 使用例
+### Examples
 ```bash
-/okr --role engineer "売上20%増加、顧客満足度NPS+10向上、新規プロダクト2件リリース"
-/okr --role pm "チーム生産性向上、品質改善、技術負債削減"
-/okr --role designer "UX改善、デザインシステム構築、ブランド統一"
+/okr --role engineer "20% revenue increase, NPS +10 improvement, 2 new product launches"
+/okr --role pm "Team productivity improvement, quality enhancement, technical debt reduction"
+/okr --role designer "UX improvement, design system establishment, brand consistency"
 ```
 
-## 処理ワークフロー
+## Processing Workflow
 
-### Phase 1: チーム上位目標の分析
+### Phase 1: Team Goal Analysis
 
-1. **引数のパース**: `--role`オプションとチーム目標テキストを抽出
-2. **優先事項の抽出**: チーム目標から複数の優先事項を特定
-3. **役割との関連性整理**: 指定された役割がどのように各優先事項に貢献できるか分析
+1. **Argument Parsing**: Extract `--role` option and team goal text
+2. **Priority Extraction**: Identify multiple priorities from team goals
+3. **Role Alignment**: Analyze how the specified role can contribute to each priority
 
-**Sequential Thinkingを使用して**:
-- チーム目標の構造を分析
-- 隠れた優先事項や依存関係を特定
-- 役割に適したフォーカスエリアを決定
+**Using Sequential Thinking**:
+- Analyze team goal structure
+- Identify hidden priorities and dependencies
+- Determine role-appropriate focus areas
 
-### Phase 2: Objective設計（3つ）
+### Phase 2: Objective Design (3 Objectives)
 
-**良いObjectiveの特徴**:
-- 定性的でインスピレーショナル
-- チーム目標との明確な整合性
-- 達成可能かつチャレンジング
-- 役割の責任範囲に適合
+**Characteristics of Good Objectives**:
+- Qualitative and inspirational
+- Clear alignment with team goals
+- Achievable yet challenging
+- Fits within role's responsibilities
 
-**設計プロセス**:
-1. チーム目標の各優先事項に対応するObjective候補を3つ生成
-2. 各Objectiveが異なる側面をカバーするよう調整
-3. 役割に特化した表現に最適化
+**Design Process**:
+1. Generate 3 Objective candidates corresponding to team goal priorities
+2. Adjust each Objective to cover different aspects
+3. Optimize expressions for the specific role
 
-### Phase 3: Key Result設計（各Objectiveに3つ、合計9つ）
+### Phase 3: Key Result Design (3 per Objective, 9 Total)
 
-**良いKey Resultの特徴（SMART）**:
-- **S**pecific（具体的）
-- **M**easurable（測定可能）
-- **A**chievable（達成可能）
-- **R**elevant（関連性）
-- **T**ime-bound（期限付き - 四半期）
+**Characteristics of Good Key Results (SMART)**:
+- **S**pecific
+- **M**easurable
+- **A**chievable
+- **R**elevant
+- **T**ime-bound (quarterly)
 
-**70%/100%達成基準の設定ガイドライン**:
+**70%/100% Achievement Criteria Guidelines**:
 
-| 達成度 | 意味 | 設定基準 |
-|--------|------|----------|
-| 70%達成 | 通常目標 | 努力すれば高確率で達成可能な目標 |
-| 100%達成 | ストレッチ目標 | 全てがうまくいった場合に達成可能な挑戦的目標 |
+| Achievement | Meaning | Setting Criteria |
+|-------------|---------|------------------|
+| 70% | Standard target | Highly achievable with effort |
+| 100% | Stretch target | Achievable when everything goes perfectly |
 
-**設計プロセス**:
-1. 各Objectiveに対して測定可能なKRを3つ生成
-2. 各KRに70%（通常）と100%（ストレッチ）の2段階目標を設定
-3. 数値目標の妥当性を検証
+**Design Process**:
+1. Generate 3 measurable KRs for each Objective
+2. Set dual targets: 70% (standard) and 100% (stretch) for each KR
+3. Validate numerical targets for reasonableness
 
-### Phase 4: 出力＆レビュー
+### Phase 4: Output & Review
 
-完成したOKRを以下のフォーマットで出力:
+Output completed OKRs in the following format:
 
 ```markdown
-# 四半期OKR（FY20XX Q○）
+# Quarterly OKR (FY20XX Q○)
 
-## あなたの役割
-[指定された役割]
+## Your Role
+[Specified role]
 
-## チーム上位目標との関連
-[入力された上位目標の要約]
+## Alignment with Team Goals
+[Summary of input team goals]
 
-### 抽出された優先事項
-1. [優先事項1]
-2. [優先事項2]
-3. [優先事項3]
-
----
-
-## Objective 1: [目標名]
-> [インスピレーショナルな説明文]
-
-### Key Result 1.1: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
-
-### Key Result 1.2: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
-
-### Key Result 1.3: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
+### Extracted Priorities
+1. [Priority 1]
+2. [Priority 2]
+3. [Priority 3]
 
 ---
 
-## Objective 2: [目標名]
-> [インスピレーショナルな説明文]
+## Objective 1: [Objective Name]
+> [Inspirational description]
 
-### Key Result 2.1: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
+### Key Result 1.1: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
 
-### Key Result 2.2: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
+### Key Result 1.2: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
 
-### Key Result 2.3: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
-
----
-
-## Objective 3: [目標名]
-> [インスピレーショナルな説明文]
-
-### Key Result 3.1: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
-
-### Key Result 3.2: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
-
-### Key Result 3.3: [KR名]
-| 達成度 | 目標 |
-|--------|------|
-| 70%達成 | [通常目標] |
-| 100%達成 | [ストレッチ目標] |
+### Key Result 1.3: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
 
 ---
 
-## サマリー
+## Objective 2: [Objective Name]
+> [Inspirational description]
 
-| Objective | Key Results数 | チーム目標との関連 |
-|-----------|--------------|------------------|
-| O1: [名前] | 3 | [関連する優先事項] |
-| O2: [名前] | 3 | [関連する優先事項] |
-| O3: [名前] | 3 | [関連する優先事項] |
+### Key Result 2.1: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+### Key Result 2.2: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+### Key Result 2.3: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+---
+
+## Objective 3: [Objective Name]
+> [Inspirational description]
+
+### Key Result 3.1: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+### Key Result 3.2: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+### Key Result 3.3: [KR Name]
+| Achievement | Target |
+|-------------|--------|
+| 70% | [Standard target] |
+| 100% | [Stretch target] |
+
+---
+
+## Summary
+
+| Objective | Key Results | Team Goal Alignment |
+|-----------|-------------|---------------------|
+| O1: [Name] | 3 | [Related priority] |
+| O2: [Name] | 3 | [Related priority] |
+| O3: [Name] | 3 | [Related priority] |
 ```
 
-## 役割別の考慮事項
+## Role-Specific Considerations
 
 ### Engineer
-- 技術的な成果物（コード品質、パフォーマンス改善など）
-- 開発効率の向上
-- 技術負債の削減
-- 学習・スキル向上
+- Technical deliverables (code quality, performance improvements, etc.)
+- Development efficiency improvements
+- Technical debt reduction
+- Learning and skill development
 
 ### PM (Product Manager)
-- プロダクト指標（DAU、リテンションなど）
-- 機能リリース
-- ユーザーフィードバック対応
-- ステークホルダー調整
+- Product metrics (DAU, retention, etc.)
+- Feature releases
+- User feedback response
+- Stakeholder coordination
 
 ### Designer
-- UX/UI改善指標
-- デザインシステム構築
-- ユーザビリティテスト結果
-- ブランド一貫性
+- UX/UI improvement metrics
+- Design system creation
+- Usability test results
+- Brand consistency
 
 ### QA
-- 品質指標（バグ検出率、カバレッジなど）
-- テスト自動化
-- リリース品質ゲート
-- 品質プロセス改善
+- Quality metrics (bug detection rate, coverage, etc.)
+- Test automation
+- Release quality gates
+- Quality process improvements
 
 ### Data Analyst
-- データ品質指標
-- 分析レポート・ダッシュボード
-- データドリブン意思決定支援
-- データパイプライン改善
+- Data quality metrics
+- Analytics reports and dashboards
+- Data-driven decision support
+- Data pipeline improvements
 
-## OKRベストプラクティス
+## OKR Best Practices
 
-### Objectiveについて
-- **DO**: 野心的で刺激的な表現を使う
-- **DO**: チーム目標との明確なつながりを示す
-- **DON'T**: 数値を含めない（それはKRの役割）
-- **DON'T**: 曖昧すぎる表現を避ける
+### About Objectives
+- **DO**: Use ambitious and inspiring language
+- **DO**: Show clear connection to team goals
+- **DON'T**: Include numbers (that's for KRs)
+- **DON'T**: Use vague expressions
 
-### Key Resultについて
-- **DO**: 必ず測定可能な数値目標を設定
-- **DO**: 70%と100%の差を明確に
-- **DON'T**: 活動（タスク）ではなく成果を記述
-- **DON'T**: コントロールできない外部要因に依存しすぎない
+### About Key Results
+- **DO**: Always set measurable numerical targets
+- **DO**: Make the difference between 70% and 100% clear
+- **DON'T**: Describe activities (tasks) instead of outcomes
+- **DON'T**: Depend too heavily on external factors beyond your control
 
-### 70%/100%の設定
-- **70%**: 「頑張れば達成できる」レベル
-- **100%**: 「最高の状態で全てがうまくいけば」レベル
-- 70%達成で「成功」、100%達成で「卓越」と評価
+### Setting 70%/100% Targets
+- **70%**: "Can achieve with hard work" level
+- **100%**: "If everything goes perfectly" level
+- 70% achievement = "Success"
+- 100% achievement = "Excellence"
 
-## 注意事項
+## Notes
 
-- OKRは四半期ごとに見直すことを推奨
-- 進捗は週次または隔週でチェック
-- 状況変化に応じて柔軟に調整可能
-- チームメンバーや上司と共有・すり合わせを行う
+- Review OKRs quarterly
+- Check progress weekly or bi-weekly
+- Adjust flexibly based on changing circumstances
+- Share and align with team members and managers
