@@ -4,64 +4,49 @@ Claude Code カスタムコマンドのカテゴリ別一覧です。
 
 ## カテゴリ一覧
 
-### [Kiroコマンドシステム](./kiro-system.md)
-仕様駆動開発（Spec-Driven Development）とテスト駆動開発（TDD）をサポート
-- `/kiro:steering` - プロジェクトステアリング文書の生成・更新
-- `/kiro:spec-init` - 新機能仕様の初期化
-- `/kiro:spec-requirements` - EARS形式要件定義の生成
-- `/kiro:spec-design` - 技術設計書の生成
-- `/kiro:spec-test` - TDDテスト仕様の生成
-- `/kiro:spec-tasks` - 実装タスクの生成
-- `/kiro:spec-status` - 仕様進捗の表示
+### [Kiroコマンドシステム](./kiro/)
+仕様駆動開発（Spec-Driven Development）とTDDをサポート
+- [/kiro:spec-init](./kiro/spec-init.md) - 新機能仕様の初期化
+- [/kiro:spec-requirements](./kiro/spec-requirements.md) - EARS形式要件定義の生成
+- [/kiro:spec-design](./kiro/spec-design.md) - 技術設計書の生成
+- [/kiro:spec-tasks](./kiro/spec-tasks.md) - 実装タスクの生成
+- [/kiro:spec-impl](./kiro/spec-impl.md) - TDDによるタスク実装
+- [/kiro:spec-status](./kiro/spec-status.md) - 仕様進捗の表示
+- [/kiro:steering](./kiro/steering.md) - Steeringドキュメント管理
+- [/kiro:steering-custom](./kiro/steering-custom.md) - カスタムSteering作成
+- [/kiro:validate-design](./kiro/validate-design.md) - 設計品質レビュー
+- [/kiro:validate-gap](./kiro/validate-gap.md) - 実装ギャップ分析
 
-### [開発支援コマンド](./development-support.md)
-開発プロセスを強力にサポートするコマンド群（Serena統合強化）
-- `/commit` - **インテリジェントなGitコミット自動化（Serena統合）**
-- `/debug-error` - **インテリジェントデバッグシステム（Serena統合）**
-- `/smart-think` - **高度な多段階思考システム（Serena統合）**
-- `/serena` - 高効率な構造化問題解決
-- `/test` - 高度なテスト実装・実行・修正
-- `/tech-research` - **コードベース認識型技術調査（Serena統合強化版）**
-- `/spec:requirements` - 包括的要件定義書の生成
+### 開発支援コマンド
+- [/serena](./serena.md) - トークン効率の高い構造化開発
+- [/debug-error](./debug-error.md) - Serena統合デバッグシステム
+- [/smart-think](./smart-think.md) - マルチモード思考システム
+- [/test](./test.md) - 高度なテスト実装・実行
 
-### [Chrome DevToolsコマンド](./chrome-devtools.md)
-Chrome DevTools MCPを使用した包括的なブラウザ開発・テスト環境
-- `/chrome` - **Chrome DevTools統合開発システム**
-- デバッグ・エラー分析（コンソール・ネットワーク監視）
-- E2Eテスト・ブラウザ自動化（ナビゲーション・入力・操作）
-- パフォーマンス分析（トレース・Core Web Vitals・インサイト）
-- ブラウザエミュレーション（CPU・ネットワーク・デバイス）
-- マルチページ管理（タブ制御・履歴操作）
+### Chrome DevToolsコマンド
+- [/chrome](./chrome.md) - Chrome DevTools統合開発システム
 
-### [Git・GitHub連携コマンド](./git-github.md)
-Git・GitHub連携とセキュリティ管理
-- `/git:pr` - インテリジェントなプルリクエスト生成
-- `/git:commit` - **高度なGitコミット自動化（Serena MCP統合）**
-- `/dependabot-check` - セキュリティ脆弱性解決
+### Git・GitHub連携コマンド
+- [/git:commit](./git/commit.md) - Serena統合スマートコミット
+- [/git:pr](./git/pr.md) - PR説明生成・作成
+- [/dependabot-check](./dependabot-check.md) - セキュリティ脆弱性解決
 
-### [Playwright MCPインテグレーションコマンド](./playwright-integration.md)
-Playwright MCPとSerenaツールを統合したWebテストスイート
-- `/e2e` - **E2Eテスト実行・動作検証**
-- `/web-analyzer` - **ウェブサイト分析・仕様抽出**
-- `/visual-regression` - **ビジュアルリグレッションテスト**
-- `/accessibility-test` - **アクセシビリティテスト**
-- `/performance-monitor` - **パフォーマンス監視**
-- `/playwright-integration` - **Playwright統合診断**
+### Playwrightコマンド
+- [/playwright:e2e](./playwright/e2e.md) - E2Eテスト
+- [/playwright:accessibility-test](./playwright/accessibility-test.md) - アクセシビリティテスト
+- [/playwright:performance-monitor](./playwright/performance-monitor.md) - パフォーマンス監視
+- [/playwright:visual-regression](./playwright/visual-regression.md) - ビジュアルリグレッション
+- [/playwright:web-analyzer](./playwright/web-analyzer.md) - Web分析
+- [/playwright:spec-integration](./playwright/spec-integration.md) - 統合診断
 
-### [UI/UX設計コマンド](./ui-ux.md)
-UI/UXデザインとユーザビリティ向上
-- `/ui-advice` - デザインパターン提案・ワイヤーフレーム
+### UI/UX設計コマンド
+- [/ui-advice](./ui-advice.md) - デザインパターン提案・ワイヤーフレーム
 
-### [ファイル変換コマンド](./file-conversion.md)
-様々な形式のファイルをMarkdown形式に変換し、AI分析に最適化
-- `/convert-to-md` - PDF、DOCX、Excel等をMarkdownに変換（AI最適化対応）
+### ファイル変換コマンド
+- [/convert-to-md](./convert-to-md.md) - 各種形式をMarkdownに変換
+- [/visualize](./visualize.md) - ドキュメントのインフォグラフィック化
 
-### [ビジュアライズコマンド](./visualize.md)
-ドキュメントをインフォグラフィック画像に変換し、チャットアプリでの共有を最適化
-- `/visualize` - ドキュメント→インフォグラフィック変換（PNG/JPG/PDF対応）
-
-### [開発ワークフローコマンド](./workflow-commands.md)
-開発プロセス全体をサポートするワークフローコマンド
+### 開発ワークフローコマンド
 - [/plan](./plan.md) - 実装計画作成
 - [/tdd](./tdd.md) - テスト駆動開発ワークフロー
 - [/code-review](./code-review.md) - コードレビュー実行
@@ -71,45 +56,32 @@ UI/UXデザインとユーザビリティ向上
 - [/test-coverage](./test-coverage.md) - テストカバレッジ確認
 - [/update-codemaps](./update-codemaps.md) - コードマップ更新
 - [/update-docs](./update-docs.md) - ドキュメント更新
+- [/update-claude-md](./update-claude-md.md) - CLAUDE.md自動更新
+- [/okr](./okr.md) - OKR設定支援
 
 ### [SuperClaude (SC) コマンド](./sc/)
 SuperClaudeフレームワークのコアコマンド群
-- `/sc:help` - 利用可能なSCコマンド一覧
-- `/sc:pm` - プロジェクトマネージャーエージェント（常時アクティブ）
-- `/sc:analyze` - コード品質・セキュリティ・パフォーマンス分析
-- `/sc:implement` - 機能実装
-- `/sc:design` - システム設計
-- `/sc:test` - テスト実行
-- `/sc:brainstorm` - 要件探索対話
+- [/sc:help](./sc/help.md) - 利用可能なSCコマンド一覧
+- [/sc:pm](./sc/pm.md) - プロジェクトマネージャーエージェント
+- [/sc:analyze](./sc/analyze.md) - コード品質・セキュリティ分析
+- [/sc:implement](./sc/implement.md) - 機能実装
+- [/sc:design](./sc/design.md) - システム設計
+- [/sc:test](./sc/test.md) - テスト実行
+- [/sc:brainstorm](./sc/brainstorm.md) - 要件探索対話
 - [詳細はSCコマンドディレクトリを参照](./sc/README.md)
 
-### [Git操作コマンド](./git/)
-高度なGit操作コマンド
-- [/git:commit](./git/commit.md) - Serena統合スマートコミット
-- [/git:pr](./git/pr.md) - PR説明生成・作成
-
-### [Playwrightコマンド](./playwright/)
-Playwright MCPを使用したテストスイート
-- [/playwright:e2e](./playwright/e2e.md) - E2Eテスト
-- [/playwright:accessibility-test](./playwright/accessibility-test.md) - アクセシビリティテスト
-- [/playwright:performance-monitor](./playwright/performance-monitor.md) - パフォーマンス監視
-- [/playwright:visual-regression](./playwright/visual-regression.md) - ビジュアルリグレッション
-- [/playwright:web-analyzer](./playwright/web-analyzer.md) - Web分析
-
-### [仕様コマンド](./spec/)
-仕様・要件関連コマンド
+### 仕様コマンド
 - [/spec:requirements](./spec/requirements.md) - 要件定義書生成
 - [/spec:tech-research](./spec/tech-research.md) - 技術調査
 
 ## 使用方法
 
-各コマンドは `/コマンド名` で実行できます。詳細なオプションや使用例については、各カテゴリファイルを参照してください。
+各コマンドは `/コマンド名` で実行できます。詳細なオプションや使用例については、各ファイルを参照してください。
 
 ## 主要な特徴
 
-- **Serena MCP統合強化**: コードベース認識型の高度な分析・支援
+- **Serena MCP統合**: コードベース認識型の高度な分析・支援
+- **Kiro Spec-Driven Development**: 仕様駆動の体系的な開発ワークフロー
 - **包括的テストスイート**: 単体テストからE2Eまでの完全カバレッジ
 - **自動化重視**: 手動作業の最小化と効率的なワークフロー
 - **多言語対応**: 日本語/英語での文書生成とインタラクション
-- **柔軟な設定**: プロジェクトニーズに合わせたカスタマイズ対応
-- **最適化されたツール設定**: 各コマンドは最大10ツールに最適化され、効率的な実行を実現

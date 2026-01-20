@@ -4,9 +4,8 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 
 ## 利用可能なスキル
 
-### ドキュメント・コミュニケーション
+### ドキュメント・計画
 - [doc-engineer-skill](./doc-engineer-skill.md) - ドキュメント作成・編集・改善
-- [email-composer-skill](./email-composer-skill.md) - プロフェッショナルメール作成
 - [writing-plans-skill](./writing-plans-skill.md) - 計画書作成
 
 ### 開発スキル
@@ -15,18 +14,16 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 - [frontend-design-skill](./frontend-design-skill.md) - フロントエンドデザイン
 - [vercel-react-best-practices-skill](./vercel-react-best-practices-skill.md) - React/Next.js パフォーマンス最適化
 
-### 品質・レビュースキル
+### 品質・セキュリティスキル
 - [code-reviewer-skill](./code-reviewer-skill.md) - コードレビュー専門
-- [systematic-debugging-skill](./systematic-debugging-skill.md) - 体系的デバッグ
-- [webapp-testing-skill](./webapp-testing-skill.md) - Webアプリテスト
-- [web-design-guidelines-skill](./web-design-guidelines-skill.md) - Web Interface Guidelines レビュー
+- [security-review-skill](./security-review-skill.md) - セキュリティレビュー
+- [tdd-workflow-skill](./tdd-workflow-skill.md) - テスト駆動開発ワークフロー
 
 ### AI・プロンプトスキル
 - [senior-prompt-engineer-skill](./senior-prompt-engineer-skill.md) - プロンプトエンジニアリング
 
 ### メタスキル
 - [skill-creator-skill](./skill-creator-skill.md) - スキル作成ガイド
-- [docx-skill](./docx-skill.md) - Word文書操作
 
 ## 使用方法
 
