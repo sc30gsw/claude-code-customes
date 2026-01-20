@@ -50,6 +50,16 @@ Claude Code 専門家システムのカテゴリ別専門家一覧です。
 - [refactoring-expert](./refactoring-expert.md) - リファクタリング専門家
 - [business-panel-experts](./business-panel-experts.md) - ビジネスパネル専門家
 
+### ワークフロー自動化専門家
+- [architect](./architect.md) - システム設計者
+- [planner](./planner.md) - 実装計画専門家
+- [tdd-guide](./tdd-guide.md) - TDDガイド
+- [build-error-resolver](./build-error-resolver.md) - ビルドエラー解決
+- [doc-updater](./doc-updater.md) - ドキュメント更新
+- [e2e-runner](./e2e-runner.md) - E2Eテスト実行
+- [refactor-cleaner](./refactor-cleaner.md) - リファクタリング・クリーンアップ
+- [security-reviewer](./security-reviewer.md) - セキュリティレビュー
+
 ## 使用方法
 
 各専門家は `@専門家名` で呼び出すことができます。詳細な専門領域や使用例については、各カテゴリファイルを参照してください。

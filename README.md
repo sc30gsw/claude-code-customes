@@ -26,3 +26,4 @@
 - [Claude Code Templates](https://www.aitmpl.com/agents)
 - [公式ドキュメント](https://superclaude.netlify.app/)
 - [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code)

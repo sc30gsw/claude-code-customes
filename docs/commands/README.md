@@ -60,9 +60,17 @@ UI/UXデザインとユーザビリティ向上
 ドキュメントをインフォグラフィック画像に変換し、チャットアプリでの共有を最適化
 - `/visualize` - ドキュメント→インフォグラフィック変換（PNG/JPG/PDF対応）
 
-### [コミュニケーションテキスト生成コマンド](./message.md)
-チャット、メール、チケット、レポートなど業務シーンに適したテキストを生成
-- `/message` - コミュニケーションテキスト生成（chat/email/ticket/report/announcement/outline対応）
+### [開発ワークフローコマンド](./workflow-commands.md)
+開発プロセス全体をサポートするワークフローコマンド
+- [/plan](./plan.md) - 実装計画作成
+- [/tdd](./tdd.md) - テスト駆動開発ワークフロー
+- [/code-review](./code-review.md) - コードレビュー実行
+- [/build-fix](./build-fix.md) - ビルドエラー修正
+- [/e2e](./e2e.md) - E2Eテスト実行
+- [/refactor-clean](./refactor-clean.md) - リファクタリング・クリーンアップ
+- [/test-coverage](./test-coverage.md) - テストカバレッジ確認
+- [/update-codemaps](./update-codemaps.md) - コードマップ更新
+- [/update-docs](./update-docs.md) - ドキュメント更新
 
 ### [SuperClaude (SC) コマンド](./sc/)
 SuperClaudeフレームワークのコアコマンド群
