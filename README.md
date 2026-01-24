@@ -27,3 +27,6 @@
 - [公式ドキュメント](https://superclaude.netlify.app/)
 - [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
 - [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+
+## You can search for skills.
+[skills.sh](https://skills.sh/)
