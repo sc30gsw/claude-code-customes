@@ -4,6 +4,11 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 
 ## 利用可能なスキル
 
+### From [SKILLS.sh](https://skills.sh/)
+- [agent-browser](https://skills.sh/vercel-labs/agent-browser/agent-browser)
+- [email-best-practice]https://skills.sh/resend/email-best-practices/email-best-practices
+- [context7](https://skills.sh/intellectronica/agent-skills/context7)
+
 ### ドキュメント・計画
 - [doc-engineer-skill](./doc-engineer-skill.md) - ドキュメント作成・編集・改善
 - [writing-plans-skill](./writing-plans-skill.md) - 計画書作成
