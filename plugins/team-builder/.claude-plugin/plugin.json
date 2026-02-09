@@ -1,0 +1,8 @@
+{
+  "name": "team-builder",
+  "version": "1.0.0",
+  "description": "Intelligently compose and deploy Claude Code Agent Teams. Auto-selects optimal team composition from 24+ agents and 83+ skills across 5 scopes, generates task dependency graphs, and orchestrates multi-agent workflows with a single command.",
+  "author": {
+    "name": "sc30gsw"
+  }
+}
