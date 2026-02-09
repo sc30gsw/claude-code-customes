@@ -41,6 +41,9 @@ Claude Code サブエージェントシステムのカテゴリ別専門家一�
 - [e2e-runner](./e2e-runner.md) - E2Eテスト実行
 - [refactor-cleaner](./refactor-cleaner.md) - リファクタリング・クリーンアップ
 
+### チーム・オーケストレーション
+- [team-builder](./team-builder.md) - Agent Teamコンポジション専門家
+
 ### コマンド開発・運用支援
 - [serena-expert](./serena-expert.md) - Serena連携エキスパート
 

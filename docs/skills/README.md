@@ -61,6 +61,9 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 ### AI・プロンプトスキル
 - [senior-prompt-engineer-skill](./senior-prompt-engineer-skill.md) - プロンプトエンジニアリング
 
+### チーム・オーケストレーション
+- [team-builder-skill](./team-builder-skill.md) - Agent Team自動構成・デプロイ
+
 ### メタスキル
 - [skill-creator-skill](./skill-creator-skill.md) - スキル作成ガイド
 
@@ -93,8 +96,9 @@ Claude Code スキルシステムの一覧です。スキルは特定のタス�
 | UI・デザイン | 1 |
 | 仕様・要件 | 2 |
 | AI・プロンプト | 1 |
+| チーム・オーケストレーション | 1 |
 | メタスキル | 1 |
-| **合計** | **33** |
+| **合計** | **34** |
 
 ## 公式Skills
 
