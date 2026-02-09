@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-code-customes",
+  "description": "Custom Claude Code plugins, skills, and agents for development workflow automation",
+  "owner": {
+    "name": "sc30gsw"
+  },
+  "plugins": [
+    {
+      "name": "team-builder",
+      "description": "Compose and deploy optimal Agent Teams with a single command. Auto-selects from 24+ agents and 83+ skills across 5 scopes, generates task dependency graphs, and supports 8 templates with 4 model strategies.",
+      "version": "1.0.0",
+      "author": {
+        "name": "sc30gsw"
+      },
+      "source": "./plugins/team-builder",
+      "category": "development"
+    }
+  ]
+}
