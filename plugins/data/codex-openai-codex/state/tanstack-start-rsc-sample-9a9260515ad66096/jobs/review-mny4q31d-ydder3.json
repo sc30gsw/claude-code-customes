@@ -1,0 +1,85 @@
+{
+  "id": "review-mny4q31d-ydder3",
+  "kind": "adversarial-review",
+  "kindLabel": "adversarial-review",
+  "title": "Codex Adversarial Review",
+  "workspaceRoot": "/Users/kaitokaki/ghq/github.com/sc30gsw/tanstack-start-rsc-sample",
+  "jobClass": "review",
+  "summary": "Adversarial Review working tree diff",
+  "write": false,
+  "createdAt": "2026-04-14T04:36:29.284Z",
+  "sessionId": "9d1de37d-914d-4afd-a059-b4de60579ed5",
+  "status": "completed",
+  "startedAt": "2026-04-14T04:36:30.570Z",
+  "phase": "done",
+  "pid": null,
+  "logFile": "/Users/kaitokaki/.claude/plugins/data/codex-openai-codex/state/tanstack-start-rsc-sample-9a9260515ad66096/jobs/review-mny4q31d-ydder3.log",
+  "threadId": "019d8a47-0f48-7d70-bde2-b8e9147d1e9b",
+  "turnId": "019d8a47-191e-7533-aa64-70ba20426d50",
+  "completedAt": "2026-04-14T04:39:13.528Z",
+  "result": {
+    "review": "Adversarial Review",
+    "target": {
+      "mode": "working-tree",
+      "label": "working tree diff",
+      "explicit": false
+    },
+    "threadId": "019d8a47-0f48-7d70-bde2-b8e9147d1e9b",
+    "context": {
+      "repoRoot": "/Users/kaitokaki/ghq/github.com/sc30gsw/tanstack-start-rsc-sample",
+      "branch": "feature/rsc",
+      "summary": "Reviewing 0 staged, 3 unstaged, and 36 untracked file(s)."
+    },
+    "codex": {
+      "status": 0,
+      "stderr": "",
+      "stdout": "{\"verdict\":\"needs-attention\",\"summary\":\"no-ship: SSR 共有キャッシュのスコープが危険で、Flight デモは誤った URL を叩いて壊れており、Streaming デモも実際には逐次配信していません。\",\"findings\":[{\"severity\":\"high\",\"title\":\"`QueryClient` をモジュール単位で共有しており SSR リクエスト間でキャッシュが混ざる\",\"body\":\"`QueryClient` がモジュールスコープで 1 回だけ生成され、そのままアプリ全体に注入されています。通常の SSR 配備ではこのモジュールはプロセス内で再利用されるため、`/rsc/cache/query` のようなクエリ結果や RSC renderable が次のリクエストにも残ります。今はダミーデータ中心でも、同じパターンで認証付きデータを載せた瞬間にユーザー/テナント境界を越えた stale data 混入やキャッシュ漏えいを起こします。\",\"file\":\"src/routes/__root.tsx\",\"line_start\":8,\"line_end\":34,\"confidence\":0.9,\"recommendation\":\"サーバーではリクエストごとに `QueryClient` を生成し、ブラウザ側だけ必要なら singleton に分離してください。少なくとも SSR と CSR で生成戦略を分け、リクエスト境界でキャッシュを共有しない構成にするべきです。\"},{\"severity\":\"high\",\"title\":\"Flight ストリーム取得が相対 URL のため `/api/rsc` ではなく別パスに解決される\",\"body\":\"この画面は `/rsc/flight-stream` 配下で `api.get(\\\"api/rsc\\\")` を呼んでいますが、これは絶対パスではないため `/api/rsc` ではなく現在位置基準の相対 URL に解決されます。API ルート定義は `/api/rsc` なので、両方の取得経路は誤ったエンドポイントを叩き、low-level Flight の主機能が最初から 404/失敗になります。結果としてこのパターン自体が正常動作しません。\",\"file\":\"src/routes/rsc/flight-stream.tsx\",\"line_start\":22,\"line_end\":39,\"confidence\":0.99,\"recommendation\":\"`api.get(\\\"/api/rsc\\\")` のように絶対パスを使うか、`prefixUrl` を正しく設定したクライアント経由で常にルート直下の API を叩くよう修正してください。\"},{\"severity\":\"medium\",\"title\":\"`Async Generator Streaming` が全件バッファリングされており実際にはストリーミングしていない\",\"body\":\"`streamNotifications()` は 600ms ごとに yield していますが、直後に `for await` で全件を `items[]` に詰めてから返しています。これでは最後の要素が揃うまでレスポンスを返せず、説明文にある「順次送信」「逐次取得」は成立しません。デモの前提そのものが崩れており、性能特性も UX も誤って伝えます。\",\"file\":\"src/features/rsc-patterns/api/streaming.tsx\",\"line_start\":32,\"line_end\":46,\"confidence\":0.98,\"recommendation\":\"配列へ潰さずに Flight stream / deferred payload / Suspense 境界で逐次消費できる形に変えてください。少なくともサーバー関数内で generator を全件 await する実装はやめるべきです。\"}],\"next_steps\":[\"SSR ごとに `QueryClient` を新規生成する実装へ切り替え、共有キャッシュが跨らないことを確認する。\",\"`/api/rsc` 呼び出しを絶対パス化し、ブラウザから実際に成功することを確認する。\",\"Pattern 9 を本当に増分描画する実装へ差し替え、最初の要素が全件完了前に表示されることを検証する。\"]}",
+      "reasoning": []
+    },
+    "result": {
+      "verdict": "needs-attention",
+      "summary": "no-ship: SSR 共有キャッシュのスコープが危険で、Flight デモは誤った URL を叩いて壊れており、Streaming デモも実際には逐次配信していません。",
+      "findings": [
+        {
+          "severity": "high",
+          "title": "`QueryClient` をモジュール単位で共有しており SSR リクエスト間でキャッシュが混ざる",
+          "body": "`QueryClient` がモジュールスコープで 1 回だけ生成され、そのままアプリ全体に注入されています。通常の SSR 配備ではこのモジュールはプロセス内で再利用されるため、`/rsc/cache/query` のようなクエリ結果や RSC renderable が次のリクエストにも残ります。今はダミーデータ中心でも、同じパターンで認証付きデータを載せた瞬間にユーザー/テナント境界を越えた stale data 混入やキャッシュ漏えいを起こします。",
+          "file": "src/routes/__root.tsx",
+          "line_start": 8,
+          "line_end": 34,
+          "confidence": 0.9,
+          "recommendation": "サーバーではリクエストごとに `QueryClient` を生成し、ブラウザ側だけ必要なら singleton に分離してください。少なくとも SSR と CSR で生成戦略を分け、リクエスト境界でキャッシュを共有しない構成にするべきです。"
+        },
+        {
+          "severity": "high",
+          "title": "Flight ストリーム取得が相対 URL のため `/api/rsc` ではなく別パスに解決される",
+          "body": "この画面は `/rsc/flight-stream` 配下で `api.get(\"api/rsc\")` を呼んでいますが、これは絶対パスではないため `/api/rsc` ではなく現在位置基準の相対 URL に解決されます。API ルート定義は `/api/rsc` なので、両方の取得経路は誤ったエンドポイントを叩き、low-level Flight の主機能が最初から 404/失敗になります。結果としてこのパターン自体が正常動作しません。",
+          "file": "src/routes/rsc/flight-stream.tsx",
+          "line_start": 22,
+          "line_end": 39,
+          "confidence": 0.99,
+          "recommendation": "`api.get(\"/api/rsc\")` のように絶対パスを使うか、`prefixUrl` を正しく設定したクライアント経由で常にルート直下の API を叩くよう修正してください。"
+        },
+        {
+          "severity": "medium",
+          "title": "`Async Generator Streaming` が全件バッファリングされており実際にはストリーミングしていない",
+          "body": "`streamNotifications()` は 600ms ごとに yield していますが、直後に `for await` で全件を `items[]` に詰めてから返しています。これでは最後の要素が揃うまでレスポンスを返せず、説明文にある「順次送信」「逐次取得」は成立しません。デモの前提そのものが崩れており、性能特性も UX も誤って伝えます。",
+          "file": "src/features/rsc-patterns/api/streaming.tsx",
+          "line_start": 32,
+          "line_end": 46,
+          "confidence": 0.98,
+          "recommendation": "配列へ潰さずに Flight stream / deferred payload / Suspense 境界で逐次消費できる形に変えてください。少なくともサーバー関数内で generator を全件 await する実装はやめるべきです。"
+        }
+      ],
+      "next_steps": [
+        "SSR ごとに `QueryClient` を新規生成する実装へ切り替え、共有キャッシュが跨らないことを確認する。",
+        "`/api/rsc` 呼び出しを絶対パス化し、ブラウザから実際に成功することを確認する。",
+        "Pattern 9 を本当に増分描画する実装へ差し替え、最初の要素が全件完了前に表示されることを検証する。"
+      ]
+    },
+    "rawOutput": "{\"verdict\":\"needs-attention\",\"summary\":\"no-ship: SSR 共有キャッシュのスコープが危険で、Flight デモは誤った URL を叩いて壊れており、Streaming デモも実際には逐次配信していません。\",\"findings\":[{\"severity\":\"high\",\"title\":\"`QueryClient` をモジュール単位で共有しており SSR リクエスト間でキャッシュが混ざる\",\"body\":\"`QueryClient` がモジュールスコープで 1 回だけ生成され、そのままアプリ全体に注入されています。通常の SSR 配備ではこのモジュールはプロセス内で再利用されるため、`/rsc/cache/query` のようなクエリ結果や RSC renderable が次のリクエストにも残ります。今はダミーデータ中心でも、同じパターンで認証付きデータを載せた瞬間にユーザー/テナント境界を越えた stale data 混入やキャッシュ漏えいを起こします。\",\"file\":\"src/routes/__root.tsx\",\"line_start\":8,\"line_end\":34,\"confidence\":0.9,\"recommendation\":\"サーバーではリクエストごとに `QueryClient` を生成し、ブラウザ側だけ必要なら singleton に分離してください。少なくとも SSR と CSR で生成戦略を分け、リクエスト境界でキャッシュを共有しない構成にするべきです。\"},{\"severity\":\"high\",\"title\":\"Flight ストリーム取得が相対 URL のため `/api/rsc` ではなく別パスに解決される\",\"body\":\"この画面は `/rsc/flight-stream` 配下で `api.get(\\\"api/rsc\\\")` を呼んでいますが、これは絶対パスではないため `/api/rsc` ではなく現在位置基準の相対 URL に解決されます。API ルート定義は `/api/rsc` なので、両方の取得経路は誤ったエンドポイントを叩き、low-level Flight の主機能が最初から 404/失敗になります。結果としてこのパターン自体が正常動作しません。\",\"file\":\"src/routes/rsc/flight-stream.tsx\",\"line_start\":22,\"line_end\":39,\"confidence\":0.99,\"recommendation\":\"`api.get(\\\"/api/rsc\\\")` のように絶対パスを使うか、`prefixUrl` を正しく設定したクライアント経由で常にルート直下の API を叩くよう修正してください。\"},{\"severity\":\"medium\",\"title\":\"`Async Generator Streaming` が全件バッファリングされており実際にはストリーミングしていない\",\"body\":\"`streamNotifications()` は 600ms ごとに yield していますが、直後に `for await` で全件を `items[]` に詰めてから返しています。これでは最後の要素が揃うまでレスポンスを返せず、説明文にある「順次送信」「逐次取得」は成立しません。デモの前提そのものが崩れており、性能特性も UX も誤って伝えます。\",\"file\":\"src/features/rsc-patterns/api/streaming.tsx\",\"line_start\":32,\"line_end\":46,\"confidence\":0.98,\"recommendation\":\"配列へ潰さずに Flight stream / deferred payload / Suspense 境界で逐次消費できる形に変えてください。少なくともサーバー関数内で generator を全件 await する実装はやめるべきです。\"}],\"next_steps\":[\"SSR ごとに `QueryClient` を新規生成する実装へ切り替え、共有キャッシュが跨らないことを確認する。\",\"`/api/rsc` 呼び出しを絶対パス化し、ブラウザから実際に成功することを確認する。\",\"Pattern 9 を本当に増分描画する実装へ差し替え、最初の要素が全件完了前に表示されることを検証する。\"]}",
+    "parseError": null,
+    "reasoningSummary": []
+  },
+  "rendered": "# Codex Adversarial Review\n\nTarget: working tree diff\nVerdict: needs-attention\n\nno-ship: SSR 共有キャッシュのスコープが危険で、Flight デモは誤った URL を叩いて壊れており、Streaming デモも実際には逐次配信していません。\n\nFindings:\n- [high] `QueryClient` をモジュール単位で共有しており SSR リクエスト間でキャッシュが混ざる (src/routes/__root.tsx:8-34)\n  `QueryClient` がモジュールスコープで 1 回だけ生成され、そのままアプリ全体に注入されています。通常の SSR 配備ではこのモジュールはプロセス内で再利用されるため、`/rsc/cache/query` のようなクエリ結果や RSC renderable が次のリクエストにも残ります。今はダミーデータ中心でも、同じパターンで認証付きデータを載せた瞬間にユーザー/テナント境界を越えた stale data 混入やキャッシュ漏えいを起こします。\n  Recommendation: サーバーではリクエストごとに `QueryClient` を生成し、ブラウザ側だけ必要なら singleton に分離してください。少なくとも SSR と CSR で生成戦略を分け、リクエスト境界でキャッシュを共有しない構成にするべきです。\n- [high] Flight ストリーム取得が相対 URL のため `/api/rsc` ではなく別パスに解決される (src/routes/rsc/flight-stream.tsx:22-39)\n  この画面は `/rsc/flight-stream` 配下で `api.get(\"api/rsc\")` を呼んでいますが、これは絶対パスではないため `/api/rsc` ではなく現在位置基準の相対 URL に解決されます。API ルート定義は `/api/rsc` なので、両方の取得経路は誤ったエンドポイントを叩き、low-level Flight の主機能が最初から 404/失敗になります。結果としてこのパターン自体が正常動作しません。\n  Recommendation: `api.get(\"/api/rsc\")` のように絶対パスを使うか、`prefixUrl` を正しく設定したクライアント経由で常にルート直下の API を叩くよう修正してください。\n- [medium] `Async Generator Streaming` が全件バッファリングされており実際にはストリーミングしていない (src/features/rsc-patterns/api/streaming.tsx:32-46)\n  `streamNotifications()` は 600ms ごとに yield していますが、直後に `for await` で全件を `items[]` に詰めてから返しています。これでは最後の要素が揃うまでレスポンスを返せず、説明文にある「順次送信」「逐次取得」は成立しません。デモの前提そのものが崩れており、性能特性も UX も誤って伝えます。\n  Recommendation: 配列へ潰さずに Flight stream / deferred payload / Suspense 境界で逐次消費できる形に変えてください。少なくともサーバー関数内で generator を全件 await する実装はやめるべきです。\n\nNext steps:\n- SSR ごとに `QueryClient` を新規生成する実装へ切り替え、共有キャッシュが跨らないことを確認する。\n- `/api/rsc` 呼び出しを絶対パス化し、ブラウザから実際に成功することを確認する。\n- Pattern 9 を本当に増分描画する実装へ差し替え、最初の要素が全件完了前に表示されることを検証する。\n"
+}

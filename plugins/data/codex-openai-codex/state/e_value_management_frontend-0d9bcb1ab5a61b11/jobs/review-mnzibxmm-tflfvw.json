@@ -1,0 +1,19 @@
+{
+  "id": "review-mnzibxmm-tflfvw",
+  "kind": "adversarial-review",
+  "kindLabel": "adversarial-review",
+  "title": "Codex Adversarial Review",
+  "workspaceRoot": "/Users/kaitokaki/ghq/github.com/enechange/e_value_management_frontend",
+  "jobClass": "review",
+  "summary": "Adversarial Review working tree diff",
+  "write": false,
+  "createdAt": "2026-04-15T03:45:09.886Z",
+  "sessionId": "0bf3d056-0835-4bf0-ace4-c4f0cb4395d1",
+  "status": "failed",
+  "startedAt": "2026-04-15T03:45:10.160Z",
+  "phase": "failed",
+  "pid": null,
+  "logFile": "/Users/kaitokaki/.claude/plugins/data/codex-openai-codex/state/e_value_management_frontend-0d9bcb1ab5a61b11/jobs/review-mnzibxmm-tflfvw.log",
+  "errorMessage": "EISDIR: illegal operation on a directory, read",
+  "completedAt": "2026-04-15T03:45:13.842Z"
+}

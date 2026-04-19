@@ -1,6 +1,8 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_NEW_INIT": "1"
   },
   "includeCoAuthoredBy": true,
   "permissions": {
@@ -24,8 +26,10 @@
       "Bash(mysql:*)",
       "Bash(mongod:*)",
       "mcp__supabase__execute_sql"
-    ]
+    ],
+    "defaultMode": "auto"
   },
+  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -63,6 +67,15 @@
             "command": "#!/bin/bash\n# Block creation of unnecessary documentation files\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\n\nif [[ \"$file_path\" =~ \\.(md|txt)$ ]] && [[ ! \"$file_path\" =~ (README|CLAUDE|AGENTS|CONTRIBUTING)\\.md$ ]]; then\n  echo \"[Hook] BLOCKED: Unnecessary documentation file creation\" >&2\n  echo \"[Hook] File: $file_path\" >&2\n  echo \"[Hook] Use README.md for documentation instead\" >&2\n  exit 1\nfi\n\necho \"$input\""
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
       }
     ],
     "Stop": [
@@ -71,7 +84,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display alert \"タスクが完了しました。\" buttons {\"OK\"} default button \"OK\"' -e 'tell application \"Ghostty\" to activate'"
+            "command": "osascript -e 'display alert \"タスクが完了しました。\" buttons {\"OK\"} default button \"OK\"'"
           }
         ]
       },
@@ -83,6 +96,14 @@
             "command": "#!/bin/bash\n# Final check for console.logs in modified files\ninput=$(cat)\n\nif git rev-parse --git-dir > /dev/null 2>&1; then\n  modified_files=$(git diff --name-only HEAD 2>/dev/null | grep -E '\\.(ts|tsx|js|jsx)$' || true)\n  \n  if [ -n \"$modified_files\" ]; then\n    has_console=false\n    while IFS= read -r file; do\n      if [ -f \"$file\" ]; then\n        if grep -q \"console\\.log\" \"$file\" 2>/dev/null; then\n          echo \"[Hook] WARNING: console.log found in $file\" >&2\n          has_console=true\n        fi\n      fi\n    done <<< \"$modified_files\"\n    \n    if [ \"$has_console\" = true ]; then\n      echo \"[Hook] Remove console.log statements before committing\" >&2\n    fi\n  fi\nfi\n\necho \"$input\""
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
+          }
+        ]
       }
     ],
     "Notification": [
@@ -91,7 +112,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display alert \"Claude Codeが許可を求めています。\" buttons {\"OK\"} default button \"OK\"' -e 'tell application \"Ghostty\" to activate'"
+            "command": "osascript -e 'display alert \"Claude Codeが許可を求めています。\" buttons {\"OK\"} default button \"OK\"'"
           }
         ]
       }
@@ -123,12 +144,53 @@
             "command": "#!/bin/bash\n# Warn about console.log in edited files\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\n\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  console_logs=$(grep -n \"console\\\\.log\" \"$file_path\" 2>/dev/null || true)\n  \n  if [ -n \"$console_logs\" ]; then\n    echo \"[Hook] WARNING: console.log found in $file_path\" >&2\n    echo \"$console_logs\" | head -5 >&2\n    echo \"[Hook] Remove console.log before committing\" >&2\n  fi\nfi\n\necho \"$input\""
           }
         ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
+          }
+        ]
       }
     ]
   },
   "statusLine": {
     "type": "command",
-    "command": "bun x ccusage statusline",
+    "command": "bash /Users/kaitokaki/.claude/statusline-command.sh",
     "padding": 0
   },
   "enabledPlugins": {
@@ -140,11 +202,34 @@
     "expo-deployment@expo-plugins": true,
     "typescript-lsp@claude-plugins-official": true,
     "playwright-cli@playwright-cli": true,
-    "claude-mem@thedotmack": true,
-    "team-builder@claude-code-customes": true
+    "team-builder@claude-code-customes": true,
+    "everything-claude-code@everything-claude-code": true,
+    "codex@openai-codex": true
   },
+  "extraKnownMarketplaces": {
+    "elysia-cli": {
+      "source": {
+        "source": "github",
+        "repo": "sc30gsw/elysiajs-cli"
+      }
+    },
+    "everything-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/everything-claude-code"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754008072960
-  },
-  "model": "opus"
+  }
 }

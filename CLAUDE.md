@@ -26,3 +26,6 @@ The SuperClaude framework components will be automatically imported below.
 @MCP_Playwright.md
 @MCP_Sequential.md
 @MCP_Serena.md
+
+
+@RTK.md

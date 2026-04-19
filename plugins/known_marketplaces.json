@@ -1,0 +1,74 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-04-19T22:57:12.247Z"
+  },
+  "anthropic-agent-skills": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/skills"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/anthropic-agent-skills",
+    "lastUpdated": "2026-01-20T01:47:17.018Z"
+  },
+  "expo-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "expo/skills"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/expo-plugins",
+    "lastUpdated": "2026-01-16T04:25:33.059Z"
+  },
+  "playwright-cli": {
+    "source": {
+      "source": "github",
+      "repo": "microsoft/playwright-cli"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/playwright-cli",
+    "lastUpdated": "2026-01-25T21:35:35.444Z"
+  },
+  "thedotmack": {
+    "source": {
+      "source": "github",
+      "repo": "thedotmack/claude-mem"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/thedotmack",
+    "lastUpdated": "2026-02-01T21:11:56.737Z"
+  },
+  "claude-code-customes": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/sc30gsw/claude-code-customes.git"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/claude-code-customes",
+    "lastUpdated": "2026-02-09T21:26:49.154Z"
+  },
+  "elysia-cli": {
+    "source": {
+      "source": "github",
+      "repo": "sc30gsw/elysiajs-cli"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/elysia-cli",
+    "lastUpdated": "2026-03-26T06:10:57.901Z"
+  },
+  "everything-claude-code": {
+    "source": {
+      "source": "github",
+      "repo": "affaan-m/everything-claude-code"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/everything-claude-code",
+    "lastUpdated": "2026-03-26T06:24:33.113Z"
+  },
+  "openai-codex": {
+    "source": {
+      "source": "github",
+      "repo": "openai/codex-plugin-cc"
+    },
+    "installLocation": "/Users/kaitokaki/.claude/plugins/marketplaces/openai-codex",
+    "lastUpdated": "2026-04-02T22:22:50.664Z"
+  }
+}

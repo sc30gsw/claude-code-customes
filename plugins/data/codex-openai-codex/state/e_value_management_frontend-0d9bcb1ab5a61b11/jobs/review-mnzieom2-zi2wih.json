@@ -1,0 +1,64 @@
+{
+  "id": "review-mnzieom2-zi2wih",
+  "kind": "adversarial-review",
+  "kindLabel": "adversarial-review",
+  "title": "Codex Adversarial Review",
+  "workspaceRoot": "/Users/kaitokaki/ghq/github.com/enechange/e_value_management_frontend",
+  "jobClass": "review",
+  "summary": "Adversarial Review working tree diff",
+  "write": false,
+  "createdAt": "2026-04-15T03:47:18.170Z",
+  "sessionId": "0bf3d056-0835-4bf0-ace4-c4f0cb4395d1",
+  "status": "completed",
+  "startedAt": "2026-04-15T03:47:18.386Z",
+  "phase": "done",
+  "pid": null,
+  "logFile": "/Users/kaitokaki/.claude/plugins/data/codex-openai-codex/state/e_value_management_frontend-0d9bcb1ab5a61b11/jobs/review-mnzieom2-zi2wih.log",
+  "threadId": "019d8f40-377f-7a82-9248-7ad22b73dd91",
+  "turnId": "019d8f40-3e83-7503-ba5c-360e9c5853ce",
+  "completedAt": "2026-04-15T03:49:32.029Z",
+  "result": {
+    "review": "Adversarial Review",
+    "target": {
+      "mode": "working-tree",
+      "label": "working tree diff",
+      "explicit": false
+    },
+    "threadId": "019d8f40-377f-7a82-9248-7ad22b73dd91",
+    "context": {
+      "repoRoot": "/Users/kaitokaki/ghq/github.com/enechange/e_value_management_frontend",
+      "branch": "fix/dropdown-reselect-clears-value",
+      "summary": "Reviewing 0 staged, 9 unstaged, and 0 untracked file(s)."
+    },
+    "codex": {
+      "status": 0,
+      "stderr": "",
+      "stdout": "{\"verdict\":\"needs-attention\",\"summary\":\"no-ship: `allowDeselect` 対応はまだ漏れがあります。少なくともお気に入り選択の Mantine `Select` が未対応で、選択済み項目の再クリックだけで必須の `executionUnits` を空配列に戻せるため、ユーザー操作だけでフォーム状態を壊せます。\",\"findings\":[{\"severity\":\"medium\",\"title\":\"お気に入り `Select` が未対応で、再クリックだけで必須の実行対象グループが消える\",\"body\":\"`VirtualProcessCreateFavoriteSelect` の `Select` には `allowDeselect={false}` が付いておらず、`onChange` は falsy 値を受けると `matchingResult.executionUnits` を `[]` に初期化します。さらに同ファイル内で favorite モード中の `MultiSelect` は無効化されているため、ユーザーは同じお気に入りを再クリックしただけで対象グループを失い、その場で手動復旧できません。推論を含みますが、この変更群の目的どおり Mantine の deselect を封じたいなら、ここだけ未対応のまま残るのは整合性欠如で、ユーザーに見えにくい入力消失を残します。\",\"file\":\"src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx\",\"line_start\":56,\"line_end\":118,\"confidence\":0.91,\"recommendation\":\"この `Select` に `allowDeselect={false}` を追加してください。もしクリア操作を残す必要があるなら、明示的な「未選択」オプションを用意し、`executionUnits` を消す挙動がユーザーに可視になる形にしてください。\"}],\"next_steps\":[\"`src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx` の `Select` を今回の他フォームと同じ方針で揃える\",\"残りの未対応箇所は `QuerySelect` と `UserViewForm` だが、前者は `resettable` 前提、後者は `disabled` 固定なので、このレビュー観点では追加ブロッカーにはしていない\"]}",
+      "reasoning": []
+    },
+    "result": {
+      "verdict": "needs-attention",
+      "summary": "no-ship: `allowDeselect` 対応はまだ漏れがあります。少なくともお気に入り選択の Mantine `Select` が未対応で、選択済み項目の再クリックだけで必須の `executionUnits` を空配列に戻せるため、ユーザー操作だけでフォーム状態を壊せます。",
+      "findings": [
+        {
+          "severity": "medium",
+          "title": "お気に入り `Select` が未対応で、再クリックだけで必須の実行対象グループが消える",
+          "body": "`VirtualProcessCreateFavoriteSelect` の `Select` には `allowDeselect={false}` が付いておらず、`onChange` は falsy 値を受けると `matchingResult.executionUnits` を `[]` に初期化します。さらに同ファイル内で favorite モード中の `MultiSelect` は無効化されているため、ユーザーは同じお気に入りを再クリックしただけで対象グループを失い、その場で手動復旧できません。推論を含みますが、この変更群の目的どおり Mantine の deselect を封じたいなら、ここだけ未対応のまま残るのは整合性欠如で、ユーザーに見えにくい入力消失を残します。",
+          "file": "src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx",
+          "line_start": 56,
+          "line_end": 118,
+          "confidence": 0.91,
+          "recommendation": "この `Select` に `allowDeselect={false}` を追加してください。もしクリア操作を残す必要があるなら、明示的な「未選択」オプションを用意し、`executionUnits` を消す挙動がユーザーに可視になる形にしてください。"
+        }
+      ],
+      "next_steps": [
+        "`src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx` の `Select` を今回の他フォームと同じ方針で揃える",
+        "残りの未対応箇所は `QuerySelect` と `UserViewForm` だが、前者は `resettable` 前提、後者は `disabled` 固定なので、このレビュー観点では追加ブロッカーにはしていない"
+      ]
+    },
+    "rawOutput": "{\"verdict\":\"needs-attention\",\"summary\":\"no-ship: `allowDeselect` 対応はまだ漏れがあります。少なくともお気に入り選択の Mantine `Select` が未対応で、選択済み項目の再クリックだけで必須の `executionUnits` を空配列に戻せるため、ユーザー操作だけでフォーム状態を壊せます。\",\"findings\":[{\"severity\":\"medium\",\"title\":\"お気に入り `Select` が未対応で、再クリックだけで必須の実行対象グループが消える\",\"body\":\"`VirtualProcessCreateFavoriteSelect` の `Select` には `allowDeselect={false}` が付いておらず、`onChange` は falsy 値を受けると `matchingResult.executionUnits` を `[]` に初期化します。さらに同ファイル内で favorite モード中の `MultiSelect` は無効化されているため、ユーザーは同じお気に入りを再クリックしただけで対象グループを失い、その場で手動復旧できません。推論を含みますが、この変更群の目的どおり Mantine の deselect を封じたいなら、ここだけ未対応のまま残るのは整合性欠如で、ユーザーに見えにくい入力消失を残します。\",\"file\":\"src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx\",\"line_start\":56,\"line_end\":118,\"confidence\":0.91,\"recommendation\":\"この `Select` に `allowDeselect={false}` を追加してください。もしクリア操作を残す必要があるなら、明示的な「未選択」オプションを用意し、`executionUnits` を消す挙動がユーザーに可視になる形にしてください。\"}],\"next_steps\":[\"`src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx` の `Select` を今回の他フォームと同じ方針で揃える\",\"残りの未対応箇所は `QuerySelect` と `UserViewForm` だが、前者は `resettable` 前提、後者は `disabled` 固定なので、このレビュー観点では追加ブロッカーにはしていない\"]}",
+    "parseError": null,
+    "reasoningSummary": []
+  },
+  "rendered": "# Codex Adversarial Review\n\nTarget: working tree diff\nVerdict: needs-attention\n\nno-ship: `allowDeselect` 対応はまだ漏れがあります。少なくともお気に入り選択の Mantine `Select` が未対応で、選択済み項目の再クリックだけで必須の `executionUnits` を空配列に戻せるため、ユーザー操作だけでフォーム状態を壊せます。\n\nFindings:\n- [medium] お気に入り `Select` が未対応で、再クリックだけで必須の実行対象グループが消える (src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx:56-118)\n  `VirtualProcessCreateFavoriteSelect` の `Select` には `allowDeselect={false}` が付いておらず、`onChange` は falsy 値を受けると `matchingResult.executionUnits` を `[]` に初期化します。さらに同ファイル内で favorite モード中の `MultiSelect` は無効化されているため、ユーザーは同じお気に入りを再クリックしただけで対象グループを失い、その場で手動復旧できません。推論を含みますが、この変更群の目的どおり Mantine の deselect を封じたいなら、ここだけ未対応のまま残るのは整合性欠如で、ユーザーに見えにくい入力消失を残します。\n  Recommendation: この `Select` に `allowDeselect={false}` を追加してください。もしクリア操作を残す必要があるなら、明示的な「未選択」オプションを用意し、`executionUnits` を消す挙動がユーザーに可視になる形にしてください。\n\nNext steps:\n- `src/features/matching/virtual-actual-values/components/virtual-process-create-form.tsx` の `Select` を今回の他フォームと同じ方針で揃える\n- 残りの未対応箇所は `QuerySelect` と `UserViewForm` だが、前者は `resettable` 前提、後者は `disabled` 固定なので、このレビュー観点では追加ブロッカーにはしていない\n"
+}
