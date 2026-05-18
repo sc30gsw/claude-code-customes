@@ -12,6 +12,12 @@
       "Bash(rm:*)",
       "Bash(rm -rf:*)",
       "Read(.env*)",
+      "Edit(.env*)",
+      "Bash(cat .env*)",
+      "Bash(head .env*)",
+      "Bash(tail .env*)",
+      "Bash(less .env*)",
+      "Bash(more .env*)",
       "Read(id_rsa)",
       "Read(id_ed25519)",
       "Read(**/*token*)",
@@ -96,14 +102,6 @@
             "command": "#!/bin/bash\n# Final check for console.logs in modified files\ninput=$(cat)\n\nif git rev-parse --git-dir > /dev/null 2>&1; then\n  modified_files=$(git diff --name-only HEAD 2>/dev/null | grep -E '\\.(ts|tsx|js|jsx)$' || true)\n  \n  if [ -n \"$modified_files\" ]; then\n    has_console=false\n    while IFS= read -r file; do\n      if [ -f \"$file\" ]; then\n        if grep -q \"console\\.log\" \"$file\" 2>/dev/null; then\n          echo \"[Hook] WARNING: console.log found in $file\" >&2\n          has_console=true\n        fi\n      fi\n    done <<< \"$modified_files\"\n    \n    if [ \"$has_console\" = true ]; then\n      echo \"[Hook] Remove console.log statements before committing\" >&2\n    fi\n  fi\nfi\n\necho \"$input\""
           }
         ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
-          }
-        ]
       }
     ],
     "Notification": [
@@ -144,75 +142,20 @@
             "command": "#!/bin/bash\n# Warn about console.log in edited files\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\n\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  console_logs=$(grep -n \"console\\\\.log\" \"$file_path\" 2>/dev/null || true)\n  \n  if [ -n \"$console_logs\" ]; then\n    echo \"[Hook] WARNING: console.log found in $file_path\" >&2\n    echo \"$console_logs\" | head -5 >&2\n    echo \"[Hook] Remove console.log before committing\" >&2\n  fi\nfi\n\necho \"$input\""
           }
         ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kaitokaki/.superset/hooks/notify.sh"
-          }
-        ]
       }
     ]
   },
   "statusLine": {
     "type": "command",
-    "command": "bash /Users/kaitokaki/.claude/statusline-command.sh",
+    "command": "bash /Users/<username>/.claude/statusline-command.sh",
     "padding": 0
   },
   "enabledPlugins": {
-    "code-simplifier@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true,
-    "example-skills@anthropic-agent-skills": true,
-    "expo-app-design@expo-plugins": true,
-    "upgrading-expo@expo-plugins": true,
-    "expo-deployment@expo-plugins": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "playwright-cli@playwright-cli": true,
     "team-builder@claude-code-customes": true,
     "everything-claude-code@everything-claude-code": true,
     "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
-    "elysia-cli": {
-      "source": {
-        "source": "github",
-        "repo": "sc30gsw/elysiajs-cli"
-      }
-    },
     "everything-claude-code": {
       "source": {
         "source": "github",

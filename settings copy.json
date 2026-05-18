@@ -1,0 +1,100 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_NEW_INIT": "1"
+  },
+  "permissions": {
+    "deny": [
+      "Read(.env*)",
+      "Edit(.env*)",
+      "Bash(cat .env*)",
+      "Bash(head .env*)",
+      "Bash(tail .env*)",
+      "Bash(less .env*)",
+      "Bash(more .env*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\ninput=$(cat)\nfile=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [[ \"$file\" =~ \\.(ts|tsx|js|jsx|json|css)$ ]] && [ -f \"$file\" ]; then\n  proj=$(git -C \"$(dirname \"$file\")\" rev-parse --show-toplevel 2>/dev/null)\n  if [ -n \"$proj\" ]; then\n    cd \"$proj\" && vp fmt \"$file\" >/dev/null 2>&1 || true\n  fi\nfi"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\ninput=$(cat)\nstatus=0\nfile=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [[ \"$file\" =~ \\.(ts|tsx)$ ]] && [ -f \"$file\" ]; then\n  proj=$(git -C \"$(dirname \"$file\")\" rev-parse --show-toplevel 2>/dev/null)\n  if [ -n \"$proj\" ]; then\n    cd \"$proj\" && vp check >&2 || echo \"[Hook] vp check failed — run 'vp check' to see details\" >&2\n  fi\nfi\nexit 0"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\n# Relative import check — ~ alias required\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  relative_imports=$(grep -nE \"from ['\\\"]\\.\\.?/\" \"$file_path\" 2>/dev/null || true)\n  if [ -n \"$relative_imports\" ]; then\n    echo \"[Hook] WARNING: Relative import detected in $file_path\" >&2\n    echo \"$relative_imports\" | head -5 >&2\n    echo \"[Hook] Use '~/' alias instead of relative paths\" >&2\n  fi\nfi"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\n# interface keyword check — use type instead\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  interfaces=$(grep -nE \"^[[:space:]]*(export )?interface \" \"$file_path\" 2>/dev/null || true)\n  if [ -n \"$interfaces\" ]; then\n    echo \"[Hook] WARNING: 'interface' found in $file_path — use 'type' instead\" >&2\n    echo \"$interfaces\" | head -5 >&2\n  fi\nfi"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\n# export default check — forbidden outside src/routes/ directory\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  if [[ ! \"$file_path\" =~ /routes/ ]]; then\n    defaults=$(grep -n \"export default\" \"$file_path\" 2>/dev/null || true)\n    if [ -n \"$defaults\" ]; then\n      echo \"[Hook] WARNING: 'export default' found in $file_path\" >&2\n      echo \"$defaults\" | head -5 >&2\n      echo \"[Hook] Use named exports. Default exports are only allowed in src/routes/ files.\" >&2\n    fi\n  fi\nfi"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/bin/bash\n# try-catch check — use better-result pattern instead\ninput=$(cat)\nfile_path=$(echo \"$input\" | jq -r '.tool_input.file_path // \"\"')\nif [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then\n  # Exclude test files\n  if [[ ! \"$file_path\" =~ \\.(test|spec)\\.(ts|tsx)$ ]]; then\n    trycatch=$(grep -nE \"(\\} catch|try \\{)\" \"$file_path\" 2>/dev/null || true)\n    if [ -n \"$trycatch\" ]; then\n      echo \"[Hook] WARNING: try-catch found in $file_path\" >&2\n      echo \"$trycatch\" | head -5 >&2\n      echo \"[Hook] Use better-result pattern (Result.tryPromise / result.match) instead\" >&2\n    fi\n  fi\nfi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR}/.claude/hooks/claude-doctor-continuous.sh\" 2>/dev/null || true",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "everything-claude-code@everything-claude-code": true
+  },
+  "extraKnownMarketplaces": {
+    "everything-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/everything-claude-code"
+      }
+    }
+  }
+}
