@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDD ワークフロー — Spec-Driven Development ガイド</title>
+    <meta
+      name="description"
+      content="Spec-Driven Development ワークフローの 9 フェーズと成果物の流れを確認できるビジュアルガイドです。"
+    />
+    <link rel="stylesheet" href="sdd-workflow.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1 class="app-title">SDD ワークフロー — Spec-Driven Development ガイド</h1>
+        <p class="intro-note">
+          <strong>対象読者:</strong>
+          エンジニア・非エンジニアを問わず、AI アシスタントと協力して Notion のバックログチケットから
+          Pull Request まで一気通貫で進めたい方
+        </p>
+      </header>
+
+      <!-- §1 このワークフローが解決すること -->
+      <section class="content-section" aria-labelledby="section-problem">
+        <h2 id="section-problem" class="section-heading">1. このワークフローが解決すること</h2>
+        <h3 class="subsection-heading">問題定義</h3>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">状態</th>
+                <th scope="col">問題</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Notion Backlog にチケットがある</td>
+                <td>要件が自然言語で書かれており曖昧。実装者によって解釈が異なる</td>
+              </tr>
+              <tr>
+                <td>実装に入った</td>
+                <td>何を作ったか・なぜこう作ったかの根拠がコードに残らない</td>
+              </tr>
+              <tr>
+                <td>レビュー・マージ後</td>
+                <td>要件とコードの対応関係が失われ、後から追跡できない</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="section-lead">
+          SDD ワークフローはこの問題を <strong>9 フェーズ + 厳格な承認ゲート</strong> で解決します。
+        </p>
+        <pre class="pipeline" aria-label="成果物の流れ"><code>Notion Backlog
+    ↓ /sdd-init
+source-notion.md  (Notion の内容をローカル保存)
+    ↓ /sdd-requirements
+requirements.md   (REQ-001..N — EARS 形式の要件定義)
+    ↓ /sdd-design
+design.md         (Mermaid 図 + ファイル構造)
+    ↓ /sdd-tasks
+tasks.md          (TASK-001..M — 実装タスク一覧)
+    ↓ /sdd-impl
+コード + テスト   (TASK-001 ごとにコミット)
+    ↓ /sdd-pr
+GitHub PR         (REQ → TASK → commit のトレーサビリティテーブル付き)</code></pre>
+      </section>
+
+      <!-- §2 9 フェーズの概要 -->
+      <section class="content-section" aria-labelledby="section-phases">
+        <h2 id="section-phases" class="section-heading">2. 9 フェーズの概要</h2>
+        <p class="section-lead">
+          すべての成果物は <code>.claude/specs/&lt;slug&gt;/</code> 以下に保存されます。
+        </p>
+
+        <div class="phase-flow-wrapper">
+          <div class="phase-flow" role="list" aria-label="SDD の 9 フェーズ">
+            <div class="phase-card" role="listitem" aria-label="フェーズ 1: Init">
+              <span class="phase-number">1</span>
+              <span class="phase-status-icon" aria-hidden="true">🚀</span>
+              <span class="phase-name">Init</span>
+              <span class="phase-command">/sdd-init</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 2: Requirements">
+              <span class="phase-number">2</span>
+              <span class="phase-status-icon" aria-hidden="true">📋</span>
+              <span class="phase-name">Requirements</span>
+              <span class="phase-command">/sdd-requirements</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 3: Review Req">
+              <span class="phase-number">3</span>
+              <span class="phase-status-icon" aria-hidden="true">🔍</span>
+              <span class="phase-name">Review Req</span>
+              <span class="phase-command">/sdd-review-requirements</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 4: Design">
+              <span class="phase-number">4</span>
+              <span class="phase-status-icon" aria-hidden="true">🏗️</span>
+              <span class="phase-name">Design</span>
+              <span class="phase-command">/sdd-design</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 5: Tasks">
+              <span class="phase-number">5</span>
+              <span class="phase-status-icon" aria-hidden="true">📝</span>
+              <span class="phase-name">Tasks</span>
+              <span class="phase-command">/sdd-tasks</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 6: Review Plan">
+              <span class="phase-number">6</span>
+              <span class="phase-status-icon" aria-hidden="true">✅</span>
+              <span class="phase-name">Review Plan</span>
+              <span class="phase-command">/sdd-review-plan</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 7: Implement">
+              <span class="phase-number">7</span>
+              <span class="phase-status-icon" aria-hidden="true">⚙️</span>
+              <span class="phase-name">Implement</span>
+              <span class="phase-command">/sdd-impl</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 8: Code Review">
+              <span class="phase-number">8</span>
+              <span class="phase-status-icon" aria-hidden="true">🛡️</span>
+              <span class="phase-name">Code Review</span>
+              <span class="phase-command">/sdd-review</span>
+            </div>
+            <div class="phase-connector" aria-hidden="true">→</div>
+
+            <div class="phase-card" role="listitem" aria-label="フェーズ 9: PR">
+              <span class="phase-number">9</span>
+              <span class="phase-status-icon" aria-hidden="true">🎉</span>
+              <span class="phase-name">PR</span>
+              <span class="phase-command">/sdd-pr</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="meta-note">
+          <strong>Meta:</strong>
+          <code>/sdd-workflow [slug]</code> — フェーズ状態の表示（読み取り専用）
+        </p>
+
+        <div class="legend" aria-label="進捗状態の凡例（/sdd-workflow の表示）">
+          <span class="legend-item">
+            <span class="legend-dot legend-dot--locked"></span>
+            未着手
+          </span>
+          <span class="legend-item">
+            <span class="legend-dot legend-dot--ready"></span>
+            実行可能
+          </span>
+          <span class="legend-item">
+            <span class="legend-dot legend-dot--active"></span>
+            進行中
+          </span>
+          <span class="legend-item">
+            <span class="legend-dot legend-dot--done"></span>
+            完了
+          </span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="phases-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">フェーズ</th>
+                <th scope="col">コマンド</th>
+                <th scope="col">主な成果物</th>
+                <th scope="col">承認ゲート（次フェーズ）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="phase-cell"><span aria-hidden="true">🚀</span> <strong>Init</strong></td>
+                <td><code>/sdd-init &lt;slug&gt; [notion-url] [--mode]</code></td>
+                <td><code>source-notion.md</code>, <code>progress.md</code></td>
+                <td><code>CONFIRM sdd-requirements</code></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="phase-cell"><span aria-hidden="true">📋</span> <strong>Requirements</strong></td>
+                <td><code>/sdd-requirements &lt;slug&gt;</code></td>
+                <td><code>requirements.md</code></td>
+                <td><code>CONFIRM sdd-review-requirements</code></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="phase-cell"><span aria-hidden="true">🔍</span> <strong>Review Req</strong></td>
+                <td><code>/sdd-review-requirements &lt;slug&gt;</code></td>
+                <td><code>review.md</code> §Requirements Review</td>
+                <td><code>CONFIRM sdd-design</code></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="phase-cell"><span aria-hidden="true">🏗️</span> <strong>Design</strong></td>
+                <td><code>/sdd-design &lt;slug&gt;</code></td>
+                <td><code>design.md</code></td>
+                <td><code>CONFIRM sdd-tasks</code></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="phase-cell"><span aria-hidden="true">📝</span> <strong>Tasks</strong></td>
+                <td><code>/sdd-tasks &lt;slug&gt;</code></td>
+                <td><code>tasks.md</code>, <code>progress.md</code> 更新</td>
+                <td><code>CONFIRM sdd-review-plan</code></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="phase-cell"><span aria-hidden="true">✅</span> <strong>Review Plan</strong></td>
+                <td><code>/sdd-review-plan &lt;slug&gt;</code></td>
+                <td><code>review.md</code> §Plan Review + §Traceability</td>
+                <td><code>CONFIRM sdd-impl</code></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td class="phase-cell"><span aria-hidden="true">⚙️</span> <strong>Implement</strong></td>
+                <td><code>/sdd-impl &lt;slug&gt; [task-id]</code></td>
+                <td>コード + テスト, <code>progress.md</code> 更新</td>
+                <td><code>CONFIRM sdd-review</code></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td class="phase-cell"><span aria-hidden="true">🛡️</span> <strong>Code Review</strong></td>
+                <td><code>/sdd-review &lt;slug&gt;</code></td>
+                <td><code>review.md</code> §Code Review + §Security</td>
+                <td><code>CONFIRM sdd-pr</code></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td class="phase-cell"><span aria-hidden="true">🎉</span> <strong>PR</strong></td>
+                <td><code>/sdd-pr &lt;slug&gt;</code></td>
+                <td>GitHub PR</td>
+                <td>—（ワークフロー完了）</td>
+              </tr>
+              <tr class="meta-row">
+                <td>—</td>
+                <td class="phase-cell"><strong>Meta</strong></td>
+                <td><code>/sdd-workflow [slug]</code></td>
+                <td>フェーズ状態の表示（読み取り専用）</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- §3 各 Skill の説明 -->
+      <section class="content-section" aria-labelledby="section-skills">
+        <h2 id="section-skills" class="section-heading">3. 各 Skill（コマンド）の説明</h2>
+        <p class="section-lead">
+          SDD は <code>.claude/skills/sdd-*/</code> に定義されたスキル群です。各スキルはスラッシュコマンドで起動し、
+          <code>.claude/specs/&lt;slug&gt;/</code> に成果物を書き込みます。モードは <code>sdd-init</code> で一度だけ決め、
+          以降は <code>progress.md</code> を参照します。
+        </p>
+
+        <div class="skill-grid">
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-init</code></h3>
+            <p class="skill-card-phase">フェーズ 1 — Init</p>
+            <p>
+              機能ごとの spec ディレクトリを初期化します。Notion URL があれば
+              <code>source-notion.md</code> に保存し、<code>progress.md</code> に
+              <code>standard</code> / <code>auto</code> を記録します。常に最初に実行します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>source-notion.md</code>, <code>progress.md</code></p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-requirements</code></h3>
+            <p class="skill-card-phase">フェーズ 2 — Requirements</p>
+            <p>
+              <code>source-notion.md</code> をもとに EARS 形式の <code>requirements.md</code>（REQ-001..N）を作成します。
+              <code>standard</code> では人間が内容を埋め、AI が補助。<code>auto</code> では質問に答えると AI が要件を組み立てます。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>requirements.md</code></p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-review-requirements</code></h3>
+            <p class="skill-card-phase">フェーズ 3 — Review Req</p>
+            <p>
+              要件の曖昧さ・矛盾・受入基準の不足をレビューし、<code>review.md</code> に §Requirements Review を追記します。
+              ECC <code>requirements-analyst</code> を起動。<code>standard</code> では技術調査（<code>spec-tech-research</code>）も実施します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>review.md</code> §Requirements Review</p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-design</code></h3>
+            <p class="skill-card-phase">フェーズ 4 — Design</p>
+            <p>
+              要件をもとに Mermaid 図・ファイル構造・状態管理方針を含む <code>design.md</code> を作成します。
+              ECC <code>/plan</code>（planner）に委譲し、プロジェクトの設計テンプレートにマージします。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>design.md</code></p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-tasks</code></h3>
+            <p class="skill-card-phase">フェーズ 5 — Tasks</p>
+            <p>
+              設計を TDD 順の実装タスク（TASK-001..M）に分解し、各タスクに対応 REQ・設計セクションを紐付けます。
+              <code>tasks.md</code> と <code>progress.md</code> のタスク一覧を更新します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>tasks.md</code>, <code>progress.md</code></p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-review-plan</code></h3>
+            <p class="skill-card-phase">フェーズ 6 — Review Plan</p>
+            <p>
+              REQ → 設計 → タスクのトレーサビリティを検証し、プランをレビューします。
+              6 項目の整合性チェックがすべて ✅ のときだけ実装に進めます。§Plan Review と §Traceability Coherence を追記します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>review.md</code> §Plan Review, §Traceability</p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-impl</code></h3>
+            <p class="skill-card-phase">フェーズ 7 — Implement</p>
+            <p>
+              タスクごとに ECC <code>tdd-workflow</code> で Red → Green → Refactor を実行し、
+              <code>feat(TASK-NNN):</code> 形式でコミットします。引数なしで全 pending タスク、<code>TASK-003</code> で再開も可能です。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> コード・テスト, <code>progress.md</code></p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-review</code></h3>
+            <p class="skill-card-phase">フェーズ 8 — Code Review</p>
+            <p>
+              ブランチ差分に対してコードレビューとセキュリティレビューを実行します（Claude Code <code>/code-review</code>、ECC <code>/security-review</code>）。
+              指摘は自動修正せず <code>review.md</code> に記録。CRITICAL が残っている場合は PR 前に解消します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> <code>review.md</code> §Code Review, §Security</p>
+          </article>
+
+          <article class="skill-card">
+            <h3 class="skill-card-title"><code>/sdd-pr</code></h3>
+            <p class="skill-card-phase">フェーズ 9 — PR</p>
+            <p>
+              REQ → TASK → commit のトレーサビリティ表とテスト計画を含む GitHub PR を作成します。
+              実際の PR 作成は <code>git-pr</code> スキルに委譲します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> GitHub PR</p>
+          </article>
+
+          <article class="skill-card skill-card--meta">
+            <h3 class="skill-card-title"><code>/sdd-workflow</code></h3>
+            <p class="skill-card-phase">Meta（読み取り専用）</p>
+            <p>
+              各フェーズの完了状況・次に実行すべきコマンド・ブロッカーを表示します。ファイルは変更しません。
+              slug 省略時は <code>.claude/specs/</code> 配下の全機能を一覧表示します。
+            </p>
+            <p class="skill-card-meta"><strong>成果物:</strong> なし（ステータス表示のみ）</p>
+          </article>
+        </div>
+
+        <h3 class="subsection-heading">補助スキル・エージェント（フェーズ内で呼び出し）</h3>
+        <p class="section-lead">
+          上記の <code>sdd-*</code> スキルがオーケストレーターとなり、必要に応じて既存スキル・ECC エージェントを組み合わせます。
+        </p>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">スキル / エージェント</th>
+                <th scope="col">使われるフェーズ</th>
+                <th scope="col">役割</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>spec-tech-research</code></td>
+                <td>3, 4, 6（<code>standard</code> のみ）</td>
+                <td>ライブラリ選定・技術的実現可能性の調査</td>
+              </tr>
+              <tr>
+                <td>ECC <code>requirements-analyst</code></td>
+                <td>3</td>
+                <td>要件の品質チェック（EARS・曖昧表現・受入基準）</td>
+              </tr>
+              <tr>
+                <td>ECC <code>planner</code> / <code>/plan</code></td>
+                <td>4, 6（<code>standard</code> の 6 のみ）</td>
+                <td>設計・タスク分解の作成と検証</td>
+              </tr>
+              <tr>
+                <td>ECC <code>architect</code></td>
+                <td>6</td>
+                <td>アーキテクチャ観点のプレビュー</td>
+              </tr>
+              <tr>
+                <td>ECC <code>tdd-workflow</code></td>
+                <td>7</td>
+                <td>テスト駆動実装（Red → Green → Refactor）</td>
+              </tr>
+              <tr>
+                <td>Claude Code <code>/code-review</code></td>
+                <td>8</td>
+                <td>コード品質・規約準拠のチェック</td>
+              </tr>
+              <tr>
+                <td>ECC <code>/security-review</code></td>
+                <td>8</td>
+                <td>セキュリティ観点のチェック</td>
+              </tr>
+              <tr>
+                <td><code>git-pr</code></td>
+                <td>9</td>
+                <td>GitHub PR の作成</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- §4 standard / auto -->
+      <section class="content-section" aria-labelledby="section-mode">
+        <h2 id="section-mode" class="section-heading">4. <code>--mode standard</code> と <code>--mode auto</code> の違い</h2>
+        <p class="section-lead">
+          モードは <code>/sdd-init &lt;slug&gt; [--mode standard|auto]</code> で指定します（省略時は
+          <code>standard</code>）。以降のスキルは <code>progress.md</code> の Mode を読み取り、対話の仕方と呼び出すエージェントが変わります。
+        </p>
+
+        <div class="mode-summary">
+          <div class="mode-card mode-card--standard">
+            <h3 class="mode-card-title"><code>standard</code>（デフォルト）</h3>
+            <p><strong>誰が主導:</strong> エンジニアが意思決定、AI が補助・レビュー支援</p>
+            <p><strong>向いている場面:</strong> 設計判断や実装の中身を確認しながら進めたい、技術調査結果を自分で評価したい</p>
+            <ul>
+              <li>各フェーズ完了後に <code>CONFIRM</code> で次へ進む</li>
+              <li>TDD の RED / GREEN / REFACTOR ごとに一時停止して確認</li>
+              <li>要件・プラン・コードレビューで技術調査スキルを併用</li>
+            </ul>
+          </div>
+          <div class="mode-card mode-card--auto">
+            <h3 class="mode-card-title"><code>auto</code></h3>
+            <p><strong>誰が主導:</strong> AI が草案作成・実装まで進め、人間は重要な承認ポイントで判断</p>
+            <p><strong>向いている場面:</strong> 非エンジニアがバックログから PR まで進めたい、定型的な実装を AI に任せたい</p>
+            <ul>
+              <li>要件定義は質問に答えると AI が EARS 形式で記述</li>
+              <li>実装中は TDD サイクルを自動で連続実行</li>
+              <li>承認は要件レビュー・プラン・コードレビューなど重要ゲートに集中</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table mode-table">
+            <thead>
+              <tr>
+                <th scope="col">観点</th>
+                <th scope="col"><code>standard</code></th>
+                <th scope="col"><code>auto</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>想定ユーザー</td>
+                <td>エンジニア</td>
+                <td>非エンジニア / AI に任せたいエンジニア</td>
+              </tr>
+              <tr>
+                <td>主導者</td>
+                <td>人間が意思決定、AI がサポート</td>
+                <td>AI が主導、人間は承認のみ</td>
+              </tr>
+              <tr>
+                <td>要件定義（フェーズ 2）</td>
+                <td>テンプレートを見ながら人間が記述、AI が補助</td>
+                <td>AI が質問 → 回答をもとに要件を自動生成</td>
+              </tr>
+              <tr>
+                <td>要件レビュー（フェーズ 3）</td>
+                <td>analyst + planner + <code>spec-tech-research</code></td>
+                <td>analyst のみ（ビジネス観点の指摘を優先）</td>
+              </tr>
+              <tr>
+                <td>プラン review（フェーズ 6）</td>
+                <td>planner + architect + <code>spec-tech-research</code></td>
+                <td>architect のみ</td>
+              </tr>
+              <tr>
+                <td>実装（フェーズ 7）</td>
+                <td>RED / GREEN / REFACTOR ごとに停止して確認</td>
+                <td>TDD サイクルを連続実行、タスク完了まで自動ループ</td>
+              </tr>
+              <tr>
+                <td>コードレビュー（フェーズ 8）</td>
+                <td>指摘一覧を提示、修正はエンジニアが判断</td>
+                <td>CRITICAL / HIGH に修正提案を併記（適用はしない）</td>
+              </tr>
+              <tr>
+                <td>承認ゲート</td>
+                <td>全フェーズで <code>CONFIRM</code> が必要</td>
+                <td>重要なゲートに集中（フェーズ 3, 6, 8 など）</td>
+              </tr>
+              <tr>
+                <td>対話</td>
+                <td>AI に質問しながら進める</td>
+                <td>AI からの確認事項を最小化</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-heading">フェーズごとのモード差（要約）</h3>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">フェーズ</th>
+                <th scope="col"><code>standard</code> での動き</th>
+                <th scope="col"><code>auto</code> での動き</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2 Requirements</td>
+                <td>人間が REQ を埋める。AI は EARS 整形と不足指摘を支援</td>
+                <td>7 問のヒアリング後、AI が <code>requirements.md</code> を一括作成</td>
+              </tr>
+              <tr>
+                <td>3 Review Req</td>
+                <td>技術実現性まで含めた多角的レビュー → <code>CONFIRM sdd-design</code></td>
+                <td>ビジネス・受入基準中心のレビュー → 懸念を平易に説明して承認待ち</td>
+              </tr>
+              <tr>
+                <td>7 Implement</td>
+                <td>テスト失敗・実装・リファクタの各段階で人間が確認</td>
+                <td>タスク単位で自動コミット。チェック失敗時は最大 3 回まで自己修正</td>
+              </tr>
+              <tr>
+                <td>8 Code Review</td>
+                <td>エンジニア向けの技術的指摘リスト</td>
+                <td>重大度の高い指摘に修正案を添えて提示</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="subsection-heading">モードの指定方法</h3>
+        <pre class="pipeline pipeline--compact"><code># standard（省略時と同じ）
+/sdd-init mail-groups-filter https://www.notion.so/enechange/xxxx
+
+# auto
+/sdd-init payment-refactor https://notion.so/... --mode auto</code></pre>
+
+        <p class="section-lead">
+          <code>auto</code> では各フェーズを AI が進め、承認ゲートに達したときだけ停止します。例:
+        </p>
+        <pre class="pipeline pipeline--dialogue" aria-label="auto モードの承認ゲート例"><code>AI: フェーズ 3（要件レビュー）が完了しました。
+    以下の点が懸念されます：
+    - REQ-003 の受入基準が具体的でない可能性があります
+
+    続行するには CONFIRM sdd-design と入力してください。
+    修正が必要な場合は、修正内容を指示してください。</code></pre>
+      </section>
+
+      <!-- §7 スペックファイル -->
+      <section class="content-section" aria-labelledby="section-specs">
+        <h2 id="section-specs" class="section-heading">7. スペックファイルの場所</h2>
+        <pre class="pipeline" aria-label="スペックディレクトリ構造"><code>.claude/specs/
+└── &lt;slug&gt;/
+    ├── source-notion.md    # 元の Notion 内容
+    ├── requirements.md     # 要件（REQ-NNN）
+    ├── design.md           # 設計
+    ├── tasks.md            # タスク（TASK-NNN）
+    ├── review.md           # 各フェーズのレビュー結果
+    └── progress.md         # フェーズ・タスク進捗</code></pre>
+      </section>
+
+      <footer class="app-footer">
+        <h2 class="footer-heading">参考リンク</h2>
+        <div class="footer-links">
+          <a class="footer-link" href="./sdd-workflow.md">詳細ガイド (Markdown)</a>
+          <a class="footer-link" href="../../../../CODING_GUIDELINES.md">コーディング規約</a>
+          <a class="footer-link" href="../../../../.claude/rules/common/testing.md">テスト戦略</a>
+          <a class="footer-link" href="../ecc/ecc-index.md">ECC プラグイン一覧</a>
+        </div>
+        <span class="footer-note">e_value_management_frontend — SDD ワークフロー</span>
+      </footer>
+    </div>
+  </body>
+</html>
