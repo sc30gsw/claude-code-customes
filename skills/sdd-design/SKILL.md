@@ -138,6 +138,13 @@ Mutations must be wrapped in `Result.tryPromise` with `catch: toApiError` (alpha
 
 ## Phase Gate
 
+**Next skill after design is always `sdd-tasks`, never `sdd-review-plan`.**  
+`sdd-review-plan` requires `tasks.md` and runs only after `/sdd-tasks`.
+
+Use the same gate for the initial write and for any later revision to `design.md`.
+
+### Initial completion
+
 ```
 == PHASE COMPLETE: sdd-design ==
 Artifact: .claude/specs/<slug>/design.md
@@ -149,5 +156,34 @@ Summary:
 - All sections include Satisfies: REQ-XXX traceability links
 
 ⏸ WAITING FOR CONFIRMATION
-Type `CONFIRM sdd-tasks` to proceed, or describe changes needed.
+Next: CONFIRM sdd-tasks   (run /sdd-tasks <slug> — task breakdown)
+Or: describe further design changes
 ```
+
+### After user-requested revisions
+
+When the user asks to change sections of an existing `design.md` (do not treat this as plan review):
+
+```
+== DESIGN REVISED ==
+Artifact: .claude/specs/<slug>/design.md（更新箇所: <list sections>）
+Summary:
+- <bullet: what changed and why>
+
+⏸ WAITING FOR CONFIRMATION
+Next (recommended): CONFIRM sdd-tasks   → /sdd-tasks <slug>
+  - Required if tasks.md is still empty or predates this revision
+  - Re-run tasks when file structure / API / component plan changed materially
+Optional: CONFIRM sdd-review-plan   → only after tasks.md exists AND user wants plan review without regenerating tasks
+Or: describe further design changes
+
+Do NOT recommend CONFIRM sdd-review-plan as the default next step after design-only work.
+```
+
+### If `tasks.md` already exists
+
+If design changed materially and `tasks.md` was generated from the old design:
+
+1. Tell the user tasks may be stale.
+2. Recommend `CONFIRM sdd-tasks` to regenerate (or `/sdd-tasks <slug>` after confirm).
+3. Only after an up-to-date `tasks.md` exists, `CONFIRM sdd-review-plan` is valid.
