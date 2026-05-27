@@ -32,15 +32,15 @@ Do not try to do everything in `/git:pr`. Coordinate with two built-in skills:
 
 | Skill | Responsibility | Relation to `/git:pr` |
 |---|---|---|
-| `/simplify` | Review changed code for reuse, quality, efficiency, then **fix** | Run **before** `/git:pr` on big changes — lowers Simplicity / Complexity / Influence scores |
+| `/code-review` | Review changed code for reuse, quality, efficiency, then **fix** | Run **before** `/git:pr` on big changes — lowers Simplicity / Complexity / Influence scores |
 | `/git:pr` (this) | Generate description, Mermaid, scores → `gh pr create --draft` | Touches **no code** — metadata only |
 | `/review` | Per-line review of an existing PR | Run **after** `/git:pr` on High / Critical PRs as a self-check before requesting reviewers |
 
 ### Non-goals
 
 - No per-line code review comments → that is `/review`'s job
-- No code edits → that is `/simplify`'s job
-- The Simplicity axis only **scores and points**; the actual fix is delegated to `/simplify`
+- No code edits → that is `/code-review`'s job
+- The Simplicity axis only **scores and points**; the actual fix is delegated to `/code-review`
 
 ## CLI Toolbox
 
@@ -106,7 +106,7 @@ Do not invoke more than 3 `ctx7` calls per PR generation. See the `/find-docs` s
 
 ## Workflow
 
-> Companion chain: `/simplify` (pre) → `/git:pr` (this) → `/review` (post). For large changes, run `/simplify` first so scores drop and reviewers have less to wade through.
+> Companion chain: `/code-review` (pre) → `/git:pr` (this) → `/review` (post). For large changes, run `/code-review` first so scores drop and reviewers have less to wade through.
 
 ### Default (no option)
 
@@ -123,7 +123,7 @@ Do not invoke more than 3 `ctx7` calls per PR generation. See the `/find-docs` s
    - Append two trailing sections: **`## 📊 Review Attention Score`** and **`## 🧹 Cleanup Burden`**
    - Every contributing-factor row must carry a Confidence tag
    - End each scoring section with a Confidence summary (✅ N / 🤔 M / ❓ K)
-   - Emit dynamic `/simplify` and `/review` suggestions based on thresholds
+   - Emit dynamic `/code-review` and `/review` suggestions based on thresholds
 6. **Fetch references** via `ctx7` (resolve library → query docs); max 3 calls
 7. **Generate Mermaid diagram** — `classDef` palette + legend subgraph + shape semantics are mandatory
 8. **Create PR**: `gh pr create --draft --title <title> --body-file <pr-body.md>`
@@ -187,7 +187,7 @@ Weighted average of three axes (0–100). Tells reviewers how carefully to read.
 
 ### B. Cleanup Burden (separate axis)
 
-`/simplify` perspective — how much polish remains before merge. Independent 0–100 score; **never folded into Total**.
+`/code-review` perspective — how much polish remains before merge. Independent 0–100 score; **never folded into Total**.
 
 > **Reading the score**: 0 = nothing to clean up (great), 100 = major cleanup recommended. A score of 10 means the code is clean, not that it failed.
 
@@ -259,7 +259,7 @@ Every contributing-factor row in the score tables must carry a Confidence tag, s
 
 | Condition | Output |
 |---|---|
-| Cleanup Burden ≥ 50 | `> 💡 Run /simplify (Cleanup Burden {score} = {level}): {top reasons} — easy wins before merge` |
+| Cleanup Burden ≥ 50 | `> 💡 Run /code-review (Cleanup Burden {score} = {level}): {top reasons} — easy wins before merge` |
 | Total ≥ 65 | `> 💡 Run /review (Review Attention {score} = {level}): self-review before assigning reviewers` |
 | Total < 35 AND Cleanup Burden < 30 | (suppress — already a clean, low-risk PR) |
 
@@ -306,7 +306,7 @@ Signal quality（シグナル品質）:
 ## 🧹 Cleanup Burden (separate, not in Total)
 
 **🔴 High** (75 cleanup pts — higher = more to clean up)  
-`/simplify` perspective. 0 = nothing to do, 100 = heavy cleanup recommended.
+`/code-review` perspective. 0 = nothing to do, 100 = heavy cleanup recommended.
 
 | Lens | Contribution | Where (Confidence) |
 |---|---|---|
@@ -324,7 +324,7 @@ Signal quality（シグナル品質）:
 (Speculative 比率 17% — 警告なし)
 
 > 💡 Next actions
-> - Run `/simplify` (Cleanup Burden 75 = High): the duplicates and reinvention above can be cleaned up before merge
+> - Run `/code-review` (Cleanup Burden 75 = High): the duplicates and reinvention above can be cleaned up before merge
 > - Run `/review` (Review Attention 78 = High): self-review before assigning reviewers
 ```
 

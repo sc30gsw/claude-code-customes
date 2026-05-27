@@ -140,8 +140,8 @@ Only continue to Step 5 if ALL six checks are ✅.
 
 **`--mode standard`**:
 
-1. Invoke ECC `planner` agent with the full requirements + design + tasks context
-2. Invoke ECC `architect` agent with the same context
+1. Invoke `Plan` agent with the full requirements + design + tasks context
+2. Invoke `ecc:architect` agent with the same context
 3. Invoke the `spec-tech-research` skill for the technology stack used in design.md
 4. Collect all findings
 

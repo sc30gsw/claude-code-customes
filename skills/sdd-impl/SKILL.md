@@ -8,7 +8,7 @@
 
 ## Purpose
 
-Implement one task (or all pending tasks) for a spec using strict Test-Driven Development. Delegates test/implementation cycles to the ECC `tdd-workflow` skill and keeps `progress.md` up to date throughout.
+Implement one task (or all pending tasks) for a spec using strict Test-Driven Development. Delegates test/implementation cycles to the `/ecc:tdd-workflow` skill and keeps `progress.md` up to date throughout.
 
 ---
 
@@ -83,9 +83,9 @@ Update `progress.md`:
 - [x] TASK-001: Create user schema — in-progress
 ```
 
-### 3. TDD Cycle via `tdd-workflow`
+### 3. TDD Cycle via `/ecc:tdd-workflow`
 
-Invoke the ECC `tdd-workflow` skill (`/tdd`) for the selected task. Pass the task's acceptance criteria as the specification.
+Invoke the `/ecc:tdd-workflow` skill (`/tdd`) for the selected task. Pass the task's acceptance criteria as the specification.
 
 **RED phase — Write failing test:**
 

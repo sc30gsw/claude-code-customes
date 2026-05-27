@@ -1,7 +1,7 @@
 # sdd-design
 
 **Slash command**: `/sdd-design <slug>`
-**Purpose**: Create `design.md` by delegating to the ECC `/plan` skill for architecture and step planning, then merging output into the project's design template.
+**Purpose**: Create `design.md` by delegating to the `/ecc:plan` skill for architecture and step planning, then merging output into the project's design template.
 
 ---
 
@@ -27,11 +27,11 @@ Extract:
 - Non-functional requirements (performance, security, accessibility)
 - Scope boundaries (in-scope / out-of-scope)
 
-### 2. Invoke ECC `/plan`
+### 2. Invoke `/ecc:plan`
 
-Call the ECC `/plan` skill with the feature context derived from requirements.md.
+Call the `/ecc:plan` skill with the feature context derived from requirements.md.
 
-Prompt framing for `/plan`:
+Prompt framing for `/ecc:plan`:
 
 ```
 Feature: <feature name from requirements.md>

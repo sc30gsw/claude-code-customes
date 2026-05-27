@@ -1,32 +1,32 @@
-# 概要
-このプロジェクトはClaude CodeのCustom Slash Commands および Subagentsを管理するためのプロジェクトです
+## おすすめツール
+- [autoskills](https://www.autoskills.sh/)
+- [RTK](https://www.rtk-ai.app/)
+- [fallow](https://github.com/fallow-rs/fallow)
+- [react-grab](https://www.react-grab.com/)
+- [tanstack intent](https://tanstack.com/intent/latest)
 
-## Custom Slash Command
-[コマンド一覧](docs/commands/README.md)では各コマンドの概要および使用方法を記載しています
+## おすすめPlugin
+- [Anthropic claude plugins official](https://github.com/anthropics/claude-plugins-official)
+- [ecc(everything-claude-code)](https://github.com/affaan-m/ECC)
+- [Expo skills for Ai agents](https://docs.expo.dev/skills/)
+- [Vercel plugin for coding agents](https://vercel.com/changelog/introducing-vercel-plugin-for-coding-agents)
+- [caveman](https://github.com/JuliusBrussee/caveman#install)
+- [context-mode](https://github.com/mksglu/context-mode)
 
-## Skills
-[スキル一覧](docs/skills/README.md)では各スキルの概要および使用方法を記載しています
+## おすすめSkill
+プロジェクトでは、[autoskills](https://www.autoskills.sh/)で一括インストールがおすすめ
 
-## Subagents
-[専門家一覧](docs/sub-agents/README.md)では各エージェントの概要及び使用方法・ユースケースを記載しています
+または、[Skills.sh](https://www.skills.sh/)で検索を推奨
 
-## 備考
-※ Claude CodeにPlugin機能が実装されたら、導入自体が不要になる可能性あり
-
-
-### Spec driven development:
-以下のいずれかを導入
-
-- [spec-kit](https://github.com/github/spec-kit)
-- [cc-sdd](https://github.com/gotalab/cc-sdd)
-
-
-### Claude Code Framework
-
-- [Claude Code Templates](https://www.aitmpl.com/agents)
-- [公式ドキュメント](https://superclaude.netlify.app/)
-- [公式GitHub](https://github.com/SuperClaude-Org/SuperClaude_Framework)
-- [everything-claude-code](https://github.com/affaan-m/everything-claude-code)
-
-## You can search for skills.
-[skills.sh](https://skills.sh/)
+- [mattpocock skills](https://github.com/mattpocock/skills): grill-me など提供
+- [modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance)
+- agent-browser
+- find-skills
+- frontend-design
+- vercel-react-best-practices
+- accessibility
+- find-docs
+- find-skills
+- [Mantine Skills for Ai Agents](https://github.com/mantinedev/skills)
+- better-result-adopt
+- react-doctor

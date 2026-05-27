@@ -82,6 +82,10 @@ After all specs are implemented:
    - If Open questions remain → ask "Mark this note as `blocked` until open questions are resolved?"
    - On user approval, update `status:` in the frontmatter of each note.
 
+## Language
+
+**Always write the notes file in English**, regardless of the language the user communicates in. The notes live in `.claude/learned/` and are tracked in version control, so English keeps them readable by the broader team and consistent with the rest of the skill ecosystem.
+
 ## Entry format (for each section)
 
 ```markdown
