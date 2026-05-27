@@ -51,9 +51,9 @@ Requirements summary:
 Produce: architecture decisions, file structure, component hierarchy, state management plan, API integration plan, test strategy.
 ```
 
-**`--mode standard`**: Present the `/plan` output to the user. Allow the user to review, comment, and guide design interactively before proceeding. Incorporate feedback before scaffolding.
+**`--mode standard`**: Present the `/ecc:plan` output to the user. Allow the user to review, comment, and guide design interactively before proceeding. Incorporate feedback before scaffolding.
 
-**`--mode auto`**: Run `/plan` autonomously. Produce `design.md` directly, then append a plain-language "Auto-Design Summary" section at the top of the file for non-engineer reviewers to confirm before implementation starts.
+**`--mode auto`**: Run `/ecc:plan` autonomously. Produce `design.md` directly, then append a plain-language "Auto-Design Summary" section at the top of the file for non-engineer reviewers to confirm before implementation starts.
 
 ### 3. Scaffold `design.md` from template
 
@@ -63,20 +63,20 @@ Copy the template at `.claude/skills/sdd-design/templates/design.md` to:
 .claude/specs/<slug>/design.md
 ```
 
-### 4. Merge `/plan` output into design sections
+### 4. Merge `/ecc:plan` output into design sections
 
-Fill every section of the template using the `/plan` output and your own analysis:
+Fill every section of the template using the `/ecc:plan` output and your own analysis:
 
 | Template section        | Source                                                          |
 | ----------------------- | --------------------------------------------------------------- |
-| Overview                | requirements.md § Scope + /plan summary                         |
-| Architecture diagram    | /plan architecture decisions → Mermaid                          |
-| File Structure Plan     | /plan file list → mapped to features/ layout                    |
-| State Management        | /plan decisions → cross-checked with state responsibility table |
-| API layer               | /plan API plan → aspida endpoint patterns                       |
-| Component hierarchy     | /plan component breakdown → Mermaid diagram                     |
-| Error handling strategy | /plan error handling + better-result patterns                   |
-| Test strategy           | /plan test plan → cross-checked with Testing Trophy targets     |
+| Overview                | requirements.md § Scope + /ecc:plan summary                         |
+| Architecture diagram    | /ecc:plan architecture decisions → Mermaid                          |
+| File Structure Plan     | /ecc:plan file list → mapped to features/ layout                    |
+| State Management        | /ecc:plan decisions → cross-checked with state responsibility table |
+| API layer               | /ecc:plan API plan → aspida endpoint patterns                       |
+| Component hierarchy     | /ecc:plan component breakdown → Mermaid diagram                     |
+| Error handling strategy | /ecc:plan error handling + better-result patterns                   |
+| Test strategy           | /ecc:plan test plan → cross-checked with Testing Trophy targets     |
 
 ### 5. Add traceability links
 
@@ -145,6 +145,12 @@ Use the same gate for the initial write and for any later revision to `design.md
 
 ### Initial completion
 
+Append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-design | design.md 作成 |
+```
+
 ```
 == PHASE COMPLETE: sdd-design ==
 Artifact: .claude/specs/<slug>/design.md
@@ -161,6 +167,12 @@ Or: describe further design changes
 ```
 
 ### After user-requested revisions
+
+Append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-design | design.md 更新 (<list changed sections>) |
+```
 
 When the user asks to change sections of an existing `design.md` (do not treat this as plan review):
 

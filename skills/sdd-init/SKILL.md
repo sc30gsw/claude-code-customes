@@ -36,11 +36,18 @@ Create the following empty directories and files under `.claude/specs/<slug>/`:
 
 ```
 .claude/specs/<slug>/
+├── review-results/      ← subdirectory for review output files
 ├── progress.md          ← created in this step
+├── change-log.md        ← created in this step
 ├── requirements.md      ← placeholder (created by sdd-requirements)
 ├── design.md            ← placeholder (created by sdd-design)
-├── tasks.md             ← placeholder (created by sdd-tasks)
-└── review.md            ← placeholder (created by review skills)
+└── tasks.md             ← placeholder (created by sdd-tasks)
+```
+
+Run:
+
+```bash
+mkdir -p .claude/specs/<slug>/review-results/
 ```
 
 Write placeholder files with a single comment line:
@@ -60,7 +67,7 @@ If a Notion URL is given:
 
 If no Notion URL is given, skip this step.
 
-### Step 4: Write progress.md
+### Step 4: Write progress.md and change-log.md
 
 Write `.claude/specs/<slug>/progress.md` with the following structure:
 
@@ -84,11 +91,27 @@ Write `.claude/specs/<slug>/progress.md` with the following structure:
 | 7     | sdd-review              | ⬜ not started |
 | 8     | sdd-pr                  | ⬜ not started |
 
-## Change Log
+## Files
 
-| Date         | Phase | Note                       |
-| ------------ | ----- | -------------------------- |
-| <YYYY-MM-DD> | init  | Initialized spec directory |
+| File                                         | Description                                           |
+| -------------------------------------------- | ----------------------------------------------------- |
+| `requirements.md`                            | EARS-format requirements                              |
+| `design.md`                                  | Architecture and design decisions                     |
+| `tasks.md`                                   | Task breakdown (TASK-xxx)                             |
+| `review-results/requirement-review.md`       | Requirements Review findings                          |
+| `review-results/plan-review.md`              | Plan Review + Traceability findings                   |
+| `review-results/code-review.md`              | Code Review + Security Review findings                |
+| `change-log.md`                              | Phase completion event log                            |
+```
+
+Write `.claude/specs/<slug>/change-log.md` with the following structure:
+
+```markdown
+# Change Log: <slug>
+
+| Date | Skill | Event |
+|------|-------|-------|
+| <YYYY-MM-DD> | sdd-init | スペック初期化 |
 ```
 
 ### Step 5: Print confirmation
@@ -98,6 +121,7 @@ Print a summary of what was created, including:
 - Directory path
 - Mode recorded
 - Whether a Notion source was fetched
+- `change-log.md` initialized with first row
 - The next step to take
 
 ---

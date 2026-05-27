@@ -81,6 +81,12 @@ Copy the template from `.claude/skills/sdd-tasks/templates/progress.md` and fill
 - `started`: today's date in YYYY-MM-DD format
 - Task state table: one row per TASK, all set to `pending`
 
+Append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-tasks | tasks.md 作成 (<N> TASKs) |
+```
+
 ### 5. Mode-specific behaviour
 
 **`--mode standard`**: Present the task breakdown to the user. Discuss granularity and ordering. Allow the user to add, remove, or reorder tasks before writing the files.

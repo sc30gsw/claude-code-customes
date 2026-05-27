@@ -1,7 +1,7 @@
 # sdd-review-plan
 
 **Slash command**: `/sdd-review-plan <slug>`
-**Purpose**: Comprehensive pre-implementation review of requirements, design, and tasks. Appends "Traceability Coherence" and "Plan Review" sections to `review.md`.
+**Purpose**: Comprehensive pre-implementation review of requirements, design, and tasks. Writes "Traceability Coherence" and "Plan Review" findings to `review-results/plan-review.md`.
 
 ---
 
@@ -11,6 +11,7 @@
 - `.claude/specs/<slug>/design.md` must exist
 - `.claude/specs/<slug>/tasks.md` must exist
 - `.claude/specs/<slug>/progress.md` must exist (used to read `mode`)
+- `.claude/specs/<slug>/review-results/requirement-review.md` (created by sdd-review-requirements)
 
 ---
 
@@ -23,6 +24,7 @@
 .claude/specs/<slug>/design.md
 .claude/specs/<slug>/tasks.md
 .claude/specs/<slug>/progress.md    (read mode: standard | auto)
+.claude/specs/<slug>/review-results/requirement-review.md  (for prior review context)
 ```
 
 Build three indexes in memory:
@@ -103,12 +105,19 @@ Failure example:
    Fix: renumber the second occurrence
 ```
 
-### 3. Write Traceability Coherence table to `review.md`
+### 3. Write Traceability Coherence table to `review-results/plan-review.md`
 
-Append to `.claude/specs/<slug>/review.md` under the heading:
+Write to `.claude/specs/<slug>/review-results/plan-review.md`:
 
 ```markdown
-## Traceability Coherence (YYYY-MM-DD)
+# Plan Review: <slug>
+
+**Date**: <YYYY-MM-DD>
+**Reviewer**: sdd-review-plan skill
+**Mode**: <standard|auto>
+**Traceability**: ✅ All checks passed (or ⚠️ N failures)
+
+## Traceability Coherence
 
 | Check            | Result  | Details                               |
 | ---------------- | ------- | ------------------------------------- |
@@ -140,38 +149,48 @@ Only continue to Step 5 if ALL six checks are ✅.
 
 **`--mode standard`**:
 
-1. Invoke `Plan` agent with the full requirements + design + tasks context
+1. Invoke `ecc:planner` agent with the full requirements + design + tasks context
 2. Invoke `ecc:architect` agent with the same context
-3. Invoke the `spec-tech-research` skill for the technology stack used in design.md
+3. Invoke the `ecc:docs-lookup` agent for the technology stack used in design.md
 4. Collect all findings
 
 **`--mode auto`**:
 
-1. Invoke ECC `architect` agent only (skip `planner` and `spec-tech-research`)
+1. Invoke `ecc:architect` agent only (skip ecc:planner agent and ecc:docs-lookup agent)
 2. Collect findings
 
-### 6. Append Plan Review to `review.md`
+### 6. Write Plan Review to `review-results/plan-review.md`
 
-Append under:
+Write findings to plan-review.md after the Traceability Coherence section:
 
 ```markdown
-## Plan Review (YYYY-MM-DD)
+## Architecture & Design Review
 
-### Reviewer: planner agent (standard mode only)
+| Section / 横断 | Issue | Severity | Suggestion |
+| -------------- | ----- | -------- | ---------- |
+| ...            | ...   | ...      | ...        |
 
-<!-- findings -->
+## Task Breakdown Review
 
-### Reviewer: architect agent
+| Task / 横断 | Issue | Severity | Suggestion |
+| ----------- | ----- | -------- | ---------- |
+| ...         | ...   | ...      | ...        |
 
-<!-- findings -->
+## Technology Stack Review (standard mode only)
 
-### Reviewer: spec-tech-research (standard mode only)
+| 確認項目 | 結果 | 影響 |
+| -------- | ---- | ---- |
+| ...      | ...  | ...  |
 
-<!-- findings -->
+## Recommended Actions Before Proceeding
 
-### Summary
+- [ ] **HIGH**: <action 1>
+- [ ] **HIGH**: <action 2>
+- [ ] **MEDIUM**: <action 3>
 
-<!-- 3-5 bullet points: key risks, open questions, recommendations -->
+## Sign-off Condition
+
+All HIGH severity findings must be resolved before running `/sdd-impl <slug>`.
 ```
 
 ---
@@ -179,7 +198,17 @@ Append under:
 ## Output
 
 ```
-.claude/specs/<slug>/review.md    (appended, not overwritten)
+.claude/specs/<slug>/review-results/plan-review.md    (created or overwritten)
+```
+
+---
+
+## change-log.md Update
+
+After writing plan-review.md, append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-review-plan | plan-review.md 作成 (Traceability: ✅/⚠️, <N> findings) |
 ```
 
 ---
@@ -190,11 +219,11 @@ Only output this block when ALL six traceability checks are ✅ AND plan review 
 
 ```
 == PHASE COMPLETE: sdd-review-plan ==
-Artifact: .claude/specs/<slug>/review.md
+Artifact: .claude/specs/<slug>/review-results/plan-review.md
 Summary:
 - All 6 traceability coherence checks passed (A-F)
-- Plan reviewed by architect agent (+ planner + spec-tech-research in standard mode)
-- Key risks and open questions documented in review.md
+- Plan reviewed by ecc:architect agent (+ ecc:planner agent + ecc:docs-lookup agent in standard mode)
+- Key risks and open questions documented in review-results/plan-review.md
 - Spec is ready for implementation
 - Run /sdd-impl <slug> TASK-001 to begin
 

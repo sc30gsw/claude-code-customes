@@ -14,7 +14,7 @@
 
 ## Purpose
 
-Review `requirements.md` for completeness, clarity, EARS compliance, ambiguity, and missing edge cases. Appends a structured "Requirements Review" section to `.claude/specs/<slug>/review.md`. The mode is read from `progress.md` and determines which agents are invoked and which checks are run.
+Review `requirements.md` for completeness, clarity, EARS compliance, ambiguity, and missing edge cases. Writes a structured "Requirements Review" file to `.claude/specs/<slug>/review-results/requirement-review.md`. The mode is read from `progress.md` and determines which agents are invoked and which checks are run.
 
 ---
 
@@ -27,6 +27,7 @@ Read `.claude/specs/<slug>/progress.md`:
 - Extract `**Mode**:` value (`standard` or `auto`).
 - Check that `sdd-requirements` phase is marked `✅ complete`. If not, abort and instruct the user to run `/sdd-requirements <slug>` first.
 - If `progress.md` does not exist, abort and instruct the user to run `/sdd-init <slug>` first.
+- Create `.claude/specs/<slug>/review-results/` directory if it does not exist.
 
 ### Step 2: Load requirements.md
 
@@ -45,11 +46,11 @@ Invoke the following in sequence:
    - Focus: EARS compliance, acceptance criteria quality, stakeholder roles, ambiguity detection.
    - Prompt: "Review the following requirements.md for EARS format compliance, ambiguous terms, missing acceptance criteria, and untestable criteria. Return a structured list of findings with REQ ID, issue description, severity, and suggested correction."
 
-2. **`Plan` agent** (secondary)
+2. **`ecc:planner` agent** (secondary)
    - Focus: Scope boundaries, dependency risks, missing scenarios, implementation sequencing concerns.
    - Prompt: "Review the following requirements for missing edge cases, scope gaps, inter-requirement conflicts, and sequencing risks. Return findings with REQ ID and impact."
 
-3. **Project `spec-tech-research` skill** (technical feasibility)
+3. **`ecc:docs-lookup` agent** (technical feasibility)
    - Focus: Validate that each REQ is feasible given the project stack (Next.js, TypeScript, Mantine, SWR, Jotai, MSW, Vitest, aspida, Valibot).
    - Flag any REQ whose acceptance criteria would require capabilities not supported by the stack, or would require significant architectural changes.
 
@@ -61,7 +62,7 @@ Invoke only:
 
 1. **`requirements-analyst` agent**
    - Focus: Business clarity, acceptance criteria completeness, stakeholder roles, ambiguity, risks.
-   - Do NOT run `planner` or `spec-tech-research`.
+   - Do NOT run the `ecc:planner` agent or `ecc:docs-lookup` agent.
    - Prioritize findings that a non-engineer product owner can act on directly.
 
 ---
@@ -120,22 +121,21 @@ Scan all requirement text for vague qualifiers. Flag occurrences as **MEDIUM**:
 
 ## Output Format
 
-Append the following section to `.claude/specs/<slug>/review.md` under a dated heading.
-
-If `review.md` does not yet exist, create it with this content only.
+Write the following to `.claude/specs/<slug>/review-results/requirement-review.md`:
 
 ```markdown
-## Requirements Review (<YYYY-MM-DD>)
+# Requirements Review: <slug>
 
+**Date**: <YYYY-MM-DD>
 **Reviewer**: sdd-review-requirements skill
 **Mode**: <standard|auto>
 **Requirements reviewed**: <N> REQs (REQ-001 through REQ-NNN)
 
-### Overall Assessment
+## Overall Assessment
 
 <!-- 2-4 sentences: Is this requirements doc ready to proceed? What is the most critical concern? -->
 
-### Findings
+## Findings
 
 | REQ     | Issue               | Severity | Suggestion          |
 | ------- | ------------------- | -------- | ------------------- |
@@ -145,25 +145,39 @@ If `review.md` does not yet exist, create it with this content only.
 
 _Severity: HIGH = blocks implementation, MEDIUM = should fix before design, LOW = consider before PR_
 
-### Recommended Actions Before Proceeding
+## Recommended Actions Before Proceeding
 
 - [ ] **HIGH**: <action 1>
 - [ ] **HIGH**: <action 2>
 - [ ] **MEDIUM**: <action 3>
 
-### Sign-off Condition
+## Sign-off Condition
 
 All HIGH severity findings must be resolved before running `/sdd-design <slug>`.
 ```
 
 ---
 
-## progress.md Updates
+## change-log.md Update
 
-After writing the review:
+After writing findings to requirement-review.md, append to `.claude/specs/<slug>/change-log.md`:
 
-- Change `sdd-review-requirements` status from `⬜ not started` to `✅ complete`.
-- Add a row to the Change Log: `| <YYYY-MM-DD> | review-requirements | N findings (X HIGH, Y MEDIUM, Z LOW) |`
+```
+| <YYYY-MM-DD> | sdd-review-requirements | requirement-review.md 作成 (<N> findings: M HIGH, N MEDIUM, P LOW) |
+```
+
+Also update `.claude/specs/<slug>/progress.md`:
+
+```
+## Phase: sdd-review-requirements
+
+**Status**: Complete
+**Date**: <YYYY-MM-DD>
+**Mode**: <standard|auto>
+**Findings**: <N> total (M HIGH, N MEDIUM, P LOW)
+```
+
+Change `sdd-review-requirements` status from `⬜ not started` to `✅ complete`.
 
 ---
 
@@ -172,19 +186,20 @@ After writing the review:
 - Do not modify `requirements.md`. This skill is read-only with respect to requirements. The user must update requirements separately and rerun this skill if needed.
 - If all checks pass with zero HIGH severity findings, state this clearly in the Overall Assessment section. The user may still choose to proceed immediately.
 - In `--mode auto`, present findings in plain language without jargon. Label each finding with its business impact rather than technical category (e.g. "Users won't know what to do if the upload fails" instead of "Missing error path for REQ-003").
-- If `review.md` already has a Requirements Review section, append the new dated section below the existing one. Do not overwrite prior reviews.
+- If `review-results/requirement-review.md` already exists, overwrite it with the new review (each run replaces the prior review). The prior review is preserved in `change-log.md`.
 
 ---
 
 == PHASE COMPLETE: sdd-review-requirements ==
-Artifact: .claude/specs/<slug>/review.md
+Artifact: .claude/specs/<slug>/review-results/requirement-review.md
 Summary:
 
 - Mode read from progress.md
 - requirements.md loaded and analyzed (N REQs)
 - Checks run: EARS compliance, ambiguity, missing elements, testability, completeness, numbering, technical feasibility (standard only)
-- Agents invoked: requirements-analyst (both modes), planner + spec-tech-research (standard only)
-- Findings written to review.md under dated heading
+- Agents invoked: requirements-analyst (both modes), ecc:planner agent + ecc:docs-lookup agent (standard only)
+- Findings written to review-results/requirement-review.md
+- change-log.md updated with finding count
 - progress.md updated: sdd-review-requirements → complete
 
 ⏸ WAITING FOR CONFIRMATION

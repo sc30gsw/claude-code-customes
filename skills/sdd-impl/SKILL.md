@@ -16,7 +16,7 @@ Implement one task (or all pending tasks) for a spec using strict Test-Driven De
 
 Before running this skill, confirm:
 
-- `sdd-review-plan` has been run: `review.md` must contain a `## Plan Review` section with no `❌` in the Traceability section.
+- `sdd-review-plan` has been run: `review-results/plan-review.md` must exist and contain no `❌` in the Traceability section.
 - `tasks.md` exists and has at least one task in `pending` status.
 
 If the plan review is missing, stop and instruct the user to run `/sdd-review-plan <slug>` first.
@@ -30,7 +30,7 @@ If the plan review is missing, stop and instruct the user to run `/sdd-review-pl
 | `.claude/specs/<slug>/tasks.md`    | Task definitions and acceptance criteria      |
 | `.claude/specs/<slug>/progress.md` | Current task statuses and mode setting        |
 | `.claude/specs/<slug>/design.md`   | Architecture decisions guiding implementation |
-| `.claude/specs/<slug>/review.md`   | Checked for Plan Review completion            |
+| `.claude/specs/<slug>/review-results/plan-review.md` | Checked for Plan Review completion |
 
 ---
 
@@ -85,7 +85,7 @@ Update `progress.md`:
 
 ### 3. TDD Cycle via `/ecc:tdd-workflow`
 
-Invoke the `/ecc:tdd-workflow` skill (`/tdd`) for the selected task. Pass the task's acceptance criteria as the specification.
+Invoke the `/ecc:tdd-workflow` skill for the selected task. Pass the task's acceptance criteria as the specification.
 
 **RED phase — Write failing test:**
 
@@ -210,6 +210,7 @@ The skill reads `progress.md`, finds any task marked `in-progress`, and resumes 
 | File                               | Change                             |
 | ---------------------------------- | ---------------------------------- |
 | `.claude/specs/<slug>/progress.md` | Task statuses updated              |
+| `.claude/specs/<slug>/change-log.md` | Phase completion event appended  |
 | `src/features/<feature>/...`       | New/modified source and test files |
 | `git history`                      | One commit per completed task      |
 
@@ -218,6 +219,12 @@ The skill reads `progress.md`, finds any task marked `in-progress`, and resumes 
 ## Approval Gate
 
 After all specified tasks complete (or a single task if `[task-id]` was given):
+
+Append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-impl | 実装完了 (<N> tasks, <M> commits) |
+```
 
 ```
 == PHASE COMPLETE: sdd-impl ==

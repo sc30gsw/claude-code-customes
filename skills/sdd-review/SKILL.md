@@ -79,7 +79,7 @@ Focus areas for this project:
 
 ### 3. Security Review (Step 2)
 
-Invoke the ECC `security-review` skill.
+Invoke the `/ecc:security-review` skill.
 
 Focus areas:
 

@@ -116,7 +116,12 @@ Write the completed requirements to `.claude/specs/<slug>/requirements.md`.
 Update `.claude/specs/<slug>/progress.md`:
 
 - Change `sdd-requirements` status from `⬜ not started` to `✅ complete`.
-- Add a row to the Change Log: `| <YYYY-MM-DD> | requirements | Written N requirements |`
+
+Append to `.claude/specs/<slug>/change-log.md`:
+
+```
+| <YYYY-MM-DD> | sdd-requirements | requirements.md 作成 (<N> REQs) |
+```
 
 ---
 
